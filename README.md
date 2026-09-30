@@ -1,16 +1,44 @@
-# Antigravity Enterprise Autonomous Agentic Platform
+# Universal Autonomous Agentic Engineering Platform
 
-> **Target Environment**: Google Antigravity IDE & Antigravity CLI (`agy`)  
-> **Status**: Production Ready | 99/99 Pytest suites green | 18/18 Adversarial suites passing | 13/13 Node unit suites + 6/6 Harness Evals passing | 7/7 System Readiness Probes green  
-> **Governance Standard**: Enterprise 2-Person 50/50 Dual-Lead Architecture & Part 7 Protocol ([AGENTS.md](file:///d:/BE_Research/AGENTS.md))  
+An enterprise-grade, agent-agnostic multi-agent SDLC orchestration framework. Built to transform any AI coding agent or human engineering team into an autonomous, self-healing **6+1 Agile Product Squad** across any development environment.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-v20%2B%20%7C%20v24%2B-339933.svg?logo=node.js)](https://nodejs.org)
+[![Python](https://img.shields.io/badge/Python-3.11%2B%20%7C%203.12%2B-3776AB.svg?logo=python)](https://python.org)
+[![Universal Harness](https://img.shields.io/badge/Universal-Claude%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Copilot%20%7C%20Antigravity-blueviolet.svg)](UNIVERSAL_AGENT_INSTRUCTIONS.md)
 
 ---
 
-## 1. Executive Overview
+## Overview
 
-Antigravity Enterprise is an autonomous multi-agent engineering platform that translates an entire enterprise engineering organization into a specialized **6+1 Agile Product Squad**. It operates seamlessly across **Solo Developers**, **2-Person Dual-Lead Rotations**, and **Multi-Developer Team Meshes (N persons)** with parallel domain locking.
+The **Universal Autonomous Agentic Engineering Platform** provides an end-to-end operational framework for AI-assisted and fully autonomous software development. It eliminates the fragile prompt-and-pray paradigm by introducing structured multi-agent personas, red-first test-driven development, deterministic AST mutation testing, active runtime interception, and automated cross-agent synchronization.
 
-The system dynamically specializes into any of **8 Master Domains** and **46 Subdomains** without hardcoded domain bias, hydrating expert personas, curated skills, behavioral evaluations, domain-specific AST mutation fault injections, and sandboxed compiler toolchains JIT.
+Whether you develop with **Claude Code**, **Cursor**, **Windsurf**, **GitHub Copilot**, **Codex / Aider**, **Google Antigravity IDE**, or run headless scripts in **CI/CD**, this repository acts as a single, authoritative foundation that works identically across all environments with zero vendor lock-in.
+
+---
+
+## Universal Agent Harness Compatibility
+
+All agent-specific instruction surfaces are generated and validated from a single source of truth ([UNIVERSAL_AGENT_INSTRUCTIONS.md](file:///d:/BE_Research/UNIVERSAL_AGENT_INSTRUCTIONS.md)), ensuring zero instruction drift across tooling:
+
+| Environment | Integration Surface | Configuration & Sync |
+| :--- | :--- | :--- |
+| **Claude Code** | `CLAUDE.md` / CLI | Directly ingests root instructions or via `--system-prompt` |
+| **Cursor** | `.cursorrules` / *Rules for AI* | Ingests root instructions via `npm run harness:sync` |
+| **Windsurf / Cascade** | `.windsurfrules` / *Cascade Rules* | Ingests root instructions via `npm run harness:sync` |
+| **GitHub Copilot** | `.github/copilot-instructions.md` | Ingests root instructions via `npm run harness:sync` |
+| **Google Antigravity** | Native `AGENTS.md` & `GEMINI.md` | Automatically discovered from repository root |
+| **Codex / Aider / OpenHands** | System Prompt / Startup Config | Direct markdown ingestion from repository root |
+| **Headless CLI / CI/CD** | `python -m scripts.orchestrator.task_dispatcher` | Deterministic headless task execution |
+
+Synchronize and validate cross-harness instructions at any time:
+```bash
+npm run harness:sync
+```
+
+---
+
+## Core Capabilities
 
 ```
                     UNIVERSAL MULTI-DOMAIN SQUAD ARCHITECTURE
@@ -52,178 +80,173 @@ The system dynamically specializes into any of **8 Master Domains** and **46 Sub
                          └───────────────────────────────┘
 ```
 
----
+### 1. 6+1 Agile Product Squad
+Every request executes through structured enterprise personas rather than an unstructured generalist model:
+- **Phase 0: Deep Research Specialist**: Real-world evidence, statutory regulations, and prior-art benchmarking.
+- **Phase 1: Product Manager**: Scope decomposition, user acceptance criteria, and invariant definitions.
+- **Phase 2: System Architect**: Typed schema contracts, state machines, and Architecture Decision Records (ADRs).
+- **Phase 3: Adversarial SDET**: Red-first test creation, edge-case probing, concurrency testing, and Playwright verification.
+- **Phase 4: Core Engineer**: Idiomatic green implementation in the active domain's dominant tech stack.
+- **Phase 5: Mutation & Security Auditor**: AST fault injection (≥ 80% kill rate requirement) and zero-secret scanning.
+- **Phase 6: Technical Writer**: Living documentation synchronization and cognitive comprehension dossiers.
 
-## 2. Core Architectural Pillars
+### 2. Universal Domain Specialization (8 Domains, 46 Subdomains)
+Dynamically hydrates personas, skills, behavioral checks, and compiler toolchains across:
+- **Software Engineering**: Full-stack web, distributed systems, mobile, APIs, microservices.
+- **AI/ML & MLOps**: Model training, evaluation harnesses, ECE calibration, pipeline automation.
+- **Blockchain & Web3**: Smart contracts, DeFi protocols, reentrancy guards, formal verification.
+- **Deep Tech & Science**: High-performance compute, scientific modeling, simulation algorithms.
+- **Cybersecurity & AppSec**: DAST penetration testing, constant-time cryptography, vulnerability remediation.
+- **Cloud Infrastructure & DevOps**: Kubernetes, Terraform, zero-trust networking, CI/CD pipelines.
+- **Data Engineering**: High-throughput ETL, stream processing, OLAP analytics, ClickHouse / PostgreSQL.
+- **Vertical Applied IT**: Domain-specific compliance, statutory reporting, and enterprise integrations.
 
-### 1. Universal Master Domain Specialization (8 Domains, 46 Subdomains)
-- Dynamically transforms the 6-Persona SDLC squad into senior domain specialists across Software Engineering, AI/ML, Blockchain/Web3, Deep Tech & Scientific Research, Cybersecurity, Cloud Infrastructure, Data Engineering, and Vertical Applied IT.
-- Interactive switching via `npm run domain:select` or programmatic configuration via `npm run domain:set`.
-- Active compiler and runtime verification via `npm run domain:doctor`.
+### 3. Active Interception Harness (`active_kernel.py`)
+Intercepts execution to ensure system safety and prevent runaway failures:
+- **Memory Guardrails**: Monitors memory budgets to prevent unhandled kernel out-of-memory aborts.
+- **Deadline Lockdown**: Automatically enforces code freeze leading up to delivery deadlines, restricting modifications to packaging and validation.
+- **Scale Profiler**: Runs micro-batch benchmarks before executing large-scale data processing (>10,000 items) to catch O(N²) regressions early.
+- **GateGuard**: Enforces empirical verification, requiring tool-backed evidence for every claimed result.
+- **Prompt Hygiene**: Prunes cross-domain rule bloat into a lean active kernel to prevent attention drift.
 
-### 2. 2-Tier Progressive Skill Disclosure (298 Skills, Zero Ghost Packages)
-- **Tier 1 (Curated Subdomain Skills)**: 172 high-priority skill slots (104 unique specialist skills) mapped directly into the 46 subdomains. Dynamically resolved by `DomainPersonaEngine` and injected into prompt overlays as clickable markdown links (`<150 tokens`).
-- **Tier 2 (Universal Skills Vault)**: All 298 physical skills in `.agents/skills/` remain searchable on-demand via `npm run skill:search <query>`.
+### 4. 2-Tier Progressive Skill Disclosure (298 Skills)
+- **Tier 1 (Curated Subdomain Skills)**: 172 high-priority slots (104 unique specialist skills) automatically resolved JIT by `SkillResolver` based on active subdomains and prompt intent.
+- **Tier 2 (Universal Skill Vault)**: All 298 physical skills in `.agents/skills/` are searchable on demand via `npm run skill:search <query>`.
+- **Zero Ghost Skills**: Every referenced skill is physically grounded in verified repository files, with activated skills explicitly reported in execution receipts.
 
-### 3. Tri-Mode Operator Collaboration (Solo, Dual, Team Mesh)
-- **Solo Mode (`npm run mode:solo`)**: Instant solo-developer velocity. Bypasses multi-host lease locks while retaining autonomous persona separation.
-- **Dual Mode (`npm run mode:dual`)**: Co-equal 50/50 dual-lead workflow alternating across Computer 1 (Alpha: Feature Architect) and Computer 2 (Beta: Adversarial SDET).
-- **Team Mesh Mode (`npm run mode:team`)**: Multi-developer parallel domain leases (`.agents/state/locks/<domain>.lock.json`) with Git-native shared state and LAN sync server (`npm run lan:start`).
-
-### 4. 6+1 Agile Product Squad & Complete SDLC Lifecycle
-Simulates an expert enterprise product team executing across all 9 SDLC phases:
-- **Phase 0: Deep Research**: Triangulates live regulations, commercial prior-art, and CVEs (`deep_research_specialist`).
-- **Phase 1: Requirements Formulation**: PRDs, user stories, and statutory KPIs (`product_manager`).
-- **Phase 2: Architectural Modeling**: Typed schema contracts and ADRs (`system_architect`).
-- **Phase 3: Adversarial TDD**: Red-first testing, concurrency races, and headless Playwright verification (`adversarial_sdet`).
-- **Phase 4: Idiomatic Implementation**: Green business logic in the domain's dominant stack (`core_engineer`).
-- **Phase 5: Mutation & Hardening**: AST fault injection (≥ 80% kill rate) and secret scans (`mutation_auditor`).
-- **Phase 6: Cognitive Dossiers**: Part 7 6-technique comprehension dossiers and living doc sync (`technical_writer`).
-- **Phase 7: Packaging & Release**: Release gating and statutory export certifications.
-- **Phase 8: Telemetry & Impact**: Real empirical benchmarks and impact analyses.
-
-### 5. Tiered 10+1 Active Interception Architecture & Dynamic Multi-Domain Harness
-- **Active Interception Kernel (`.agents/harness/active_kernel.py`)**: Intercepts shell execution and file writes across all 8 Master Domains and 46 Subdomains.
-- **Universal Pre-Execution Guards**:
-  - `MemoryGuard`: Enforces 75% physical RAM allocation ceiling, preventing unhandled kernel OOM kills (SIGKILL / 137).
-  - `DeadlineLockdown`: Enforces automatic T-4h code freeze, prohibiting late-stage rewrites and restricting execution strictly to submission packaging and validation.
-  - `ScaleProfiler`: Mandates 500-item micro-benchmarks before executing jobs >10,000 items, detecting O(N²) quadratic bottlenecks in < 0.2s.
-  - `GateGuard`: Fact-forcing middleware rejecting empirical metric claims that lack raw tool execution proof.
-  - `PromptHygiene`: Compresses monolithic 25 KB prompts into a 4 KB Core Kernel, pruning foreign domain rules to eliminate attention dilution.
-- **Dynamic Domain-Specific Verification**: Tailored invariant gates for each of the 8 domains (CEI in Blockchain, ECE Calibration in AI/ML, constant-time `timingSafeEqual` in Cybersecurity, strict TS and RFC 7807 in Software).
-- **Deterministic AST Mutation Testing**: Enforces ≥ 80% mutation kill rate in both TypeScript (`scripts/mutation-tester.ts`) and Python (`scripts/orchestrator/python_mutation_tester.py`).
-- **Cryptographic Squad Attestation Ledger**: Every prompt execution emits an immutable SHA-256 execution receipt with `active_personas`, `domain`, `subdomains`, and verified `activated_skills` logged to SQLite Memory Vault (`npm run attest:verify`).
-
-### 6. Automatic Skill Resolution & Transparent Attestation (298 Skills, Zero Ghost Packages)
-- **Automatic Keyword & Subdomain Resolution (`SkillResolver`)**: Automatically parses prompt keywords and active subdomain mappings to resolve the exact matching skills from the 298 installed catalog before execution.
-- **Mandatory Attestation Invariant**: Every turn receipt explicitly outputs `activated_skills` with relative paths and match reasons, eliminating operator blindness and guaranteeing 100% visibility.
-- **Zero Ghost Skills**: Every referenced skill is grounded against physical `.agents/skills/<name>/SKILL.md` files.
-
-### 7. Domain-Aware Memory Vault & Living Documentation
-- **SQLite Memory Vault (`.agents/memory/vault.sqlite`)**: Indexed full-text search with `domain_id` partitioning and active-domain relevance boosting.
-- **6 Living Documentation Catalogs**: `docs/plans/`, `docs/walkthroughs/`, `docs/audits/`, `docs/decisions/`, `docs/research/`, and `docs/specifications/` synchronized in sub-seconds via `SpecSync` (`npm run docs:sync`, `npm run docs:reconcile`).
+### 5. Tri-Mode Operating Flexibility
+- **Solo Mode (`npm run mode:solo`)**: Streamlined single-operator workflow with full persona separation without lease collisions.
+- **Dual-Lead Enterprise Mode (`npm run mode:dual`)**: Balanced 50/50 division of responsibility between Lead 1 (Feature Architect) and Lead 2 (Adversarial SDET).
+- **Team Mesh Mode (`npm run mode:team`)**: Multi-developer parallel domain leases with Git-native shared state synchronization.
 
 ---
 
-## 3. Quickstart & Installation
+## Quickstart
 
 ### Prerequisites
 - **Node.js**: v20.x or v24.x LTS (with native `--experimental-strip-types`)
 - **Python**: 3.11+ or 3.12+
 - **Playwright**: Headless Chromium browser automation
 
-### 1-Command Setup
+### Installation
 ```bash
-# 1. Install Node.js dependencies
+# 1. Clone starter template
+git clone https://github.com/Deepak-Sharma-2006/script.git my-project
+cd my-project
+
+# 2. Install dependencies
 npm install
 
-# 2. Install Playwright browser binaries
+# 3. Install browser binaries for automated testing
 npx playwright install chromium
 
-# 3. Verify Full System Readiness (7/7 Probes Green)
+# 4. Synchronize universal agent instructions
+npm run harness:sync
+
+# 5. Verify system readiness (all 7 operational layers)
 npm run readiness
 ```
 
 ---
 
-## 4. Essential Workflow Runbook
+## Essential Runbook
 
-### Domain Selection & Compiler Diagnostics
+### Domain Selection & Stack Diagnostics
 ```bash
-# Inspect active domain, subdomains, and hydrated stack
+# Check current active domain and hydrated toolchains
 npm run domain:status
 
 # Interactive CLI domain questionnaire
 npm run domain:select
 
-# Explicitly set domain and subdomains headlessly
+# Programmatically switch domains and subdomains
 npm run domain:set -- --domain blockchain --subdomains smart_contracts,defi_protocols
 
-# Probe required runtimes and compilers for active domain
+# Probe required system runtimes and compilers
 npm run domain:doctor
 ```
 
 ### Autonomous Task Execution
 ```bash
-# Task 1: First-principles solution, live research & cloud unit economics
-python -m scripts.orchestrator.task_dispatcher --task solution --prompt "Autonomous satellite wildfire early detection"
+# Task 1: First-principles solution formulation, research & economics
+python -m scripts.orchestrator.task_dispatcher --task solution --prompt "Autonomous wildfire early detection"
 
 # Task 2: Red-to-green autonomous TDD implementation loop
 python -m scripts.orchestrator.task_dispatcher --task code --prompt "Implement rate-limiting token bucket middleware"
 
-# Task 3: 2D Flex/Grid presentation pitch deck compilation
+# Task 3: Vector presentation pitch deck synthesis
 python -m scripts.orchestrator.task_dispatcher --task presentation --prompt "Universal Domain Specialization"
 ```
 
-### Quality Assurance & Security Gates
+### Testing, Quality Gates & Audits
 ```bash
-# Run full Python orchestrator and engine test suite (99 suites)
+# Run full orchestrator test suite
 pytest tests/ -q
 
-# Run Lead 2 adversarial suite (concurrency races, chaos fuzzing, timing attacks)
+# Run black-box adversarial tests (concurrency races, chaos fuzzing, fault injection)
 npm run test:adversarial
 
-# Run Node unit suites + Core 4 & Domain-Adaptive Behavioral Evaluations
+# Run Node unit tests & domain-adaptive behavioral evaluations
 npm test
 
-# Run Domain-Adaptive Behavioral Evaluations dynamically
-npm run harness:eval
-
-# Run AST Mutation Testing Gate (≥ 80% kill rate)
+# Run AST Mutation Testing Gate (ensures ≥ 80% mutation kill rate)
 npm run test:mutation
 
-# Validate zero raw LaTeX math syntax across all documentation
-npm run lint:markdown docs
+# Validate documentation compliance (zero raw LaTeX, clean formatting)
+npm run lint:markdown docs README.md
 ```
 
 ### Documentation & Memory Vault
 ```bash
-# Synchronously mirror brain artifacts to docs/ living catalogs
+# Synchronize session artifacts into living documentation catalogs
 npm run docs:sync
 
 # Reconcile living catalog indexes sorted by timestamp descending
 npm run docs:reconcile
 
-# Search SQLite Memory Vault with domain relevance boosting
+# Query the SQLite Memory Vault with domain relevance boosting
 npm run memory:search -- --query "reentrancy guards"
 
-# Verify cryptographic squad attestation audit log
+# Verify cryptographic squad attestation audit trail
 npm run attest:verify
 ```
 
 ---
 
-## 5. Repository Topology
+## Repository Structure
 
 ```
 .
-├── .agents/                    # Governance, state, locks, and skills
-│   ├── harness/                # Behavioral evals runner & domain test contracts
+├── .agents/                    # Governance, state, leases, and skills
+│   ├── harness/                # Behavioral eval runner & active interception kernel
 │   ├── memory/                 # SQLite Memory Vault (vault.sqlite & JSONL)
 │   ├── skills/                 # 298 verified modular skills
-│   └── state/                  # Active domain, role, and lock JSON descriptors
-├── docs/                       # Living in-repo documentation catalogs
-│   ├── plans/                  # Feature PRDs & implementation plans (INDEX.md)
-│   ├── walkthroughs/           # Execution walkthroughs & proofs (INDEX.md)
-│   ├── audits/                 # System readiness probes & security audits (INDEX.md)
-│   ├── decisions/              # Architecture Decision Records (ADRs) (INDEX.md)
-│   ├── research/               # Multi-hop research triangulation dossiers (INDEX.md)
-│   └── specifications/         # Typed schema contracts & interfaces (INDEX.md)
+│   └── state/                  # Active domain, role, and lock descriptors
+├── docs/                       # Living documentation catalogs (PRDs, ADRs, specs)
+│   ├── plans/                  # Implementation plans & PRDs
+│   ├── walkthroughs/           # Verification proofs & execution walkthroughs
+│   ├── audits/                 # Security reviews & system readiness audits
+│   ├── decisions/              # Architecture Decision Records (ADRs)
+│   ├── research/               # Multi-hop research & competitive analyses
+│   └── specifications/         # Typed schema contracts & interfaces
 ├── scripts/                    # Core TypeScript & Python orchestrators
-│   ├── orchestrator/           # TaskDispatcher, SquadOrchestrator, SandboxBridge, SpecSync
+│   ├── orchestrator/           # TaskDispatcher, SquadOrchestrator, SpecSync
 │   ├── domain-selector.ts      # Domain catalog controller & CLI
 │   ├── domain-doctor.ts        # Compiler diagnostic probes
 │   ├── lock-manager.ts         # Distributed lease locking engine
-│   └── mutation-tester.ts      # Deterministic AST mutation engine
-├── templates/domains/          # 8 Master Domain rubric definitions & catalog index
-├── tests/                      # Pytest, Node unit, and Lead 2 adversarial test suites
+│   ├── mutation-tester.ts      # Deterministic AST mutation engine
+│   └── universal-harness-sync.ts # Cross-agent harness synchronization
+├── templates/domains/          # 8 Master Domain rubrics & catalog index
+├── tests/                      # Pytest, Node unit, and adversarial test suites
+├── UNIVERSAL_AGENT_INSTRUCTIONS.md # Authoritative cross-agent instructions
 ├── AGENTS.md                   # Universal workspace operational directives & invariants
-├── GEMINI.md                   # Google Antigravity IDE pair programming guidelines
-├── SYSTEM_COMMANDS.md          # Master executable CLI command cheat sheet
-└── package.json                # Pinned dependencies & executable npm scripts
+├── GEMINI.md                   # Pair programming guidelines & 6-persona lifecycle
+├── SYSTEM_COMMANDS.md          # Master CLI command reference
+└── package.json                # Project dependencies & executable npm scripts
 ```
 
 ---
 
-## 6. License & Compliance
-Licensed under the **MIT License**. Strictly enforces the Zero-Hallucination, Zero-Secret, and Zero-Raw-LaTeX Invariants fail-closed across all CI/CD pipelines and interactive agent sessions.
+## License & Compliance
+
+Licensed under the **MIT License**. Strictly enforces the Zero-Hallucination, Zero-Secret Pre-Commit Shield, and Zero-Raw-LaTeX Invariants fail-closed across all CI/CD pipelines, IDE sessions, and headless agent executions.
