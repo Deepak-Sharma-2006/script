@@ -55,10 +55,30 @@ class SquadAttestor:
         prompt: str,
         active_personas: List[str],
         executed_commands: List[Dict[str, Any]],
-        git_head: Optional[str] = None
+        git_head: Optional[str] = None,
+        domain: Optional[str] = None,
+        subdomains: Optional[List[str]] = None,
+        activated_skills: Optional[List[Dict[str, str]]] = None,
     ) -> Dict[str, Any]:
         cls._init_db()
         timestamp = datetime.now(timezone.utc).isoformat()
+
+        # Automatically resolve skills if not explicitly provided
+        resolved_dom = domain
+        resolved_subs = subdomains or []
+        resolved_skills = activated_skills
+
+        if resolved_skills is None or resolved_dom is None:
+            try:
+                from scripts.orchestrator.skill_resolver import SkillResolver
+                res = SkillResolver.resolve_skills(prompt, domain_id=resolved_dom, subdomains=resolved_subs)
+                resolved_dom = resolved_dom or res.get("domain", "software")
+                resolved_subs = resolved_subs or res.get("subdomains", [])
+                resolved_skills = resolved_skills or res.get("activated_skills", [])
+            except Exception:
+                resolved_dom = resolved_dom or "software"
+                resolved_subs = resolved_subs or []
+                resolved_skills = resolved_skills or []
 
         # Generate canonical signature
         payload = {
@@ -66,6 +86,9 @@ class SquadAttestor:
             "prompt": prompt,
             "personas": active_personas,
             "commands": executed_commands,
+            "domain": resolved_dom,
+            "subdomains": resolved_subs,
+            "activated_skills": resolved_skills,
             "git_head": git_head or "unknown"
         }
         canonical_bytes = json.dumps(payload, sort_keys=True).encode("utf-8")
@@ -92,14 +115,44 @@ class SquadAttestor:
         # Append to audit_trail.log
         os.makedirs(os.path.dirname(cls.LOG_PATH), exist_ok=True)
         with open(cls.LOG_PATH, "a", encoding="utf-8") as f:
-            f.write(f"[{timestamp}] PROVENANCE_HASH={provenance_hash} PROMPT={prompt[:60]}... COMMANDS={len(executed_commands)}\n")
+            f.write(f"[{timestamp}] PROVENANCE_HASH={provenance_hash} PROMPT={prompt[:60]}... COMMANDS={len(executed_commands)} SKILLS={len(resolved_skills)}\n")
 
         return {
             "timestamp": timestamp,
             "provenance_hash": provenance_hash,
             "active_personas": active_personas,
+            "domain": resolved_dom,
+            "subdomains": resolved_subs,
+            "activated_skills": resolved_skills,
             "command_count": len(executed_commands),
+            "commands_count": len(executed_commands),
             "payload": payload
+        }
+
+    @classmethod
+    def verify_attestation(cls, provenance_hash: str) -> Dict[str, Any]:
+        """Verifies provenance hash against SQLite memory vault."""
+        cls._init_db()
+        conn = sqlite3.connect(cls.DB_PATH)
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT timestamp, prompt, active_personas, executed_commands, git_head, provenance_hash
+            FROM squad_attestations WHERE provenance_hash = ?
+        """, (provenance_hash,))
+        row = cur.fetchone()
+        conn.close()
+        if not row:
+            return {"verified": False, "error": f"Provenance hash {provenance_hash} not found in vault."}
+        return {
+            "verified": True,
+            "data": {
+                "timestamp": row[0],
+                "prompt": row[1],
+                "active_personas": json.loads(row[2]),
+                "executed_commands": json.loads(row[3]),
+                "git_head": row[4],
+                "provenance_hash": row[5]
+            }
         }
 
     @classmethod
@@ -120,7 +173,17 @@ class SquadAttestor:
             if not os.path.exists(transcript_path):
                 return None
 
-            # Model info from active-model.json
+            # Model context ceilings registry
+            MODEL_CEILINGS = {
+                "Claude Opus 4.6 (Thinking)": 200000,
+                "Claude Sonnet 4.6 (Thinking)": 200000,
+                "Claude Haiku 4.5": 200000,
+                "Gemini 3.8 Flash High": 1048576,
+                "Gemini 3.8 Pro High": 1048576,
+                "Gemini 2.0 Flash": 1048576,
+                "GPT-4o": 128000
+            }
+
             active_model_file = os.path.join(".agents", "state", "active-model.json")
             model_name = "Gemini 3.8 Flash High"
             ceiling = 1048576
@@ -135,13 +198,29 @@ class SquadAttestor:
 
             total_bytes = 0
             post_compaction_bytes = 0
+            compactions_occurred = 0
+            last_compaction_step = 0
+            step_idx = 0
+
             with open(transcript_path, "r", encoding="utf-8") as f:
                 for line in f:
+                    step_idx += 1
                     sz = len(line.encode("utf-8"))
                     total_bytes += sz
                     try:
                         data = json.loads(line)
-                        if data.get("type") == "CHECKPOINT" and "Resuming from a compaction" in str(data.get("content", "")):
+                        # Sniff model change from user settings or model output
+                        content_str = str(data.get("content", ""))
+                        if "USER_SETTINGS_CHANGE" in content_str or "model" in data:
+                            for mkey, mceiling in MODEL_CEILINGS.items():
+                                if mkey.lower() in content_str.lower():
+                                    model_name = mkey
+                                    ceiling = mceiling
+                                    break
+
+                        if data.get("type") == "CHECKPOINT" and "Resuming from a compaction" in content_str:
+                            compactions_occurred += 1
+                            last_compaction_step = step_idx
                             post_compaction_bytes = 0
                     except Exception:
                         pass
@@ -159,7 +238,9 @@ class SquadAttestor:
                 "active_chat_context": active_tokens,
                 "remaining_before_compaction": remaining,
                 "saturation": f"{sat}% [{status}]",
-                "cumulative_session_tokens": cumulative_tokens
+                "cumulative_session_tokens": cumulative_tokens,
+                "compactions_occurred": compactions_occurred,
+                "last_compaction_step": last_compaction_step
             }
         except Exception:
             return None
@@ -180,12 +261,30 @@ class SquadAttestor:
             f'  active_personas: [{personas}]'
         ]
 
+        # Domain and subdomains
+        domain = attestation.get("domain", attestation.get("payload", {}).get("domain", "software"))
+        subdomains = attestation.get("subdomains", attestation.get("payload", {}).get("subdomains", []))
+        lines.append(f'  domain: "{domain}"')
+        if subdomains:
+            subs_str = ", ".join(subdomains)
+            lines.append(f'  subdomains: [{subs_str}]')
+
+        # Activated skills
+        skills = attestation.get("activated_skills", attestation.get("payload", {}).get("activated_skills", []))
+        if skills:
+            lines.append("  activated_skills:")
+            for s in skills:
+                lines.append(f'    - name: "{s.get("name", "")}"')
+                lines.append(f'      path: "{s.get("path", "")}"')
+                if "match_reason" in s:
+                    lines.append(f'      match_reason: "{s.get("match_reason", "")}"')
+
         if telemetry:
             lines.append("  context_telemetry:")
-            lines.append(f'    model: "{telemetry["model"]}"')
             lines.append(f'    active_chat_context: {telemetry["active_chat_context"]:,}')
             lines.append(f'    remaining_before_compaction: {telemetry["remaining_before_compaction"]:,}')
             lines.append(f'    saturation: "{telemetry["saturation"]}"')
+            lines.append(f'    compactions_occurred: {telemetry["compactions_occurred"]}')
             lines.append(f'    cumulative_session_tokens: {telemetry["cumulative_session_tokens"]:,}')
 
         lines.append("  verified_commands:")

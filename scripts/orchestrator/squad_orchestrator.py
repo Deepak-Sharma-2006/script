@@ -28,6 +28,7 @@ from scripts.orchestrator.coding_engine import CodingEngine
 from scripts.orchestrator.plan_execution_verifier import PlanExecutionVerifier
 from scripts.orchestrator.spec_sync import SpecSync
 from scripts.orchestrator.research_triangulator import ResearchTriangulator, TriangulatedResearch
+from scripts.orchestrator.domain_persona_engine import DomainPersonaEngine
 
 
 @dataclass
@@ -168,7 +169,6 @@ class ProductManagerRole:
         os.makedirs(output_dir, exist_ok=True)
 
         # Mandatory Pre-Flight Discovery Invariant: Product Manager automatically triggers Deep Research Specialist
-        # on new problem statements, ideas, or themes, even if user prompt does not explicitly request research.
         research_dossier = None
         if auto_trigger_research:
             print(f"📋 [Product Manager] Inception trigger: Automatically invoking Deep Research Specialist...")
@@ -178,23 +178,44 @@ class ProductManagerRole:
                 domain=domain
             )
 
+        # Ingest active domain specialization
+        hydrated_pm = DomainPersonaEngine.hydrate_persona("product_manager")
+        domain_name = hydrated_pm.get("domain_name", domain)
+        pm_spec = hydrated_pm.get("specialization", {})
+        domain_obj = pm_spec.get("domain_objectives", "")
+        req_rubric = pm_spec.get("requirements_rubric", "")
+        forbidden_pitfalls = pm_spec.get("forbidden_pitfalls", [])
+        standards = hydrated_pm.get("composite_stack", {}).get("statutory_standards", [])
+
+        primary_goal = f"[{domain_name.upper()}] Autonomous execution for '{feature_name}': {domain_obj}" if domain_obj else f"Autonomous, observable execution for '{feature_name}' with verified state persistence."
+
+        acceptance_criteria = [
+            "Global state must persist across tab navigations with zero data reset.",
+            "Downstream statutory actions must be gated until prerequisite engines report COMPLETED.",
+            "All UI metrics and buttons must bind directly to dynamic calculated engine outputs (zero mock hardcoding).",
+            "Inputs must be sanitized against path traversal, XSS, and boundary overflows."
+        ]
+        if req_rubric:
+            acceptance_criteria.append(f"Domain Quality Rubric: {req_rubric}")
+        if standards:
+            acceptance_criteria.append(f"Statutory Standards: {' | '.join(standards)}")
+
+        forbidden_states = [
+            "Certificates generated or downloadable while engine execution is at 0%.",
+            "Output tables populated with data prior to graph creation or traversal.",
+            "UI buttons showing scores that contradict underlying calculated metrics."
+        ]
+        if forbidden_pitfalls:
+            forbidden_states.extend([f"Domain Pitfall: {p}" for p in forbidden_pitfalls])
+
         spec = FunctionalSpec(
             feature_name=feature_name,
-            target_user="Enterprise Operator",
-            primary_goal=f"Autonomous, observable execution for '{feature_name}' with verified state persistence.",
-            acceptance_criteria=[
-                "Global state must persist across tab navigations with zero data reset.",
-                "Downstream statutory actions must be gated until prerequisite engines report COMPLETED.",
-                "All UI metrics and buttons must bind directly to dynamic calculated engine outputs (zero mock hardcoding).",
-                "Inputs must be sanitized against path traversal, XSS, and boundary overflows."
-            ],
-            forbidden_states=[
-                "Certificates generated or downloadable while engine execution is at 0%.",
-                "Output tables populated with data prior to graph creation or traversal.",
-                "UI buttons showing scores that contradict underlying calculated metrics."
-            ],
+            target_user=f"Enterprise {domain_name} Operator",
+            primary_goal=primary_goal,
+            acceptance_criteria=acceptance_criteria,
+            forbidden_states=forbidden_states,
             observable_journeys=[
-                {"step": 1, "action": "Initialize Workspace", "expected": "Idle FSM state, empty dockets"},
+                {"step": 1, "action": "Initialize Workspace", "expected": f"Idle FSM state, empty dockets ({domain_name})"},
                 {"step": 2, "action": "Execute Ingestion", "expected": "Calculated telemetry updates store"},
                 {"step": 3, "action": "Traverse Graph", "expected": "Discovered nodes pop dynamically"},
                 {"step": 4, "action": "Audit Verdict", "expected": "Evidence dossier compiled and signed"}
@@ -221,6 +242,26 @@ class SystemArchitectRole:
         tradeoff_rationale: Optional[str] = None
     ) -> SystemContract:
         os.makedirs(output_dir, exist_ok=True)
+        hydrated_arch = DomainPersonaEngine.hydrate_persona("system_architect")
+        arch_spec = hydrated_arch.get("specialization", {})
+        mandatory_patterns = arch_spec.get("mandatory_patterns", [])
+        perf_invariants = arch_spec.get("performance_invariants", [])
+
+        data_schemas = {
+            "CaseState": {
+                "case_id": "string",
+                "status": "enum(IDLE, RUNNING, COMPLETED, FAILED, CERTIFIED)",
+                "calculated_confidence": "float (0.0 to 1.0)",
+                "evidence_nodes": "list[string]",
+                "updated_at": "ISO-8601 string"
+            }
+        }
+        if mandatory_patterns:
+            data_schemas["DomainArchitecturalInvariants"] = {
+                "mandatory_patterns": mandatory_patterns,
+                "performance_invariants": perf_invariants
+            }
+
         contract = SystemContract(
             feature_name=spec.feature_name,
             fsm_states=["IDLE", "RUNNING", "COMPLETED", "FAILED", "CERTIFIED"],
@@ -230,15 +271,7 @@ class SystemArchitectRole:
                 {"from": "RUNNING", "to": "FAILED", "trigger": "EXECUTION_ERROR"},
                 {"from": "COMPLETED", "to": "CERTIFIED", "trigger": "AUDIT_SIGN_OFF"}
             ],
-            data_schemas={
-                "CaseState": {
-                    "case_id": "string",
-                    "status": "enum(IDLE, RUNNING, COMPLETED, FAILED, CERTIFIED)",
-                    "calculated_confidence": "float (0.0 to 1.0)",
-                    "evidence_nodes": "list[string]",
-                    "updated_at": "ISO-8601 string"
-                }
-            },
+            data_schemas=data_schemas,
             api_endpoints=[
                 {"path": "/api/status", "method": "GET", "response": "CaseState"},
                 {"path": "/api/execute", "method": "POST", "response": "JobReceipt"}
@@ -448,21 +481,32 @@ class TechnicalWriterRole:
         os.makedirs(output_dir, exist_ok=True)
         dossier_path = os.path.join(output_dir, f"phase-{feature_name}-squad.md")
 
+        hydrated_tw = DomainPersonaEngine.hydrate_persona("technical_writer")
+        tw_spec = hydrated_tw.get("specialization", {})
+        domain_name = hydrated_tw.get("domain_name", "General Engineering")
+        lexicon = tw_spec.get("documentation_lexicon", "Engineering architecture specifications, API contracts, and runbooks.")
+        diagram_style = tw_spec.get("architectural_diagram_style", "Pipeline execution and state-machine transitions.")
+        theme = tw_spec.get("presentation_theme", "modern_tech")
+        standards = hydrated_tw.get("composite_stack", {}).get("statutory_standards", [])
+        standard_label = standards[0] if standards else "Enterprise Verification Standard"
+
         content = f"""# Phase Comprehension Dossier: {feature_name.upper()}
 
 > **Mandate**: Part 7 Human Operator Code Comprehension Protocol (AGENTS.md)
-> **Author**: Autonomous Enterprise Agile Squad | **Mode**: Solo/Dual Certified
+> **Author**: Autonomous Enterprise Agile Squad ({domain_name}) | **Mode**: Solo/Dual Certified
 
 ---
 
 ## Technique 1: The Human Mental Model
+- **Domain Specialization**: {domain_name}
 - **Primary Goal**: {spec.primary_goal}
 - **Target User**: {spec.target_user}
 - **FSM States**: {', '.join(contract.fsm_states)}
+- **Documentation Lexicon**: {lexicon}
 
 ---
 
-## Technique 2: Visual Code Flow
+## Technique 2: Visual Code Flow ({diagram_style})
 ```
 [User Request / Webhook]
            │
@@ -472,13 +516,13 @@ class TechnicalWriterRole:
            ├──► [Input Validation & Boundary Sanity Gate]
            │
            ▼
-[Engine Pipeline Execution]
+[Engine Pipeline Execution ({domain_name})]
            │
            ▼
 [FSM State: RUNNING ──► COMPLETED]
            │
            ▼
-[Cryptographic Audit Attestation (BSA Sec 63)]
+[Cryptographic Audit Attestation ({standard_label})]
            │
            ▼
 [FSM State: COMPLETED ──► CERTIFIED]
@@ -489,8 +533,8 @@ class TechnicalWriterRole:
 ## Technique 3: Variable Lifecycle Trace
 | Variable | Birth | Mutation | Disposal |
 |---|---|---|---|
-| `caseState` | Initialized in IDLE state | Mutated with engine telemetry | Sealed in SQLite memory vault |
-| `confidenceScore` | Computed dynamically from GNN | Bounded by strict threshold | Rendered in UI / exported to certificate |
+| `state` | Initialized in IDLE state | Mutated with pipeline telemetry | Sealed in SQLite memory vault |
+| `metricScore` | Computed dynamically from engine | Bounded by statutory threshold | Exported to verified audit record |
 
 ---
 
@@ -502,12 +546,12 @@ class TechnicalWriterRole:
 
 ## Technique 5: Audit Exactly One Failure Path
 - **Failure Condition**: Prerequisite engine fails or outputs empty telemetry.
-- **Fail-Closed Guarantee**: Statutory certificate generator asserts `FSM.isCertified() == True`. If false, download is strictly blocked.
+- **Fail-Closed Guarantee**: Downstream action asserts `FSM.isCertified() == True`. If false, execution is strictly blocked.
 
 ---
 
 ## Technique 6: 1-Sentence Feynman Mental Compression Test
-> "{feature_name.capitalize()} processes forensic telemetry through an explicit 5-state state machine, ensuring downstream certificates can never download until all underlying mathematical evidence is certified."
+> "{feature_name.capitalize()} executes deterministic state-machine transitions under the {domain_name} rubric, guaranteeing downstream statutory actions remain fail-closed until all verification gates pass."
 """
 
         with open(dossier_path, "w", encoding="utf-8") as f:
@@ -535,14 +579,20 @@ class SquadOrchestrator:
         mode: str = "solo"
     ) -> SquadExecutionResult:
         start_time = time.time()
+        active_domain = DomainPersonaEngine.get_active_state()
+        domain_name = active_domain.get("domain_name", "General Engineering")
+        subdomains = active_domain.get("subdomains", [])
+
         print(f"\n{'=' * 80}")
         print(f"🚀 [ENTERPRISE AGILE SQUAD] Launching Autonomous Development Lifecycle")
         print(f"   Feature Name : {feature_name}")
+        print(f"   Domain       : {domain_name}")
+        print(f"   Subdomains   : {', '.join(subdomains) if subdomains else 'Core Systems'}")
         print(f"   Squad Mode   : {mode.upper()} OPERATOR")
         print(f"{'=' * 80}\n")
 
         # 1. Product Manager PRD
-        spec = ProductManagerRole.create_functional_spec(user_prompt, feature_name)
+        spec = ProductManagerRole.create_functional_spec(user_prompt, feature_name, domain=domain_name)
 
         # 2. System Architect Contract
         contract = SystemArchitectRole.design_contract(spec)
@@ -596,6 +646,7 @@ class SquadOrchestrator:
         print(f"\n🔍 [Deep Research Specialist] Running Phase 8 Post-Production Impact Analysis...")
         ResearchTriangulator.triangulate(
             problem_title=feature_name,
+            domain=domain_name,
             mode="IMPACT",
             empirical_metrics=impact_metrics
         )
@@ -619,7 +670,16 @@ class SquadOrchestrator:
         print(f"   Elapsed Time         : {duration}s")
         print(f"{'=' * 80}\n")
 
-        profiles_dict = {k: asdict(v) for k, v in SQUAD_PERSONA_PROFILES.items()}
+        hydrated_profiles = DomainPersonaEngine.hydrate_all_personas()
+        profiles_dict = {
+            k: {
+                "role_name": k,
+                "title": v.get("role_title", k),
+                "domain": v.get("domain_name", domain_name),
+                "specialization": v.get("specialization", {})
+            }
+            for k, v in hydrated_profiles.items()
+        }
 
         return SquadExecutionResult(
             feature_name=feature_name,

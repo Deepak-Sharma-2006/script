@@ -1,0 +1,261 @@
+{
+  "domain_id": "software",
+  "domain_name": "Software Engineering & Application Development",
+  "description": "Production-grade enterprise web, mobile, desktop, backend, and embedded systems.",
+  "subdomains": {
+    "web_frontend": {
+      "name": "Web Application & Modern Frontend Systems",
+      "description": "SPA, SSR, Micro-frontends, WebAssembly, and high-fidelity responsive UI.",
+      "key_technologies": [
+        "React",
+        "Next.js",
+        "Vue",
+        "TypeScript",
+        "TailwindCSS",
+        "WebAssembly"
+      ],
+      "statutory_standards": [
+        "WCAG 2.2 AA",
+        "Core Web Vitals",
+        "W3C Semantic HTML"
+      ],
+      "curated_skills": [
+        "frontend-patterns",
+        "motion-ui",
+        "frontend-a11y",
+        "design-system",
+        "make-interfaces-feel-better",
+        "vite-patterns",
+        "liquid-glass-design",
+        "browser-qa"
+      ]
+    },
+    "backend_systems": {
+      "name": "Backend Engineering & Distributed Services",
+      "description": "REST, GraphQL, gRPC, event-driven architectures, microservices, and modular monoliths.",
+      "key_technologies": [
+        "Node.js",
+        "Go",
+        "Python",
+        "Rust",
+        "PostgreSQL",
+        "Redis",
+        "Kafka"
+      ],
+      "statutory_standards": [
+        "OpenAPI 3.1",
+        "12-Factor App",
+        "RFC 7807 Problem Details"
+      ],
+      "curated_skills": [
+        "backend-patterns",
+        "postgres-patterns",
+        "mysql-patterns",
+        "clickhouse-io",
+        "redis-patterns",
+        "fastapi-patterns",
+        "django-patterns",
+        "nestjs-patterns"
+      ]
+    },
+    "mobile_apps": {
+      "name": "Mobile Application Development",
+      "description": "Native iOS, Android, and cross-platform mobile frameworks.",
+      "key_technologies": [
+        "Swift",
+        "SwiftUI",
+        "Kotlin",
+        "Jetpack Compose",
+        "Flutter",
+        "React Native"
+      ],
+      "statutory_standards": [
+        "Apple App Store Review Guidelines",
+        "Google Play Policy",
+        "Offline Sync"
+      ],
+      "curated_skills": [
+        "react-native-patterns",
+        "dart-flutter-patterns",
+        "swiftui-patterns",
+        "android-clean-architecture",
+        "ios-icon-gen"
+      ]
+    },
+    "desktop_native": {
+      "name": "Desktop & Native Systems Engineering",
+      "description": "Native UI, cross-platform Tauri/Electron, and OS system utilities.",
+      "key_technologies": [
+        "Tauri",
+        "Electron",
+        "C++",
+        "Rust",
+        "WinUI 3",
+        "Qt"
+      ],
+      "statutory_standards": [
+        "OS Sandboxing",
+        "Code Signing (Authenticode)",
+        "Memory Safety"
+      ],
+      "curated_skills": [
+        "windows-desktop-e2e",
+        "bun-runtime",
+        "dotnet-patterns",
+        "cpp-coding-standards"
+      ]
+    },
+    "game_engineering": {
+      "name": "Game Engineering & Real-Time Graphics",
+      "description": "Real-time rendering, deterministic netcode, ECS architecture, and physics engines.",
+      "key_technologies": [
+        "Unreal Engine 5",
+        "Unity",
+        "Godot",
+        "C++",
+        "C#",
+        "Vulkan",
+        "DirectX 12"
+      ],
+      "statutory_standards": [
+        "60 FPS Frame Budget (<16.6ms)",
+        "Deterministic Replay",
+        "Spatial Audio"
+      ],
+      "curated_skills": [
+        "blender-motion-state-inspection",
+        "cpp-testing",
+        "latency-critical-systems"
+      ]
+    },
+    "embedded_rtos": {
+      "name": "Embedded Systems, Firmware & RTOS",
+      "description": "Microcontroller firmware, bare-metal C/Rust, and real-time operating systems.",
+      "key_technologies": [
+        "C",
+        "Embedded Rust",
+        "FreeRTOS",
+        "Zephyr",
+        "ARM Cortex-M",
+        "ESP32"
+      ],
+      "statutory_standards": [
+        "MISRA C:2012",
+        "AUTOSAR",
+        "Zero Heap Allocation in ISR"
+      ],
+      "curated_skills": [
+        "cisco-ios-patterns",
+        "netmiko-ssh-automation",
+        "cpp-coding-standards"
+      ]
+    },
+    "enterprise_bpm": {
+      "name": "Enterprise Systems & Low-Code / BPM Platforms",
+      "description": "Durable workflows, ERP integration, and automated business processes.",
+      "key_technologies": [
+        "Temporal.io",
+        "Camunda",
+        "SAP S/4HANA",
+        "Salesforce Apex",
+        "PostgreSQL"
+      ],
+      "statutory_standards": [
+        "BPMN 2.0",
+        "Idempotent Execution",
+        "ACID Transaction Guarantees"
+      ],
+      "curated_skills": [
+        "tinystruct-patterns",
+        "contract-first",
+        "jira-integration"
+      ]
+    }
+  },
+  "persona_specializations": {
+    "product_manager": {
+      "role_title": "Principal Technical Product Manager (Software Platforms)",
+      "domain_objectives": "Define rigorous user stories, acceptance criteria, SLA/SLO boundaries, and zero-downtime release targets.",
+      "requirements_rubric": "User journeys, functional specifications, non-functional latency/throughput targets, and backwards compatibility gates.",
+      "forbidden_pitfalls": [
+        "Vague acceptance criteria",
+        "Untracked breaking API changes",
+        "Ignoring offline and network degradation modes"
+      ]
+    },
+    "system_architect": {
+      "role_title": "Enterprise Chief Software Architect",
+      "domain_objectives": "Design loosely coupled, highly cohesive systems with typed contracts, event schemas, and clear domain boundaries.",
+      "mandatory_patterns": [
+        "Domain-Driven Design (DDD)",
+        "Clean / Hexagonal Architecture",
+        "Event-Driven CQRS",
+        "Strict TypeScript/Go interfaces"
+      ],
+      "performance_invariants": [
+        "p99 API latency < 100ms",
+        "Zero circular dependencies",
+        "Sub-10ms UI interaction latency"
+      ]
+    },
+    "adversarial_sdet": {
+      "role_title": "Lead Software Development Engineer in Test (SDET)",
+      "threat_model": "Input fuzzing, race conditions, memory leaks, flaky UI tests, and network boundary failures.",
+      "chaos_vectors": [
+        "Simultaneous connection bursts",
+        "Malformed JSON/Protobuf payloads",
+        "WebSocket connection drops"
+      ],
+      "test_frameworks": [
+        "Playwright",
+        "Node Test Runner",
+        "Vitest",
+        "pytest"
+      ],
+      "boundary_fuzzing": "Verify handling of empty strings, unicode emojis, 10MB payloads, and integer overflows."
+    },
+    "core_engineer": {
+      "role_title": "Senior Staff Software Engineer",
+      "coding_idioms": "Strictly typed, idiomatic, zero-any, dependency-injected, modular, clean self-documenting code.",
+      "concurrency_rules": "Async/await with structured error propagation, mutex-protected shared state, non-blocking I/O.",
+      "memory_and_resource_rules": "Deterministic teardown, connection pool management, zero unhandled promise rejections."
+    },
+    "mutation_auditor": {
+      "role_title": "Principal AppSec & Quality Assurance Auditor",
+      "security_standards": [
+        "OWASP Top 10",
+        "CWE/SANS Top 25",
+        "NIST SP 800-53"
+      ],
+      "statutory_compliance_gates": [
+        "Row-Level Security (RLS)",
+        "Timing-Safe Comparisons",
+        "Argon2id / PBKDF2 Password Hashing"
+      ],
+      "audit_checklist": [
+        "Zero hardcoded secrets",
+        "Mutation kill rate >= 80%",
+        "AST dependency verification"
+      ]
+    },
+    "technical_writer": {
+      "role_title": "Enterprise Technical Documentation Architect",
+      "documentation_lexicon": "Clear, precise software engineering terminology with native Markdown diagrams and OpenAPI specs.",
+      "presentation_theme": "modern_tech",
+      "architectural_diagram_style": "C4 Model Level 1-3 ASCII & Mermaid diagrams."
+    }
+  },
+  "verification_gates": [
+    "unit_tdd",
+    "mutation_testing",
+    "anti_hallucination",
+    "zero_secrets",
+    "markdown_lint"
+  ],
+  "doctor_checks": [
+    "node",
+    "npm",
+    "tsc",
+    "python"
+  ]
+}

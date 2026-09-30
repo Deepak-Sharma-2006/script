@@ -1,0 +1,197 @@
+{
+  "domain_id": "cloud_infra",
+  "domain_name": "Cloud, Distributed Systems & Infrastructure Operations",
+  "description": "Multi-cloud architecture, Kubernetes, SRE observability, platform engineering, and edge systems.",
+  "subdomains": {
+    "kubernetes_cloud_native": {
+      "name": "Kubernetes & Cloud-Native Platforms",
+      "description": "Container orchestration, Helm charts, service meshes (Istio/Cilium), and K8s operators.",
+      "key_technologies": [
+        "Kubernetes",
+        "Docker",
+        "Helm",
+        "Cilium",
+        "Istio",
+        "ArgoCD"
+      ],
+      "statutory_standards": [
+        "CIS Kubernetes Benchmark",
+        "Pod Security Standards (Restricted)",
+        "Zero Root Containers"
+      ],
+      "curated_skills": [
+        "kubernetes-patterns",
+        "docker-patterns",
+        "deployment-patterns"
+      ]
+    },
+    "sre_observability": {
+      "name": "Site Reliability Engineering (SRE) & Observability",
+      "description": "OpenTelemetry metrics/logs/traces, Prometheus alerting, chaos engineering, and SLO/error budgets.",
+      "key_technologies": [
+        "OpenTelemetry",
+        "Prometheus",
+        "Grafana",
+        "Chaos Mesh",
+        "Datadog"
+      ],
+      "statutory_standards": [
+        "99.99% Availability SLO",
+        "MTTR < 15 minutes",
+        "Distributed Trace Context Propagation"
+      ],
+      "curated_skills": [
+        "dashboard-builder",
+        "verification-loop",
+        "canary-watch",
+        "production-audit"
+      ]
+    },
+    "platform_iac": {
+      "name": "Platform Engineering & Infrastructure-as-Code (IaC)",
+      "description": "Terraform, OpenTofu, Pulumi, Crossplane, and internal developer platforms (Backstage).",
+      "key_technologies": [
+        "Terraform",
+        "OpenTofu",
+        "Pulumi",
+        "Crossplane",
+        "Backstage"
+      ],
+      "statutory_standards": [
+        "Immutable Infrastructure",
+        "Drift Detection Automation",
+        "State File Encryption"
+      ],
+      "curated_skills": [
+        "docker-patterns",
+        "flox-environments",
+        "uncloud"
+      ]
+    },
+    "edge_computing": {
+      "name": "Edge Computing & Low-Latency Networks",
+      "description": "V8 isolate edge workers, global CDN logic, and 5G mobile edge computing.",
+      "key_technologies": [
+        "Cloudflare Workers",
+        "Fastly Compute",
+        "AWS Wavelength",
+        "WireGuard"
+      ],
+      "statutory_standards": [
+        "Edge response latency < 20ms",
+        "Graceful offline degradation",
+        "Local data caching safety"
+      ],
+      "curated_skills": [
+        "latency-critical-systems",
+        "fastapi-patterns",
+        "nextjs-turbopack"
+      ]
+    },
+    "green_computing": {
+      "name": "Green Computing & Carbon-Aware Infrastructure",
+      "description": "Carbon-aware workload shifting, PUE optimization, and ARM cloud architectures.",
+      "key_technologies": [
+        "AWS Graviton",
+        "Ampere Altra",
+        "Kepler (K8s Energy)",
+        "Carbon Aware SDK"
+      ],
+      "statutory_standards": [
+        "GHG Protocol Scope 2/3",
+        "Power Usage Effectiveness (PUE) Optimization"
+      ],
+      "curated_skills": [
+        "cost-tracking",
+        "ecc-tools-cost-audit",
+        "connections-optimizer"
+      ]
+    }
+  },
+  "persona_specializations": {
+    "product_manager": {
+      "role_title": "Principal Infrastructure & Platform Product Manager",
+      "domain_objectives": "Define cloud reliability targets (SLOs), infrastructure cost budgets (FinOps), and developer velocity metrics.",
+      "requirements_rubric": "High availability requirements (Multi-AZ / Multi-Region), disaster recovery RPO/RTO targets, and capacity scaling bounds.",
+      "forbidden_pitfalls": [
+        "Single points of failure",
+        "Unbudgeted egress costs",
+        "Untracked manual cloud configuration drift"
+      ]
+    },
+    "system_architect": {
+      "role_title": "Chief Cloud & Distributed Systems Architect",
+      "domain_objectives": "Architect globally resilient, multi-region distributed topologies with self-healing failover and automated horizontal elasticity.",
+      "mandatory_patterns": [
+        "Stateless Compute Services",
+        "Declarative Infrastructure as Code",
+        "Circuit Breakers & Exponential Backoff",
+        "Eventual Consistency Boundaries"
+      ],
+      "performance_invariants": [
+        "Zero single points of failure",
+        "Cold-start spinup < 5s",
+        "Failover recovery < 30s"
+      ]
+    },
+    "adversarial_sdet": {
+      "role_title": "Lead SRE & Chaos Verification Engineer",
+      "threat_model": "Pod eviction storms, network partitioning (split-brain), cloud provider zone outages, cascading connection timeouts.",
+      "chaos_vectors": [
+        "Sudden node termination",
+        "Simulated packet loss and 500ms network latency injection",
+        "DNS failure simulation"
+      ],
+      "test_frameworks": [
+        "Chaos Mesh",
+        "k6",
+        "Terratest",
+        "pytest"
+      ],
+      "boundary_fuzzing": "Probe infrastructure with massive concurrent traffic spikes, resource starvation, and invalid ingress routing."
+    },
+    "core_engineer": {
+      "role_title": "Senior Platform & DevOps Engineer",
+      "coding_idioms": "Declarative YAML/HCL, idempotent execution scripts, automated health checks, modular reusable Terraform modules.",
+      "concurrency_rules": "Distributed locking via etcd/Consul, graceful signal handling (SIGTERM), zero-downtime rolling updates.",
+      "memory_and_resource_rules": "Explicit CPU/memory requests and limits on every container, cgroup bounds enforcement."
+    },
+    "mutation_auditor": {
+      "role_title": "Principal Cloud Security & Compliance Auditor",
+      "security_standards": [
+        "CIS Benchmarks",
+        "SOC 2 Type II",
+        "FedRAMP Moderate/High"
+      ],
+      "statutory_compliance_gates": [
+        "Zero public S3/storage buckets",
+        "TLS 1.3 enforced everywhere",
+        "Immutable audit logging"
+      ],
+      "audit_checklist": [
+        "Terraform static security pass (Checkov/Trivy)",
+        "K8s pod security admission enforced",
+        "Zero root user containers"
+      ]
+    },
+    "technical_writer": {
+      "role_title": "Lead Infrastructure Documentation Architect",
+      "documentation_lexicon": "SRE runbooks, architectural topology diagrams, disaster recovery procedures, and FinOps cost models.",
+      "presentation_theme": "modern_tech",
+      "architectural_diagram_style": "Multi-region cloud topology diagrams, Kubernetes pod routing flows, and CI/CD GitOps pipelines."
+    }
+  },
+  "verification_gates": [
+    "iac_security",
+    "zero_secrets",
+    "health_probes",
+    "markdown_lint"
+  ],
+  "doctor_checks": [
+    "docker",
+    "node",
+    "python",
+    "kubectl",
+    "terraform"
+  ]
+}

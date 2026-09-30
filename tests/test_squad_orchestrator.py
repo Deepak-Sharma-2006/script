@@ -17,6 +17,7 @@ import json
 import time
 import unittest
 import shutil
+import glob
 
 from scripts.orchestrator.squad_orchestrator import (
     ProductManagerRole,
@@ -39,6 +40,15 @@ class TestSquadOrchestrator(unittest.TestCase):
     def tearDown(self):
         if os.path.exists(self.test_dir):
             shutil.rmtree(self.test_dir, ignore_errors=True)
+        for sub in ["plans", "walkthroughs", "research", "specifications", "decisions", "audits"]:
+            d = os.path.join("docs", sub)
+            if os.path.exists(d):
+                for pattern in ["*drone_telemetry*", "*db_migration*", "*audit_probe*"]:
+                    for f in glob.glob(os.path.join(d, pattern)):
+                        try:
+                            os.remove(f)
+                        except OSError:
+                            pass
 
     def test_persona_profiles_configured(self):
         """Verifies that all 7 personas have differentiated temperature and reasoning effort."""
@@ -225,8 +235,9 @@ class TestTautological(unittest.TestCase):
         )
         self.assertEqual(spec.feature_name, "drone_telemetry")
         # Check that research dossier was persisted in docs/research/
-        research_dossier = os.path.join("docs", "research", f"{time.strftime('%Y-%m-%d')}_drone_telemetry_research.md")
-        self.assertTrue(os.path.exists(research_dossier))
+        import glob
+        research_files = glob.glob(os.path.join("docs", "research", "*drone_telemetry_research.md"))
+        self.assertGreater(len(research_files), 0, "Research file must exist in docs/research/")
 
     def test_system_architect_significant_tradeoff_adr(self):
         """Verifies System Architect emits to docs/decisions/ when significant trade-off occurs."""
@@ -252,10 +263,8 @@ class TestTautological(unittest.TestCase):
             tradeoff_rationale="Evaluated Postgres vs SQLite; chose SQLite for sub-50ms local zero-cloud latency."
         )
         self.assertIsNotNone(contract_significant)
-        adr_file = os.path.join("docs", "decisions", f"{time.strftime('%Y-%m-%d')}_db_migration_decision.md")
-        # Support both _decision.md and _adr.md naming
-        alt_adr_file = os.path.join("docs", "decisions", f"{time.strftime('%Y-%m-%d')}_db_migration_adr.md")
-        self.assertTrue(os.path.exists(adr_file) or os.path.exists(alt_adr_file))
+        decision_files = glob.glob(os.path.join("docs", "decisions", "*db_migration_*.md"))
+        self.assertGreater(len(decision_files), 0, "Decision file must exist in docs/decisions/")
 
 
 if __name__ == "__main__":

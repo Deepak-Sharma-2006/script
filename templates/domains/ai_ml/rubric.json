@@ -1,0 +1,290 @@
+{
+  "domain_id": "ai_ml",
+  "domain_name": "Artificial Intelligence, Machine Learning & Cognitive Systems",
+  "description": "Foundation models, LLM agents, computer vision, RLHF, and production MLOps/LLMOps.",
+  "subdomains": {
+    "classical_ml": {
+      "name": "Classical Machine Learning & Statistical Inference",
+      "description": "Supervised/unsupervised models, gradient boosted trees, and statistical feature pipelines.",
+      "key_technologies": [
+        "scikit-learn",
+        "XGBoost",
+        "LightGBM",
+        "Pandas",
+        "NumPy"
+      ],
+      "statutory_standards": [
+        "Data leakage prevention",
+        "Cross-validation integrity",
+        "Explainable AI (SHAP/LIME)"
+      ],
+      "curated_skills": [
+        "benchmark",
+        "python-patterns",
+        "python-testing"
+      ]
+    },
+    "deep_learning": {
+      "name": "Deep Learning & Neural Architectures",
+      "description": "Transformers, diffusion models, GNNs, and custom PyTorch neural modules.",
+      "key_technologies": [
+        "PyTorch",
+        "Hugging Face",
+        "CUDA",
+        "Triton",
+        "FlashAttention"
+      ],
+      "statutory_standards": [
+        "Deterministic random seeds",
+        "FP16/BF16 mixed precision stability",
+        "Gradient norm clipping"
+      ],
+      "curated_skills": [
+        "pytorch-patterns",
+        "mle-workflow",
+        "benchmark-optimization-loop"
+      ]
+    },
+    "generative_foundation": {
+      "name": "Generative AI, Foundation Models & Quantization",
+      "description": "LLM fine-tuning, LoRA/QLoRA, distillation, and weight quantization (GGUF, AWQ).",
+      "key_technologies": [
+        "vLLM",
+        "Unsloth",
+        "LoRA",
+        "GGUF",
+        "llama.cpp",
+        "Transformers"
+      ],
+      "statutory_standards": [
+        "Perplexity evaluation",
+        "KV-cache memory bounds",
+        "Hallucination benchmark gating"
+      ],
+      "curated_skills": [
+        "prompt-optimizer",
+        "fal-ai-media",
+        "foundation-models-on-device"
+      ]
+    },
+    "agentic_ai": {
+      "name": "Agentic AI & Multi-Agent Swarms",
+      "description": "Autonomous planning, tool harness execution, ReAct loops, and memory reflection.",
+      "key_technologies": [
+        "LangGraph",
+        "AutoGen",
+        "Model Context Protocol (MCP)",
+        "LiteLLM",
+        "SQLite"
+      ],
+      "statutory_standards": [
+        "Loop runaway brake (<5 passes)",
+        "Tool permission gating",
+        "Deterministic output schemas"
+      ],
+      "curated_skills": [
+        "agentic-engineering",
+        "eval-harness",
+        "continuous-agent-loop",
+        "team-agent-orchestration",
+        "claude-council",
+        "cost-tracking",
+        "openclaw-persona-forge"
+      ]
+    },
+    "nlp_rag": {
+      "name": "NLP, Semantic Search & Advanced RAG",
+      "description": "Dense/sparse hybrid search, GraphRAG, cross-encoder rerankers, and chunking strategies.",
+      "key_technologies": [
+        "Chroma",
+        "Qdrant",
+        "BM25",
+        "ColBERT",
+        "NetworkX",
+        "BGE-Reranker"
+      ],
+      "statutory_standards": [
+        "Context recall/precision metrics",
+        "Faithfulness score >= 0.85",
+        "Citation grounding"
+      ],
+      "curated_skills": [
+        "iterative-retrieval",
+        "regex-vs-llm-structured-text",
+        "deep-research",
+        "exa-search"
+      ]
+    },
+    "computer_vision": {
+      "name": "Computer Vision & Spatial Intelligence",
+      "description": "Object detection, SAM 2 segmentation, 3D Gaussian Splatting, and video tracking.",
+      "key_technologies": [
+        "OpenCV",
+        "YOLOv11",
+        "SAM 2",
+        "PyTorch3D",
+        "TorchVision"
+      ],
+      "statutory_standards": [
+        "mAP@50-95 metrics",
+        "Real-time inference (>30 FPS)",
+        "Lighting/rotation invariance"
+      ],
+      "curated_skills": [
+        "blender-motion-state-inspection",
+        "fal-ai-media",
+        "videodb"
+      ]
+    },
+    "rl_alignment": {
+      "name": "Reinforcement Learning & Alignment (RLHF / DPO)",
+      "description": "Reward modeling, preference optimization, DPO, PPO, and GRPO reasoning alignment.",
+      "key_technologies": [
+        "TRL",
+        "DeepSpeed",
+        "Ray",
+        "vLLM",
+        "PyTorch"
+      ],
+      "statutory_standards": [
+        "Reward hacking resistance",
+        "KL-divergence penalty gating",
+        "Safety policy adherence"
+      ],
+      "curated_skills": [
+        "benchmark-optimization-loop",
+        "autonomous-loops",
+        "eval-harness"
+      ]
+    },
+    "mlops_inference": {
+      "name": "Production MLOps, LLMOps & Serving",
+      "description": "Model registries, continuous drift monitoring, TensorRT-LLM, and vLLM clusters.",
+      "key_technologies": [
+        "vLLM",
+        "Triton Inference Server",
+        "MLflow",
+        "Kubeflow",
+        "Docker"
+      ],
+      "statutory_standards": [
+        "Time-to-First-Token (TTFT) < 200ms",
+        "Zero GPU memory leak",
+        "Automated model canary deploy"
+      ],
+      "curated_skills": [
+        "mle-workflow",
+        "latency-critical-systems",
+        "data-throughput-accelerator",
+        "ito-inference",
+        "ito-compute"
+      ]
+    },
+    "physical_ai": {
+      "name": "Physical AI & Embodied Robotics",
+      "description": "ROS2 integration, autonomous navigation, SLAM, and robot visuomotor policies.",
+      "key_technologies": [
+        "ROS2",
+        "MoveIt",
+        "Nav2",
+        "Gazebo",
+        "Micro-ROS",
+        "Python/C++"
+      ],
+      "statutory_standards": [
+        "ISO 10218 (Robot Safety)",
+        "Hard real-time loop (<10ms)",
+        "Fail-safe emergency stop"
+      ],
+      "curated_skills": [
+        "blender-motion-state-inspection",
+        "cpp-coding-standards",
+        "latency-critical-systems"
+      ]
+    }
+  },
+  "persona_specializations": {
+    "product_manager": {
+      "role_title": "Principal AI/ML Product Director",
+      "domain_objectives": "Define task-specific accuracy metrics (F1, mAP, BLEU, ROUGE), compute budgets, and safety guardrails.",
+      "requirements_rubric": "Data distribution specifications, ground truth validation benchmarks, latency SLAs, and hallucination tolerance.",
+      "forbidden_pitfalls": [
+        "Evaluating on training data",
+        "Ignoring edge-case hallucinations",
+        "Undefined compute budgets"
+      ]
+    },
+    "system_architect": {
+      "role_title": "Chief AI/ML Architect & Research Scientist",
+      "domain_objectives": "Architect resilient model pipelines, model context protocols, vector ingestion DAGs, and inference topologies.",
+      "mandatory_patterns": [
+        "Decoupled Inference Gateway",
+        "Layered RAG Pipeline (Retrieve, Rerank, Generate)",
+        "Context Compression & Caching",
+        "Deterministic Pydantic Output Contracts"
+      ],
+      "performance_invariants": [
+        "KV-cache bounds < 80% VRAM",
+        "Embedding latency < 50ms",
+        "Strict JSON schema parsing"
+      ]
+    },
+    "adversarial_sdet": {
+      "role_title": "Lead AI Red-Team & Adversarial Evaluation SDET",
+      "threat_model": "Prompt injection, jailbreaks, data poisoning, model inversion, embedding collision, and drift degradation.",
+      "chaos_vectors": [
+        "Indirect prompt injection via untrusted RAG chunks",
+        "Adversarial perturbated image inputs",
+        "Extreme token flood attacks"
+      ],
+      "test_frameworks": [
+        "Ragas",
+        "DeepEval",
+        "pytest",
+        "Garak"
+      ],
+      "boundary_fuzzing": "Probe model with contradictory context, recursive reasoning loops, and zero-shot ungrounded queries."
+    },
+    "core_engineer": {
+      "role_title": "Senior AI Systems & Modeling Engineer",
+      "coding_idioms": "Vectorized NumPy/PyTorch operations, batch processing, asynchronous streaming generation, typed schemas.",
+      "concurrency_rules": "Non-blocking tensor streaming, thread-safe model weights access, queue-backed inference dispatch.",
+      "memory_and_resource_rules": "Explicit GPU memory freeing (torch.cuda.empty_cache()), pinned memory buffers, graceful OOM recovery."
+    },
+    "mutation_auditor": {
+      "role_title": "Principal AI Safety & Governance Auditor",
+      "security_standards": [
+        "NIST AI Risk Management Framework (AI RMF)",
+        "OWASP Top 10 for LLMs",
+        "EU AI Act Compliance"
+      ],
+      "statutory_compliance_gates": [
+        "Zero PII in training/vector sets",
+        "Automated Toxicity/Jailbreak Filter",
+        "Deterministic Output Guardrails"
+      ],
+      "audit_checklist": [
+        "Model weights SHA-256 provenance",
+        "Evaluated on uncorrupted held-out test split",
+        "Fail-closed safety filter"
+      ]
+    },
+    "technical_writer": {
+      "role_title": "Lead AI Technical Writer & Research Communicator",
+      "documentation_lexicon": "Empirical metrics tables (Accuracy, Latency, Perplexity, VRAM), model architecture callouts, and training parameter dossiers.",
+      "presentation_theme": "cyber_dark",
+      "architectural_diagram_style": "Data pipeline flow, RAG retrieval graphs, and neural architecture tier visual diagrams."
+    }
+  },
+  "verification_gates": [
+    "eval_benchmarks",
+    "hallucination_gate",
+    "schema_validation",
+    "zero_secrets"
+  ],
+  "doctor_checks": [
+    "python",
+    "pip",
+    "node"
+  ]
+}

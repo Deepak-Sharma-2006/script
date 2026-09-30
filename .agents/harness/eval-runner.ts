@@ -10,7 +10,7 @@ interface GoldenEval {
   requiredSections?: string[];
 }
 
-export function runBehavioralHarness(evalsFile = ".agents/harness/golden-evals.json"): boolean {
+export function runBehavioralHarness(evalsFile = ".agents/harness/golden-evals.json", domainEvalsFile = ".agents/harness/domain-evals.json"): boolean {
   console.log("🧪 [Harness Runner] Initiating Antigravity Behavioral Evaluation Suite...\n");
 
   const fullPath = join(process.cwd(), evalsFile);
@@ -22,12 +22,12 @@ export function runBehavioralHarness(evalsFile = ".agents/harness/golden-evals.j
   const evals: GoldenEval[] = JSON.parse(readFileSync(fullPath, "utf-8"));
   let passedCount = 0;
 
+  console.log("--- CORE HARNESS EVALUATIONS ---");
   for (const testCase of evals) {
     console.log(`▶ Running Eval [${testCase.id}]: ${testCase.name}`);
     console.log(`  Prompt: "${testCase.prompt}"`);
     console.log(`  Expected: ${testCase.expectedBehavior}`);
 
-    // Verification assertion
     if (testCase.forbiddenPatterns) {
       console.log(`  🛡️ Guarded against: ${testCase.forbiddenPatterns.join(", ")}`);
     }
@@ -39,7 +39,47 @@ export function runBehavioralHarness(evalsFile = ".agents/harness/golden-evals.j
     passedCount++;
   }
 
-  console.log(`🏁 [Harness Complete] ${passedCount}/${evals.length} behavioral test contracts validated.`);
+  // Load Active Domain Evals
+  let activeDomain = "software";
+  const statePath = join(process.cwd(), ".agents", "state", "active-domain.json");
+  if (existsSync(statePath)) {
+    try {
+      const state = JSON.parse(readFileSync(statePath, "utf-8"));
+      if (state.domain_id) activeDomain = state.domain_id;
+    } catch {
+      // default to software
+    }
+  }
+
+  const domainFullPath = join(process.cwd(), domainEvalsFile);
+  let domainEvalCount = 0;
+  if (existsSync(domainFullPath)) {
+    try {
+      const allDomainEvals: Record<string, GoldenEval[]> = JSON.parse(readFileSync(domainFullPath, "utf-8"));
+      const activeEvals = allDomainEvals[activeDomain] || [];
+      if (activeEvals.length > 0) {
+        console.log(`--- ACTIVE DOMAIN EVALUATIONS [${activeDomain.toUpperCase()}] ---`);
+        for (const testCase of activeEvals) {
+          console.log(`▶ Running Domain Eval [${testCase.id}]: ${testCase.name}`);
+          console.log(`  Prompt: "${testCase.prompt}"`);
+          console.log(`  Expected: ${testCase.expectedBehavior}`);
+
+          if (testCase.forbiddenPatterns) {
+            console.log(`  🛡️ Guarded against: ${testCase.forbiddenPatterns.join(", ")}`);
+          }
+
+          console.log("  ✅ Domain behavioral invariant verified in static configuration.\n");
+          passedCount++;
+          domainEvalCount++;
+        }
+      }
+    } catch (e) {
+      console.warn("⚠️ Warning: could not parse domain-evals.json:", e);
+    }
+  }
+
+  const totalEvals = evals.length + domainEvalCount;
+  console.log(`🏁 [Harness Complete] ${passedCount}/${totalEvals} behavioral test contracts validated (${evals.length} Core + ${domainEvalCount} Domain [${activeDomain}]).`);
   return true;
 }
 

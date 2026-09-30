@@ -56,7 +56,7 @@ export function reconcileDirectory(dirPath: string, indexFilePath: string, catal
   }
 
   const files = readdirSync(fullDir)
-    .filter((f) => f.endsWith(".md") && f !== "INDEX.md")
+    .filter((f) => f.endsWith(".md") && f !== "INDEX.md" && f !== "README.md")
     .sort()
     .reverse();
 

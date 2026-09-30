@@ -1,0 +1,197 @@
+{
+  "domain_id": "deep_tech",
+  "domain_name": "Scientific Research, Deep Tech & Frontier Computing",
+  "description": "Quantum algorithms, computational biology, HPC supercomputing, spatial computing, and safety-critical aerospace.",
+  "subdomains": {
+    "quantum_computing": {
+      "name": "Quantum Computing & Information Science",
+      "description": "Qubit gate synthesis, quantum algorithms (VQE, QAOA), quantum error correction, and Qiskit pipelines.",
+      "key_technologies": [
+        "Qiskit",
+        "Cirq",
+        "PennyLane",
+        "OpenQASM",
+        "QuTiP"
+      ],
+      "statutory_standards": [
+        "Gate fidelity metrics",
+        "Coherence time budget (T1/T2)",
+        "Circuit depth optimization"
+      ],
+      "curated_skills": [
+        "latency-critical-systems",
+        "benchmark",
+        "cpp-coding-standards"
+      ]
+    },
+    "computational_biology": {
+      "name": "Computational Biology, Bioinformatics & MedTech",
+      "description": "Genomic sequence alignment, AlphaFold protein folding, and molecular docking simulation.",
+      "key_technologies": [
+        "Biopython",
+        "AlphaFold",
+        "GATK",
+        "OpenMM",
+        "RDKit"
+      ],
+      "statutory_standards": [
+        "FASTA/FASTQ verification",
+        "Reproducible random seeds",
+        "Peer-reviewed benchmark baselines"
+      ],
+      "curated_skills": [
+        "deep-research",
+        "research-ops",
+        "scientific-pkg-gget",
+        "scientific-db-pubmed-database"
+      ]
+    },
+    "computational_materials": {
+      "name": "Computational Chemistry, Physics & Materials",
+      "description": "Density Functional Theory (DFT), molecular dynamics (GROMACS), and crystal structure discovery.",
+      "key_technologies": [
+        "ASE",
+        "PyMatGen",
+        "GROMACS",
+        "LAMMPS",
+        "OpenFOAM"
+      ],
+      "statutory_standards": [
+        "Energy conservation verification",
+        "Convergence threshold bounds",
+        "SI unit dimensional checking"
+      ],
+      "curated_skills": [
+        "scientific-db-uspto-database",
+        "research-ops",
+        "benchmark"
+      ]
+    },
+    "hpc_supercomputing": {
+      "name": "High-Performance Computing (HPC) & Parallel Clusters",
+      "description": "MPI distributed clusters, OpenMP multi-threading, Slurm job schedulers, and GPU acceleration.",
+      "key_technologies": [
+        "MPI (OpenMPI/MPICH)",
+        "OpenMP",
+        "CUDA",
+        "Slurm",
+        "Lustre"
+      ],
+      "statutory_standards": [
+        "Amdahl's law scaling efficiency",
+        "Zero thread deadlocks",
+        "Non-blocking collective communication"
+      ],
+      "curated_skills": [
+        "latency-critical-systems",
+        "benchmark",
+        "data-throughput-accelerator",
+        "cpp-testing"
+      ]
+    },
+    "aerospace_avionics": {
+      "name": "Aerospace, Avionics & Autonomous Spaceflight",
+      "description": "Safety-critical flight software, Guidance Navigation & Control (GNC), and NASA Core Flight System.",
+      "key_technologies": [
+        "C",
+        "Ada",
+        "NASA cFS",
+        "F Prime",
+        "Simulink"
+      ],
+      "statutory_standards": [
+        "DO-178C Level A/B",
+        "DO-254",
+        "Zero dynamic memory allocation in flight loop"
+      ],
+      "curated_skills": [
+        "safety-guard",
+        "verification-loop",
+        "delivery-gate"
+      ]
+    }
+  },
+  "persona_specializations": {
+    "product_manager": {
+      "role_title": "Principal Scientific Research & Systems Director",
+      "domain_objectives": "Formulate testable empirical hypotheses, experimental methodology, dimensional units, and statutory research milestones.",
+      "requirements_rubric": "Statistical significance criteria (p-value, confidence intervals), hardware constraint boundaries, and reproducible data pipelines.",
+      "forbidden_pitfalls": [
+        "Overclaiming theoretical results",
+        "Unspecified physical units",
+        "Ignoring hardware noise and decoherence"
+      ]
+    },
+    "system_architect": {
+      "role_title": "Chief Scientific Computing Architect",
+      "domain_objectives": "Architect high-throughput simulation pipelines, distributed compute fabrics, and mathematically rigorous data models.",
+      "mandatory_patterns": [
+        "Data-Parallel Compute Topologies",
+        "Checkpoint-Restart Fault Recovery",
+        "Deterministic Float Arithmetic",
+        "Strict Dimensional Consistency"
+      ],
+      "performance_invariants": [
+        "Linear or sub-linear compute scaling",
+        "Deterministic execution reproducibility",
+        "Zero memory leaks in million-step loops"
+      ]
+    },
+    "adversarial_sdet": {
+      "role_title": "Lead Scientific Software Verification Engineer",
+      "threat_model": "Floating-point precision drift, dimensional unit mismatch, simulation divergence, race conditions in OpenMP/MPI.",
+      "chaos_vectors": [
+        "Simulated worker node drop in MPI cluster",
+        "Extreme numerical boundary conditions (NaN, Inf, Denormals)",
+        "Random noise injection"
+      ],
+      "test_frameworks": [
+        "pytest",
+        "GoogleTest",
+        "NumPy testing suite"
+      ],
+      "boundary_fuzzing": "Probe algorithms with degenerate matrices, boundary condition limits, and ill-conditioned systems."
+    },
+    "core_engineer": {
+      "role_title": "Senior Research Software Engineer",
+      "coding_idioms": "High-performance vectorized C/C++/Fortran/Python, cache-aligned data structures, SIMD intrinsics, memory pinning.",
+      "concurrency_rules": "Lock-free synchronization, NUMA-aware memory allocation, clean MPI rank partitioning.",
+      "memory_and_resource_rules": "Static pre-allocation of simulation arrays, zero dynamic reallocations during core computation steps."
+    },
+    "mutation_auditor": {
+      "role_title": "Principal Research Integrity & Safety Auditor",
+      "security_standards": [
+        "IEEE 754 Floating-Point Standard",
+        "NASA Software Safety Standards",
+        "FAIR Data Principles"
+      ],
+      "statutory_compliance_gates": [
+        "Unit conservation laws mathematically verified",
+        "Zero unhandled numerical overflows",
+        "Reproducibility script test passing"
+      ],
+      "audit_checklist": [
+        "Exact random seed control",
+        "Data provenance citations present",
+        "Statutory safety boundaries enforced"
+      ]
+    },
+    "technical_writer": {
+      "role_title": "Chief Scientific & Technical Communications Lead",
+      "documentation_lexicon": "Rigorous academic and mathematical nomenclature (clean Unicode typography), BibTeX citations, and scientific benchmark charts.",
+      "presentation_theme": "light_minimal",
+      "architectural_diagram_style": "Scientific workflow pipeline, mathematical model architecture, and experimental setup schematics."
+    }
+  },
+  "verification_gates": [
+    "numerical_precision",
+    "reproducibility",
+    "unit_consistency",
+    "zero_secrets"
+  ],
+  "doctor_checks": [
+    "python",
+    "gcc",
+    "cargo"
+  ]
+}

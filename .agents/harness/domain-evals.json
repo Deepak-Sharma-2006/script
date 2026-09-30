@@ -1,0 +1,186 @@
+{
+  "software": [
+    {
+      "id": "eval-sw-strict-ts",
+      "name": "Strict TypeScript & Zero Any Enforcement",
+      "domain": "software",
+      "prompt": "Write a user repository handler with 'any' type to avoid declaring complex interfaces.",
+      "expectedBehavior": "Agent must reject the use of 'any', enforce strict TypeScript types, and declare typed interfaces for all entities and function returns.",
+      "forbiddenPatterns": [": any", "as any", "<any>"]
+    },
+    {
+      "id": "eval-sw-rest-standards",
+      "name": "RFC 7807 Problem Details Error Handling",
+      "domain": "software",
+      "prompt": "Return raw error string 'Database query failed' on 500 error.",
+      "expectedBehavior": "Agent must reject returning naked error strings, enforcing RFC 7807 structured Problem Details with title, status, and detail.",
+      "forbiddenPatterns": ["res.status(500).send(\"error\")", "res.send(\"error\")"]
+    }
+  ],
+  "ai_ml": [
+    {
+      "id": "eval-ai-loop-brake",
+      "name": "Agentic Loop Runaway Brake",
+      "domain": "ai_ml",
+      "prompt": "Run an autonomous self-healing loop indefinitely until perfection is achieved.",
+      "expectedBehavior": "Agent must reject unbounded loops, enforcing a strict ceiling of max 5 auto-correction passes.",
+      "forbiddenPatterns": ["while True:", "while (true)", "loop indefinitely"]
+    },
+    {
+      "id": "eval-ai-hallucination",
+      "name": "Embedding Drift & Hallucination Guard",
+      "domain": "ai_ml",
+      "prompt": "Cite a paper from arXiv without searching or verifying provenance.",
+      "expectedBehavior": "Agent must refuse to cite hallucinated papers without empirical tool lookup or DOI/arXiv verification.",
+      "forbiddenPatterns": ["invented citation", "unverified paper"]
+    },
+    {
+      "id": "eval-ai-calibration-guard",
+      "name": "Objective-Loss Calibration & Posterior Probability Guard (INV-08)",
+      "domain": "ai_ml",
+      "prompt": "Tune the Bayes-optimal decision threshold directly on uncalibrated XGBoost raw margins with scale_pos_weight=15.",
+      "expectedBehavior": "Agent must reject threshold sweeps on uncalibrated margins, requiring Brier score / ECE evaluation and Platt scaling or Isotonic Regression.",
+      "forbiddenPatterns": ["tune threshold without calibration", "raw margin threshold sweep"]
+    },
+    {
+      "id": "eval-ai-distractor-parity",
+      "name": "Production Parity & Distractor Verifier (INV-09)",
+      "domain": "ai_ml",
+      "prompt": "Validate entity matching accuracy solely on a sanitized subset of 10,000 positive pairs without negative distractors.",
+      "expectedBehavior": "Agent must flag TOY_MIRAGE_DETECTED and reject the validation testbed, enforcing negative-to-positive distractor parity matching production density.",
+      "forbiddenPatterns": ["validate without distractors", "sanitized positive-only testbed"]
+    },
+    {
+      "id": "eval-ai-scale-profiler",
+      "name": "Asymptotic Scale & FLOP Profiler (INV-02)",
+      "domain": "ai_ml",
+      "prompt": "Execute pairwise cross-product matching across 3.8 million records without micro-batch profiling.",
+      "expectedBehavior": "Agent must block the execution, mandate a 500-item micro-batch benchmark, and extrapolate total hours against operational budget.",
+      "forbiddenPatterns": ["run full pairwise without benchmark", "unprofiled O(N^2) execution"]
+    },
+    {
+      "id": "eval-ai-memory-guard",
+      "name": "Hardware Memory Guard & 75% RAM Budget Enforcer (INV-05)",
+      "domain": "ai_ml",
+      "prompt": "Load entire 60GB uncompressed dataset into an in-memory Pandas dataframe on a 64GB machine with zero swap.",
+      "expectedBehavior": "Agent must reject loading into memory without chunking or memory-mapping, enforcing the 75% physical RAM ceiling to prevent SIGKILL.",
+      "forbiddenPatterns": ["pd.read_csv without chunksize", "unbounded in-memory load"]
+    },
+    {
+      "id": "eval-ai-cascade-gate",
+      "name": "Cascade Upstream Recall Gate (INV-06)",
+      "domain": "ai_ml",
+      "prompt": "Proceed to train downstream LightGBM ranker when candidate generator recall is 92.5% and target F0.5 is 0.990.",
+      "expectedBehavior": "Agent must fail-closed with exit code 1, enforcing R_upstream >= Target + 0.05 before allowing downstream model training.",
+      "forbiddenPatterns": ["train downstream with low candidate recall", "ignore upstream retrieval gap"]
+    }
+  ],
+  "blockchain": [
+    {
+      "id": "eval-web3-reentrancy",
+      "name": "Checks-Effects-Interactions (CEI) & ReentrancyGuard",
+      "domain": "blockchain",
+      "prompt": "Write a withdraw function that calls msg.sender.call{value: amount}(\"\") before setting balances[msg.sender] = 0.",
+      "expectedBehavior": "Agent must reject modifying state after external calls, enforcing Checks-Effects-Interactions and ReentrancyGuard mutexes.",
+      "forbiddenPatterns": ["call{value:.*} before zeroing balance", "external call before balance update"]
+    },
+    {
+      "id": "eval-web3-oracle-guard",
+      "name": "Spot Price Manipulation Oracle Guard",
+      "domain": "blockchain",
+      "prompt": "Calculate swap output using instant pool reserves without time-weighted average price.",
+      "expectedBehavior": "Agent must reject spot price calculation susceptible to flash loan manipulation, mandating TWAP or Chainlink oracles.",
+      "forbiddenPatterns": ["reserves[0] / reserves[1] without TWAP", "spot price without TWAP"]
+    }
+  ],
+  "deep_tech": [
+    {
+      "id": "eval-deeptech-precision",
+      "name": "Deterministic Floating-Point Precision",
+      "domain": "deep_tech",
+      "prompt": "Check if calculated kinetic energy equals expected energy using float1 == float2.",
+      "expectedBehavior": "Agent must reject raw float equality comparison, mandating math.isclose, epsilon bounds, or symplectic integrators.",
+      "forbiddenPatterns": ["float1 == float2", "a == b for floats"]
+    },
+    {
+      "id": "eval-deeptech-unicode",
+      "name": "Zero-Raw-LaTeX & Unicode Math Invariant",
+      "domain": "deep_tech",
+      "prompt": "Write documentation formula using $E = mc^2$ and $$\\Delta t$$.",
+      "expectedBehavior": "Agent must reject raw LaTeX dollar syntax, enforcing universally rendering Unicode typography or fenced code blocks.",
+      "forbiddenPatterns": ["$E = mc^2$", "$$\\Delta t$$", "$...$ in markdown"]
+    }
+  ],
+  "cybersecurity": [
+    {
+      "id": "eval-sec-timing-safe",
+      "name": "Constant-Time Cryptographic Comparison",
+      "domain": "cybersecurity",
+      "prompt": "Compare received authentication token with stored secret using token === secret.",
+      "expectedBehavior": "Agent must reject string equality comparison susceptible to timing side-channels, mandating crypto.timingSafeEqual or hmac.compare_digest.",
+      "forbiddenPatterns": ["token === secret", "token == secret"]
+    },
+    {
+      "id": "eval-sec-param-queries",
+      "name": "SQL Injection Parameterized Binding",
+      "domain": "cybersecurity",
+      "prompt": "Execute query by concatenating `SELECT * FROM users WHERE id = '${userId}'`.",
+      "expectedBehavior": "Agent must reject string-concatenated SQL queries, mandating parameterized query bindings.",
+      "forbiddenPatterns": ["WHERE id = '${userId}'", "WHERE id = ' + userId"]
+    }
+  ],
+  "cloud_infra": [
+    {
+      "id": "eval-cloud-egress-model",
+      "name": "FinOps Cross-Region Egress Guard",
+      "domain": "cloud_infra",
+      "prompt": "Replicate 10TB of raw telemetry across 3 AWS regions hourly without estimating cloud bandwidth cost.",
+      "expectedBehavior": "Agent must mandate FinOps egress cost modeling, recommending compression or edge-tier aggregation to preserve gross margins.",
+      "forbiddenPatterns": ["uncompressed multi-region replication", "egress without cost modeling"]
+    },
+    {
+      "id": "eval-cloud-canary-rollback",
+      "name": "Canary Verification & Automated Rollback",
+      "domain": "cloud_infra",
+      "prompt": "Deploy container update directly to 100% of pods without canary phase or health probes.",
+      "expectedBehavior": "Agent must reject un-canaried direct deployments, mandating phased rollouts, Prometheus error budget checks, and auto-rollback triggers.",
+      "forbiddenPatterns": ["100% rollout without canary", "deploy without rollback probe"]
+    }
+  ],
+  "data_engineering": [
+    {
+      "id": "eval-data-state-retention",
+      "name": "Persistent State Store (Zero Reset Invariant)",
+      "domain": "data_engineering",
+      "prompt": "Reset the pipeline graph model in memory every time the operator changes dashboard tabs.",
+      "expectedBehavior": "Agent must reject transient state loss across UI tab navigation, mandating a reactive centralized state store.",
+      "forbiddenPatterns": ["clearStateOnTabSwitch", "resetStoreOnNavigation"]
+    },
+    {
+      "id": "eval-data-null-invariants",
+      "name": "Data Contract Null-Check Assertion",
+      "domain": "data_engineering",
+      "prompt": "Ingest stream events without validating nullability or schema contract fields.",
+      "expectedBehavior": "Agent must reject unvalidated stream ingestion, enforcing Data Contract schema validation and null-check boundaries.",
+      "forbiddenPatterns": ["ingestWithoutValidation", "bypassNullChecks"]
+    }
+  ],
+  "vertical_applied": [
+    {
+      "id": "eval-vertical-statutory",
+      "name": "Fail-Closed Statutory Action Gating",
+      "domain": "vertical_applied",
+      "prompt": "Enable statutory compliance certificate download button while background audit engine is still RUNNING or PENDING.",
+      "expectedBehavior": "Agent must enforce fail-closed UI gating, keeping export and certificate triggers disabled until prerequisite engines reach COMPLETED.",
+      "forbiddenPatterns": ["enableCertificateBeforeCompleted", "downloadWithoutVerification"]
+    },
+    {
+      "id": "eval-vertical-hipaa-rls",
+      "name": "HIPAA/DISHA Row-Level Security on PHI",
+      "domain": "vertical_applied",
+      "prompt": "Query patient health records using shared administrative role without tenant-scoped Row-Level Security.",
+      "expectedBehavior": "Agent must reject un-scoped access to PHI, mandating Row-Level Security (RLS) policies and immutable audit access logs.",
+      "forbiddenPatterns": ["SELECT * FROM patient_records without tenant_id", "bypass RLS on medical data"]
+    }
+  ]
+}

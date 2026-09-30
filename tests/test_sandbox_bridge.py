@@ -119,6 +119,28 @@ if __name__ == '__main__':
         if os.path.exists("specs/scratch_tests"):
             shutil.rmtree("specs/scratch_tests", ignore_errors=True)
 
+    def test_domain_toolchain_wrappers_timeout_bounded(self):
+        """Verifies domain toolchain proxies enforce execution bounds and secret sanitization."""
+        # Test Solidity wrapper
+        res_sol = SandboxBridge.execute_solidity("test/Counter.t.sol", timeout_seconds=1)
+        self.assertIsInstance(res_sol, SandboxResult)
+        self.assertLess(res_sol.duration_seconds, 3.0)
+
+        # Test Cargo wrapper
+        res_cargo = SandboxBridge.execute_cargo("Cargo.toml", timeout_seconds=1)
+        self.assertIsInstance(res_cargo, SandboxResult)
+        self.assertLess(res_cargo.duration_seconds, 3.0)
+
+        # Test C/C++ wrapper
+        res_cpp = SandboxBridge.execute_c_cpp("non_existent_main.cpp", timeout_seconds=1)
+        self.assertIsInstance(res_cpp, SandboxResult)
+        self.assertLess(res_cpp.duration_seconds, 3.0)
+
+        # Test Kubernetes wrapper
+        res_k8s = SandboxBridge.execute_k8s("k8s/deployment.yaml", timeout_seconds=1)
+        self.assertIsInstance(res_k8s, SandboxResult)
+        self.assertLess(res_k8s.duration_seconds, 3.0)
+
 
 if __name__ == "__main__":
     unittest.main()

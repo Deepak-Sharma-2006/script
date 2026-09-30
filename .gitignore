@@ -62,12 +62,22 @@ docs/sih_solutions/
 *.db-wal
 *.db-shm
 
-# Ephemeral runtime locks and local audit trail
+# Ephemeral runtime state, locks, and local audit trail
 *.lock.json
+.agents/state/*.json
+!.agents/state/.gitkeep
 .agents/state/locks/
 .agents/audit_trail.log
+.agents/security/pentest-report.json
 
-# Ephemeral test run audits and plans
+# Local problem session artifacts, research, walkthroughs, and specs (template clean)
+docs/plans/2026*
+docs/walkthroughs/2026*
+docs/research/2026*
+docs/specifications/2026*
+docs/audits/2026*
+docs/decisions/2026*
+docs/dossiers/phase-*.md
 docs/audits/*_test_*.md
 docs/audits/*_tamper_*.md
 docs/audits/*_casec_*.md
@@ -77,4 +87,7 @@ docs/audits/*_ts_*.md
 docs/audits/*_audit_audit.md
 docs/plans/*_test_*.md
 docs/plans/*_casec_test_*.md
+specs/*.json
+specs/*.html
+specs/contracts/*.json
 

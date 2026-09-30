@@ -27,6 +27,7 @@ from scripts.engine.flex_grid_solver import FlexGridSolver, Row, Column, Grid, C
 from scripts.engine.cognitive_analyzer import CognitiveDeckAnalyzer, DesignGrammar, SlidePattern
 from scripts.engine.planner import OmniDeckPlanner, PromptDeconstructor, OmniDeckPlan, OmniSlidePlan
 from scripts.engine.deck_orchestrator import DeckOrchestrator
+from scripts.engine.visual_translator import VisualTranslator, ContentType
 from scripts.engine.primitives import (
     draw_vector_icon, render_stat_hero_card, render_bento_card,
     render_swimlane_architecture, render_radial_ecosystem,
@@ -98,5 +99,7 @@ __all__ = [
     "render_swimlane_architecture",
     "render_radial_ecosystem",
     "render_tension_split_card",
-    "render_milestone_roadmap"
+    "render_milestone_roadmap",
+    "VisualTranslator",
+    "ContentType"
 ]

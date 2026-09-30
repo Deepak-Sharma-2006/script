@@ -1,0 +1,198 @@
+{
+  "domain_id": "vertical_applied",
+  "domain_name": "Vertical Applied IT & Industry Solutions",
+  "description": "FinTech banking rails, HealthTech/HIPAA, GovTech digital public infrastructure, and Industrial IoT.",
+  "subdomains": {
+    "fintech_banking": {
+      "name": "FinTech, Core Banking & Quantitative Finance",
+      "description": "ISO 20022 messaging, low-latency trading, KYC/AML fraud detection, and regulatory capital adequacy.",
+      "key_technologies": [
+        "FIX Protocol",
+        "ISO 20022",
+        "Kafka",
+        "PostgreSQL",
+        "Python/C++"
+      ],
+      "statutory_standards": [
+        "PCI-DSS 4.0",
+        "Basel III",
+        "SOC 1 / SOC 2",
+        "Idempotent Payment Rails"
+      ],
+      "curated_skills": [
+        "finance-billing-ops",
+        "customer-billing-ops",
+        "contract-first",
+        "agent-payment-x402"
+      ]
+    },
+    "healthtech_informatics": {
+      "name": "HealthTech, MedTech & Digital Health",
+      "description": "HL7 FHIR clinical interoperability, DICOM medical imaging, EHR integration, and SaMD software.",
+      "key_technologies": [
+        "HL7 FHIR",
+        "DICOM",
+        "PostgreSQL (RLS)",
+        "Python",
+        "React"
+      ],
+      "statutory_standards": [
+        "HIPAA Security Rule",
+        "HITECH",
+        "FDA 21 CFR Part 11",
+        "EU MDR (SaMD)"
+      ],
+      "curated_skills": [
+        "hipaa-compliance",
+        "healthcare-cdss-patterns",
+        "healthcare-phi-compliance",
+        "healthcare-eval-harness",
+        "healthcare-emr-patterns"
+      ]
+    },
+    "govtech_sovereign": {
+      "name": "GovTech, CivicTech & Digital Public Infrastructure",
+      "description": "National-scale digital identity, open payment networks, and cryptographically verifiable evidence vaults.",
+      "key_technologies": [
+        "SHA-256 Merkle Chains",
+        "PKI Infrastructure",
+        "PostgreSQL",
+        "Python"
+      ],
+      "statutory_standards": [
+        "Digital Evidence Admissibility",
+        "Tamper-Evident Chain of Custody",
+        "Citizen Data Sovereignty"
+      ],
+      "curated_skills": [
+        "accessibility",
+        "frontend-a11y",
+        "safety-guard",
+        "delivery-gate"
+      ]
+    },
+    "legaltech_regulatory": {
+      "name": "LegalTech & Regulatory Compliance",
+      "description": "Automated contract parsing, court docket ingestion, and statutory compliance tracking.",
+      "key_technologies": [
+        "NLP Extraction",
+        "PostgreSQL",
+        "Elasticsearch",
+        "Python"
+      ],
+      "statutory_standards": [
+        "Attorney-Client Privilege Protection",
+        "Audit Trail Immutability"
+      ],
+      "curated_skills": [
+        "customs-trade-compliance",
+        "living-docs-governance",
+        "pdf-document-intelligence",
+        "contract-first"
+      ]
+    },
+    "industrial_iot": {
+      "name": "Industrial IoT, Smart Manufacturing & Supply Chain",
+      "description": "SCADA systems, OPC Unified Architecture, predictive maintenance, and digital twins.",
+      "key_technologies": [
+        "OPC UA",
+        "MQTT",
+        "Time-Series DB",
+        "Python/C++",
+        "Docker"
+      ],
+      "statutory_standards": [
+        "IEC 62443 (Industrial Cybersecurity)",
+        "Sub-100ms Sensor Ingestion"
+      ],
+      "curated_skills": [
+        "cisco-ios-patterns",
+        "netmiko-ssh-automation",
+        "cpp-coding-standards"
+      ]
+    }
+  },
+  "persona_specializations": {
+    "product_manager": {
+      "role_title": "Principal Industry Domain & Regulatory Product Lead",
+      "domain_objectives": "Define statutory regulatory requirements, industry-specific compliance certifications, and statutory audit trails.",
+      "requirements_rubric": "Statutory legal axioms, regulatory compliance checklists, end-to-end chain of custody, and fail-closed state machines.",
+      "forbidden_pitfalls": [
+        "Violating statutory mandates",
+        "Unencrypted protected health information (PHI)",
+        "Non-idempotent financial transactions"
+      ]
+    },
+    "system_architect": {
+      "role_title": "Chief Vertical Systems & Regulatory Solutions Architect",
+      "domain_objectives": "Architect fail-closed, statutory-compliant enterprise architectures with immutable audit ledgers and cryptographic proof of custody.",
+      "mandatory_patterns": [
+        "Fail-Closed Statutory State Machines",
+        "Cryptographic Merkle Chain of Custody",
+        "Row-Level Multi-Tenant Isolation (RLS)",
+        "Idempotent Transaction Enclaves"
+      ],
+      "performance_invariants": [
+        "Sub-millisecond constant-time comparisons",
+        "Zero unauthenticated statutory actions",
+        "Deterministic compliance logging"
+      ]
+    },
+    "adversarial_sdet": {
+      "role_title": "Lead Regulatory & Compliance Adversarial SDET",
+      "threat_model": "Regulatory evasion, statutory bypass, double-spend in financial ledgers, PHI data exfiltration, audit trail tampering.",
+      "chaos_vectors": [
+        "Simulated regulatory audit failure",
+        "Tampered Merkle hash injection",
+        "Concurrent duplicate payment submission"
+      ],
+      "test_frameworks": [
+        "pytest",
+        "Node Test Runner",
+        "Playwright"
+      ],
+      "boundary_fuzzing": "Probe regulatory forms with invalid tax IDs, corrupted DICOM headers, and out-of-sequence financial ledger items."
+    },
+    "core_engineer": {
+      "role_title": "Senior Industry & Compliance Software Engineer",
+      "coding_idioms": "Strictly typed, defensive programming, explicit error codes, constant-time comparisons, immutable audit log events.",
+      "concurrency_rules": "Distributed transactional locks, atomic database transactions, strict serializability for financial rows.",
+      "memory_and_resource_rules": "Immediate memory wiping of sensitive credentials, encrypted field-level persistence."
+    },
+    "mutation_auditor": {
+      "role_title": "Principal Regulatory Compliance & Statutory Auditor",
+      "security_standards": [
+        "HIPAA Security Rule",
+        "PCI-DSS 4.0",
+        "FDA 21 CFR Part 11",
+        "SOC 2 Type II"
+      ],
+      "statutory_compliance_gates": [
+        "Statutory Action Gating (export disabled until approved)",
+        "Zero Hardcoded Secrets",
+        "SHA-256 Merkle Provenance Verified"
+      ],
+      "audit_checklist": [
+        "Audit log chain-of-custody valid",
+        "Row-Level Security active on tenant tables",
+        "Statutory certificates fail-closed"
+      ]
+    },
+    "technical_writer": {
+      "role_title": "Lead Regulatory Documentation & Dockets Architect",
+      "documentation_lexicon": "Statutory compliance dockets, regulatory audit reports, C-level executive presentations, and chain-of-custody certificates.",
+      "presentation_theme": "institutional_navy",
+      "architectural_diagram_style": "Statutory compliance pipelines, multi-tenant isolation architectures, and verifiable evidence flows."
+    }
+  },
+  "verification_gates": [
+    "statutory_compliance",
+    "merkle_attestation",
+    "zero_secrets",
+    "row_level_security"
+  ],
+  "doctor_checks": [
+    "node",
+    "python"
+  ]
+}

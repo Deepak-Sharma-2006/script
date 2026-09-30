@@ -19,6 +19,7 @@ from scripts.orchestrator.solution_council import SolutionCouncil
 from scripts.orchestrator.coding_engine import CodingEngine
 from scripts.orchestrator.project_auditor import ProjectAuditor
 from scripts.orchestrator.research_triangulator import ResearchTriangulator
+from scripts.orchestrator.domain_persona_engine import DomainPersonaEngine
 from scripts.engine.planner import OmniDeckPlanner
 from scripts.engine.deck_orchestrator import DeckOrchestrator
 
@@ -60,7 +61,8 @@ class TaskDispatcher:
         """Task 1: Dispatches to SolutionCouncil."""
         title = kwargs.get("title") or kwargs.get("prompt") or "INNOVATION ARCHITECTURE"
         text = kwargs.get("text") or kwargs.get("prompt") or title
-        domain = kwargs.get("domain", "AI / High-Tech Defense")
+        active_state = DomainPersonaEngine.get_active_state()
+        domain = kwargs.get("domain") or active_state.get("domain_name", "General Engineering")
         out_dir = kwargs.get("output_dir", "docs/dossiers")
 
         print(f"\n[TaskDispatcher] Routing to Task 1: SolutionCouncil ({domain})...")
@@ -99,7 +101,8 @@ class TaskDispatcher:
     def _handle_presentation(cls, **kwargs) -> Dict[str, Any]:
         """Task 3: Dispatches to OmniDeck Presentation Engine (PPTX First)."""
         prompt = kwargs.get("prompt") or kwargs.get("text") or "Enterprise Presentation"
-        theme = kwargs.get("theme", "cyber_dark_terminal")
+        active_theme = DomainPersonaEngine.get_presentation_theme()
+        theme = kwargs.get("theme") or active_theme or "cyber_dark_terminal"
         num_slides = kwargs.get("slides", 6)
         out_pptx = kwargs.get("output_pptx", "specs/presentations/deck_dispatcher_output.pptx")
         export_pdf = kwargs.get("export_pdf", False)
@@ -287,7 +290,8 @@ class {class_name}:
         """Dispatches to DeepResearchSpecialist / ResearchTriangulator."""
         title = kwargs.get("title") or kwargs.get("prompt") or "Autonomous System Research"
         text = kwargs.get("text") or kwargs.get("prompt") or title
-        domain = kwargs.get("domain", "General Engineering")
+        active_state = DomainPersonaEngine.get_active_state()
+        domain = kwargs.get("domain") or active_state.get("domain_name", "General Engineering")
         mode = kwargs.get("research_mode") or kwargs.get("mode") or "EXPLORATION"
         min_time = kwargs.get("min_time", 0.0)
 
@@ -306,7 +310,8 @@ class {class_name}:
     def _handle_impact(cls, **kwargs) -> Dict[str, Any]:
         """Dispatches to ResearchTriangulator for Post-Production Impact Analysis."""
         title = kwargs.get("title") or kwargs.get("feature") or kwargs.get("target") or "Production Platform"
-        domain = kwargs.get("domain", "Enterprise Software")
+        active_state = DomainPersonaEngine.get_active_state()
+        domain = kwargs.get("domain") or active_state.get("domain_name", "Enterprise Software")
         metrics = kwargs.get("empirical_metrics") or {}
 
         print(f"\n[TaskDispatcher] Routing to Post-Production Impact Analysis ({title})...")
@@ -330,8 +335,8 @@ def main():
     parser.add_argument("--output-report", default="docs/audits/remediation_audit.md", help="Path to write audit/remediation report")
     parser.add_argument("--prompt", help="Natural language prompt or problem statement")
     parser.add_argument("--title", help="Problem statement title")
-    parser.add_argument("--domain", default="AI / High-Tech Defense", help="Domain area")
-    parser.add_argument("--theme", default="cyber_dark_terminal", help="Presentation theme")
+    parser.add_argument("--domain", default=None, help="Domain area (defaults to active domain)")
+    parser.add_argument("--theme", default=None, help="Presentation theme (defaults to active domain theme)")
     parser.add_argument("--slides", type=int, default=6, help="Number of presentation slides")
     parser.add_argument("--export-pdf", action="store_true", help="Explicit order to export approved PPTX to PDF")
     parser.add_argument("--query", default="", help="Memory search query")

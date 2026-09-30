@@ -36,7 +36,13 @@ export const MUTATION_PATTERNS: MutationPattern[] = [
   { name: "Subtraction to Addition", category: "arithmetic", search: /\s\-\s/g, replace: " + " },
 
   // 4. Return Value Mutations
-  { name: "Return Nullification", category: "return", search: /return\s+([a-zA-Z0-9_\.]+);/g, replace: "return null as any;" }
+  { name: "Return Nullification", category: "return", search: /return\s+([a-zA-Z0-9_\.]+);/g, replace: "return null as any;" },
+
+  // 5. Domain-Specific Invariants (Component 4)
+  { name: "MUT_SEC_TIMING_LEAK: Constant-Time Inversion", category: "logic", search: /timingSafeEqual\(([^,]+),\s*([^)]+)\)/g, replace: "$1.equals($2)" },
+  { name: "MUT_WEB3_DECIMALS: Token Decimal Scale Shift", category: "arithmetic", search: /10\s*\*\*\s*18/g, replace: "10 ** 6" },
+  { name: "MUT_CLOUD_TIMEOUT: Retry Timeout Zeroing", category: "boundary", search: /timeout:\s*\d+/g, replace: "timeout: 0" },
+  { name: "MUT_DATA_STATE_RESET: Reactive State Bypass", category: "logic", search: /preserveState:\s*true/g, replace: "preserveState: false" }
 ];
 
 export interface MutationResult {

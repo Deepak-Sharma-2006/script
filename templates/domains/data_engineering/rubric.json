@@ -1,0 +1,197 @@
+{
+  "domain_id": "data_engineering",
+  "domain_name": "Data Engineering, Big Data & Knowledge Intelligence",
+  "description": "High-throughput streaming, Lakehouse storage (Iceberg/Delta), vector/graph databases, and data mesh.",
+  "subdomains": {
+    "stream_processing": {
+      "name": "Data Ingestion & Real-Time Event Streaming",
+      "description": "High-throughput messaging (Kafka, Redpanda), stream processing (Flink, Spark), and exactly-once semantics.",
+      "key_technologies": [
+        "Apache Kafka",
+        "Apache Flink",
+        "Redpanda",
+        "Apache Spark Streaming",
+        "RabbitMQ"
+      ],
+      "statutory_standards": [
+        "Exactly-Once Processing Semantics",
+        "Consumer Lag SLAs",
+        "Schema Registry Enforcement (Avro/Protobuf)"
+      ],
+      "curated_skills": [
+        "data-throughput-accelerator",
+        "latency-critical-systems",
+        "clickhouse-io"
+      ]
+    },
+    "lakehouse_warehousing": {
+      "name": "Data Warehousing & Lakehouse Platforms",
+      "description": "Modern cloud warehouses (Snowflake, BigQuery, ClickHouse) and open table formats (Iceberg, Delta).",
+      "key_technologies": [
+        "Snowflake",
+        "ClickHouse",
+        "Google BigQuery",
+        "Apache Iceberg",
+        "DuckDB"
+      ],
+      "statutory_standards": [
+        "ACID Lakehouse Transactions",
+        "Partition Pruning Efficiency",
+        "Columnar Compression Optimization"
+      ],
+      "curated_skills": [
+        "postgres-patterns",
+        "clickhouse-io",
+        "contract-first"
+      ]
+    },
+    "data_orchestration": {
+      "name": "Data Transformation, DAGs & Quality",
+      "description": "dbt modeling, Airflow/Dagster orchestration, data lineage tracking, and automated data quality tests.",
+      "key_technologies": [
+        "dbt",
+        "Apache Airflow",
+        "Dagster",
+        "Great Expectations",
+        "OpenLineage"
+      ],
+      "statutory_standards": [
+        "Zero Stale Models",
+        "Automated Null & Uniqueness Constraints",
+        "Upstream Lineage Tracking"
+      ],
+      "curated_skills": [
+        "django-celery",
+        "contract-first",
+        "team-agent-orchestration"
+      ]
+    },
+    "specialized_databases": {
+      "name": "Specialized Databases (Vector, Graph & Time-Series)",
+      "description": "Vector indexing for AI (Milvus, Qdrant), graph relationships (Neo4j), and time-series metrics.",
+      "key_technologies": [
+        "Milvus",
+        "Qdrant",
+        "Neo4j",
+        "TimescaleDB",
+        "CockroachDB"
+      ],
+      "statutory_standards": [
+        "Vector Recall > 95%",
+        "Graph Traversal Depth Limits",
+        "Time-Bucket Retention Policies"
+      ],
+      "curated_skills": [
+        "clickhouse-io",
+        "postgres-patterns",
+        "mysql-patterns",
+        "redis-patterns"
+      ]
+    },
+    "data_mesh_governance": {
+      "name": "Data Mesh, Semantics & Governance",
+      "description": "Domain-oriented decentralized data products, semantic layers, and enterprise data cataloging.",
+      "key_technologies": [
+        "Cube.js",
+        "dbt Semantic Layer",
+        "Atlan",
+        "Amundsen"
+      ],
+      "statutory_standards": [
+        "Data Product SLA Contracts",
+        "GDPR Right to Be Forgotten",
+        "Column-level Data Masking"
+      ],
+      "curated_skills": [
+        "contract-first",
+        "living-docs-governance",
+        "database-migrations"
+      ]
+    }
+  },
+  "persona_specializations": {
+    "product_manager": {
+      "role_title": "Principal Data Product & Analytics Manager",
+      "domain_objectives": "Define data freshness SLAs, business KPI definitions, data lineage visibility, and data consumer requirements.",
+      "requirements_rubric": "Data contract specifications, downstream analytical query requirements, data retention policies, and schema evolution plans.",
+      "forbidden_pitfalls": [
+        "Silent pipeline failures",
+        "Undefined data ownership",
+        "Untracked schema drift breaking downstream consumers"
+      ]
+    },
+    "system_architect": {
+      "role_title": "Chief Data Architect & Distributed Storage Lead",
+      "domain_objectives": "Architect scalable data pipelines, Lakehouse table partitioning, schema registries, and idempotent backfill pipelines.",
+      "mandatory_patterns": [
+        "Kappa / Lambda Streaming Architecture",
+        "Medallion Architecture (Bronze, Silver, Gold)",
+        "Idempotent Replayable Pipelines",
+        "Decoupled Storage and Compute"
+      ],
+      "performance_invariants": [
+        "Streaming ingestion latency < 2s",
+        "Zero data loss on consumer restart",
+        "Optimized partition pruning"
+      ]
+    },
+    "adversarial_sdet": {
+      "role_title": "Lead Data Quality & Pipeline Verification SDET",
+      "threat_model": "Schema drift, duplicate messages, out-of-order event streams, data corruption, backpressure deadlock.",
+      "chaos_vectors": [
+        "Kafka broker failure injection",
+        "Corrupt CSV/JSON ingestion",
+        "High-volume burst stream backpressure"
+      ],
+      "test_frameworks": [
+        "Great Expectations",
+        "dbt test",
+        "pytest"
+      ],
+      "boundary_fuzzing": "Probe pipelines with null timestamps, unexpected string characters in numeric columns, and duplicate UUIDs."
+    },
+    "core_engineer": {
+      "role_title": "Senior Data & Analytics Engineer",
+      "coding_idioms": "Vectorized SQL transformations, idempotent MERGE statements, clean PySpark/Flink code, explicit type casting.",
+      "concurrency_rules": "Distributed partitioning, checkpointing state, non-blocking asynchronous stream consumption.",
+      "memory_and_resource_rules": "Memory-efficient streaming buffers, zero out-of-memory errors on large batch joins, spilling to disk optimization."
+    },
+    "mutation_auditor": {
+      "role_title": "Principal Data Governance & Privacy Auditor",
+      "security_standards": [
+        "GDPR",
+        "CCPA",
+        "HIPAA Data De-identification",
+        "SOC 2"
+      ],
+      "statutory_compliance_gates": [
+        "PII automated masking verified",
+        "Data retention lifecycle active",
+        "End-to-end lineage documented"
+      ],
+      "audit_checklist": [
+        "Data contract validations passing",
+        "Zero orphan staging tables",
+        "Schema registry validation active"
+      ]
+    },
+    "technical_writer": {
+      "role_title": "Lead Data Documentation Architect",
+      "documentation_lexicon": "Data dictionaries, entity relationship diagrams (ERD), lineage graphs, and pipeline SLAs.",
+      "presentation_theme": "modern_tech",
+      "architectural_diagram_style": "Medallion data architecture flows, Kafka event topologies, and Lakehouse table schemas."
+    }
+  },
+  "verification_gates": [
+    "data_contracts",
+    "data_quality",
+    "zero_secrets",
+    "schema_validation"
+  ],
+  "doctor_checks": [
+    "python",
+    "pip",
+    "node",
+    "docker"
+  ]
+}

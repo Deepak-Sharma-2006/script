@@ -14,6 +14,7 @@ from typing import Dict, Any, List, Optional
 from scripts.orchestrator.doc_visualizer import DocVisualizer
 from scripts.orchestrator.cost_estimator import CostEstimator
 from scripts.orchestrator.spec_sync import SpecSync
+from scripts.orchestrator.domain_persona_engine import DomainPersonaEngine
 
 
 class SolutionCouncil:
@@ -27,7 +28,7 @@ class SolutionCouncil:
         cls,
         problem_title: str,
         problem_text: str,
-        domain: str = "AI / High-Tech Defense",
+        domain: str = "General Engineering",
         output_dir: str = "docs/dossiers"
     ) -> Dict[str, Any]:
         """
@@ -38,13 +39,20 @@ class SolutionCouncil:
         assets_dir = os.path.join(output_dir, "assets")
         os.makedirs(assets_dir, exist_ok=True)
 
+        # Ingest active domain state
+        active_state = DomainPersonaEngine.get_active_state()
+        active_domain_id = active_state.get("domain_id", "software")
+        if domain in ("AI / High-Tech Defense", "General Engineering") and active_state.get("domain_name"):
+            domain = active_state.get("domain_name")
+
         # 1. Clean Title & Identifier
         clean_title = problem_title.strip().lstrip('#').strip()
 
         # 2. Deconstruct Core Themes & Tech Moat
-        is_cyber = any(w in problem_text.lower() for w in ["darknet", "tor", "cyber", "forensic", "crypto", "hack"])
-        is_agri = any(w in problem_text.lower() for w in ["crop", "farm", "drone", "soil", "agriculture", "irrigation"])
-        is_health = any(w in problem_text.lower() for w in ["health", "sepsis", "patient", "medical", "clinical", "hospital"])
+        is_cyber = any(w in problem_text.lower() for w in ["darknet", "tor", "forensic", "hack"]) or domain.lower() in ("cyber", "cybersecurity")
+        is_agri = any(w in problem_text.lower() for w in ["crop", "farm", "drone", "soil", "agriculture", "irrigation"]) or "agri" in domain.lower()
+        is_health = any(w in problem_text.lower() for w in ["health", "sepsis", "patient", "medical", "clinical", "hospital"]) or "health" in domain.lower()
+        is_web3 = any(w in problem_text.lower() for w in ["blockchain", "smart contract", "defi", "web3", "solidity", "mempool", "ethereum", "evm"]) or "blockchain" in domain.lower() or (active_domain_id == "blockchain" and not is_cyber and not is_agri and not is_health)
 
         if is_agri:
             solution_name = f"AGRIVISION: Autonomous Multispectral Edge Drone Swarm"
@@ -72,7 +80,7 @@ class SolutionCouncil:
             moat_stat = "Compliance with ICAR agricultural advisory norms and pesticide runoff safety guidelines."
             moat_econ = "On-edge processing saves 92% cloud egress bandwidth; $0.0004 per acre triage vs $0.05 cloud APIs."
             tamper_merkle = "SHA-256 field scan telemetry blocks chained with preceding drone waypoints to prevent falsified inspection records."
-            tamper_const = "Constant-time sensor payload checksum validation preventing side-channel timing analysis."
+            tamper_const = "Constant-time sensor payload checksum validation (crypto.timingSafeEqual / compare_digest) preventing side-channel timing analysis."
             tamper_enclave = "Proprietary disease classification weights locked inside hardware secure element; UI operates as passive HUD."
         elif is_health:
             solution_name = f"MEDGUARD: Real-Time Edge AI Waveform Sepsis Predictor"
@@ -130,6 +138,34 @@ class SolutionCouncil:
             tamper_merkle = "SHA-256 parent-chained forensic evidence blocks signed with Ed25519; any bit alteration invalidates tree."
             tamper_const = "Crypto timingSafeEqual comparisons across all node IDs and forensic tokens to defeat timing attacks."
             tamper_enclave = "De-anonymization heuristics strictly execute inside isolated enclave; client SOC HUD receives verified proofs only."
+        elif is_web3:
+            solution_name = f"TRUSTCORE: Sovereign Decentralized Smart Contract Protocol"
+            competitors = ["OpenZeppelin Standard Templates", "Centralized Custodial Exchanges", "Manual Auditor Checklists"]
+            moat_thesis = "Sub-45k gas execution with Checks-Effects-Interactions (CEI) invariants and 100k-run Foundry invariant fuzzing."
+            tiers = [
+                {"name": "Tier 1: Mempool Ingestion", "nodes": ["EVM RPC Feeder", "Transaction Simulator", "MEV Protection Buffer"]},
+                {"name": "Tier 2: Smart Contract Core", "nodes": ["Solidity 0.8+ Engine", "ReentrancyGuard Mutex", "Transient Storage EIP-1153"]},
+                {"name": "Tier 3: Decentralized State", "nodes": ["The Graph Subgraph", "Chainlink TWAP Oracles", "IPFS / Arweave Vault"]},
+                {"name": "Tier 4: User Trust Cockpit", "nodes": ["ERC-4337 Smart Account HUD", "Multi-Sig Timelock", "Exploit Monitor"]}
+            ]
+            pipeline_steps = [
+                ("1. Mempool Ingestion", "Simulate transactions against pending mempool states with MEV slippage protection."),
+                ("2. Invariant Validation", "Checks-Effects-Interactions and ReentrancyGuard assert atomic balance conservation."),
+                ("3. On-Chain Settlement", "Solidity 0.8+ engine settles state transitions with EIP-1153 transient gas optimizations."),
+                ("4. Cryptographic Proof", "SHA-256 Merkle proofs link contract execution roots directly to consensus blocks.")
+            ]
+            kpis = [
+                {"number": "42k", "label": "Gas Per Transfer", "delta": "64% Cheaper", "caption": "EIP-1153 transient storage optimization"},
+                {"number": "100k", "label": "Invariant Runs", "delta": "Foundry Fuzzing", "caption": "Zero revert exploit surfaces"},
+                {"number": "100%", "label": "Protocol Solvency", "delta": "TWAP Protected", "caption": "Mathematically guaranteed balance conservation"}
+            ]
+            moat_data = "Direct on-chain event streams and mempool pending state; zero third-party centralized RPC dependencies."
+            moat_algo = "Solidity 0.8+ checked arithmetic with transient storage EIP-1153 optimization and defensive reentrancy mutexes."
+            moat_stat = "ERC-20/ERC-721/ERC-4337 protocol standards, multi-sig timelock governance, and verifiable on-chain proofs."
+            moat_econ = "Gas-efficient storage packing saves 64% transaction fees; deterministic execution eliminates failed reverts."
+            tamper_merkle = "SHA-256 Merkle proofs linking state roots directly to Ethereum L1 consensus blocks."
+            tamper_const = "Constant-time signature verification and token hash comparison (crypto.timingSafeEqual / compare_digest) preventing side-channel timing analysis."
+            tamper_enclave = "Private signer credentials locked inside hardware secure enclaves; frontend functions as read-only HUD."
         else:
             # Dynamic First-Principles Formulation for any novel domain
             first_word = re.sub(r'[^A-Za-z0-9]', '', clean_title.split()[0]).upper() if clean_title else "ENTERPRISE"

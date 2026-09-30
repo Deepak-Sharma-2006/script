@@ -1,0 +1,202 @@
+{
+  "domain_id": "blockchain",
+  "domain_name": "Blockchain, Web3 & Decentralized Trust Systems",
+  "description": "Smart contracts, EVM/Solana protocols, Zero-Knowledge proofs, DeFi, and DePIN.",
+  "subdomains": {
+    "smart_contracts": {
+      "name": "Smart Contracts & Protocol Engineering",
+      "description": "EVM, Solidity, Vyper, and Rust/Solana secure on-chain contract logic.",
+      "key_technologies": [
+        "Solidity",
+        "Foundry",
+        "Hardhat",
+        "Rust",
+        "Anchor",
+        "Slither"
+      ],
+      "statutory_standards": [
+        "ERC-20 / ERC-721 / ERC-1155",
+        "Checks-Effects-Interactions Pattern",
+        "ReentrancyGuard"
+      ],
+      "curated_skills": [
+        "defi-amm-security",
+        "evm-token-decimals",
+        "contract-first",
+        "nodejs-keccak256"
+      ]
+    },
+    "defi_protocols": {
+      "name": "Decentralized Finance (DeFi) & Tokenomics",
+      "description": "Automated Market Makers, algorithmic lending, flash-loan resilience, and token economic models.",
+      "key_technologies": [
+        "Uniswap v4 Hooks",
+        "Aave v3",
+        "Chainlink Oracles",
+        "Foundry Fuzzing"
+      ],
+      "statutory_standards": [
+        "TWAP Oracle Safety",
+        "Slippage Protection",
+        "Liquidation Threshold Invariants"
+      ],
+      "curated_skills": [
+        "defi-amm-security",
+        "evm-token-decimals",
+        "contract-first",
+        "finance-billing-ops",
+        "agent-payment-x402"
+      ]
+    },
+    "zero_knowledge": {
+      "name": "Zero-Knowledge Proofs & Scalability (ZK)",
+      "description": "zk-SNARKs, zk-STARKs, Circom/Noir circuits, and private verifiable state transitions.",
+      "key_technologies": [
+        "Circom",
+        "Noir",
+        "RISC Zero",
+        "SP1",
+        "SnarkJS"
+      ],
+      "statutory_standards": [
+        "Under-constrained Circuit Audits",
+        "Zero Trusted Setup Leakage",
+        "Deterministic Public Inputs"
+      ],
+      "curated_skills": [
+        "rust-patterns",
+        "cpp-coding-standards",
+        "security-review"
+      ]
+    },
+    "layer2_scaling": {
+      "name": "Layer 2 Rollups & Modular Blockchains",
+      "description": "Optimistic and ZK rollups, data availability layers (Celestia), and cross-chain messaging.",
+      "key_technologies": [
+        "Arbitrum Orbit",
+        "Optimism OP Stack",
+        "Celestia",
+        "LayerZero",
+        "Chainlink CCIP"
+      ],
+      "statutory_standards": [
+        "EIP-4844 Blob Verification",
+        "Fraud Proof Windows",
+        "Bridge Relayer Cryptographic Attestation"
+      ],
+      "curated_skills": [
+        "latency-critical-systems",
+        "data-throughput-accelerator",
+        "contract-first"
+      ]
+    },
+    "depin_identity": {
+      "name": "DePIN, Decentralized Identity & Account Abstraction",
+      "description": "ERC-4337 smart accounts, passkey signers, verifiable credentials, and decentralized physical infrastructure.",
+      "key_technologies": [
+        "ERC-4337",
+        "W3C DID",
+        "Helium",
+        "Filecoin",
+        "Passkeys (WebAuthn)"
+      ],
+      "statutory_standards": [
+        "Bundler Censorship Resistance",
+        "Gas Abstraction Security",
+        "Sovereign Key Recovery"
+      ],
+      "curated_skills": [
+        "contract-first",
+        "agent-payment-x402",
+        "security-review"
+      ]
+    }
+  },
+  "persona_specializations": {
+    "product_manager": {
+      "role_title": "Principal Web3 Protocol & Tokenomics Architect",
+      "domain_objectives": "Define game-theoretic incentives, user value flows, fee structures, and decentralized governance thresholds.",
+      "requirements_rubric": "Economic security guarantees, validator/staker incentives, attack cost modeling, and transaction finality SLAs.",
+      "forbidden_pitfalls": [
+        "Vulnerable admin keys with no timelock",
+        "Uncapped token minting",
+        "Ignoring oracle latency / frontrunning"
+      ]
+    },
+    "system_architect": {
+      "role_title": "Chief Blockchain Architect & Cryptographic Systems Lead",
+      "domain_objectives": "Architect immutable state machines, atomic settlement loops, oracle integrations, and gas-optimized contract topologies.",
+      "mandatory_patterns": [
+        "Checks-Effects-Interactions (CEI)",
+        "Pull-Over-Push Payments",
+        "Upgradeability Proxy Patterns (ERC-1967)",
+        "Multi-Signature Governance Timelock"
+      ],
+      "performance_invariants": [
+        "Gas consumption per transfer < 45k gas",
+        "Constant-time cryptographic signatures",
+        "Deterministic replay safety"
+      ]
+    },
+    "adversarial_sdet": {
+      "role_title": "Lead Blockchain Security Auditor & Exploit Researcher",
+      "threat_model": "Reentrancy, integer overflow/underflow, flash-loan price manipulation, frontrunning/sandwich attacks, signature replay.",
+      "chaos_vectors": [
+        "Flash-loan million-dollar liquidity drain simulations",
+        "Oracle price manipulation",
+        "Frontrunning mempool extraction"
+      ],
+      "test_frameworks": [
+        "Foundry (Forge invariant fuzzing)",
+        "Echidna",
+        "Slither",
+        "Manticore"
+      ],
+      "boundary_fuzzing": "Probe contracts with zero-address transfers, max uint256 edge cases, and cross-function reentrancies."
+    },
+    "core_engineer": {
+      "role_title": "Senior Smart Contract Engineer",
+      "coding_idioms": "Strict adherence to Solidity 0.8+ checked math, custom errors over strings, immutable constants, gas-efficient packed storage.",
+      "concurrency_rules": "Serial transaction execution, atomic state updates, defensive reentrancy mutexes.",
+      "memory_and_resource_rules": "Storage vs. memory slot optimization, transient storage (EIP-1153), zero redundant SSTORE operations."
+    },
+    "mutation_auditor": {
+      "role_title": "Principal Smart Contract Auditor",
+      "security_standards": [
+        "Smart Contract Security Best Practices (ConsenSys)",
+        "SWC Registry",
+        "OpenZeppelin Hardening Standards"
+      ],
+      "statutory_compliance_gates": [
+        "Static analysis clean pass (Slither)",
+        "Invariant fuzzing 100k runs pass",
+        "Multi-Sig Timelock Enforced"
+      ],
+      "audit_checklist": [
+        "Zero unverified delegatecalls",
+        "Zero uninitialized proxies",
+        "Zero floating pragma versions in production"
+      ]
+    },
+    "technical_writer": {
+      "role_title": "Lead Protocol Technical Writer",
+      "documentation_lexicon": "Formal specification math notation, NatSpec contract comments, token distribution tables, and security audit dossiers.",
+      "presentation_theme": "cyber_dark",
+      "architectural_diagram_style": "State-machine flow, transaction call stack sequence diagrams, and liquidity pool token flows."
+    }
+  },
+  "verification_gates": [
+    "contract_audit",
+    "static_analysis",
+    "zero_secrets",
+    "invariant_testing"
+  ],
+  "doctor_checks": [
+    "node",
+    "python",
+    "forge",
+    "solc",
+    "slither",
+    "cargo"
+  ]
+}

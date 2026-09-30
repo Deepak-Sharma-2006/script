@@ -51,12 +51,21 @@ function getDatabase(): DatabaseSync {
       tags TEXT NOT NULL,
       created_at TEXT NOT NULL,
       body TEXT NOT NULL,
-      file_path TEXT NOT NULL
+      file_path TEXT NOT NULL,
+      domain_id TEXT DEFAULT 'software'
     );
     CREATE INDEX IF NOT EXISTS idx_mem_kind ON memories(kind);
     CREATE INDEX IF NOT EXISTS idx_mem_phase ON memories(phase);
     CREATE INDEX IF NOT EXISTS idx_mem_operator ON memories(operator);
   `);
+
+  try {
+    db.exec("ALTER TABLE memories ADD COLUMN domain_id TEXT DEFAULT 'software'");
+    db.exec("CREATE INDEX IF NOT EXISTS idx_mem_domain ON memories(domain_id)");
+  } catch {
+    // column already exists
+  }
+
   return db;
 }
 
@@ -68,12 +77,27 @@ export function saveMemory(params: {
   phase?: number;
   operator?: string;
   tags?: string[];
+  domain_id?: string;
 }): MemoryRecord {
   ensureMemoryDirs();
   const scope = params.scope || "project";
   const phase = params.phase ?? 1;
   const operator = params.operator || process.env.OPERATOR_NAME || "Computer1";
   const tags = params.tags || [];
+
+  let domainId: string = params.domain_id || "software";
+  if (!params.domain_id) {
+    const statePath = join(process.cwd(), ".agents", "state", "active-domain.json");
+    if (existsSync(statePath)) {
+      try {
+        const state = JSON.parse(readFileSync(statePath, "utf-8"));
+        domainId = state.domain_id || "software";
+      } catch {
+        domainId = "software";
+      }
+    }
+  }
+
   const now = new Date().toISOString();
   const slug = params.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
   const id = `mem_${now.slice(0, 10).replace(/-/g, "")}_${randomBytes(4).toString("hex")}`;
@@ -97,6 +121,7 @@ export function saveMemory(params: {
     `scope: "${scope}"`,
     `phase: ${phase}`,
     `operator: "${operator}"`,
+    `domainId: "${domainId}"`,
     `tags: ${JSON.stringify(tags)}`,
     `createdAt: "${now}"`,
     "---",
@@ -110,12 +135,12 @@ export function saveMemory(params: {
   // Index into SQLite
   const db = getDatabase();
   const insert = db.prepare(`
-    INSERT OR REPLACE INTO memories (id, title, kind, scope, phase, operator, tags, created_at, body, file_path)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT OR REPLACE INTO memories (id, title, kind, scope, phase, operator, tags, created_at, body, file_path, domain_id)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
-  insert.run(id, params.title, kind, scope, phase, operator, JSON.stringify(tags), now, params.body.trim(), fullPath);
+  insert.run(id, params.title, kind, scope, phase, operator, JSON.stringify(tags), now, params.body.trim(), fullPath, domainId);
 
-  console.log(`💾 [Memory Vault] Saved ${kind}: "${params.title}" (ID: ${id})`);
+  console.log(`💾 [Memory Vault] Saved ${kind}: "${params.title}" (ID: ${id}, Domain: ${domainId})`);
   console.log(`   📄 File: ${fullPath}`);
 
   return {
@@ -133,7 +158,7 @@ export function saveMemory(params: {
   };
 }
 
-export function searchMemories(query: string, kind?: MemoryKind, phase?: number): MemoryRecord[] {
+export function searchMemories(query: string, kind?: MemoryKind, phase?: number, domainId?: string): MemoryRecord[] {
   const db = getDatabase();
   let sql = "SELECT * FROM memories WHERE 1=1";
   const args: any[] = [];
@@ -151,7 +176,26 @@ export function searchMemories(query: string, kind?: MemoryKind, phase?: number)
     sql += " AND phase = ?";
     args.push(phase);
   }
-  sql += " ORDER BY created_at DESC LIMIT 50";
+
+  let activeDomain = domainId;
+  if (!activeDomain) {
+    const statePath = join(process.cwd(), ".agents", "state", "active-domain.json");
+    if (existsSync(statePath)) {
+      try {
+        const state = JSON.parse(readFileSync(statePath, "utf-8"));
+        activeDomain = state.domain_id;
+      } catch {
+        // ignore
+      }
+    }
+  }
+
+  if (activeDomain) {
+    sql += " ORDER BY (CASE WHEN domain_id = ? THEN 0 ELSE 1 END), created_at DESC LIMIT 50";
+    args.push(activeDomain);
+  } else {
+    sql += " ORDER BY created_at DESC LIMIT 50";
+  }
 
   const rows = db.prepare(sql).all(...args) as any[];
   return rows.map((r) => ({

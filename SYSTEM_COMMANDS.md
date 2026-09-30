@@ -1,421 +1,246 @@
-# Antigravity Universal Multi-Agent System — Master Command Cheat Sheet
+# Antigravity Enterprise — Master Command Cheat Sheet
 
-> **Quick Navigation**: Use this guide to assign tasks directly to the Antigravity agent or execute CLI commands in PowerShell / terminal.  
-> **System Status**: Fully Operational & 100% Green (53/53 Backend Pytest with 95% Coverage + 2/2 Headless Playwright E2E Suites + Bandit SAST Clean + 80/80 Multi-Agent Python Suites + 6/6 Master Audit Trail Gates)  
-
----
-
-## 0. Human Operator Quick-Start: Fresh Project Usage Guide
-
-When cloning this repository as a starter template for new projects:
-
-### 1. Clone & Initialize
-```bash
-git clone https://github.com/Deepak-Sharma-2006/script.git my-new-project
-cd my-new-project
-npm install
-```
-
-### 2. Verify Dual-Scope Scale
-```bash
-npm run project:scale
-# Output: 🟢 SMALL (<5k LOC) based on your src/ files
-```
-
-### 3. Check Active Context & Headroom
-```bash
-npm run context:check
-# Displays active post-compaction context tokens and compaction headroom
-```
-
-### 4. Synchronize Brain Artifacts (Zero Background Overhead)
-```bash
-npm run docs:sync
-# Sub-second turn-egress mirroring from IDE brain to docs/ catalogs
-```
-
-### 5. Start Fresh Chat Sessions Confidently
-Start each major feature phase in a new chat. The agent reads `docs/*/INDEX.md` and the latest walkthrough (~2,000 tokens) to re-ground immediately without re-ingesting stale conversation transcripts.
+> **Quick Reference**: Execute these commands in terminal/PowerShell or prompt the Antigravity agent directly.  
+> **Status**: 100% Green & Production Hardened | 99/99 Pytest suites | 18/18 Adversarial suites | 13/13 Node unit suites + 6/6 Harness Evals | 7/7 System Readiness Probes  
 
 ---
 
-## 1. Core Task Execution Commands
-
-### Task 1: Solution Formulation, White-Space Moat & Cloud Unit Economics
-Deconstructs a problem statement, conducts multi-hop live research triangulation (statutory regulations, live competitors, CVE failure paths), benchmarks commercial prior-art, designs a 10x technical moat, generates native visual architecture diagrams, models real cloud COGS (AWS/GCP/tokens at ≥ 75% gross margin), and records decisions to SQLite Memory Vault and git-mergeable records.
+## 1. System Setup & Environment Diagnostics
 
 ```bash
-# Basic Problem Prompt (Dynamic first-principles synthesis)
-python -m scripts.orchestrator.task_dispatcher --task solution --prompt "Autonomous satellite wildfire early detection"
-
-# Detailed Problem Statement with Title & Domain
-python -m scripts.orchestrator.task_dispatcher --task solution --title "PRAVAH Flood Intelligence" --prompt "Synthetic Aperture Radar flash flood forecasting" --domain "Hydrology & Disaster AI"
-```
-*Outputs: Automatically persisted and cataloged in:*
-- `docs/plans/` & `docs/plans/INDEX.md` (Implementation Plan & Solution Dossier)
-- `docs/decisions/` & `docs/decisions/INDEX.md` (Architecture Decision Record)
-- `docs/research/` & `docs/research/INDEX.md` (Multi-Hop Research Triangulation Dossier)
-- Dual-persisted to SQLite Memory Vault (`.agents/memory/vault.sqlite`) and JSONL (`.agents/memory/vault/records.jsonl`).
-
----
-
-### Task 2: Code Implementation, Sandbox Jail & Multi-File TDD Self-Healing
-Authors deterministic unit tests and extreme edge cases first (empty, null, boundary, malformed, race conditions), generates clean idiomatic code, runs tests inside the Sandbox Process Jail (Option A: 30s timeout, credential scrubbing; Option B: Docker container), auto-patches failures up to 5 passes until 100% green with transactional rollback protection, and emits benchmark metrics.
-
-```bash
-# Execute TDD self-healing loop on a specific module
-python -m scripts.orchestrator.task_dispatcher --task code --module "catchment_hydraulics"
-```
-*Outputs: Production code in `src/`, test suites in `tests/`, benchmark metrics in `specs/benchmark_metrics.json`, and Memory Vault commit.*
-
----
-
-### Task 3: Presentation Pitch Synthesis (OmniDeck Engine)
-Translates technical solution dossiers and benchmarks into championship-winning presentation pitch decks using 2D Flex/Grid solvers, vector graphics, and high-fidelity UI mockups (browser chrome, mobile HUD, and 2x2 Gartner quadrant matrix).
-
-```bash
-# Stage 1: Fast PPTX Compilation (< 0.2s) - Default 6 Championship Slides
-python -m scripts.orchestrator.task_dispatcher --task presentation --prompt "Sovereign Defense AI" --theme "cyber_dark_terminal" --slides 6
-
-# Stage 1: Extended & Custom Slide Themes (sih_official_light, modern_saas_glass, deep_navy_executive)
-python -m scripts.orchestrator.task_dispatcher --task presentation --prompt "Sovereign Defense AI" --theme "sih_official_light" --slides 8
-
-# Stage 2: Gated PDF Export (Supports PowerPoint COM, headless LibreOffice, and headless Chrome fallback)
-python -m scripts.orchestrator.task_dispatcher --task presentation --prompt "Sovereign Defense AI" --theme "cyber_dark_terminal" --export-pdf
-```
-*Outputs: Native PowerPoint deck in `specs/presentations/deck_dispatcher_output.pptx` (and PDF if `--export-pdf` passed).*
-
----
-
-### Task 4 / Enterprise Product Squad: 6+1 Pillar Autonomous Squad Run
-Simulates the full enterprise product team across the 9-phase SDLC: Deep Research Specialist, Product Manager, System Architect, Adversarial SDET, Core Engineer, Mutation Auditor, and Technical Writer.
-
-```bash
-# Execute end-to-end squad workflow on a target feature (PM auto-triggers pre-flight research)
-python -m scripts.orchestrator.task_dispatcher --task squad --feature case_state_manager
-
-# View live mode status (Solo vs Dual-Lead 50/50)
-npm run mode:status
-```
-
----
-
-### Task 5: Multi-Hop Deep Research & Post-Production Impact Analysis
-Executes the Deep Research Specialist across 4 modes (EXPLORATION, FEASIBILITY, DIAGNOSTIC, IMPACT) with a minimum 120-second deliberation window, keyless search connectors, Jina Reader (`r.jina.ai`) markdown parsing, and automatic living catalog persistence in `docs/research/`.
-
-```bash
-# Pre-Flight Statutory, Competitive SOTA & CVE Exploration
-python -m scripts.orchestrator.task_dispatcher --task research --title "Quantum Crypto Ingestion" --domain "Cyber Defense" --research-mode EXPLORATION
-
-# Post-Production Empirical Impact Analysis (Playwright, Pytest, Mutation, SAST metrics)
-python -m scripts.orchestrator.task_dispatcher --task impact --title "Production Platform" --domain "Enterprise AI"
-```
-*Outputs: Deep Research Dossier in `docs/research/` and updated [`docs/research/INDEX.md`](file:///docs/research/INDEX.md).*
-*Outputs: Execution proof, walkthrough dossier in `docs/walkthroughs/`, and updated living index.*
-
----
-
-## 2. In-Repo Living Documentation Architecture (6 Document Classes)
-
-Every system artifact is permanently version-controlled under `docs/` and tracked in living `INDEX.md` catalogs.
-
-| Document Class | Directory | Living Catalog | Purpose & Contents |
-| :--- | :--- | :--- | :--- |
-| **Implementation Plans** | `docs/plans/` | [`docs/plans/INDEX.md`](file:///docs/plans/INDEX.md) | Feature PRDs, phase roadmaps, and execution plans |
-| **Walkthroughs** | `docs/walkthroughs/` | [`docs/walkthroughs/INDEX.md`](file:///docs/walkthroughs/INDEX.md) | End-of-turn execution records, test proof, and diffs |
-| **System Audits** | `docs/audits/` | [`docs/audits/INDEX.md`](file:///docs/audits/INDEX.md) | System readiness probes, adversarial red-team DAST |
-| **Architecture Decisions** | `docs/decisions/` | [`docs/decisions/INDEX.md`](file:///docs/decisions/INDEX.md) | Architectural trade-offs, moats, and non-negotiables |
-| **Research Dossiers** | `docs/research/` | [`docs/research/INDEX.md`](file:///docs/research/INDEX.md) | Multi-hop statutory, competitive, and CVE research |
-| **Formal Specifications & Contracts** | `docs/specifications/` | [`docs/specifications/INDEX.md`](file:///docs/specifications/INDEX.md) | API schemas, data contracts, and state machines |
-
-```bash
-# Synchronize and re-index all 6 documentation catalogs
-python -c "from scripts.orchestrator.spec_sync import SpecSync; print(SpecSync.get_all_indexes())"
-```
-
----
-
-## 3. Mutation Testing & Fail-Closed Frontend Verification
-
-### Deterministic AST Mutation Testing (≥ 80% Kill Rate Gate)
-Injects 4 fault classes (Boundary Inversions, Boolean/Logical flips, Arithmetic mutations, and Return Overrides) with atomic `.bak` rollback on abort or signal interrupts.
-
-```bash
-# Python Native AST Mutation Testing
-python -m scripts.orchestrator.python_mutation_tester src/my_service.py "python -m unittest tests/test_my_service.py"
-
-# TypeScript AST Mutation Testing
-npm run test:mutation
-```
-
-### Fail-Closed Headless Playwright Verification (Maximum Elemental Accuracy)
-Strictly rejects builds with exit code `1` if frontend files exist and browser tests are missing or failing. Executes against Chrome DevTools Protocol (CDP) with 100% element assertions across tabs, modals, and reactive stores.
-
-```bash
-# Run all headless Playwright E2E browser test suites
-npm run test:e2e
-npx playwright test
-
-# Run Project CHAKRA National Operations E2E suite (All 5 stages, 5-tier RBAC, 0 console errors)
-npm run test:e2e:chakra
-
-# Run Project BHEDAK NTRO Sovereign Workbench E2E suite
-npm run test:e2e:bhedak
-```
-
-### Master Backend Testing & Branch Coverage Suite
-Executes unit, contract, and integration tests across all microservices and FastAPI endpoints with statement and branch coverage via `pytest-cov`.
-
-```bash
-# Run full backend test suite with coverage report (53/53 passed, 95% total statement coverage)
-npm run test:backend
-pytest demo/ --cov=demo -q
-
-# Run backend test suite for Project CHAKRA
-npm run test:backend:chakra
-
-# Run backend test suite for Project BHEDAK
-npm run test:backend:bhedak
-```
-
-### Static Application Security Testing (AppSec SAST)
-Scans Python AST for security vulnerabilities, insecure interface bindings (e.g. CWE-605 `0.0.0.0`), unescaped calldata injection, and weak crypto via Bandit.
-
-```bash
-# Run Bandit SAST security audit across all demo backends
-npm run audit:sast
-bandit -r demo/ -ll -q
-```
-
-### Operator Empirical Proof & Squad Attestation Ledger
-Provides cryptographic proof that the 6-Persona enterprise agentic workflow executed genuine tools for a prompt, recording provenance hashes to SQLite Memory Vault.
-
-```bash
-# Verify latest cryptographic execution receipts in SQLite Memory Vault (.agents/memory/vault.sqlite)
-npm run attest:verify
-python -m scripts.orchestrator.squad_attestation --verify
-
-# Generate and record a manual attestation for an ad-hoc operator prompt
-python -m scripts.orchestrator.squad_attestation --prompt "Your task description"
-```
-
----
-
-
-## 4. Memory Vault, Audits & Security Commands
-
-### SQLite Memory Vault & Plain-Text JSONL Dual-Persistence
-```bash
-# Search indexed architectural decisions and lessons
-python -m scripts.orchestrator.task_dispatcher --task memory --query "Satellite"
-
-# Verify Memory Vault integrity
-npm run memory:doctor
-```
-
-### Real-Time Documentation Synchronization & Watcher Daemon
-Automatically synchronizes IDE brain conversation artifacts (implementation plans, walkthroughs, diagnostic audits) into in-repo catalogs with real-time timestamps (min & sec).
-
-```bash
-# 1. Real-time background watcher daemon (monitors active brain folder continuously)
-npm run docs:watch
-python -m scripts.orchestrator.realtime_docs_watcher
-
-# 2. One-shot synchronous mirror of active brain artifacts
-npm run docs:sync
-python -m scripts.orchestrator.spec_sync --sync-brain
-
-# 3. Print living documentation catalog status across all 6 document classes
-python -m scripts.orchestrator.spec_sync --all-indexes
-```
-
-### Pre-Commit Secret Scanning & AppSec Red-Teaming
-```bash
-# Scan all staged git files for leaked secrets/tokens before committing
-npm run check:secrets:staged
-
-# Scan entire repository for secrets
-npm run check:secrets
-
-# Run Strix AI DAST Red-Team Penetration Testing
-npm run pentest
-```
-
-### Case B: Audit & Remediate an Existing Project
-Ingests a completed or existing project directory, runs the 5-pillar enterprise diagnostic (Architecture/Types, Edge-Case Tests, AppSec/Secrets, Financial Economics, Anti-Tamper), and optionally auto-heals P0 critical flaws.
-
-```bash
-# Audit-only (diagnostic report, no changes)
-python -m scripts.orchestrator.task_dispatcher --task audit --target ./my_existing_project/
-
-# Audit + Auto-Heal (remediate P0 critical stubs and broken tests)
-python -m scripts.orchestrator.task_dispatcher --task audit --target ./my_existing_project/ --auto-heal
-
-# Audit a standalone solution blueprint markdown file
-python -m scripts.orchestrator.task_dispatcher --task audit --target docs/architecture/production_architecture_blueprint.md
-```
-*Outputs: Diagnostic dossier at `docs/audits/remediation_audit.md` with health score, flaw matrix, and prioritized remediation plan.*
-
-### Case C: Onboard & Continue an In-Progress Project
-Hybrid workflow: first runs Case B (audit + heal existing baseline), then continues building unimplemented modules via TDD.
-
-```bash
-# Onboard a cloned/unzipped in-progress repo and continue building
-python -m scripts.orchestrator.task_dispatcher --task continue --target ./cloned_repo/
-```
-*Outputs: Stabilized baseline + newly implemented modules with 100% green TDD verification.*
-
----
-
-## 5. Test Suites & System Health Verification
-
-```bash
-# Run all unit, adversarial, and orchestrator test suites (80/80 passing across 13 suites)
-python -m unittest discover -s tests -p "test_*.py"
-
-# Run individual specialized test suites
-python -m unittest tests/test_sandbox_bridge.py          # Process Jail & Multi-File TDD
-python -m unittest tests/test_cost_estimator.py          # Cloud Unit Economics (COGS)
-python -m unittest tests/test_ui_mockup_primitives.py    # OmniDeck High-Fidelity UI Mockups
-python -m unittest tests/test_orchestrator.py            # Universal Task Dispatcher
-python -m unittest tests/test_project_auditor.py         # Case B/C Audit & Remediation
-python -m unittest tests/test_contrarian_moats.py        # 4-Moat Matrix & Council Hardening
-python -m unittest tests/test_peav_and_sync.py           # PEAV & Universal SpecSync Verification
-
-# Run Node.js enterprise test suites
-npm run test:unit
-npm run test:adversarial
-
-# Run Anti-Hallucination Package Guard (AST import scanner)
-npm run check:hallucinations
-
-# Run Master Audit Trail (Verifies 6/6 enterprise gates)
-npm run audit:trail
-```
-
----
-
-## 6. Distributed Domain Lease Locking & N-Person Team Mesh (Hackathons & Multi-Device)
-
-Supports three operating modes: **Solo Mode** (`npm run mode:solo`), **Dual Mode** (`npm run mode:dual`), and **Team Mesh Mode** (`npm run mode:team`) for arbitrary N-developer teams across multiple laptops.
-
-```bash
-# Toggle between operating modes
-npm run mode:solo                # Single Dev / Autonomous Squad (bypasses multi-host locks)
-npm run mode:dual                # 2-Person 50/50 Dual-Lead Rotation (Computer 1 Alpha <-> Computer 2 Beta)
-npm run mode:team                # N-Person Team Mesh Mode (Arbitrary parallel domain leases)
-
-# Inspect active team roster, machines, and domain leases across all laptops
-npm run team:status
-
-# Acquire exclusive domain lease (any developer, any domain)
-node --experimental-strip-types scripts/lock-manager.ts acquire --domain auth --operator Alice --role DomainLead
-node --experimental-strip-types scripts/lock-manager.ts acquire --domain frontend --operator Bob --role DomainLead
-
-# Release or transfer domain lease
-node --experimental-strip-types scripts/lock-manager.ts release --domain auth --operator Alice
-node --experimental-strip-types scripts/lock-manager.ts transfer --domain auth --from Alice --to Charlie
-
-# Launch zero-dependency local LAN synchronization server (for offline hackathons)
-npm run lan:start                # Runs on port 4040; teammates point $env:LOCK_WEBHOOK_URL="http://<IP>:4040"
-```
-
----
-
-## 7. Brownfield Ingestion & In-Progress Resumption Engine
-
-Audits existing completed projects across 5 enterprise pillars or onboards half-built codebases, repairing stubs and resuming feature delivery via TDD without regressions.
-
-```bash
-# 1. Audit an existing/completed project (Scenario A: 5-pillar health audit & improvement matrix)
-npm run audit:project -- --target <path_to_project>
-python -m scripts.orchestrator.task_dispatcher --task audit --target src/
-
-# 2. Audit and auto-heal broken stubs (raise NotImplementedError, TODOs, failing tests)
-python -m scripts.orchestrator.task_dispatcher --task audit --target <path> --auto-heal
-
-# 3. Onboard an in-progress project and continue feature development (Scenario B: Delta WBS)
-npm run continue:project -- --target <path>
-python -m scripts.orchestrator.task_dispatcher --task continue --target <path>
-```
-*Outputs: Executive diagnostic dossiers in `docs/audits/` and Delta WBS plans in `docs/plans/` indexed via SpecSync.*
-
----
-
-## 8. Universal Multi-Harness Instruction Sync & Standard MCP Server
-
-Ensures 100% operational rule parity across all AI agent tools (Claude Code, Cursor, Windsurf, Copilot, Codex) and exposes orchestrator tools via standard Model Context Protocol.
-
-```bash
-# Compile and synchronize AGENTS.md rules into all 6 agent harness configurations
-npm run harness:sync
-# Outputs: CLAUDE.md, .cursorrules, .cursor/rules/agentic-workflow.mdc, .windsurfrules, .github/copilot-instructions.md, CODEX.md
-
-# Start standard Model Context Protocol (MCP) server for Claude Desktop, Cursor, and Windsurf
-npm run mcp:start
-
-# Install 3-gate pre-commit barrier (.git/hooks/pre-commit: Secrets + Zero-LaTeX + Anti-Hallucination)
-npm run hooks:install
-```
-
----
-
-## 9. Key Documentation & Reference Artifacts
-
-- **Living Document Indexes**:
-  - Implementation Plans: [`docs/plans/INDEX.md`](file:///docs/plans/INDEX.md)
-  - Walkthroughs: [`docs/walkthroughs/INDEX.md`](file:///docs/walkthroughs/INDEX.md)
-  - System Audits: [`docs/audits/INDEX.md`](file:///docs/audits/INDEX.md)
-  - Architecture Decisions: [`docs/decisions/INDEX.md`](file:///docs/decisions/INDEX.md)
-  - Research Dossiers: [`docs/research/INDEX.md`](file:///docs/research/INDEX.md)
-  - Specifications & Contracts: [`docs/specifications/INDEX.md`](file:///docs/specifications/INDEX.md)
-- **Master Production Architecture Blueprint**: [`docs/architecture/production_architecture_blueprint.md`](file:///docs/architecture/production_architecture_blueprint.md)
-- **Latest Comprehensive Audit**: [`docs/audits/remediation_audit.md`](file:///docs/audits/remediation_audit.md)
-
----
-
-## 10. Zero-Process Documentation Lifecycle & Living Index Reconciler
-
-Eliminates persistent background daemon overhead while ensuring sub-second brain artifact mirroring and conflict-free Git branch merges across N teammates.
-
-```bash
-# 1. Zero-Process Turn-Egress Sync (Synchronously mirrors brain artifacts to docs/ and exits)
-npm run docs:sync
-python -m scripts.orchestrator.spec_sync --sync-brain
-
-# 2. Daemon Lifecycle Management (Optional background watcher with PID tracking)
-npm run docs:start     # Launch background daemon and save PID to .agents/state/docs-watcher.pid
-npm run docs:status    # Inspect active watcher status, PID, and memory footprint
-npm run docs:stop      # Gracefully terminate background watcher without orphaned processes
-
-# 3. Team Mesh Living Index Reconciliation & Merge Driver
-npm run docs:reconcile # Deterministically rebuild all living catalogs sorted by timestamp descending
-npm run docs:indexes   # Re-index all 6 living catalog classes via SpecSync
-```
-
----
-
-## 11. Real-Time Context Window Telemetry & Codebase Scale Guards
-
-Monitors active conversation memory saturation, tracks remaining headroom before IDE auto-compaction, and autonomously applies large-project scaling policies.
-
-```bash
-# 1. Inspect Active Chat Context Window & Compaction Headroom
-npm run context:check  # Measures live post-compaction context tokens, headroom, and saturation
-npm run context:status # Alias for context check
+# 1. Full System Readiness Probe (Verifies 7 enterprise operational layers)
+npm run readiness
 
 # 2. Detect Codebase Scale (Small <5k LOC, Medium 5k-50k LOC, Large >50k LOC)
-npm run project:scale  # Scans repository LOC and outputs autonomous execution directives
+npm run project:scale
 
-# 3. Intelligent Mutation Testing with Auto-Scoping
-npm run test:mutation             # Tests fault injection on active product domain (auto-enforces --diff on large projects)
-npm run test:mutation -- --diff    # Explicitly scopes fault injection to git-modified source files
+# 3. Inspect Active Chat Context Window & Compaction Headroom
+npm run context:check
 
-# 4. Set Workspace Model Profile (Updates model ceiling and rate calculations)
-npm run token:set-model gemini-3.8-flash-high # Locks active model to Gemini 3.8 Flash High (1M ceiling)
-npm run token:models                          # Lists all supported Antigravity frontier models
-npm run token:budget                          # Displays token budget usage and saturation directives
+# 4. Compile Universal Agent Instructions across Cursor, Claude Code, Windsurf, Copilot
+npm run harness:sync
 ```
 
+---
+
+## 2. Enterprise Operating Modes
+
+```bash
+# 1. Inspect Active Mode, Leases, and Operator Role
+npm run mode:status
+
+# 2. Solo Operator Mode (Instant velocity for single developers; bypasses lease locks)
+npm run mode:solo
+
+# 3. Dual-Lead Mode (Symmetrical 50/50 Alpha/Beta enterprise rotation)
+npm run mode:dual
+
+# 4. Team Mesh Mode (N-person distributed parallel domain leases)
+npm run mode:team
+npm run team:status
+
+# 5. Local LAN Team Mesh Synchronization Server (Optional zero-cloud laptop sync on port 4040)
+npm run lan:start
+```
+
+---
+
+## 3. Universal Master Domain & Subdomain Management
+
+```bash
+# 1. Inspect Active Domain, Subdomains, Stack, and Injected Curated Skills
+npm run domain:status
+
+# 2. List All 8 Master Domains and 46 Subdomains
+npm run domain:list
+
+# 3. Interactive CLI Domain Selector (Terminal Questionnaire)
+npm run domain:select
+
+# 4. Headless Atomic Domain Configuration
+npm run domain:set -- --domain blockchain --subdomains smart_contracts,defi_protocols
+npm run domain:set -- --domain software --subdomains backend_systems,web_frontend
+npm run domain:set -- --domain ai_ml --subdomains agentic_ai,mlops_inference
+npm run domain:set -- --domain cybersecurity --subdomains appsec_devsecops,zero_trust_network
+npm run domain:set -- --domain deep_tech --subdomains hpc_supercomputing,computational_biology
+npm run domain:set -- --domain cloud_infra --subdomains kubernetes_cloud_native,sre_observability
+npm run domain:set -- --domain data_engineering --subdomains stream_processing,lakehouse_warehousing
+npm run domain:set -- --domain vertical_applied --subdomains healthtech_informatics,fintech_banking
+
+# 5. Domain Compiler & Toolchain Diagnostic Probes
+npm run domain:doctor  # Probes Node, Python, and active compilers (forge, solc, cargo, gcc, kubectl)
+```
+
+---
+
+## 4. Universal Task Dispatcher (Autonomous Subsystems)
+
+```bash
+# Task 1: Solution Formulation, Live Multi-Hop Research & 4-Moat Architecture
+python -m scripts.orchestrator.task_dispatcher --task solution --prompt "Autonomous satellite wildfire early detection"
+python -m scripts.orchestrator.task_dispatcher --task solution --title "PRAVAH Flood AI" --prompt "SAR flash flood forecasting" --domain "Hydrology"
+
+# Task 2: Red-to-Green Autonomous TDD Implementation Loop (Red test -> Green code -> Refactor)
+python -m scripts.orchestrator.task_dispatcher --task code --prompt "Implement rate-limiting token bucket middleware with constant-time security"
+
+# Task 3: OmniDeck 2D Flex/Grid Presentation Pitch Synthesis
+python -m scripts.orchestrator.task_dispatcher --task presentation --prompt "Universal Domain Specialization"
+python -m scripts.orchestrator.task_dispatcher --task presentation --prompt "Web3 Security" --export-pdf  # Stage 2 PDF export
+
+# Task 4: Brownfield Codebase Ingestion & 5-Pillar Health Audit
+python -m scripts.orchestrator.task_dispatcher --task audit --prompt "Audit legacy backend repository and emit improvement PRD"
+
+# Task 5: Developing Project Delta WBS & Resume Development
+python -m scripts.orchestrator.task_dispatcher --task continue --prompt "Resume feature development from existing baseline"
+
+# Task 6: Deep Research Triangulation (Multi-Hop Live Search with 120s deliberation)
+python -m scripts.orchestrator.task_dispatcher --task research --prompt "NIST Post-Quantum Cryptography migration standards"
+```
+
+---
+
+## 5. Quality Assurance, Testing & Mutation Gates
+
+```bash
+# 1. Full Python Orchestrator, Engine, and Hydration Test Suite (99 suites)
+pytest tests/ -q
+
+# 2. Lead 2 Adversarial Suite (Concurrency races, chaos fuzzing, timing attacks)
+npm run test:adversarial
+
+# 3. Node Unit Suites + Core 4 & Domain-Adaptive Behavioral Evaluations
+npm test
+
+# 4. Domain-Adaptive Behavioral Evaluations Dynamic Runner
+npm run harness:eval
+
+# 5. Deterministic AST Mutation Testing (Enforces ≥ 80% kill rate across TS and Python)
+npm run test:mutation             # Full domain AST mutation suite
+npm run test:mutation -- --diff    # Scoped mutation suite for Git-modified files only
+
+# 6. Strict TypeScript Compilation Check (Zero error tolerance)
+npx tsc --noEmit
+
+# 7. Zero-LaTeX Markdown Compliance Linter
+npm run lint:markdown docs
+```
+
+---
+
+## 6. Distributed Domain Lease Locking
+
+```bash
+# 1. Acquire Exclusive Domain Lease
+npm run lock:acquire --domain auth
+npm run lock:acquire --domain billing --duration 30
+
+# 2. Release Domain Lease
+npm run lock:release --domain auth
+
+# 3. List All Active Locks Across Workstations
+npm run lock:list
+
+# 4. Atomic 50/50 Dual-Lead Role Handoff (Alpha -> Beta rotation)
+npm run role:handoff --domain auth
+```
+
+---
+
+## 7. Living Documentation Lifecycle & SpecSync
+
+```bash
+# 1. Zero-Process Turn-Egress Sync (Mirrors IDE brain artifacts into docs/ catalogs instantly)
+npm run docs:sync
+python -m scripts.orchestrator.spec_sync --sync-brain
+
+# 2. Living Catalog Reconciler & Conflict-Free Merge Driver
+npm run docs:reconcile # Rebuilds all 6 INDEX.md catalogs sorted by timestamp descending
+
+# 3. Optional Background Docs Watcher (With PID tracking)
+npm run docs:start     # Launch background watcher
+npm run docs:status    # Inspect watcher PID and status
+npm run docs:stop      # Gracefully stop watcher
+```
+
+---
+
+## 8. Memory Vault & Skills Discovery
+
+```bash
+# 1. Memory Vault Doctor & Integrity Audit
+npm run memory:doctor
+
+# 2. Search Memory Vault with Domain Relevance Boosting
+npm run memory:search -- --query "reentrancy guards"
+
+# 3. Ingest New Architectural Decision or Learning into Vault
+npm run memory:save -- --category "decision" --title "Domain AST Mutations" --content "Implemented visit_Call for timingSafeEqual"
+
+# 4. Search Master Skills Library (298 Verified Skills)
+npm run skill:search <query>
+python scripts/skill-finder.ts <query>
+```
+
+---
+
+## 9. Operator Provenance & Attestation Ledger
+
+```bash
+# 1. Verify Cryptographic Squad Attestation Audit Trail (.agents/audit_trail.log)
+npm run attest:verify
+
+# 2. Manually Generate Signed Execution Receipt
+python -m scripts.orchestrator.squad_attestation --prompt "Verified domain behavioral evaluations and compiler sandboxing"
+```
+
+---
+
+## 10. Tiered Execution Gates & Active Hardening (Tiered 10+1 Architecture)
+
+```bash
+# 1. Two-Tier Format Guard & Banned Sycophancy Scanner (INV-11)
+npm run guard:format <path_to_markdown_or_text>
+
+# 2. Programmatic GateGuard Fact-Forcing Middleware (INV-01)
+npm run guard:gate <path_to_plan_or_doc>
+
+# 3. Asymptotic Scale & 500-Item FLOP Profiler (INV-02)
+npm run profile:scale 500 0.12 3800000 4.0
+
+# 4. Contrarian Adversarial Falsification Engine (INV-03)
+npm run audit:contrarian "<skepticism_prompt>" <path_to_response_file>
+
+# 5. Headless Idempotent DAG Pipeline Runner with SHA-256 caching (INV-04)
+npm run dag:run -- --pipeline pipeline.json --run
+
+# 6. Hardware Memory Guard & 75% RAM Budget Enforcer (INV-05)
+npm run guard:memory
+
+# 7. Operational Deadline & T-4h Safe Submission Lockdown (INV-07)
+npm run lockdown:deadline -- --status
+npm run lockdown:deadline -- --duration 4h --threshold 30m    # Short burst hackathon
+npm run lockdown:deadline -- --duration 72h                   # Long hackathon (auto T-4h threshold)
+npm run lockdown:deadline -- --set "2026-10-01T12:00:00Z" 4.0 # Enterprise sprint deadline
+npm run lockdown:deadline -- --clear                          # Reset / clear deadline
+npm run lockdown:deadline -- --check "train_new_model"
+
+# 8. Domain Prompt Hygiene & System Prompt Compression Engine (INV-10)
+npm run prompt:hygiene
+
+# 9. Generalized Pipeline Gate (Upstream Recall & Distractor Parity: INV-06, INV-09)
+npm run gate:pipeline -- --recall 0.995 0.920
+npm run gate:pipeline -- --parity 9000 100 100000 1000
+
+# 10. Objective-Loss Calibration & Posterior Probability Auditor (INV-08)
+npm run audit:calibration "[0.9, 0.8, 0.1]" "[1, 1, 0]"
+
+# 11. Automatic Skill Resolution & Injection Engine (INV-13)
+npm run skill:resolve -- "build scalable redis cache for web api"
+
+# 12. Active Interception Kernel & 8-Domain Dynamic Guard (.agents/harness/active_kernel.py)
+npm run harness:active -- --status
+npm run harness:active -- --status --hardware
+npm run harness:active -- --intercept "python match.py --dataset 3.8M_full_dataset"
+```
 
 

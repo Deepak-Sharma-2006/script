@@ -194,7 +194,7 @@ class SpecSync:
             exists = os.path.exists(index_path)
             doc_files = [
                 f for f in os.listdir(base_dir)
-                if f.endswith(".md") and f != "INDEX.md"
+                if f.endswith(".md") and f != "INDEX.md" and f != "README.md"
             ] if os.path.exists(base_dir) else []
             results[doc_type] = {
                 "kind": config["kind"],
@@ -232,16 +232,19 @@ class SpecSync:
 
         feat = feature_name or "active_feature"
         for bdir in search_dirs:
-            # 1. Implementation Plan
-            plan_path = os.path.join(bdir, "implementation_plan.md")
-            if os.path.exists(plan_path):
-                with open(plan_path, "r", encoding="utf-8") as f:
-                    content = f.read()
-                if content.strip():
-                    mtime = os.path.getmtime(plan_path)
-                    title, slug = cls._extract_title_and_slug(content, feat)
-                    dest = cls.persist_plan(slug, content, title, custom_timestamp=mtime)
-                    synced_files.append(dest)
+            # 1. Implementation Plans and any *_plan.md
+            for fname in os.listdir(bdir):
+                if fname.endswith(("_plan.md", "-plan.md")) or fname == "implementation_plan.md":
+                    fpath = os.path.join(bdir, fname)
+                    if os.path.isfile(fpath):
+                        with open(fpath, "r", encoding="utf-8") as f:
+                            content = f.read()
+                        if content.strip():
+                            mtime = os.path.getmtime(fpath)
+                            plan_name = fname.replace(".md", "").replace("_plan", "")
+                            title, slug = cls._extract_title_and_slug(content, plan_name)
+                            dest = cls.persist_plan(slug, content, title, custom_timestamp=mtime)
+                            synced_files.append(dest)
 
             # 2. Walkthrough
             walkthrough_path = os.path.join(bdir, "walkthrough.md")
@@ -254,18 +257,19 @@ class SpecSync:
                     dest = cls.persist_walkthrough(slug, content, title, custom_timestamp=mtime)
                     synced_files.append(dest)
 
-            # 3. Audits
+            # 3. Audits and any *_audit.md
             for fname in os.listdir(bdir):
-                if fname.endswith(("_audit.md", "-audit.md")) and not fname.startswith("implementation_"):
+                if fname.endswith(("_audit.md", "-audit.md")) and not fname.endswith(("_plan.md", "-plan.md")):
                     fpath = os.path.join(bdir, fname)
-                    with open(fpath, "r", encoding="utf-8") as f:
-                        content = f.read()
-                    if content.strip():
-                        mtime = os.path.getmtime(fpath)
-                        audit_name = fname.replace(".md", "").replace("_audit", "")
-                        title, slug = cls._extract_title_and_slug(content, audit_name)
-                        dest = cls.persist_audit(slug, content, title, custom_timestamp=mtime)
-                        synced_files.append(dest)
+                    if os.path.isfile(fpath):
+                        with open(fpath, "r", encoding="utf-8") as f:
+                            content = f.read()
+                        if content.strip():
+                            mtime = os.path.getmtime(fpath)
+                            audit_name = fname.replace(".md", "").replace("_audit", "")
+                            title, slug = cls._extract_title_and_slug(content, audit_name)
+                            dest = cls.persist_audit(slug, content, title, custom_timestamp=mtime)
+                            synced_files.append(dest)
 
         return synced_files
 
@@ -282,7 +286,18 @@ class SpecSync:
     ) -> None:
         index_file = os.path.join(base_dir, "INDEX.md")
         ts = timestamp_str or time.strftime("%Y-%m-%d %H:%M:%S")
-        entry = f"- **{ts}** | [{title}]({filename}) | *Scope: {feature}*\n"
+
+        # Resolve active domain
+        state_file = os.path.join(os.getcwd(), ".agents", "state", "active-domain.json")
+        active_domain = "software"
+        if os.path.exists(state_file):
+            try:
+                with open(state_file, "r", encoding="utf-8") as sf:
+                    active_domain = json.load(sf).get("domain_id", "software")
+            except Exception:
+                pass
+
+        entry = f"- **{ts}** | [{title}]({filename}) | *Scope: {feature}* | *Domain: `{active_domain}`*\n"
 
         if not os.path.exists(index_file):
             with open(index_file, "w", encoding="utf-8") as f:
@@ -298,6 +313,16 @@ class SpecSync:
 
     @classmethod
     def _record_in_vault(cls, title: str, kind: str, content: str, file_path: str) -> None:
+        # Resolve active domain
+        state_file = os.path.join(os.getcwd(), ".agents", "state", "active-domain.json")
+        active_domain = "software"
+        if os.path.exists(state_file):
+            try:
+                with open(state_file, "r", encoding="utf-8") as sf:
+                    active_domain = json.load(sf).get("domain_id", "software")
+            except Exception:
+                pass
+
         # 1. Dual-Write to Git-Mergeable Append-Only JSONL
         jsonl_dir = os.path.join(os.getcwd(), ".agents", "memory", "vault")
         os.makedirs(jsonl_dir, exist_ok=True)
@@ -307,6 +332,7 @@ class SpecSync:
             "id": f"doc-{int(time.time())}-{abs(hash(title)) % 10000}",
             "title": title,
             "kind": kind,
+            "domain_id": active_domain,
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime()),
             "file_path": file_path,
             "preview": content[:400]
@@ -334,14 +360,19 @@ class SpecSync:
                     tags TEXT NOT NULL,
                     created_at TEXT NOT NULL,
                     body TEXT NOT NULL,
-                    file_path TEXT NOT NULL
+                    file_path TEXT NOT NULL,
+                    domain_id TEXT DEFAULT 'software'
                 );
             """)
+            try:
+                cur.execute("ALTER TABLE memories ADD COLUMN domain_id TEXT DEFAULT 'software'")
+            except Exception:
+                pass
             cur.execute("""
                 INSERT OR REPLACE INTO memories 
-                (id, title, kind, scope, phase, operator, tags, created_at, body, file_path)
-                VALUES (?, ?, ?, 'project', 1, 'SpecSync', ?, datetime('now'), ?, ?);
-            """, (record["id"], title, kind, f"doc,{kind}", content[:600], file_path))
+                (id, title, kind, scope, phase, operator, tags, created_at, body, file_path, domain_id)
+                VALUES (?, ?, ?, 'project', 1, 'SpecSync', ?, datetime('now'), ?, ?, ?);
+            """, (record["id"], title, kind, f"doc,{kind},{active_domain}", content[:600], file_path, active_domain))
             conn.commit()
             conn.close()
         except Exception:

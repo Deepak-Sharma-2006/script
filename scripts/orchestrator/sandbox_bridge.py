@@ -204,3 +204,54 @@ class SandboxBridge:
                 timed_out=True,
                 sandbox_mode="docker_container"
             )
+
+    # =========================================================================
+    # Domain-Specific Toolchain Execution Proxies (Component 5)
+    # =========================================================================
+
+    @classmethod
+    def execute_solidity(
+        cls,
+        test_path: str,
+        cwd: Optional[str] = None,
+        timeout_seconds: int = DEFAULT_TIMEOUT_SECONDS
+    ) -> SandboxResult:
+        """Runs Foundry forge test inside the process jail with gas reporting."""
+        cmd = ["forge", "test", "--match-path", test_path, "--gas-report"]
+        return cls.execute(cmd, cwd=cwd, timeout_seconds=timeout_seconds)
+
+    @classmethod
+    def execute_cargo(
+        cls,
+        manifest_path: str,
+        cwd: Optional[str] = None,
+        timeout_seconds: int = DEFAULT_TIMEOUT_SECONDS
+    ) -> SandboxResult:
+        """Runs cargo test inside the process jail with timeout bounding."""
+        cmd = ["cargo", "test", "--manifest-path", manifest_path]
+        return cls.execute(cmd, cwd=cwd, timeout_seconds=timeout_seconds)
+
+    @classmethod
+    def execute_c_cpp(
+        cls,
+        source_path: str,
+        output_bin: str = "build_out.exe" if sys.platform == "win32" else "build_out",
+        cwd: Optional[str] = None,
+        timeout_seconds: int = DEFAULT_TIMEOUT_SECONDS
+    ) -> SandboxResult:
+        """Compiles C/C++ via gcc/clang and validates syntax inside jail."""
+        compiler = shutil.which("gcc") or shutil.which("clang") or "gcc"
+        cmd = [compiler, "-O2", "-Wall", source_path, "-o", output_bin]
+        return cls.execute(cmd, cwd=cwd, timeout_seconds=timeout_seconds)
+
+    @classmethod
+    def execute_k8s(
+        cls,
+        manifest_path: str,
+        cwd: Optional[str] = None,
+        timeout_seconds: int = DEFAULT_TIMEOUT_SECONDS
+    ) -> SandboxResult:
+        """Validates Kubernetes YAML syntax via client-side dry-run."""
+        cmd = ["kubectl", "apply", "--dry-run=client", "-f", manifest_path]
+        return cls.execute(cmd, cwd=cwd, timeout_seconds=timeout_seconds)
+

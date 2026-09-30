@@ -3058,3 +3058,90 @@ System prompts alone cannot guarantee 100% compliance across diverse LLMs due to
 
 Regardless of which model (Claude, GPT, Gemini, DeepSeek, or Qwen) or human engineer touches the code, violations cannot enter the codebase or pass CI/CD.
 
+---
+
+### 11.20 Universal Master Domain Specialization & Subdomain Skills Architecture
+
+To eliminate domain bias and transform the autonomous 6-Persona SDLC squad into an expert engineering organization for any technical field, the platform introduces the **Universal Master Domain Specialization Engine**:
+
+#### 1. Universal 8-Domain & 46-Subdomain Taxonomy
+The repository catalogs 8 Master Domains and 46 Subdomains in `templates/domains/catalog.json`:
+1. **Software Engineering** (`software`): `web_frontend`, `backend_systems`, `mobile_apps`, `desktop_native`, `game_engineering`, `embedded_rtos`, `enterprise_bpm`.
+2. **AI / ML & Cognitive Systems** (`ai_ml`): `classical_ml`, `deep_learning`, `generative_foundation`, `agentic_ai`, `nlp_rag`, `computer_vision`, `rl_alignment`, `mlops_inference`, `physical_ai`.
+3. **Blockchain & Web3** (`blockchain`): `smart_contracts`, `defi_protocols`, `zero_knowledge`, `layer2_scaling`, `depin_identity`.
+4. **Deep Tech & Scientific Research** (`deep_tech`): `quantum_computing`, `computational_biology`, `computational_materials`, `hpc_supercomputing`, `aerospace_avionics`.
+5. **Cybersecurity & AppSec** (`cybersecurity`): `appsec_devsecops`, `zero_trust_network`, `cryptography_pqc`, `cloud_security`, `soc_dfir`.
+6. **Cloud Infrastructure & SRE** (`cloud_infra`): `kubernetes_cloud_native`, `iac_gitops`, `sre_observability`, `serverless_edge`, `finops_cost_optimization`.
+7. **Data Engineering & Analytics** (`data_engineering`): `stream_processing`, `lakehouse_warehousing`, `data_mesh_governance`, `reverse_etl_cdp`, `graph_analytics`.
+8. **Vertical Applied IT** (`vertical_applied`): `healthtech_informatics`, `fintech_banking`, `ecommerce_supply_chain`, `edtech_learning`, `legaltech_govtech`.
+
+#### 2. The 2-Tier Progressive Disclosure Architecture
+To prevent prompt context saturation and attention degradation (Rule 4), the repository's 298 verified skills in `.agents/skills/` are organized into two tiers:
+- **Tier 1 (Curated Subdomain Skills)**: 172 high-priority skill slots (104 unique specialist skills) mapped directly into the 46 subdomains (`templates/domains/*/rubric.json`). Injected by `DomainPersonaEngine` as concise (<150 tokens) clickable markdown links into active persona prompt headers.
+- **Tier 2 (Universal Skills Vault)**: 298 physical skills available on-demand via `scripts/skill-finder.ts` and `npm run skill:search <query>`.
+
+#### 3. Domain-Adaptive Behavioral Evaluation Harness
+Rather than executing only generic evaluations, `.agents/harness/eval-runner.ts` dynamically inspects `.agents/state/active-domain.json` and executes active domain behavioral contracts defined in `.agents/harness/domain-evals.json`:
+- **Web3**: Reentrancy mutexes (Checks-Effects-Interactions) and TWAP oracle spot-price manipulation defenses.
+- **Deep Tech**: Floating-point precision guards (`math.isclose`) and IEEE precision standards.
+- **Cybersecurity**: Constant-time token comparisons (`crypto.timingSafeEqual`) and SQL parameterization.
+- **HealthTech**: HIPAA Row-Level Security (RLS) and PHI field-level encryption.
+
+#### 4. Domain AST Mutation Testing Fault Injections
+Both TypeScript (`scripts/mutation-tester.ts`) and Python (`scripts/orchestrator/python_mutation_tester.py`) mutation engines inject domain-specific fault mutations:
+- `MUT_SEC_TIMING_LEAK`: Inverts constant-time cryptographic checks to vulnerable string equality.
+- `MUT_WEB3_DECIMALS`: Strips decimal normalization (`parseUnits`) to detect precision loss.
+- `MUT_CLOUD_TIMEOUT`: Mutates explicit timeout bounds to simulate hanging network calls.
+- `MUT_DATA_STATE_RESET`: Mutates persistent state handlers to force state loss on navigation.
+- All modules must maintain ≥ 80% mutation kill rates before code is permitted into production.
+
+#### 5. Cross-Platform Compiler Sandboxing (`scripts/orchestrator/sandbox_bridge.py`)
+Provides process-isolated, 30s timeout-bounded compiler wrappers for native domain toolchains:
+- `execute_solidity()`: Invokes `forge build` or `solc` inside sandboxed directories.
+- `execute_cargo()`: Invokes `cargo check` or `cargo test` for Rust/Deep Tech.
+- `execute_c_cpp()`: Invokes `gcc`/`clang` with `-Wall -Wextra -Werror` flags.
+- `execute_k8s()`: Invokes `kubectl dry-run=client` to validate manifests without cluster side-effects.
+- Invocations automatically scrub ambient secrets (`AWS_*`, `GITHUB_*`, `OPENAI_*`, `ANTHROPIC_*`).
+
+#### 6. Domain-Aware SQLite Memory Vault & Living Document Catalogs
+- SQLite Memory Vault (`.agents/memory/vault.sqlite`) indexes records by `domain_id` with composite indexing on `(domain_id, created_at DESC)`, applying a 1.5× score boost to active domain memories during full-text retrieval.
+- SpecSync (`scripts/orchestrator/spec_sync.py`) partitions and tags all 6 living document catalogs with domain indicators, reconciling indexes cleanly across team branches via `npm run docs:reconcile`.
+
+---
+
+### 11.21 The Tiered 10+1 Active Interception Kernel & Programmatic Skill Discovery Architecture
+
+To permanently resolve the passive-text trap where behavioral rules were treated as optional prompt prose, the platform introduces the **Active Interception Kernel** and the **Automatic Skill Resolution Engine**:
+
+#### 1. The Active Interception Kernel (`.agents/harness/active_kernel.py`)
+Replaces passive static console logging (`eval-runner.ts`) with inline runtime interception of shell commands and file mutations:
+1. **Universal Pre-Execution Gates**:
+   - `MemoryGuard.check_memory()`: Intercepts process memory before allocation. If RAM used ≥ 75%, halts execution with `MemoryBudgetExceededException`, preventing unhandled container evictions (`OOMKilled` / 137).
+   - `DeadlineLockdown.validate_action()`: At T-minus 4 hours before deadline, transitions system to `SAFE_SUBMISSION_LOCKDOWN`. Blocks late-stage architectural redesigns and retraining, restricting execution solely to submission packaging, schema linting, and smoke tests.
+   - `ScaleProfiler`: Inspects command parameters or datasets > 10,000 items. Mandates a 500-item micro-benchmark to measure empirical throughput and extrapolate total hours. Halts execution with `REJECTED_SCALE_BOTTLENECK` if asymptotic complexity (O(N²)) breaches budget.
+   - `PromptHygiene`: Dynamically compresses monolithic 25 KB prompt rules into a 4 KB Core Kernel, pruning irrelevant domain rules to eliminate attention dilution on high-speed models.
+2. **Dynamic 8-Domain & 46-Subdomain Verification**:
+   - In Blockchain: Intercepts state modifications following external calls (Checks-Effects-Interactions) and spot price calls lacking TWAP.
+   - In AI/ML: Intercepts uncalibrated margin threshold sweeps and validation testbeds with diluted negative distractor density.
+   - In Cybersecurity: Intercepts plaintext credentials and non-constant-time token comparisons (`crypto.timingSafeEqual`).
+   - In Software: Intercepts `any` types in TypeScript and non-RFC 7807 error strings.
+   - In Cloud Infra: Intercepts privileged container flags and missing cgroup resource limits.
+   - In Data Engineering: Intercepts unbuffered stream reads and non-columnar exports.
+   - In Deep Tech: Intercepts unseeded random generators and floating-point non-determinism.
+   - In Vertical Applied: Intercepts unredacted PII (SSN, medical records) and missing statutory audit trails.
+3. **Universal Post-Execution Gates**:
+   - `GateGuard`: Verifies that empirical metric claims in output text are grounded in recent tool execution history.
+   - `FormatGuard`: Asserts complete 6-persona lifecycle headers, valid `squad_execution_attestation` YAML receipts, and flags unverified certainty claims.
+
+#### 2. Programmatic Automatic Skill Resolution (`scripts/orchestrator/skill_resolver.py`)
+Solves the operator visibility blindspot where agents previously skipped skill lookup during interactive chat:
+1. **Automatic JIT Resolution**: At the start of every task or prompt turn, `SkillResolver` automatically parses active domain and subdomains from `.agents/state/active-domain.json`, loads curated skills from `templates/domains/*/rubric.json`, and scans prompt keywords against the 298 installed skills in `.agents/skills/`.
+2. **Zero Ghost Skills**: Every resolved skill is verified against physical disk files (`.agents/skills/<name>/SKILL.md`).
+3. **Mandatory Receipt Attestation**: Every `squad_execution_attestation` YAML receipt is programmatically required to include an `activated_skills` block detailing the skill name, path, and match reason.
+4. **Linter Enforcement**: `FormatGuard` rejects turns with exit code 1 if `activated_skills` is omitted, guaranteeing 100% operator visibility into applied engineering skills.
+
+#### 3. Structured Self-Healing Error Feedback Loop
+When any pre-execution or post-execution gate rejects an operation, the kernel formats a structured JSON remediation payload (`gate`, `status`, `reason`, `remediation_guidance`). The payload is fed directly back into the agent's next turn, guiding autonomous red-to-green self-healing without human intervention.
+
+
+

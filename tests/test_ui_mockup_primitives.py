@@ -111,6 +111,46 @@ class TestUIMockupPrimitives(unittest.TestCase):
         if os.path.exists(out_pptx):
             os.remove(out_pptx)
 
+    def test_visual_translator_stat_hero(self):
+        """Verifies semantic translation of numeric metrics into VISUAL_STAT_HERO."""
+        from scripts.engine import VisualTranslator, ContentType
+        res = VisualTranslator.analyze_and_translate(
+            "Performance Benchmarks",
+            ["Query Latency: 12ms", "Throughput: 99.9% availability", "Cost Reduction: 10x"]
+        )
+        self.assertEqual(res["type"], ContentType.VISUAL_STAT_HERO)
+        self.assertGreaterEqual(len(res["data"]), 2)
+
+    def test_visual_translator_swimlane_flow(self):
+        """Verifies translation of sequential steps into VISUAL_SWIMLANE_FLOW."""
+        from scripts.engine import VisualTranslator, ContentType
+        res = VisualTranslator.analyze_and_translate(
+            "Data Ingestion Pipeline",
+            ["Step 1: Capture Packets", "Step 2: Normalize AST", "Step 3: Commit to Merkle Vault"]
+        )
+        self.assertEqual(res["type"], ContentType.VISUAL_SWIMLANE_FLOW)
+        self.assertEqual(len(res["data"]), 3)
+
+    def test_visual_translator_architecture_stack(self):
+        """Verifies translation of system tiers into VISUAL_ARCHITECTURE_STACK."""
+        from scripts.engine import VisualTranslator, ContentType
+        res = VisualTranslator.analyze_and_translate(
+            "System Architecture Tier",
+            ["Ingestion Tier: Kafka, HTTP Gateway", "Persistence Tier: SQLite, ClickHouse"]
+        )
+        self.assertEqual(res["type"], ContentType.VISUAL_ARCHITECTURE_STACK)
+        self.assertEqual(len(res["data"]), 2)
+
+    def test_visual_translator_comparison_matrix(self):
+        """Verifies translation of competitor analysis into VISUAL_COMPARISON_MATRIX."""
+        from scripts.engine import VisualTranslator, ContentType
+        res = VisualTranslator.analyze_and_translate(
+            "Feature Comparison Matrix vs Competitor",
+            ["Zero Secrets Enforcement: 100% Native", "Cryptographic Provenance: Built-in"]
+        )
+        self.assertEqual(res["type"], ContentType.VISUAL_COMPARISON_MATRIX)
+        self.assertEqual(len(res["data"]), 2)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,100 @@
+{
+  "version": "1.0.0",
+  "total_domains": 8,
+  "domains": {
+    "software": {
+      "id": "software",
+      "name": "Software Engineering & Application Development",
+      "subdomains": [
+        "web_frontend",
+        "backend_systems",
+        "mobile_apps",
+        "desktop_native",
+        "game_engineering",
+        "embedded_rtos",
+        "enterprise_bpm"
+      ]
+    },
+    "ai_ml": {
+      "id": "ai_ml",
+      "name": "Artificial Intelligence, Machine Learning & Cognitive Systems",
+      "subdomains": [
+        "classical_ml",
+        "deep_learning",
+        "generative_foundation",
+        "agentic_ai",
+        "nlp_rag",
+        "computer_vision",
+        "rl_alignment",
+        "mlops_inference",
+        "physical_ai"
+      ]
+    },
+    "blockchain": {
+      "id": "blockchain",
+      "name": "Blockchain, Web3 & Decentralized Trust Systems",
+      "subdomains": [
+        "smart_contracts",
+        "defi_protocols",
+        "zero_knowledge",
+        "layer2_scaling",
+        "depin_identity"
+      ]
+    },
+    "deep_tech": {
+      "id": "deep_tech",
+      "name": "Scientific Research, Deep Tech & Frontier Computing",
+      "subdomains": [
+        "quantum_computing",
+        "computational_biology",
+        "computational_materials",
+        "hpc_supercomputing",
+        "aerospace_avionics"
+      ]
+    },
+    "cybersecurity": {
+      "id": "cybersecurity",
+      "name": "Cybersecurity, AppSec & Cryptographic Defense",
+      "subdomains": [
+        "appsec_devsecops",
+        "zero_trust_network",
+        "cryptography_pqc",
+        "red_team_offensive",
+        "soc_dfir"
+      ]
+    },
+    "cloud_infra": {
+      "id": "cloud_infra",
+      "name": "Cloud, Distributed Systems & Infrastructure Operations",
+      "subdomains": [
+        "kubernetes_cloud_native",
+        "sre_observability",
+        "platform_iac",
+        "edge_computing",
+        "green_computing"
+      ]
+    },
+    "data_engineering": {
+      "id": "data_engineering",
+      "name": "Data Engineering, Big Data & Knowledge Intelligence",
+      "subdomains": [
+        "stream_processing",
+        "lakehouse_warehousing",
+        "data_orchestration",
+        "specialized_databases",
+        "data_mesh_governance"
+      ]
+    },
+    "vertical_applied": {
+      "id": "vertical_applied",
+      "name": "Vertical Applied IT & Industry Solutions",
+      "subdomains": [
+        "fintech_banking",
+        "healthtech_informatics",
+        "govtech_sovereign",
+        "legaltech_regulatory",
+        "industrial_iot"
+      ]
+    }
+  }
+}

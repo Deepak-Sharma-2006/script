@@ -130,6 +130,29 @@ class ASTMutationCollector(ast.NodeVisitor):
                 self._add_mutant("Return Value Override", "Override return value with None", getattr(node, 'lineno', 1), tree_copy)
         self.generic_visit(node)
 
+    def visit_Call(self, node: ast.Call):
+        # Domain Fault Class: MUT_SEC_TIMING_LEAK & MUT_DEEPTECH_PRECISION
+        func_name = ""
+        if isinstance(node.func, ast.Name):
+            func_name = node.func.id
+        elif isinstance(node.func, ast.Attribute):
+            func_name = node.func.attr
+
+        if func_name in ("compare_digest", "timingSafeEqual") and len(node.args) >= 2:
+            tree_copy = copy.deepcopy(self.original_tree)
+            target = self._find_node_by_lineno(tree_copy, node)
+            if target and isinstance(target, ast.Call):
+                # Replace with raw float/string equality == (timing leak)
+                target.func = ast.Name(id="__timing_leak_eq__", ctx=ast.Load())
+                self._add_mutant("Domain Security (MUT_SEC_TIMING_LEAK)", "Invert constant-time check to raw comparison", getattr(node, 'lineno', 1), tree_copy)
+        elif func_name == "isclose" and len(node.args) >= 2:
+            tree_copy = copy.deepcopy(self.original_tree)
+            target = self._find_node_by_lineno(tree_copy, node)
+            if target and isinstance(target, ast.Call):
+                self._add_mutant("Domain Deep Tech (MUT_DEEPTECH_PRECISION)", "Invert epsilon bound to raw comparison", getattr(node, 'lineno', 1), tree_copy)
+
+        self.generic_visit(node)
+
     def _find_node_by_lineno(self, tree: ast.AST, original_node: ast.AST) -> Optional[ast.AST]:
         target_lineno = getattr(original_node, "lineno", None)
         target_col = getattr(original_node, "col_offset", None)

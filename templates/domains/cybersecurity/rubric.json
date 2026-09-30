@@ -1,0 +1,200 @@
+{
+  "domain_id": "cybersecurity",
+  "domain_name": "Cybersecurity, AppSec & Cryptographic Defense",
+  "description": "Application security, Zero Trust, Post-Quantum Cryptography, Red Teaming, and DFIR.",
+  "subdomains": {
+    "appsec_devsecops": {
+      "name": "Application Security & DevSecOps",
+      "description": "SAST, DAST, IAST, SBOM supply chain auditing, and automated container scanning.",
+      "key_technologies": [
+        "Semgrep",
+        "OWASP ZAP",
+        "Trivy",
+        "Syft",
+        "Cosign",
+        "SonarQube"
+      ],
+      "statutory_standards": [
+        "SLSA Level 3",
+        "OWASP Top 10:2025",
+        "NIST SP 800-218 (SSDF)"
+      ],
+      "curated_skills": [
+        "security-review",
+        "styx-pentest",
+        "safety-guard",
+        "gateguard",
+        "security-scan"
+      ]
+    },
+    "zero_trust_network": {
+      "name": "Zero Trust Architecture & Cloud Security",
+      "description": "Micro-segmentation, identity-aware proxies, CSPM, and eBPF runtime observability.",
+      "key_technologies": [
+        "Cilium eBPF",
+        "Falco",
+        "WireGuard",
+        "Pomerium",
+        "AWS Security Hub"
+      ],
+      "statutory_standards": [
+        "NIST SP 800-207 (Zero Trust)",
+        "CIS Cloud Benchmarks",
+        "mTLS Enforcement"
+      ],
+      "curated_skills": [
+        "homelab-network-readiness",
+        "homelab-wireguard-vpn",
+        "security-review"
+      ]
+    },
+    "cryptography_pqc": {
+      "name": "Cryptography & Post-Quantum Cryptography (PQC)",
+      "description": "NIST PQC standards (ML-KEM, ML-DSA), homomorphic encryption, and hardware enclaves.",
+      "key_technologies": [
+        "OpenSSL 3.x",
+        "liboqs (Open Quantum Safe)",
+        "Zama Concrete FHE",
+        "AWS Nitro Enclaves"
+      ],
+      "statutory_standards": [
+        "FIPS 140-3",
+        "NIST FIPS 203/204/205 (PQC)",
+        "Constant-Time Math Execution"
+      ],
+      "curated_skills": [
+        "nodejs-keccak256",
+        "security-review",
+        "contract-first"
+      ]
+    },
+    "red_team_offensive": {
+      "name": "Offensive Security & Red Teaming",
+      "description": "Adversarial attack emulation, exploit development, and continuous penetration testing.",
+      "key_technologies": [
+        "Metasploit",
+        "Burp Suite Pro",
+        "AFL++",
+        "Strix",
+        "BloodHound"
+      ],
+      "statutory_standards": [
+        "MITRE ATT&CK Mapping",
+        "CVSS v4.0 Scoring",
+        "Authorized Scope Boundaries"
+      ],
+      "curated_skills": [
+        "styx-pentest",
+        "security-bounty-hunter",
+        "safety-guard"
+      ]
+    },
+    "soc_dfir": {
+      "name": "Security Operations & Digital Forensics (DFIR)",
+      "description": "SIEM ingestion, Sigma rule detection engineering, malware memory forensics, and incident response.",
+      "key_technologies": [
+        "Elastic Security",
+        "Splunk",
+        "Sigma",
+        "YARA",
+        "Volatility 3"
+      ],
+      "statutory_standards": [
+        "ISO/IEC 27037 (Digital Evidence)",
+        "NIST SP 800-61 (Incident Handling)"
+      ],
+      "curated_skills": [
+        "logistics-exception-management",
+        "unified-notifications-ops",
+        "messages-ops"
+      ]
+    }
+  },
+  "persona_specializations": {
+    "product_manager": {
+      "role_title": "Principal Security Product & Compliance Lead",
+      "domain_objectives": "Define security boundaries, data classification levels (Confidential, Secret), and regulatory compliance posture.",
+      "requirements_rubric": "Threat model requirements, authentication workflows, least-privilege matrix, and incident response SLAs.",
+      "forbidden_pitfalls": [
+        "Security by obscurity",
+        "Permissive wildcard permissions",
+        "Unencrypted sensitive data in transit/at rest"
+      ]
+    },
+    "system_architect": {
+      "role_title": "Chief Information Security Architect (CISA)",
+      "domain_objectives": "Architect defense-in-depth, zero trust zones, cryptographic key management, and air-gapped security boundaries.",
+      "mandatory_patterns": [
+        "Zero Trust (Never Trust, Always Verify)",
+        "Principle of Least Privilege (PoLP)",
+        "Defense in Depth",
+        "Fail-Closed Security Gates"
+      ],
+      "performance_invariants": [
+        "Cryptographic token verification < 2ms",
+        "Constant-time string/token comparison",
+        "Zero cleartext secret logging"
+      ]
+    },
+    "adversarial_sdet": {
+      "role_title": "Lead Adversarial Pentester & Security SDET",
+      "threat_model": "Authentication bypass, injection attacks (SQLi, SSRF, Command Injection), IDOR, CSRF, race condition privilege escalation.",
+      "chaos_vectors": [
+        "Malicious payload injection",
+        "Timing side-channel extraction",
+        "Fuzzy header tampering",
+        "Certificate spoofing"
+      ],
+      "test_frameworks": [
+        "OWASP ZAP API",
+        "Strix",
+        "Bandit",
+        "Semgrep"
+      ],
+      "boundary_fuzzing": "Probe API endpoints with path traversal payloads, null bytes (%00), prototype pollution, and malformed JWT tokens."
+    },
+    "core_engineer": {
+      "role_title": "Senior Security Software Engineer",
+      "coding_idioms": "Defensive programming, parameterized queries, strict input sanitization, safe deserialization, constant-time algorithms.",
+      "concurrency_rules": "Thread-safe cryptographic state, atomic token invalidation, rate-limited resource acquisition.",
+      "memory_and_resource_rules": "Zeroization of sensitive memory buffers after use, memory-safe data structures, stack canary protection."
+    },
+    "mutation_auditor": {
+      "role_title": "Principal AppSec Vulnerability & Compliance Auditor",
+      "security_standards": [
+        "NIST SP 800-53",
+        "SOC 2 Type II",
+        "ISO/IEC 27001",
+        "PCI-DSS 4.0"
+      ],
+      "statutory_compliance_gates": [
+        "Zero High/Critical CVEs in dependencies",
+        "Strict CSP (Content-Security-Policy)",
+        "Cryptographic Hash Chain Valid"
+      ],
+      "audit_checklist": [
+        "Pre-commit secret scanner pass",
+        "Static application security scan (SAST) pass",
+        "Audit logging tamper-resistance"
+      ]
+    },
+    "technical_writer": {
+      "role_title": "Lead Security Documentation Architect",
+      "documentation_lexicon": "Threat models, attack surface matrices, CVSS vulnerability reports, and statutory compliance dockets.",
+      "presentation_theme": "cyber_dark",
+      "architectural_diagram_style": "Trust boundary diagrams, data flow diagrams (DFD), and attack tree visualizations."
+    }
+  },
+  "verification_gates": [
+    "security_scan",
+    "secret_check",
+    "static_analysis",
+    "constant_time_audit"
+  ],
+  "doctor_checks": [
+    "node",
+    "python",
+    "slither",
+    "docker"
+  ]
+}
