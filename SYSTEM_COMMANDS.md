@@ -16,6 +16,7 @@ npm run project:scale
 
 # 3. Inspect Active Chat Context Window & Compaction Headroom
 npm run context:check
+npm run context:yaml
 
 # 4. Compile Universal Agent Instructions across Cursor, Claude Code, Windsurf, Copilot
 npm run harness:sync
@@ -189,7 +190,11 @@ python scripts/skill-finder.ts <query>
 # 1. Verify Cryptographic Squad Attestation Audit Trail (.agents/audit_trail.log)
 npm run attest:verify
 
-# 2. Manually Generate Signed Execution Receipt
+# 2. Extract Live Context Window Telemetry (Empirical & Anti-Hallucination)
+npm run attest:telemetry
+npm run context:yaml
+
+# 3. Manually Generate Signed Execution Receipt
 python -m scripts.orchestrator.squad_attestation --prompt "Verified domain behavioral evaluations and compiler sandboxing"
 ```
 

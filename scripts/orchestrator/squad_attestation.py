@@ -174,14 +174,15 @@ class SquadAttestor:
                 return None
 
             # Model context ceilings registry
-            MODEL_CEILINGS = {
-                "Claude Opus 4.6 (Thinking)": 200000,
-                "Claude Sonnet 4.6 (Thinking)": 200000,
-                "Claude Haiku 4.5": 200000,
-                "Gemini 3.8 Flash High": 1048576,
-                "Gemini 3.8 Pro High": 1048576,
-                "Gemini 2.0 Flash": 1048576,
-                "GPT-4o": 128000
+            MODEL_PROFILES = {
+                "gemini-3.8-flash-high": ("Gemini 3.8 Flash High", 1048576),
+                "gemini-3.8-flash-medium": ("Gemini 3.8 Flash Medium", 1048576),
+                "gemini-3.8-flash-low": ("Gemini 3.8 Flash Low", 1048576),
+                "gemini-3.7-flash-high": ("Gemini 3.7 Flash High", 1048576),
+                "claude-3-7-sonnet": ("Claude 3.7 Sonnet (Thinking)", 200000),
+                "claude-3-5-sonnet": ("Claude 3.5 Sonnet", 200000),
+                "claude-opus-4-6": ("Claude Opus 4.6 (Thinking)", 200000),
+                "gpt-4o": ("GPT-4o", 128000),
             }
 
             active_model_file = os.path.join(".agents", "state", "active-model.json")
@@ -191,8 +192,12 @@ class SquadAttestor:
                 try:
                     with open(active_model_file, "r", encoding="utf-8") as f:
                         mdata = json.load(f)
-                        model_name = mdata.get("name", model_name)
-                        ceiling = mdata.get("contextCeiling", ceiling)
+                        mid = mdata.get("modelId", "")
+                        if mid in MODEL_PROFILES:
+                            model_name, ceiling = MODEL_PROFILES[mid]
+                        elif "name" in mdata and "contextCeiling" in mdata:
+                            model_name = mdata["name"]
+                            ceiling = mdata["contextCeiling"]
                 except Exception:
                     pass
 
@@ -209,15 +214,7 @@ class SquadAttestor:
                     total_bytes += sz
                     try:
                         data = json.loads(line)
-                        # Sniff model change from user settings or model output
                         content_str = str(data.get("content", ""))
-                        if "USER_SETTINGS_CHANGE" in content_str or "model" in data:
-                            for mkey, mceiling in MODEL_CEILINGS.items():
-                                if mkey.lower() in content_str.lower():
-                                    model_name = mkey
-                                    ceiling = mceiling
-                                    break
-
                         if data.get("type") == "CHECKPOINT" and "Resuming from a compaction" in content_str:
                             compactions_occurred += 1
                             last_compaction_step = step_idx
@@ -234,7 +231,6 @@ class SquadAttestor:
             status = "OPTIMAL" if sat < 40 else "MODERATE" if sat < 65 else "WARNING" if sat < 80 else "CRITICAL"
 
             return {
-                "model": f"{model_name} ({ceiling:,} ceiling)",
                 "active_chat_context": active_tokens,
                 "remaining_before_compaction": remaining,
                 "saturation": f"{sat}% [{status}]",
@@ -303,7 +299,21 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Squad Attestation Engine")
     parser.add_argument("--prompt", type=str, default="Interactive Chat Turn")
     parser.add_argument("--verify", action="store_true", help="Verify latest attestations")
+    parser.add_argument("--telemetry", action="store_true", help="Print active context telemetry YAML")
     args = parser.parse_args()
+
+    if args.telemetry:
+        tel = SquadAttestor.get_context_telemetry()
+        if tel:
+            print("  context_telemetry:")
+            print(f'    active_chat_context: {tel["active_chat_context"]}')
+            print(f'    remaining_before_compaction: {tel["remaining_before_compaction"]}')
+            print(f'    saturation: "{tel["saturation"]}"')
+            print(f'    compactions_occurred: {tel["compactions_occurred"]}')
+            print(f'    cumulative_session_tokens: {tel["cumulative_session_tokens"]}')
+        else:
+            print("  context_telemetry: null")
+        sys.exit(0)
 
     if args.verify:
         SquadAttestor._init_db()

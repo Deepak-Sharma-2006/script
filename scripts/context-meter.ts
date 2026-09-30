@@ -196,6 +196,18 @@ if (isMain) {
   if (args.includes("--json")) {
     const telemetry = measureConversationContext();
     console.log(JSON.stringify(telemetry, null, 2));
+  } else if (args.includes("--yaml")) {
+    const telemetry = measureConversationContext();
+    if (telemetry) {
+      console.log("  context_telemetry:");
+      console.log(`    active_chat_context: ${telemetry.activeChatContextTokens}`);
+      console.log(`    remaining_before_compaction: ${telemetry.remainingBeforeCompaction}`);
+      console.log(`    saturation: \"${telemetry.saturationPercent}% [${telemetry.statusBracket}]\"`);
+      console.log(`    compactions_occurred: ${telemetry.compactionsCount}`);
+      console.log(`    cumulative_session_tokens: ${telemetry.cumulativeSessionTokens}`);
+    } else {
+      console.log("  context_telemetry: null");
+    }
   } else {
     printContextStatus();
   }
