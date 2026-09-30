@@ -11,6 +11,7 @@ node_modules/
 dist/
 build/
 .npm-cache/
+.agents/cache/
 prisma/*.db
 prisma/*.db-wal
 prisma/*.db-shm
