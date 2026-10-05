@@ -1,0 +1,90 @@
+[
+  {
+    "id": "reg_2026-10-05T18-20-56-596Z_boundary_zero_division",
+    "name": "boundary_zero_division",
+    "createdAt": "2026-10-05T18:20:56.615Z",
+    "failureReason": "params",
+    "filePath": "D:\\BE_Research\\tests\\regression\\reg_2026-10-05T18-20-56-596Z_boundary_zero_division.test.ts",
+    "verified": true
+  },
+  {
+    "id": "reg_2026-10-05T18-21-48-090Z_concurrency_race_condition",
+    "name": "concurrency_race_condition",
+    "createdAt": "2026-10-05T18:21:48.091Z",
+    "failureReason": "Race condition in concurrent lease acquisition",
+    "filePath": "D:\\BE_Research\\tests\\regression\\reg_2026-10-05T18-21-48-090Z_concurrency_race_condition.test.ts",
+    "verified": true
+  },
+  {
+    "id": "reg_2026-10-05T18-23-44-876Z_concurrency_race_condition",
+    "name": "concurrency_race_condition",
+    "createdAt": "2026-10-05T18:23:44.896Z",
+    "failureReason": "Race condition in concurrent lease acquisition",
+    "filePath": "D:\\BE_Research\\tests\\regression\\reg_2026-10-05T18-23-44-876Z_concurrency_race_condition.test.ts",
+    "verified": true
+  },
+  {
+    "id": "reg_2026-10-05T18-23-55-355Z_concurrency_race_condition",
+    "name": "concurrency_race_condition",
+    "createdAt": "2026-10-05T18:23:55.356Z",
+    "failureReason": "Race condition in concurrent lease acquisition",
+    "filePath": "D:\\BE_Research\\tests\\regression\\reg_2026-10-05T18-23-55-355Z_concurrency_race_condition.test.ts",
+    "verified": true
+  },
+  {
+    "id": "reg_2026-10-05T18-26-31-400Z_concurrency_race_condition",
+    "name": "concurrency_race_condition",
+    "createdAt": "2026-10-05T18:26:31.400Z",
+    "failureReason": "Race condition in concurrent lease acquisition",
+    "filePath": "D:\\BE_Research\\tests\\regression\\reg_2026-10-05T18-26-31-400Z_concurrency_race_condition.test.ts",
+    "verified": true
+  },
+  {
+    "id": "reg_2026-10-05T18-31-52-533Z_concurrency_race_condition",
+    "name": "concurrency_race_condition",
+    "createdAt": "2026-10-05T18:31:52.533Z",
+    "failureReason": "Race condition in concurrent lease acquisition",
+    "filePath": "D:\\BE_Research\\tests\\regression\\reg_2026-10-05T18-31-52-533Z_concurrency_race_condition.test.ts",
+    "verified": true
+  },
+  {
+    "id": "reg_2026-10-05T18-50-14-557Z_concurrency_race_condition",
+    "name": "concurrency_race_condition",
+    "createdAt": "2026-10-05T18:50:14.558Z",
+    "failureReason": "Race condition in concurrent lease acquisition",
+    "filePath": "D:\\BE_Research\\tests\\regression\\reg_2026-10-05T18-50-14-557Z_concurrency_race_condition.test.ts",
+    "verified": true
+  },
+  {
+    "id": "reg_2026-10-05T19-03-17-133Z_concurrency_race_condition",
+    "name": "concurrency_race_condition",
+    "createdAt": "2026-10-05T19:03:17.134Z",
+    "failureReason": "Race condition in concurrent lease acquisition",
+    "filePath": "D:\\BE_Research\\tests\\regression\\reg_2026-10-05T19-03-17-133Z_concurrency_race_condition.test.ts",
+    "verified": true
+  },
+  {
+    "id": "reg_2026-10-05T19-10-21-441Z_concurrency_race_condition",
+    "name": "concurrency_race_condition",
+    "createdAt": "2026-10-05T19:10:21.441Z",
+    "failureReason": "Race condition in concurrent lease acquisition",
+    "filePath": "D:\\BE_Research\\tests\\regression\\reg_2026-10-05T19-10-21-441Z_concurrency_race_condition.test.ts",
+    "verified": true
+  },
+  {
+    "id": "reg_2026-10-05T19-18-51-342Z_concurrency_race_condition",
+    "name": "concurrency_race_condition",
+    "createdAt": "2026-10-05T19:18:51.342Z",
+    "failureReason": "Race condition in concurrent lease acquisition",
+    "filePath": "D:\\BE_Research\\tests\\regression\\reg_2026-10-05T19-18-51-342Z_concurrency_race_condition.test.ts",
+    "verified": true
+  },
+  {
+    "id": "reg_2026-10-05T19-24-41-259Z_concurrency_race_condition",
+    "name": "concurrency_race_condition",
+    "createdAt": "2026-10-05T19:24:41.260Z",
+    "failureReason": "Race condition in concurrent lease acquisition",
+    "filePath": "D:\\BE_Research\\tests\\regression\\reg_2026-10-05T19-24-41-259Z_concurrency_race_condition.test.ts",
+    "verified": true
+  }
+]

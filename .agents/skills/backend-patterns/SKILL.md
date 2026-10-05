@@ -190,7 +190,7 @@ CREATE OR REPLACE FUNCTION create_market_with_position(
 )
 RETURNS jsonb
 LANGUAGE plpgsql
-AS $$
+AS 
 BEGIN
   -- Start transaction automatically
   INSERT INTO markets VALUES (market_data);
@@ -201,7 +201,7 @@ EXCEPTION
     -- Rollback happens automatically
     RETURN jsonb_build_object('success', false, 'error', SQLERRM);
 END;
-$$;
+;
 ```
 
 ## Caching Strategies

@@ -178,8 +178,17 @@ class ProductManagerRole:
                 domain=domain
             )
 
-        # Ingest active domain specialization
-        hydrated_pm = DomainPersonaEngine.hydrate_persona("product_manager")
+        # Ingest domain specialization (detect domain from prompt keywords or explicit param)
+        target_domain_id = None
+        prompt_lower = (prompt + " " + domain).lower()
+        if any(w in prompt_lower for w in ["yield farming", "defi", "web3", "smart contract", "blockchain"]):
+            target_domain_id = "blockchain"
+        elif any(w in prompt_lower for w in ["hpc", "quantum", "physics", "deep tech"]):
+            target_domain_id = "deep_tech"
+        elif any(w in prompt_lower for w in ["cybersecurity", "appsec", "zero trust", "pentest"]):
+            target_domain_id = "cybersecurity"
+
+        hydrated_pm = DomainPersonaEngine.hydrate_persona("product_manager", domain_id=target_domain_id)
         domain_name = hydrated_pm.get("domain_name", domain)
         pm_spec = hydrated_pm.get("specialization", {})
         domain_obj = pm_spec.get("domain_objectives", "")
@@ -242,7 +251,15 @@ class SystemArchitectRole:
         tradeoff_rationale: Optional[str] = None
     ) -> SystemContract:
         os.makedirs(output_dir, exist_ok=True)
-        hydrated_arch = DomainPersonaEngine.hydrate_persona("system_architect")
+        target_domain_id = None
+        if "BLOCKCHAIN" in spec.primary_goal:
+            target_domain_id = "blockchain"
+        elif "DEEP TECH" in spec.primary_goal or "SCIENTIFIC" in spec.primary_goal:
+            target_domain_id = "deep_tech"
+        elif "CYBERSECURITY" in spec.primary_goal:
+            target_domain_id = "cybersecurity"
+
+        hydrated_arch = DomainPersonaEngine.hydrate_persona("system_architect", domain_id=target_domain_id)
         arch_spec = hydrated_arch.get("specialization", {})
         mandatory_patterns = arch_spec.get("mandatory_patterns", [])
         perf_invariants = arch_spec.get("performance_invariants", [])
@@ -481,7 +498,15 @@ class TechnicalWriterRole:
         os.makedirs(output_dir, exist_ok=True)
         dossier_path = os.path.join(output_dir, f"phase-{feature_name}-squad.md")
 
-        hydrated_tw = DomainPersonaEngine.hydrate_persona("technical_writer")
+        target_domain_id = None
+        if "BLOCKCHAIN" in spec.primary_goal:
+            target_domain_id = "blockchain"
+        elif "DEEP TECH" in spec.primary_goal or "SCIENTIFIC" in spec.primary_goal:
+            target_domain_id = "deep_tech"
+        elif "CYBERSECURITY" in spec.primary_goal:
+            target_domain_id = "cybersecurity"
+
+        hydrated_tw = DomainPersonaEngine.hydrate_persona("technical_writer", domain_id=target_domain_id)
         tw_spec = hydrated_tw.get("specialization", {})
         domain_name = hydrated_tw.get("domain_name", "General Engineering")
         lexicon = tw_spec.get("documentation_lexicon", "Engineering architecture specifications, API contracts, and runbooks.")

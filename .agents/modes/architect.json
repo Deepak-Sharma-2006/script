@@ -1,0 +1,23 @@
+{
+  "mode_id": "architect",
+  "name": "System Architect Mode",
+  "description": "Owns domain modeling, schema contracts, FSM state machines, and system architecture dossiers.",
+  "tool_whitelist": [
+    "view_file",
+    "list_dir",
+    "grep_search",
+    "search_web",
+    "read_url_content",
+    "write_to_file:docs/*",
+    "write_to_file:specs/*"
+  ],
+  "forbidden_actions": [
+    "write_to_file:src/*",
+    "run_command:git_push",
+    "run_command:rm"
+  ],
+  "context_optimization": {
+    "suppress_test_fixtures": true,
+    "max_tokens_per_view": 2000
+  }
+}

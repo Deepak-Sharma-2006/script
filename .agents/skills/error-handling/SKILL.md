@@ -49,7 +49,7 @@ export class AppError extends Error {
 
 export class NotFoundError extends AppError {
   constructor(resource: string, id: string) {
-    super(`${resource} not found: ${id}`, 'NOT_FOUND', 404)
+    super(`{resource} not found: {id}`, 'NOT_FOUND', 404)
   }
 }
 

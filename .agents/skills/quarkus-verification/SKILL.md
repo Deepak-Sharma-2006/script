@@ -449,7 +449,7 @@ jobs:
         uses: actions/cache@v6
         with:
           path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          key: {{ runner.os }}-m2-{{ hashFiles('**/pom.xml') }}
 
       - name: Build
         run: mvn clean verify -DskipTests

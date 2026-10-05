@@ -38,7 +38,7 @@ Resolve the project path. If PROJECT contains `/`, treat as a path (absolute or 
 
 ```
 SOURCE_PATH="<resolved absolute path>"
-STAGING_PATH="$HOME/opensource-staging/${PROJECT_NAME}"
+STAGING_PATH="HOME/opensource-staging/{PROJECT_NAME}"
 ```
 
 Ask the user:
@@ -182,7 +182,7 @@ gh repo create "{github_org}/{github_repo}" --public --source=. --push --descrip
 
 ### /opensource verify PROJECT
 
-Run sanitizer independently. Resolve path: if PROJECT contains `/`, treat as a path. Otherwise check `$HOME/opensource-staging/PROJECT`, then `$HOME/PROJECT`, then current directory.
+Run sanitizer independently. Resolve path: if PROJECT contains `/`, treat as a path. Otherwise check `HOME/opensource-staging/PROJECT`, then `HOME/PROJECT`, then current directory.
 
 ```
 Agent(
@@ -219,8 +219,8 @@ Show each project with pipeline progress (FORK_REPORT.md, SANITIZATION_REPORT.md
 ### /opensource status PROJECT
 
 ```bash
-cat $HOME/opensource-staging/${PROJECT}/SANITIZATION_REPORT.md
-cat $HOME/opensource-staging/${PROJECT}/FORK_REPORT.md
+cat HOME/opensource-staging/{PROJECT}/SANITIZATION_REPORT.md
+cat HOME/opensource-staging/{PROJECT}/FORK_REPORT.md
 ```
 
 ## Staging Layout

@@ -179,7 +179,7 @@ export class PostgresOrderRepository implements OrderRepositoryPort {
 
   async save(order: Order): Promise<void> {
     await this.db.query(
-      "insert into orders (id, amount_cents, status, authorization_id) values ($1, $2, $3, $4)",
+      "insert into orders (id, amount_cents, status, authorization_id) values (1, 2, 3, 4)",
       [order.id, order.amountCents, order.status, order.authorizationId]
     );
   }

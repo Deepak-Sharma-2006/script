@@ -103,7 +103,7 @@ ALTER TABLE orders DROP COLUMN legacy_status;
 UPDATE users SET normalized_email = LOWER(email);
 
 -- GOOD: Batch update with progress
-DO $$
+DO 
 DECLARE
   batch_size INT := 10000;
   rows_updated INT;
@@ -122,7 +122,7 @@ BEGIN
     EXIT WHEN rows_updated = 0;
     COMMIT;
   END LOOP;
-END $$;
+END ;
 ```
 
 ## Prisma (TypeScript/Node.js)

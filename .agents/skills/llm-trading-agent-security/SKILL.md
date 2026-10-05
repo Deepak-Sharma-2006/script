@@ -60,11 +60,11 @@ class SpendLimitError(Exception):
 class SpendLimitGuard:
     def check_and_record(self, usd_amount: Decimal) -> None:
         if usd_amount > MAX_SINGLE_TX_USD:
-            raise SpendLimitError(f"Single tx ${usd_amount} exceeds max ${MAX_SINGLE_TX_USD}")
+            raise SpendLimitError(f"Single tx {usd_amount} exceeds max {MAX_SINGLE_TX_USD}")
 
         daily = self._get_24h_spend()
         if daily + usd_amount > MAX_DAILY_SPEND_USD:
-            raise SpendLimitError(f"Daily limit: ${daily} + ${usd_amount} > ${MAX_DAILY_SPEND_USD}")
+            raise SpendLimitError(f"Daily limit: {daily} + {usd_amount} > ${MAX_DAILY_SPEND_USD}")
 
         self._record_spend(usd_amount)
 ```

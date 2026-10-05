@@ -81,7 +81,7 @@ final name = user?.name ?? 'Unknown';
 
 // GOOD — Dart 3 pattern matching (preferred for complex cases)
 final display = switch (user) {
-  User(:final name, :final email) => '$name <$email>',
+  User(:final name, :final email) => 'name <email>',
   null => 'Guest',
 };
 

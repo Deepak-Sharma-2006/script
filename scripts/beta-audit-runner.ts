@@ -90,7 +90,7 @@ Mandate       : Independent Adversarial Probes, Chaos Fuzzing, AppSec & Release
   let p6Details = "No dossier found";
 
   if (existsSync(dossierDir)) {
-    const files = readdirSync(dossierDir).filter((f) => f.endsWith(".md") && f !== "README.md");
+    const files = readdirSync(dossierDir).filter((f) => f.startsWith("phase-") && f.endsWith(".md"));
     if (files.length > 0) {
       let allTechniquesPresent = true;
       const requiredTechniques = [

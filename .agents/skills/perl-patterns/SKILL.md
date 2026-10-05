@@ -55,9 +55,9 @@ Use signatures for clarity and automatic arity checking.
 use v5.36;
 
 # Good: Signatures with defaults
-sub connect_db($host, $port = 5432, $timeout = 30) {
+sub connect_db(host, port = 5432, $timeout = 30) {
     # $host is required, others have defaults
-    return DBI->connect("dbi:Pg:host=$host;port=$port", undef, undef, {
+    return DBI->connect("dbi:Pg:host=host;port=port", undef, undef, {
         RaiseError => 1,
         PrintError => 0,
     });
@@ -70,7 +70,7 @@ sub log_message($level, @details) {
 
 # Bad: Manual argument unpacking
 sub connect_db {
-    my ($host, $port, $timeout) = @_;
+    my (host, port, $timeout) = @_;
     $port    //= 5432;
     $timeout //= 30;
     # ...
@@ -117,11 +117,11 @@ my @roles = @{ $data->{users}[0]{roles} };
 
 ### 5. The `isa` Operator (5.32+)
 
-Infix type-check — replaces `blessed($o) && $o->isa('X')`.
+Infix type-check — replaces `blessed(o) && o->isa('X')`.
 
 ```perl
 use v5.36;
-if ($obj isa 'My::Class') { $obj->do_something }
+if (obj isa 'My::Class') { obj->do_something }
 ```
 
 ## Error Handling
@@ -132,8 +132,8 @@ if ($obj isa 'My::Class') { $obj->do_something }
 use v5.36;
 
 sub parse_config($path) {
-    my $content = eval { path($path)->slurp_utf8 };
-    die "Config error: $@" if $@;
+    my content = eval { path(path)->slurp_utf8 };
+    die "Config error: @" if @;
     return decode_json($content);
 }
 ```
@@ -146,11 +146,11 @@ use Try::Tiny;
 
 sub fetch_user($id) {
     my $user = try {
-        $db->resultset('User')->find($id)
+        db->resultset('User')->find(id)
             // die "User $id not found\n";
     }
     catch {
-        warn "Failed to fetch user $id: $_";
+        warn "Failed to fetch user id: _";
         undef;
     };
     return $user;
@@ -162,10 +162,10 @@ sub fetch_user($id) {
 ```perl
 use v5.40;
 
-sub divide($x, $y) {
+sub divide(x, y) {
     try {
         die "Division by zero" if $y == 0;
-        return $x / $y;
+        return x / y;
     }
     catch ($e) {
         warn "Error: $e";
@@ -191,7 +191,7 @@ has age   => (is => 'ro', isa => Int, default  => sub { 0 });
 has roles => (is => 'ro', isa => ArrayRef[Str], default => sub { [] });
 
 sub is_admin($self) {
-    return grep { $_ eq 'admin' } $self->roles->@*;
+    return grep { _ eq 'admin' } self->roles->@*;
 }
 
 sub greet($self) {
@@ -224,7 +224,7 @@ package Role::Serializable;
 use Moo::Role;
 use JSON::MaybeXS qw(encode_json);
 requires 'TO_HASH';
-sub to_json($self) { encode_json($self->TO_HASH) }
+sub to_json(self) { encode_json(self->TO_HASH) }
 1;
 
 package User;
@@ -232,7 +232,7 @@ use Moo;
 with 'Role::Serializable';
 has name  => (is => 'ro', required => 1);
 has email => (is => 'ro', required => 1);
-sub TO_HASH($self) { { name => $self->name, email => $self->email } }
+sub TO_HASH(self) { { name => self->name, email => $self->email } }
 1;
 ```
 
@@ -246,7 +246,7 @@ no warnings 'experimental::class';
 class Point {
     field $x :param;
     field $y :param;
-    method magnitude() { sqrt($x**2 + $y**2) }
+    method magnitude() { sqrt(x**2 + y**2) }
 }
 
 my $p = Point->new(x => 3, y => 4);
@@ -267,14 +267,14 @@ my $log_re = qr{
     \s+ (?<message> .+ ) $
 }x;
 
-if ($line =~ $log_re) {
-    say "Time: $+{timestamp}, Level: $+{level}";
+if (line =~ log_re) {
+    say "Time: +{timestamp}, Level: +{level}";
     say "Message: $+{message}";
 }
 
 # Bad: Positional captures (hard to maintain)
-if ($line =~ /^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\[(\w+)\]\s+(.+)$/) {
-    say "Time: $1, Level: $2";
+if (line =~ /^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\[(\w+)\]\s+(.+)/) {
+    say "Time: 1, Level: 2";
 }
 ```
 
@@ -284,10 +284,10 @@ if ($line =~ /^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\[(\w+)\]\s+(.+)$/) {
 use v5.36;
 
 # Good: Compile once, use many
-my $email_re = qr/^[A-Za-z0-9._%+-]+\@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+my email_re = qr/^[A-Za-z0-9._%+-]+\@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/;
 
 sub validate_emails(@emails) {
-    return grep { $_ =~ $email_re } @emails;
+    return grep { _ =~ email_re } @emails;
 }
 ```
 
@@ -308,8 +308,8 @@ my $config = {
 };
 
 # Safe deep access (returns undef if any level missing)
-my $port = $config->{database}{port};           # 5432
-my $missing = $config->{cache}{host};           # undef, no error
+my port = config->{database}{port};           # 5432
+my missing = config->{cache}{host};           # undef, no error
 
 # Hash slices
 my %subset;
@@ -321,8 +321,8 @@ my @first_two = $config->{database}{options}->@[0, 1];
 # Multi-variable for loop (experimental in 5.36, stable in 5.40)
 use feature 'for_list';
 no warnings 'experimental::for_list';
-for my ($key, $val) (%$config) {
-    say "$key => $val";
+for my (key, val) (%$config) {
+    say "key => val";
 }
 ```
 
@@ -337,9 +337,9 @@ use v5.36;
 use autodie;
 
 sub read_file($path) {
-    open my $fh, '<:encoding(UTF-8)', $path;
+    open my fh, '<:encoding(UTF-8)', path;
     local $/;
-    my $content = <$fh>;
+    my content = <fh>;
     close $fh;
     return $content;
 }
@@ -356,11 +356,11 @@ use v5.36;
 use Path::Tiny;
 
 my $file = path('config', 'app.json');
-my $content = $file->slurp_utf8;
-$file->spew_utf8($new_content);
+my content = file->slurp_utf8;
+file->spew_utf8(new_content);
 
 # Iterate directory
-for my $child (path('src')->children(qr/\.pl$/)) {
+for my child (path('src')->children(qr/\.pl/)) {
     say $child->basename;
 }
 ```
@@ -398,7 +398,7 @@ use Exporter 'import';
 our @EXPORT_OK   = qw(trim);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
-sub trim($str) { $str =~ s/^\s+|\s+$//gr }
+sub trim(str) { str =~ s/^\s+|\s+$//gr }
 
 1;
 ```
@@ -459,16 +459,16 @@ on test => sub {
 | Legacy Pattern | Modern Replacement |
 |---|---|
 | `use strict; use warnings;` | `use v5.36;` |
-| `my ($x, $y) = @_;` | `sub foo($x, $y) { ... }` |
-| `@{ $ref }` | `$ref->@*` |
-| `%{ $ref }` | `$ref->%*` |
-| `open FH, "< $file"` | `open my $fh, '<:encoding(UTF-8)', $file` |
+| `my (x, y) = @_;` | `sub foo(x, y) { ... }` |
+| `@{ ref }` | `ref->@*` |
+| `%{ ref }` | `ref->%*` |
+| `open FH, "< file"` | `open my fh, '<:encoding(UTF-8)', $file` |
 | `blessed hashref` | `Moo` class with types |
-| `$1, $2, $3` | `$+{name}` (named captures) |
+| `1, 2, 3` | `+{name}` (named captures) |
 | `eval { }; if ($@)` | `Try::Tiny` or native `try/catch` (5.40+) |
 | `BEGIN { require Exporter; }` | `use Exporter 'import';` |
 | Manual file ops | `Path::Tiny` |
-| `blessed($o) && $o->isa('X')` | `$o isa 'X'` (5.32+) |
+| `blessed(o) && o->isa('X')` | `$o isa 'X'` (5.32+) |
 | `builtin::true / false` | `use builtin 'true', 'false';` (5.36+, experimental) |
 
 ## Anti-Patterns
@@ -482,13 +482,13 @@ my $obj = new Foo(bar => 1);            # Bad
 my $obj = Foo->new(bar => 1);           # Good
 
 # 3. Excessive reliance on $_
-map { process($_) } grep { validate($_) } @items;  # Hard to follow
+map { process(_) } grep { validate(_) } @items;  # Hard to follow
 my @valid = grep { validate($_) } @items;           # Better: break it up
 my @results = map { process($_) } @valid;
 
 # 4. Disabling strict refs
 no strict 'refs';                        # Almost always wrong
-${"My::Package::$var"} = $value;         # Use a hash instead
+{"My::Package::var"} = $value;         # Use a hash instead
 
 # 5. Global variables as configuration
 our $TIMEOUT = 30;                       # Bad: mutable global

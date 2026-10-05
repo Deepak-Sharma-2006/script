@@ -12,7 +12,7 @@ This skill enforces financial and execution safety across all autonomous loops, 
 
 ## Budget Thresholds
 
-- **Phase Token Ceiling**: 250,000 tokens (approx. $0.75–$1.50).
+- **Phase Token Ceiling**: 250,000 tokens (approx. 0.75–1.50).
 - **Warning Threshold**: 200,000 tokens (triggers context compaction).
 - **Loop Iteration Brake**: Max 5 iterations per auto-correction loop.
 - **Execution Timeout**: 300 seconds (5 minutes) per autonomous task.

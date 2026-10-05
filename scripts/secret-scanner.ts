@@ -98,6 +98,7 @@ const IGNORED_PATHS = new Set([
   "package-lock.json",
   "dist",
   "build",
+  "scratch",
 ]);
 
 export interface SecretFinding {

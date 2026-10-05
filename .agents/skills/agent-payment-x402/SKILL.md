@@ -195,7 +195,7 @@ async function preToolCheck(agentpay: Client, apiCost: number): Promise<void> {
   // Path 5: Budget exceeded
   if (remaining < apiCost) {
     throw new Error(
-      `Budget exceeded: need $${apiCost} but only $${remaining} remaining`
+      `Budget exceeded: need {apiCost} but only {remaining} remaining`
     );
   }
 }

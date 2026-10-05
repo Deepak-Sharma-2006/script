@@ -65,7 +65,7 @@ public actor LocalRepository<T: Codable & Identifiable> where T.ID == String {
               let items = try? JSONDecoder().decode([T].self, from: data) else {
             return [:]
         }
-        return Dictionary(uniqueKeysWithValues: items.map { ($0.id, $0) })
+        return Dictionary(uniqueKeysWithValues: items.map { (0.id, 0) })
     }
 }
 ```

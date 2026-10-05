@@ -1,0 +1,18 @@
+{
+  "mode_id": "docs",
+  "name": "Technical Writer & Living Docs Mode",
+  "description": "Owns 6-technique Part 7 comprehension dossiers, living documentation, and walkthroughs.",
+  "tool_whitelist": [
+    "view_file",
+    "list_dir",
+    "grep_search",
+    "write_to_file:docs/*",
+    "write_to_file:README.md",
+    "write_to_file:SYSTEM_COMMANDS.md"
+  ],
+  "forbidden_actions": [
+    "run_command:npm_publish",
+    "write_to_file:src/*",
+    "write_to_file:tests/*"
+  ]
+}

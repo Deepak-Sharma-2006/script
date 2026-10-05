@@ -260,16 +260,16 @@ class SpecSync:
                             dest = cls.persist_walkthrough(slug, content, title, custom_timestamp=mtime)
                             synced_files.append(dest)
 
-            # 3. Audits and any *_audit.md
+            # 3. Audits and any *_audit.md or *_blueprint.md
             for fname in os.listdir(bdir):
-                if fname.endswith(("_audit.md", "-audit.md")) and not fname.endswith(("_plan.md", "-plan.md")):
+                if fname.endswith(("_audit.md", "-audit.md", "_blueprint.md", "-blueprint.md")) and not fname.endswith(("_plan.md", "-plan.md")):
                     fpath = os.path.join(bdir, fname)
                     if os.path.isfile(fpath):
                         with open(fpath, "r", encoding="utf-8") as f:
                             content = f.read()
                         if content.strip():
                             mtime = os.path.getmtime(fpath)
-                            audit_name = fname.replace(".md", "").replace("_audit", "")
+                            audit_name = fname.replace(".md", "").replace("_audit", "").replace("_blueprint", "")
                             title, slug = cls._extract_title_and_slug(content, audit_name)
                             dest = cls.persist_audit(slug, content, title, custom_timestamp=mtime)
                             synced_files.append(dest)

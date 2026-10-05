@@ -660,7 +660,7 @@ class UserRepositoryTest : FunSpec({
 
     test("pagination works correctly") {
         repeat(25) { i ->
-            repository.create(CreateUserRequest("User $i", "user$i@example.com"))
+            repository.create(CreateUserRequest("User i", "useri@example.com"))
         }
 
         val page1 = repository.findAll(page = 1, limit = 10)

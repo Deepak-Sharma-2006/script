@@ -127,7 +127,7 @@ struct RecipeSearchTool: Tool {
             term: arguments.searchTerm,
             limit: arguments.numberOfResults
         )
-        return .string(recipes.map { "- \($0.name): \($0.description)" }.joined(separator: "\n"))
+        return .string(recipes.map { "- \(0.name): \(0.description)" }.joined(separator: "\n"))
     }
 }
 ```

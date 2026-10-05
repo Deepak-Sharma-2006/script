@@ -138,7 +138,7 @@ function validateDose(
 
   // Absolute max
   if (dose > rules.absoluteMax) {
-    return { valid: false, message: `Exceeds absolute max ${rules.absoluteMax}${rules.unit}`,
+    return { valid: false, message: `Exceeds absolute max {rules.absoluteMax}{rules.unit}`,
       suggestedRange: { min: rules.typicalMin, max: rules.absoluteMax, unit: rules.unit },
       factors: [...factors, 'absolute_max'] };
   }
@@ -180,12 +180,12 @@ Critical alerts must NEVER be auto-dismissed or implemented as toast notificatio
 ```typescript
 describe('CDSS — Patient Safety', () => {
   INTERACTION_PAIRS.forEach(({ drugA, drugB, severity }) => {
-    it(`detects ${drugA} + ${drugB} (${severity})`, () => {
+    it(`detects {drugA} + {drugB} (${severity})`, () => {
       const alerts = checkInteractions(drugA, [drugB], []);
       expect(alerts.length).toBeGreaterThan(0);
       expect(alerts[0].severity).toBe(severity);
     });
-    it(`detects ${drugB} + ${drugA} (reverse)`, () => {
+    it(`detects {drugB} + {drugA} (reverse)`, () => {
       const alerts = checkInteractions(drugB, [drugA], []);
       expect(alerts.length).toBeGreaterThan(0);
     });

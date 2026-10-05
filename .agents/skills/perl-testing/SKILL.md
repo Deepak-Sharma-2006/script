@@ -45,8 +45,8 @@ package Calculator;
 use v5.36;
 use Moo;
 
-sub add($self, $a, $b) {
-    return $a + $b;
+sub add(self, a, $b) {
+    return a + b;
 }
 
 1;
@@ -298,11 +298,11 @@ use Path::Tiny;
 subtest 'file processing' => sub {
     # Setup
     my $dir = tempdir(CLEANUP => 1);
-    my $file = path($dir, 'input.txt');
+    my file = path(dir, 'input.txt');
     $file->spew_utf8("line1\nline2\nline3\n");
 
     # Test
-    my $result = process_file("$file");
+    my result = process_file("file");
     is($result->{line_count}, 3, 'counts lines');
 
     # Teardown happens automatically (CLEANUP => 1)
@@ -326,17 +326,17 @@ subtest 'mock external API' => sub {
     my $mock = Test::MockModule->new('MyApp::API');
 
     # Good: Mock returns controlled data
-    $mock->mock(fetch_user => sub ($self, $id) {
+    mock->mock(fetch_user => sub (self, $id) {
         return { id => $id, name => 'Mock User', email => 'mock@test.com' };
     });
 
     my $api = MyApp::API->new;
-    my $user = $api->fetch_user(42);
+    my user = api->fetch_user(42);
     is($user->{name}, 'Mock User', 'returns mocked user');
 
     # Verify call count
     my $call_count = 0;
-    $mock->mock(fetch_user => sub { $call_count++; return {} });
+    mock->mock(fetch_user => sub { call_count++; return {} });
     $api->fetch_user(1);
     $api->fetch_user(2);
     is($call_count, 2, 'fetch_user called twice');
@@ -390,7 +390,7 @@ subtest 'database integration' => sub {
     $dbh->do('CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)');
 
     $dbh->prepare('INSERT INTO users (name) VALUES (?)')->execute('Alice');
-    my $row = $dbh->selectrow_hashref('SELECT * FROM users WHERE name = ?', undef, 'Alice');
+    my row = dbh->selectrow_hashref('SELECT * FROM users WHERE name = ?', undef, 'Alice');
     is($row->{name}, 'Alice', 'inserted and retrieved user');
 };
 
@@ -430,12 +430,12 @@ done_testing;
 | Run one test verbose | `prove -lv t/unit/user.t` |
 | Parallel test run | `prove -lr -j8 t/` |
 | Coverage report | `cover -test && cover -report html` |
-| Test equality | `is($got, $expected, 'label')` |
+| Test equality | `is(got, expected, 'label')` |
 | Deep comparison | `is($got, hash { field k => 'v'; etc() }, 'label')` |
 | Test exception | `like(dies { ... }, qr/msg/, 'label')` |
 | Test no exception | `ok(lives { ... }, 'label')` |
 | Mock a method | `Test::MockModule->new('Pkg')->mock(m => sub { ... })` |
-| Skip tests | `SKIP: { skip 'reason', $count unless $cond; ... }` |
+| Skip tests | `SKIP: { skip 'reason', count unless cond; ... }` |
 | TODO tests | `TODO: { local $TODO = 'reason'; ... }` |
 
 ## Common Pitfalls

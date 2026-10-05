@@ -146,7 +146,7 @@ When working with Angular tooling, consult the following references:
 - Setting `min`, `max`, `value`, `disabled`, or `readonly` HTML attributes on `[formField]` inputs — define these as schema rules instead
 - Calling `inject()` outside an injection context — use `runInInjectionContext` when needed
 - Using `effect()` for derived state that should use `computed()`
-- Referencing `$parent.$index` in nested `@for` loops — Angular does not support `$parent`; use `let outerIdx = $index` instead
+- Referencing `parent.index` in nested `@for` loops — Angular does not support `parent`; use `let outerIdx = index` instead
 
 ## Related Skills
 

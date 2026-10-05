@@ -75,7 +75,7 @@ final class CreateOrderAction
 
     public function handle(CreateOrderData $data): Order
     {
-        return $this->orders->create($data);
+        return this->orders->create(data);
     }
 }
 
@@ -85,7 +85,7 @@ final class OrdersController extends Controller
 
     public function store(StoreOrderRequest $request): JsonResponse
     {
-        $order = $this->createOrder->handle($request->toDto());
+        order = this->createOrder->handle($request->toDto());
 
         return response()->json([
             'success' => true,
@@ -217,8 +217,8 @@ protected $casts = [
 protected function budgetCents(): Attribute
 {
     return Attribute::make(
-        get: fn (int $value) => Money::fromCents($value),
-        set: fn (Money $money) => $money->toCents(),
+        get: fn (int value) => Money::fromCents(value),
+        set: fn (Money money) => money->toCents(),
     );
 }
 ```
@@ -241,14 +241,14 @@ final class ProjectQuery
 
     public function ownedBy(int $userId): self
     {
-        $query = clone $this->query;
+        query = clone this->query;
 
-        return new self($query->where('owner_id', $userId));
+        return new self(query->where('owner_id', userId));
     }
 
     public function active(): self
     {
-        $query = clone $this->query;
+        query = clone this->query;
 
         return new self($query->whereNull('archived_at'));
     }
@@ -289,14 +289,14 @@ use Illuminate\Database\Eloquent\Builder;
 
 final class Project extends Model
 {
-    public function scopeOwnedBy(Builder $query, int $userId): Builder
+    public function scopeOwnedBy(Builder query, int userId): Builder
     {
-        return $query->where('owner_id', $userId);
+        return query->where('owner_id', userId);
     }
 }
 
 // In service, repository etc.
-$projects = Project::ownedBy($user->id)->get();
+projects = Project::ownedBy(user->id)->get();
 ```
 
 ### Transactions for Multi-Step Updates

@@ -101,12 +101,12 @@ async function ensureVisible(page, locator, label) {
   const el = typeof locator === 'string' ? page.locator(locator).first() : locator;
   const visible = await el.isVisible().catch(() => false);
   if (!visible) {
-    const msg = `REHEARSAL FAIL: "${label}" not found - selector: ${typeof locator === 'string' ? locator : '(locator object)'}`;
+    const msg = `REHEARSAL FAIL: "{label}" not found - selector: {typeof locator === 'string' ? locator : '(locator object)'}`;
     console.error(msg);
     const found = await page.evaluate(() => {
       return Array.from(document.querySelectorAll('button, input, select, textarea, a'))
         .filter(el => el.offsetParent !== null)
-        .map(el => `${el.tagName}[${el.type || ''}] "${el.textContent?.trim().substring(0, 30)}"`)
+        .map(el => `{el.tagName}[{el.type || ''}] "${el.textContent?.trim().substring(0, 30)}"`)
         .join('\n  ');
     });
     console.error('  Visible elements:\n  ' + found);
@@ -234,7 +234,7 @@ async function moveAndClick(page, locator, label, opts = {}) {
     }
     await el.click(clickOpts);
   } catch (e) {
-    console.error(`WARNING: moveAndClick failed on "${label}": ${e.message}`);
+    console.error(`WARNING: moveAndClick failed on "{label}": {e.message}`);
     return false;
   }
   await page.waitForTimeout(postClickDelay);
@@ -288,7 +288,7 @@ async function panElements(page, selector, maxCount = 6) {
         await page.waitForTimeout(600);
       }
     } catch (e) {
-      console.warn(`WARNING: panElements skipped element ${i} (selector: "${selector}"): ${e.message}`);
+      console.warn(`WARNING: panElements skipped element {i} (selector: "{selector}"): ${e.message}`);
     }
   }
 }

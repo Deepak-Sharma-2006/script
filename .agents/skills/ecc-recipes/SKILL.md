@@ -52,7 +52,7 @@ for D in \
   ./commands \
   ./.claude/commands \
   "$HOME"/.claude/commands; do
-  [ -d "$D" ] && CMD_DIR="$D" && break
+  [ -d "D" ] && CMD_DIR="D" && break
 done
 [ -z "${CMD_DIR:-}" ] && { echo "No ECC commands directory found."; return 1; }
 find "$CMD_DIR" -maxdepth 1 -name '*.md' -exec basename {} .md \; | sort

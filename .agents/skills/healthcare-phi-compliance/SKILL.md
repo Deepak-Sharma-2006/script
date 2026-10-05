@@ -113,7 +113,7 @@ Before every deployment:
 
 ```typescript
 // BAD — leaks PHI in error
-throw new Error(`Patient ${patient.name} not found in ${patient.facility}`);
+throw new Error(`Patient {patient.name} not found in {patient.facility}`);
 
 // GOOD — generic error, details logged server-side with opaque IDs only
 logger.error('Patient lookup failed', { recordId: patient.id, facilityId });

@@ -199,7 +199,7 @@ CARGO_HOME = "$FLOX_ENV_CACHE/cargo"
 
 [profile]
 common = """
-  export PATH="$CARGO_HOME/bin:$PATH"
+  export PATH="CARGO_HOME/bin:PATH"
 """
 ```
 
@@ -217,7 +217,7 @@ GOBIN = "$FLOX_ENV_CACHE/go/bin"
 
 [profile]
 common = """
-  export PATH="$GOBIN:$PATH"
+  export PATH="GOBIN:PATH"
 """
 ```
 
@@ -401,7 +401,7 @@ common = """
 """
 
 [services]
-postgres.command = "postgres -D $FLOX_ENV_CACHE/pgdata -k $FLOX_ENV_CACHE"
+postgres.command = "postgres -D FLOX_ENV_CACHE/pgdata -k FLOX_ENV_CACHE"
 redis.command = "redis-server --port 6379 --daemonize no"
 
 [options]

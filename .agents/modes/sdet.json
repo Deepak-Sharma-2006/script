@@ -1,0 +1,20 @@
+{
+  "mode_id": "sdet",
+  "name": "Adversarial SDET Mode",
+  "description": "Owns black-box adversarial testing, fuzzing, penetration probes, and mutation tests.",
+  "tool_whitelist": [
+    "view_file",
+    "list_dir",
+    "grep_search",
+    "run_command:npm_test",
+    "run_command:pytest",
+    "run_command:npx_playwright",
+    "write_to_file:tests/*",
+    "write_to_file:specs/scratch_tests/*"
+  ],
+  "forbidden_actions": [
+    "write_to_file:.env*",
+    "write_to_file:src/auth/keys*",
+    "run_command:git_push"
+  ]
+}

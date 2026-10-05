@@ -305,7 +305,7 @@ Three consecutive iterations signaling completion stops the loop, preventing was
 | Flag | Purpose |
 |------|---------|
 | `--max-runs N` | Stop after N successful iterations |
-| `--max-cost $X` | Stop after spending $X |
+| `--max-cost X` | Stop after spending X |
 | `--max-duration 2h` | Stop after time elapsed |
 | `--merge-strategy squash` | squash, merge, or rebase |
 | `--worktree <name>` | Parallel execution via git worktrees |

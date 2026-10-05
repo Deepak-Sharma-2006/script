@@ -63,11 +63,13 @@ docs/sih_solutions/
 *.db
 *.db-wal
 *.db-shm
+!.agents/skills/registry.sqlite
 
 # Ephemeral runtime state, locks, and local audit trail
 *.lock.json
 .agents/state/*.json
 !.agents/state/.gitkeep
+!.agents/state/skills_drift_baseline.json
 .agents/state/locks/
 .agents/state/evolution_patches/
 .agents/state/telemetry_stream.jsonl

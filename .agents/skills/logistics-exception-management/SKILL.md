@@ -104,9 +104,9 @@ Assess every exception on three axes and take the highest severity:
 
 **Financial Impact:**
 - Level 1 (Low): < $1,000 product value, no expedite needed
-- Level 2 (Moderate): $1,000 - $5,000 or minor expedite costs
-- Level 3 (Significant): $5,000 - $25,000 or customer penalty risk
-- Level 4 (Major): $25,000 - $100,000 or contract compliance risk
+- Level 2 (Moderate): 1,000 - 5,000 or minor expedite costs
+- Level 3 (Significant): 5,000 - 25,000 or customer penalty risk
+- Level 4 (Major): 25,000 - 100,000 or contract compliance risk
 - Level 5 (Critical): > $100,000 or regulatory/safety implications
 
 **Customer Impact:**
@@ -124,9 +124,9 @@ Assess every exception on three axes and take the highest severity:
 
 This is the most common judgment call. Thresholds:
 
-- **< $500 and carrier relationship is strong:** Absorb. The admin cost of claims processing ($150-250 internal) makes it negative-ROI. Log for carrier scorecard.
-- **$500 - $2,500:** File claim but don't escalate aggressively. This is the "standard process" zone. Accept partial settlements above 70% of value.
-- **$2,500 - $10,000:** Full claims process. Escalate at 30-day mark if no resolution. Involve carrier account manager. Reject settlements below 80%.
+- **< 500 and carrier relationship is strong:** Absorb. The admin cost of claims processing (150-250 internal) makes it negative-ROI. Log for carrier scorecard.
+- **500 - 2,500:** File claim but don't escalate aggressively. This is the "standard process" zone. Accept partial settlements above 70% of value.
+- **2,500 - 10,000:** Full claims process. Escalate at 30-day mark if no resolution. Involve carrier account manager. Reject settlements below 80%.
 - **> $10,000:** VP-level awareness. Dedicated claims handler. Independent inspection if damage. Reject settlements below 90%. Legal review if denied.
 - **Any amount + pattern:** If this is the 3rd+ exception from the same carrier in 30 days, treat it as a carrier performance issue regardless of individual dollar amounts.
 

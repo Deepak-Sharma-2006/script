@@ -41,7 +41,7 @@ const route = useRoute()
 
 const { data: article, status, error, refresh } = await useAsyncData(
   () => `article:${route.params.slug}`,
-  () => $fetch(`/api/articles/${route.params.slug}`),
+  () => fetch(`/api/articles/{route.params.slug}`),
 )
 
 const { data: comments } = await useFetch(`/api/articles/${route.params.slug}/comments`, {

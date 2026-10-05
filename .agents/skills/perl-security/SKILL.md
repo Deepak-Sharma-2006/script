@@ -33,10 +33,10 @@ Perl's taint mode (`-T`) tracks data from external sources and prevents it from 
 use v5.36;
 
 # Tainted: anything from outside the program
-my $input    = $ARGV[0];        # Tainted
-my $env_path = $ENV{PATH};      # Tainted
+my input    = ARGV[0];        # Tainted
+my env_path = ENV{PATH};      # Tainted
 my $form     = <STDIN>;         # Tainted
-my $query    = $ENV{QUERY_STRING}; # Tainted
+my query    = ENV{QUERY_STRING}; # Tainted
 
 # Sanitize PATH early (required in taint mode)
 $ENV{PATH} = '/usr/local/bin:/usr/bin:/bin';
@@ -50,15 +50,15 @@ use v5.36;
 
 # Good: Validate and untaint with a specific regex
 sub untaint_username($input) {
-    if ($input =~ /^([a-zA-Z0-9_]{3,30})$/) {
-        return $1;  # $1 is untainted
+    if (input =~ /^([a-zA-Z0-9_]{3,30})/) {
+        return 1;  # 1 is untainted
     }
     die "Invalid username: must be 3-30 alphanumeric characters\n";
 }
 
 # Good: Validate and untaint a file path
 sub untaint_filename($input) {
-    if ($input =~ m{^([a-zA-Z0-9._-]+)$}) {
+    if (input =~ m{^([a-zA-Z0-9._-]+)}) {
         return $1;
     }
     die "Invalid filename: contains unsafe characters\n";
@@ -66,7 +66,7 @@ sub untaint_filename($input) {
 
 # Bad: Overly permissive untainting (defeats the purpose)
 sub bad_untaint($input) {
-    $input =~ /^(.*)$/s;
+    input =~ /^(.*)/s;
     return $1;  # Accepts ANYTHING — pointless
 }
 ```
@@ -81,20 +81,20 @@ use v5.36;
 # Good: Allowlist — define exactly what's permitted
 sub validate_sort_field($field) {
     my %allowed = map { $_ => 1 } qw(name email created_at updated_at);
-    die "Invalid sort field: $field\n" unless $allowed{$field};
+    die "Invalid sort field: field\n" unless allowed{$field};
     return $field;
 }
 
 # Good: Validate with specific patterns
 sub validate_email($email) {
-    if ($email =~ /^([a-zA-Z0-9._%+-]+\@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/) {
+    if (email =~ /^([a-zA-Z0-9._%+-]+\@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/) {
         return $1;
     }
     die "Invalid email address\n";
 }
 
 sub validate_integer($input) {
-    if ($input =~ /^(-?\d{1,10})$/) {
+    if (input =~ /^(-?\d{1,10})/) {
         return $1 + 0;  # Coerce to number
     }
     die "Invalid integer\n";
@@ -129,30 +129,30 @@ Catastrophic backtracking occurs with nested quantifiers on overlapping patterns
 use v5.36;
 
 # Bad: Vulnerable to ReDoS (exponential backtracking)
-my $bad_re = qr/^(a+)+$/;           # Nested quantifiers
-my $bad_re2 = qr/^([a-zA-Z]+)*$/;   # Nested quantifiers on class
-my $bad_re3 = qr/^(.*?,){10,}$/;    # Repeated greedy/lazy combo
+my bad_re = qr/^(a+)+/;           # Nested quantifiers
+my bad_re2 = qr/^([a-zA-Z]+)*/;   # Nested quantifiers on class
+my bad_re3 = qr/^(.*?,){10,}/;    # Repeated greedy/lazy combo
 
 # Good: Rewrite without nesting
-my $good_re = qr/^a+$/;             # Single quantifier
-my $good_re2 = qr/^[a-zA-Z]+$/;     # Single quantifier on class
+my good_re = qr/^a+/;             # Single quantifier
+my good_re2 = qr/^[a-zA-Z]+/;     # Single quantifier on class
 
 # Good: Use possessive quantifiers or atomic groups to prevent backtracking
-my $safe_re = qr/^[a-zA-Z]++$/;             # Possessive (5.10+)
-my $safe_re2 = qr/^(?>a+)$/;                # Atomic group
+my safe_re = qr/^[a-zA-Z]++/;             # Possessive (5.10+)
+my safe_re2 = qr/^(?>a+)/;                # Atomic group
 
 # Good: Enforce timeout on untrusted patterns
 use POSIX qw(alarm);
-sub safe_match($string, $pattern, $timeout = 2) {
+sub safe_match(string, pattern, $timeout = 2) {
     my $matched;
     eval {
         local $SIG{ALRM} = sub { die "Regex timeout\n" };
         alarm($timeout);
-        $matched = $string =~ $pattern;
+        matched = string =~ $pattern;
         alarm(0);
     };
     alarm(0);
-    die $@ if $@;
+    die @ if @;
     return $matched;
 }
 ```
@@ -166,18 +166,18 @@ use v5.36;
 
 # Good: Three-arg open, lexical filehandle, check return
 sub read_file($path) {
-    open my $fh, '<:encoding(UTF-8)', $path
-        or die "Cannot open '$path': $!\n";
+    open my fh, '<:encoding(UTF-8)', path
+        or die "Cannot open 'path': !\n";
     local $/;
-    my $content = <$fh>;
+    my content = <fh>;
     close $fh;
     return $content;
 }
 
 # Bad: Two-arg open with user data (command injection)
 sub bad_read($path) {
-    open my $fh, $path;        # If $path = "|rm -rf /", runs command!
-    open my $fh, "< $path";   # Shell metacharacter injection
+    open my fh, path;        # If $path = "|rm -rf /", runs command!
+    open my fh, "< path";   # Shell metacharacter injection
 }
 ```
 
@@ -191,18 +191,18 @@ use Cwd qw(realpath);
 
 # Atomic file creation
 sub create_file_safe($path) {
-    sysopen(my $fh, $path, O_WRONLY | O_CREAT | O_EXCL, 0600)
-        or die "Cannot create '$path': $!\n";
+    sysopen(my fh, path, O_WRONLY | O_CREAT | O_EXCL, 0600)
+        or die "Cannot create 'path': !\n";
     return $fh;
 }
 
 # Validate path stays within allowed directory
-sub safe_path($base_dir, $user_path) {
-    my $real = realpath(File::Spec->catfile($base_dir, $user_path))
+sub safe_path(base_dir, user_path) {
+    my real = realpath(File::Spec->catfile(base_dir, $user_path))
         // die "Path does not exist\n";
-    my $base_real = realpath($base_dir)
+    my base_real = realpath(base_dir)
         // die "Base dir does not exist\n";
-    die "Path traversal blocked\n" unless $real =~ /^\Q$base_real\E(?:\/|\z)/;
+    die "Path traversal blocked\n" unless real =~ /^\Qbase_real\E(?:\/|\z)/;
     return $real;
 }
 ```
@@ -227,21 +227,21 @@ run_command('grep', '-r', $user_pattern, '/var/log/app/');
 # Good: Capture output safely with IPC::Run3
 use IPC::Run3;
 sub capture_output(@cmd) {
-    my ($stdout, $stderr);
-    run3(\@cmd, \undef, \$stdout, \$stderr);
+    my (stdout, stderr);
+    run3(\@cmd, \undef, \stdout, \stderr);
     if ($?) {
-        die "Command failed (exit $?): $stderr\n";
+        die "Command failed (exit ?): stderr\n";
     }
     return $stdout;
 }
 
 # Bad: String form — shell injection!
 sub bad_search($pattern) {
-    system("grep -r '$pattern' /var/log/app/");  # If $pattern = "'; rm -rf / #"
+    system("grep -r 'pattern' /var/log/app/");  # If pattern = "'; rm -rf / #"
 }
 
 # Bad: Backticks with interpolation
-my $output = `ls $user_dir`;   # Shell injection risk
+my output = `ls user_dir`;   # Shell injection risk
 ```
 
 Also use `Capture::Tiny` for capturing stdout/stderr from external commands safely.
@@ -254,30 +254,30 @@ Also use `Capture::Tiny` for capturing stdout/stderr from external commands safe
 use v5.36;
 use DBI;
 
-my $dbh = DBI->connect($dsn, $user, $pass, {
+my dbh = DBI->connect(dsn, user, pass, {
     RaiseError => 1,
     PrintError => 0,
     AutoCommit => 1,
 });
 
 # Good: Parameterized queries — always use placeholders
-sub find_user($dbh, $email) {
-    my $sth = $dbh->prepare('SELECT * FROM users WHERE email = ?');
-    $sth->execute($email);
+sub find_user(dbh, email) {
+    my sth = dbh->prepare('SELECT * FROM users WHERE email = ?');
+    sth->execute(email);
     return $sth->fetchrow_hashref;
 }
 
-sub search_users($dbh, $name, $status) {
-    my $sth = $dbh->prepare(
+sub search_users(dbh, name, $status) {
+    my sth = dbh->prepare(
         'SELECT * FROM users WHERE name LIKE ? AND status = ? ORDER BY name'
     );
-    $sth->execute("%$name%", $status);
+    sth->execute("%name%", $status);
     return $sth->fetchall_arrayref({});
 }
 
 # Bad: String interpolation in SQL (SQLi vulnerability!)
-sub bad_find($dbh, $email) {
-    my $sth = $dbh->prepare("SELECT * FROM users WHERE email = '$email'");
+sub bad_find(dbh, email) {
+    my sth = dbh->prepare("SELECT * FROM users WHERE email = '$email'");
     # If $email = "' OR 1=1 --", returns all users
     $sth->execute;
     return $sth->fetchrow_hashref;
@@ -290,21 +290,21 @@ sub bad_find($dbh, $email) {
 use v5.36;
 
 # Good: Validate column names against an allowlist
-sub order_by($dbh, $column, $direction) {
+sub order_by(dbh, column, $direction) {
     my %allowed_cols = map { $_ => 1 } qw(name email created_at);
     my %allowed_dirs = map { $_ => 1 } qw(ASC DESC);
 
-    die "Invalid column: $column\n"    unless $allowed_cols{$column};
-    die "Invalid direction: $direction\n" unless $allowed_dirs{uc $direction};
+    die "Invalid column: column\n"    unless allowed_cols{$column};
+    die "Invalid direction: direction\n" unless allowed_dirs{uc $direction};
 
-    my $sth = $dbh->prepare("SELECT * FROM users ORDER BY $column $direction");
+    my sth = dbh->prepare("SELECT * FROM users ORDER BY column direction");
     $sth->execute;
     return $sth->fetchall_arrayref({});
 }
 
 # Bad: Directly interpolating user-chosen column
-sub bad_order($dbh, $column) {
-    $dbh->prepare("SELECT * FROM users ORDER BY $column");  # SQLi!
+sub bad_order(dbh, column) {
+    dbh->prepare("SELECT * FROM users ORDER BY column");  # SQLi!
 }
 ```
 
@@ -357,7 +357,7 @@ sub safe_json($data) {
 
 # Bad: Raw output in HTML
 sub bad_html($input) {
-    print "<div>$input</div>";  # XSS if $input contains <script>
+    print "<div>input</div>";  # XSS if input contains <script>
 }
 ```
 
@@ -385,7 +385,7 @@ $app->secrets(['long-random-secret-rotated-regularly']);
 $app->sessions->secure(1);          # HTTPS only
 $app->sessions->samesite('Lax');
 
-$app->hook(after_dispatch => sub ($c) {
+app->hook(after_dispatch => sub (c) {
     $c->res->headers->header('X-Content-Type-Options' => 'nosniff');
     $c->res->headers->header('X-Frame-Options'        => 'DENY');
     $c->res->headers->header('Content-Security-Policy' => "default-src 'self'");
@@ -476,29 +476,29 @@ perlcritic --severity 4 --theme security --quiet lib/ || exit 1
 
 ```perl
 # 1. Two-arg open with user data (command injection)
-open my $fh, $user_input;               # CRITICAL vulnerability
+open my fh, user_input;               # CRITICAL vulnerability
 
 # 2. String-form system (shell injection)
 system("convert $user_file output.png"); # CRITICAL vulnerability
 
 # 3. SQL string interpolation
-$dbh->do("DELETE FROM users WHERE id = $id");  # SQLi
+dbh->do("DELETE FROM users WHERE id = id");  # SQLi
 
 # 4. eval with user input (code injection)
 eval $user_code;                         # Remote code execution
 
 # 5. Trusting $ENV without sanitizing
-my $path = $ENV{UPLOAD_DIR};             # Could be manipulated
+my path = ENV{UPLOAD_DIR};             # Could be manipulated
 system("ls $path");                      # Double vulnerability
 
 # 6. Disabling taint without validation
-($input) = $input =~ /(.*)/s;           # Lazy untaint — defeats purpose
+(input) = input =~ /(.*)/s;           # Lazy untaint — defeats purpose
 
 # 7. Raw user data in HTML
 print "<div>Welcome, $username!</div>";  # XSS
 
 # 8. Unvalidated redirects
-print $cgi->redirect($user_url);         # Open redirect
+print cgi->redirect(user_url);         # Open redirect
 ```
 
 **Remember**: Perl's flexibility is powerful but requires discipline. Use taint mode for web-facing code, validate all input with allowlists, use DBI placeholders for every query, and encode all output for its context. Defense in depth — never rely on a single layer.

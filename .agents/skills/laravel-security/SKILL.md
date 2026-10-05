@@ -54,7 +54,7 @@ SANCTUM_TOKEN_PREFIX=
 # Validate required variables at boot
 // In AppServiceProvider::boot()
 $requiredKeys = ['app.key', 'database.connections.mysql.database', 'database.connections.mysql.username'];
-foreach ($requiredKeys as $key) {
+foreach (requiredKeys as key) {
     if (empty(config($key))) {
         throw new RuntimeException("Missing required config key: {$key}");
     }
@@ -77,12 +77,12 @@ if (app()->environment('production')) {
 
 // Force HTTPS in production via middleware
 // app/Http/Middleware/ForceHttps.php
-public function handle($request, Closure $next)
+public function handle(request, Closure next)
 {
     if (!$request->secure() && app()->environment('production')) {
         return redirect()->secure($request->getRequestUri());
     }
-    return $next($request);
+    return next(request);
 }
 ```
 
@@ -102,7 +102,7 @@ public function handle($request, Closure $next)
 'token_prefix' => env('SANCTUM_TOKEN_PREFIX', ''),
 
 // Issuing tokens with abilities
-$token = $user->createToken('api-token', ['read', 'write'])->plainTextToken;
+token = user->createToken('api-token', ['read', 'write'])->plainTextToken;
 
 // Validate abilities on routes
 Route::middleware('auth:sanctum')->group(function () {
@@ -154,11 +154,11 @@ public function rules(): array
 
 // Rate limit login attempts
 // App\Http\Controllers\Auth\AuthenticatedSessionController
-protected function authenticated(Request $request, $user)
+protected function authenticated(Request request, user)
 {
     if ($user->wasRecentlyLockedOut()) {
         // Notify user of suspicious login
-        $user->notify(new SuspiciousLoginNotification($request->ip()));
+        user->notify(new SuspiciousLoginNotification(request->ip()));
     }
 }
 ```
@@ -203,16 +203,16 @@ use Illuminate\Support\Facades\Gate;
 
 public function boot(): void
 {
-    Gate::define('update-post', function (User $user, Post $post): bool {
-        return $user->id === $post->user_id;
+    Gate::define('update-post', function (User user, Post post): bool {
+        return user->id === post->user_id;
     });
 
     Gate::define('publish-post', function (User $user): bool {
-        return $user->role === 'editor' || $user->role === 'admin';
+        return user->role === 'editor' || user->role === 'admin';
     });
 
     // Using before() for super-admin override
-    Gate::before(function (User $user, string $ability): ?bool {
+    Gate::before(function (User user, string ability): ?bool {
         if ($user->role === 'super-admin') {
             return true; // Grants all abilities
         }
@@ -221,10 +221,10 @@ public function boot(): void
 }
 
 // Usage in controllers
-public function update(Request $request, Post $post): RedirectResponse
+public function update(Request request, Post post): RedirectResponse
 {
     Gate::authorize('update-post', $post);
-    // Or: $this->authorize('update-post', $post);
+    // Or: this->authorize('update-post', post);
     // Or: abort_unless(Auth::user()->can('update-post', $post), 403);
     // ...
 }
@@ -243,9 +243,9 @@ class PostPolicy
         return true; // Public listing
     }
 
-    public function view(?User $user, Post $post): bool
+    public function view(?User user, Post post): bool
     {
-        return $post->is_published || ($user && $user->id === $post->user_id);
+        return post->is_published || (user && user->id === post->user_id);
     }
 
     public function create(User $user): bool
@@ -253,22 +253,22 @@ class PostPolicy
         return $user->hasVerifiedEmail(); // Must verify email first
     }
 
-    public function update(User $user, Post $post): bool
+    public function update(User user, Post post): bool
     {
-        return $user->id === $post->user_id;
+        return user->id === post->user_id;
     }
 
-    public function delete(User $user, Post $post): bool
+    public function delete(User user, Post post): bool
     {
-        return $user->id === $post->user_id && $post->created_at->diffInDays(now()) <= 30;
+        return user->id === post->user_id && $post->created_at->diffInDays(now()) <= 30;
     }
 
-    public function restore(User $user, Post $post): bool
+    public function restore(User user, Post post): bool
     {
         return $user->role === 'admin';
     }
 
-    public function forceDelete(User $user, Post $post): bool
+    public function forceDelete(User user, Post post): bool
     {
         return $user->role === 'super-admin';
     }
@@ -282,7 +282,7 @@ protected $policies = [
 // Controller usage
 public function show(Post $post): View
 {
-    $this->authorize('view', $post);
+    this->authorize('view', post);
     return view('posts.show', compact('post'));
 }
 
@@ -310,12 +310,12 @@ Route::get('/posts/create', [PostController::class, 'create'])
 // app/Http/Middleware/CheckRole.php
 class CheckRole
 {
-    public function handle(Request $request, Closure $next, string $role): mixed
+    public function handle(Request request, Closure next, string $role): mixed
     {
-        if (!$request->user() || $request->user()->role !== $role) {
+        if (!request->user() || request->user()->role !== $role) {
             abort(403, 'Unauthorized. This area requires role: ' . $role);
         }
-        return $next($request);
+        return next(request);
     }
 }
 
@@ -353,7 +353,7 @@ final class User extends Authenticatable
 // GOOD: Explicitly control which fields can be filled in requests
 public function store(StoreUserRequest $request): RedirectResponse
 {
-    $user = User::create($request->safe()->only([
+    user = User::create(request->safe()->only([
         'name', 'email', 'phone', 'avatar'
     ]));
     // $request->safe() uses validated data only
@@ -364,7 +364,7 @@ public function store(StoreUserRequest $request): RedirectResponse
 User::create($request->all()); // VULNERABLE to mass assignment!
 
 // BETTER: Use DTOs for creation
-$user = User::create($request->validated()); // Only validated fields
+user = User::create(request->validated()); // Only validated fields
 ```
 
 ### SQL Injection Prevention
@@ -521,8 +521,8 @@ public function sanitizeHtml(string $dirty): string
     $config = \HTMLPurifier_Config::createDefault();
     $config->set('HTML.Allowed', 'p,b,i,a[href],ul,ol,li,br');
     $config->set('URI.AllowedSchemes', ['http', 'https', 'mailto']);
-    $purifier = new \HTMLPurifier($config);
-    return $purifier->purify($dirty);
+    purifier = new \HTMLPurifier(config);
+    return purifier->purify(dirty);
 }
 
 // In blade:
@@ -550,9 +550,9 @@ public function sanitizeHtml(string $dirty): string
 // App\Http\Middleware\SecurityHeaders.php
 class SecurityHeaders
 {
-    public function handle(Request $request, Closure $next): mixed
+    public function handle(Request request, Closure next): mixed
     {
-        $response = $next($request);
+        response = next($request);
 
         $response->headers->set('X-Content-Type-Options', 'nosniff');
         $response->headers->set('X-Frame-Options', 'DENY');
@@ -610,11 +610,11 @@ final class StorePostRequest extends FormRequest
     }
 
     // Sanitize input after validation
-    public function validated($key = null, $default = null): mixed
+    public function validated(key = null, default = null): mixed
     {
         $validated = parent::validated();
-        $validated['title'] = strip_tags($validated['title']);
-        return $key ? ($validated[$key] ?? $default) : $validated;
+        validated['title'] = strip_tags(validated['title']);
+        return key ? (validated[key] ?? default) : $validated;
     }
 }
 ```
@@ -625,9 +625,9 @@ final class StorePostRequest extends FormRequest
 // app/Rules/StrongPassword.php
 class StrongPassword implements Rule
 {
-    public function passes($attribute, $value): bool
+    public function passes(attribute, value): bool
     {
-        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_\-+=])[A-Za-z\d@$!%*?&#^()_\-+=]{12,}$/', $value);
+        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@!%*?&#^()_\-+=])[A-Za-z\d@!%*?&#^()_\-+=]{12,}/', value);
     }
 
     public function message(): string
@@ -641,10 +641,10 @@ class NotBlacklistedDomain implements Rule
 {
     private array $blacklisted = ['mailinator.com', 'guerrillamail.com'];
 
-    public function passes($attribute, $value): bool
+    public function passes(attribute, value): bool
     {
-        $domain = substr(strrchr($value, '@'), 1);
-        return !in_array(strtolower($domain), $this->blacklisted);
+        domain = substr(strrchr(value, '@'), 1);
+        return !in_array(strtolower(domain), this->blacklisted);
     }
 
     public function message(): string
@@ -663,7 +663,7 @@ class NotBlacklistedDomain implements Rule
 protected function configureRateLimiting(): void
 {
     RateLimiter::for('api', function (Request $request) {
-        return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        return Limit::perMinute(60)->by(request->user()?->id ?: request->ip());
     });
 
     RateLimiter::for('auth', function (Request $request) {
@@ -676,7 +676,7 @@ protected function configureRateLimiting(): void
     });
 
     RateLimiter::for('uploads', function (Request $request) {
-        return Limit::perHour(10)->by($request->user()?->id ?? $request->ip())
+        return Limit::perHour(10)->by(request->user()?->id ?? request->ip())
             ->response(function () {
                 return response()->json([
                     'message' => 'Upload limit reached. Try again later.',
@@ -703,7 +703,7 @@ Route::post('/login', [AuthController::class, 'login'])
 'model' => User::class,
 
 // Issuing scoped tokens
-$token = $user->createToken('client-name', [
+token = user->createToken('client-name', [
     'posts:read',
     'posts:write',
 ])->plainTextToken;
@@ -773,19 +773,19 @@ public function rules(): array
 
 ```php
 // Store files outside public directory
-$path = $request->file('document')->store('documents', 'local');
+path = request->file('document')->store('documents', 'local');
 // Never use 'public' disk for sensitive documents
 
 // Use signed URLs for temporary file access
 use Illuminate\Support\Facades\Storage;
 
-public function download(Request $request, string $path)
+public function download(Request request, string path)
 {
     // Generate temporary signed URL (expires in 15 minutes)
-    $url = Storage::temporaryUrl($path, now()->addMinutes(15));
+    url = Storage::temporaryUrl(path, now()->addMinutes(15));
 
     // Validate user has permission
-    $this->authorize('download', $path);
+    this->authorize('download', path);
 
     return redirect($url);
 }
@@ -841,7 +841,7 @@ SANCTUM_TOKEN_PREFIX=myapp_
 
 # Validate secrets at boot (AppServiceProvider::boot)
 $secrets = ['services.stripe.key', 'services.stripe.webhook_secret'];
-foreach ($secrets as $key) {
+foreach (secrets as key) {
     if (empty(config($key))) {
         Log::critical("Missing secret: {$key}");
     }
@@ -902,7 +902,7 @@ final class ProcessPaymentJob implements ShouldQueue, ShouldBeEncrypted
 // Audit log helper
 final class SecurityLogger
 {
-    public static function log(string $event, array $context = []): void
+    public static function log(string event, array context = []): void
     {
         Log::channel('security')->warning($event, array_merge([
             'user_id' => Auth::id(),
@@ -928,7 +928,7 @@ SecurityLogger::log('suspicious_activity', ['reason' => 'multiple_attempts_from_
 | `APP_DEBUG=false` | Never run with debug enabled in production |
 | `APP_KEY` set | Always run `php artisan key:generate` |
 | HTTPS enforced | Force HTTPS in production via middleware or proxy |
-| `$fillable` whitelisted | Never use `$guarded = []` |
+| `fillable` whitelisted | Never use `guarded = []` |
 | CSRF active | `@csrf` on all state-changing forms |
 | Sanctum/Passport configured | API authentication with token abilities/scopes |
 | Rate limiting applied | Throttle API and auth endpoints |

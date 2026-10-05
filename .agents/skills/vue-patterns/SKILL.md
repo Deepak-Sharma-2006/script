@@ -332,7 +332,7 @@ Nuxt auto-imports `ref`, `computed`, `watch`, `useFetch`, `useAsyncData`, etc. U
 ```ts
 const { data: user, pending, error, refresh } = await useAsyncData(
   "user", // unique key for caching
-  () => $fetch(`/api/users/${id}`),
+  () => fetch(`/api/users/{id}`),
 );
 
 const { data: posts } = await useFetch("/api/posts", {

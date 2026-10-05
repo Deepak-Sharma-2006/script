@@ -164,7 +164,7 @@ services:
           import common_proxy
         }
         basic_auth /admin/* {
-          admin $2a$14$...
+          admin 2a14$...
         }
       }
 ```

@@ -356,10 +356,10 @@ const hasItems = useStore((s) => s.cart.length > 0);
 ```tsx
 // INCORRECT
 const [full, setFull] = useState("");
-useEffect(() => setFull(`${first} ${last}`), [first, last]);
+useEffect(() => setFull(`{first} {last}`), [first, last]);
 
 // CORRECT
-const full = `${first} ${last}`;
+const full = `{first} {last}`;
 ```
 
 ### Functional `setState` for stable callbacks

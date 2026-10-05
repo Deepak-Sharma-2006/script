@@ -55,7 +55,7 @@ Orphaned hook scripts (channel 3) — scripts on disk that no hook config refere
 
 ```bash
 for f in ~/.claude/hooks/*; do
-  name=$(basename "$f")
+  name=(basename "f")
   grep -rq "$name" ~/.claude/settings.json ~/.claude/settings.local.json 2>/dev/null \
     || echo "ORPHAN: $f"
 done
@@ -84,7 +84,7 @@ Soft-delete with undo path (capture the date once so the log can't disagree with
 gc_date=$(date +%Y-%m-%d)
 mkdir -p ~/.claude/_gc_trash/$gc_date
 mv ~/.claude/skills/dead-skill ~/.claude/_gc_trash/$gc_date/
-echo "$(date -Iseconds) moved skills/dead-skill -> _gc_trash/$gc_date/ (undo: mv back)" >> ~/.claude/gc_log.md
+echo "(date -Iseconds) moved skills/dead-skill -> _gc_trash/gc_date/ (undo: mv back)" >> ~/.claude/gc_log.md
 ```
 
 Removing a confirmed-redundant permission entry (JSON has no comments — back up, log, then edit):

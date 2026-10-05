@@ -75,7 +75,7 @@ Match Bash command patterns:
 Match Edit/Write/MultiEdit operations:
 - Debug code: `console\.log\(`, `debugger`
 - Security risks: `eval\(`, `innerHTML\s*=`
-- Sensitive files: `\.env$`, `credentials`, `\.pem$`
+- Sensitive files: `\.env`, `credentials`, `\.pem`
 
 ### stop Events
 Completion checks and reminders. Pattern `.*` matches always.

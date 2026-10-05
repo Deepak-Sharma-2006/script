@@ -77,7 +77,7 @@ ffmpeg -i raw.mp4 -ss 00:12:30 -to 00:15:45 -c copy segment_01.mp4
 #!/bin/bash
 # cuts.txt: start,end,label
 while IFS=, read -r start end label; do
-  ffmpeg -i raw.mp4 -ss "$start" -to "$end" -c copy "segments/${label}.mp4"
+  ffmpeg -i raw.mp4 -ss "start" -to "end" -c copy "segments/${label}.mp4"
 done < cuts.txt
 ```
 

@@ -605,7 +605,7 @@ Create `e2e-sandbox.wsb` in your project root:
     -->
     <Command>powershell -Command "
       winget install --id Python.Python.3.11 --silent --accept-package-agreements;
-      $env:PATH += ';' + $env:LOCALAPPDATA + '\Programs\Python\Python311\Scripts';
+      env:PATH += ';' + env:LOCALAPPDATA + '\Programs\Python\Python311\Scripts';
       cd C:\e2e_test;
       pip install -r requirements.txt;
       pytest tests\ -v

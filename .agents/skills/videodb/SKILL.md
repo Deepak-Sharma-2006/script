@@ -304,8 +304,8 @@ Use `ws_listener.py` to capture WebSocket events during recording sessions. Desk
 
 #### Quick Start
 
-1. **Choose state dir**: `STATE_DIR="${VIDEODB_EVENTS_DIR:-$HOME/.local/state/videodb}"`
-2. **Start listener**: `VIDEODB_EVENTS_DIR="$STATE_DIR" python scripts/ws_listener.py --clear "$STATE_DIR" &`
+1. **Choose state dir**: `STATE_DIR="{VIDEODB_EVENTS_DIR:-HOME/.local/state/videodb}"`
+2. **Start listener**: `VIDEODB_EVENTS_DIR="STATE_DIR" python scripts/ws_listener.py --clear "STATE_DIR" &`
 3. **Get WebSocket ID**: `cat "$STATE_DIR/videodb_ws_id"`
 4. **Run capture code** (see reference/capture.md for the full workflow)
 5. **Events written to**: `$STATE_DIR/videodb_events.jsonl`

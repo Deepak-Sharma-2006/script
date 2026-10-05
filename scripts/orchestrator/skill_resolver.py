@@ -3,7 +3,7 @@ Automatic Skill Resolution & Injection Engine
 Solves the operator visibility blindspot and passive skill retrieval defect:
 1. Automatically detects active domain & subdomains from .agents/state/active-domain.json
 2. Retrieves verified curated skills mapped to those subdomains
-3. Scans prompt keywords across all 298 skills in .agents/skills/
+3. Scans prompt keywords across all 300 in-tree skills in .agents/skills/
 4. Surfaces exactly which skills are activated, ensuring zero ghost skills and 100% receipt transparency
 """
 

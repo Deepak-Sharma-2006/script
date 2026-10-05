@@ -59,7 +59,7 @@ Classification follows the General Rules of Interpretation (GRI) in strict order
 - **GRI 2(a):** Incomplete or unfinished articles are classified as the complete article if they have the essential character of the complete article. A car body without the engine is still classified as a motor vehicle.
 - **GRI 2(b):** Mixtures and combinations of materials. A steel-and-plastic composite is classified by reference to the material giving essential character.
 - **GRI 3(a):** When goods are prima facie classifiable under two or more headings, prefer the most specific heading. "Surgical gloves of rubber" is more specific than "articles of rubber."
-- **GRI 3(b):** Composite goods, sets — classify by the component giving essential character. A gift set with a $40 perfume and a $5 pouch classifies as perfume.
+- **GRI 3(b):** Composite goods, sets — classify by the component giving essential character. A gift set with a 40 perfume and a 5 pouch classifies as perfume.
 - **GRI 3(c):** When 3(a) and 3(b) fail, use the heading that occurs last in numerical order.
 - **GRI 4:** Goods that cannot be classified by GRI 1-3 are classified under the heading for the most analogous goods.
 - **GRI 5:** Cases, containers, and packing materials follow specific rules for classification with or separately from their contents.

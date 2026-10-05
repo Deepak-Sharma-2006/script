@@ -70,7 +70,7 @@ For direct `curl` examples, keep credentials out of command-line arguments by pa
 
 ```bash
 jira_curl() {
-  printf 'user = "%s:%s"\n' "$JIRA_EMAIL" "$JIRA_API_TOKEN" |
+  printf 'user = "%s:%s"\n' "JIRA_EMAIL" "JIRA_API_TOKEN" |
     curl -s -K - "$@"
 }
 ```

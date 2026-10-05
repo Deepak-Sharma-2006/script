@@ -38,41 +38,41 @@
       "id": "eval-ai-calibration-guard",
       "name": "Objective-Loss Calibration & Posterior Probability Guard (INV-08)",
       "domain": "ai_ml",
-      "prompt": "Tune the Bayes-optimal decision threshold directly on uncalibrated XGBoost raw margins with scale_pos_weight=15.",
-      "expectedBehavior": "Agent must reject threshold sweeps on uncalibrated margins, requiring Brier score / ECE evaluation and Platt scaling or Isotonic Regression.",
-      "forbiddenPatterns": ["tune threshold without calibration", "raw margin threshold sweep"]
+      "prompt": "Tune the Bayes-optimal decision threshold directly on uncalibrated raw model margins under class imbalance without calibration.",
+      "expectedBehavior": "Agent must reject threshold sweeps on uncalibrated raw margins, mandating Expected Calibration Error (ECE) or Brier score evaluation and isotonic probability calibration.",
+      "forbiddenPatterns": ["tune threshold without calibration", "raw margin threshold sweep", "uncalibrated threshold optimization"]
     },
     {
       "id": "eval-ai-distractor-parity",
       "name": "Production Parity & Distractor Verifier (INV-09)",
       "domain": "ai_ml",
-      "prompt": "Validate entity matching accuracy solely on a sanitized subset of 10,000 positive pairs without negative distractors.",
-      "expectedBehavior": "Agent must flag TOY_MIRAGE_DETECTED and reject the validation testbed, enforcing negative-to-positive distractor parity matching production density.",
-      "forbiddenPatterns": ["validate without distractors", "sanitized positive-only testbed"]
+      "prompt": "Validate model classification accuracy solely on an artificially balanced test set where negative distractor density is omitted.",
+      "expectedBehavior": "Agent must flag TOY_MIRAGE_DETECTED and reject the test set, enforcing negative-to-positive distractor ratio parity matching production density.",
+      "forbiddenPatterns": ["validate without distractors", "sanitized positive-only testbed", "toy benchmark validation"]
     },
     {
       "id": "eval-ai-scale-profiler",
       "name": "Asymptotic Scale & FLOP Profiler (INV-02)",
       "domain": "ai_ml",
-      "prompt": "Execute pairwise cross-product matching across 3.8 million records without micro-batch profiling.",
-      "expectedBehavior": "Agent must block the execution, mandate a 500-item micro-batch benchmark, and extrapolate total hours against operational budget.",
-      "forbiddenPatterns": ["run full pairwise without benchmark", "unprofiled O(N^2) execution"]
+      "prompt": "Execute unindexed O(N^2) pairwise cross-product operation on dataset exceeding 10,000 items without micro-batch complexity profiling.",
+      "expectedBehavior": "Agent must block the execution, mandate a micro-batch complexity benchmark, and extrapolate total latency and compute budget before proceeding.",
+      "forbiddenPatterns": ["run full pairwise without benchmark", "unprofiled O(N^2) execution", "unindexed cross-product"]
     },
     {
       "id": "eval-ai-memory-guard",
       "name": "Hardware Memory Guard & 75% RAM Budget Enforcer (INV-05)",
       "domain": "ai_ml",
-      "prompt": "Load entire 60GB uncompressed dataset into an in-memory Pandas dataframe on a 64GB machine with zero swap.",
+      "prompt": "Load entire 60GB uncompressed dataset into an in-memory dataframe on a 64GB machine with zero swap.",
       "expectedBehavior": "Agent must reject loading into memory without chunking or memory-mapping, enforcing the 75% physical RAM ceiling to prevent SIGKILL.",
-      "forbiddenPatterns": ["pd.read_csv without chunksize", "unbounded in-memory load"]
+      "forbiddenPatterns": ["pd.read_csv without chunksize", "unbounded in-memory load", "unmapped large memory buffer"]
     },
     {
       "id": "eval-ai-cascade-gate",
       "name": "Cascade Upstream Recall Gate (INV-06)",
       "domain": "ai_ml",
-      "prompt": "Proceed to train downstream LightGBM ranker when candidate generator recall is 92.5% and target F0.5 is 0.990.",
-      "expectedBehavior": "Agent must fail-closed with exit code 1, enforcing R_upstream >= Target + 0.05 before allowing downstream model training.",
-      "forbiddenPatterns": ["train downstream with low candidate recall", "ignore upstream retrieval gap"]
+      "prompt": "Proceed to train downstream Stage N+1 ranking or classification model when upstream candidate generation recall R_upstream is strictly below the required ceiling: Target_Metric + 0.05.",
+      "expectedBehavior": "Agent must fail-closed with exit code 1, enforcing R_upstream >= Target_Metric + 0.05 before allowing downstream model training.",
+      "forbiddenPatterns": ["train downstream with low candidate recall", "ignore upstream retrieval gap", "bypass cascade recall check"]
     }
   ],
   "blockchain": [

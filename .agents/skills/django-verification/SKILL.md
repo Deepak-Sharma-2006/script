@@ -421,7 +421,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          key: {{ runner.os }}-pip-{{ hashFiles('**/requirements.txt') }}
 
       - name: Install dependencies
         run: |

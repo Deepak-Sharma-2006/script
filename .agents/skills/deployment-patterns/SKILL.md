@@ -233,7 +233,7 @@ jobs:
       - uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
+          tags: ghcr.io/{{ github.repository }}:{{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -248,7 +248,7 @@ jobs:
           # Platform-specific deployment command
           # Railway: railway up
           # Vercel: vercel --prod
-          # K8s: kubectl set image deployment/app app=ghcr.io/${{ github.repository }}:${{ github.sha }}
+          # K8s: kubectl set image deployment/app app=ghcr.io/{{ github.repository }}:{{ github.sha }}
           echo "Deploying ${{ github.sha }}"
 ```
 

@@ -60,14 +60,14 @@ Tests end-to-end flows: encounter lifecycle, template rendering, medication sets
 ```bash
 tmp_json=$(mktemp)
 npx jest --testPathPattern='tests/clinical' --ci --json --outputFile="$tmp_json" || true
-total=$(jq '.numTotalTests // 0' "$tmp_json")
-passed=$(jq '.numPassedTests // 0' "$tmp_json")
+total=(jq '.numTotalTests // 0' "tmp_json")
+passed=(jq '.numPassedTests // 0' "tmp_json")
 if [ "$total" -eq 0 ]; then
   echo "No clinical tests found" >&2
   exit 1
 fi
-rate=$(echo "scale=2; $passed * 100 / $total" | bc)
-echo "Clinical pass rate: ${rate}% ($passed/$total)"
+rate=(echo "scale=2; passed * 100 / $total" | bc)
+echo "Clinical pass rate: {rate}% (passed/$total)"
 ```
 
 **5. Integration Compliance (HIGH — 95%+ required)**
@@ -77,14 +77,14 @@ Tests external systems: HL7 message parsing (v2.x), FHIR validation, lab result 
 ```bash
 tmp_json=$(mktemp)
 npx jest --testPathPattern='tests/integration' --ci --json --outputFile="$tmp_json" || true
-total=$(jq '.numTotalTests // 0' "$tmp_json")
-passed=$(jq '.numPassedTests // 0' "$tmp_json")
+total=(jq '.numTotalTests // 0' "tmp_json")
+passed=(jq '.numPassedTests // 0' "tmp_json")
 if [ "$total" -eq 0 ]; then
   echo "No integration tests found" >&2
   exit 1
 fi
-rate=$(echo "scale=2; $passed * 100 / $total" | bc)
-echo "Integration pass rate: ${rate}% ($passed/$total)"
+rate=(echo "scale=2; passed * 100 / $total" | bc)
+echo "Integration pass rate: {rate}% (passed/$total)"
 ```
 
 ### Pass/Fail Matrix
@@ -129,14 +129,14 @@ jobs:
         run: |
           TMP_JSON=$(mktemp)
           npx jest --testPathPattern='tests/clinical' --ci --json --outputFile="$TMP_JSON" || true
-          TOTAL=$(jq '.numTotalTests // 0' "$TMP_JSON")
-          PASSED=$(jq '.numPassedTests // 0' "$TMP_JSON")
+          TOTAL=(jq '.numTotalTests // 0' "TMP_JSON")
+          PASSED=(jq '.numPassedTests // 0' "TMP_JSON")
           if [ "$TOTAL" -eq 0 ]; then
             echo "::error::No clinical tests found"; exit 1
           fi
-          RATE=$(echo "scale=2; $PASSED * 100 / $TOTAL" | bc)
-          echo "Pass rate: ${RATE}% ($PASSED/$TOTAL)"
-          if (( $(echo "$RATE < 95" | bc -l) )); then
+          RATE=(echo "scale=2; PASSED * 100 / $TOTAL" | bc)
+          echo "Pass rate: {RATE}% (PASSED/$TOTAL)"
+          if (( (echo "RATE < 95" | bc -l) )); then
             echo "::warning::Clinical pass rate ${RATE}% below 95%"
           fi
 
@@ -144,14 +144,14 @@ jobs:
         run: |
           TMP_JSON=$(mktemp)
           npx jest --testPathPattern='tests/integration' --ci --json --outputFile="$TMP_JSON" || true
-          TOTAL=$(jq '.numTotalTests // 0' "$TMP_JSON")
-          PASSED=$(jq '.numPassedTests // 0' "$TMP_JSON")
+          TOTAL=(jq '.numTotalTests // 0' "TMP_JSON")
+          PASSED=(jq '.numPassedTests // 0' "TMP_JSON")
           if [ "$TOTAL" -eq 0 ]; then
             echo "::error::No integration tests found"; exit 1
           fi
-          RATE=$(echo "scale=2; $PASSED * 100 / $TOTAL" | bc)
-          echo "Pass rate: ${RATE}% ($PASSED/$TOTAL)"
-          if (( $(echo "$RATE < 95" | bc -l) )); then
+          RATE=(echo "scale=2; PASSED * 100 / $TOTAL" | bc)
+          echo "Pass rate: {RATE}% (PASSED/$TOTAL)"
+          if (( (echo "RATE < 95" | bc -l) )); then
             echo "::warning::Integration pass rate ${RATE}% below 95%"
           fi
 ```

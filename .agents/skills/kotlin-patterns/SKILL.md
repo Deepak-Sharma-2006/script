@@ -110,7 +110,7 @@ Use expression bodies for concise, readable functions.
 fun isAdult(age: Int): Boolean = age >= 18
 
 fun formatFullName(first: String, last: String): String =
-    "$first $last".trim()
+    "first last".trim()
 
 fun User.displayName(): String =
     name.ifBlank { email.substringBefore('@') }
@@ -236,7 +236,7 @@ val result = connection.run {
 // with: Non-extension form of run
 val csv = with(StringBuilder()) {
     appendLine("name,email")
-    users.forEach { appendLine("${it.name},${it.email}") }
+    users.forEach { appendLine("{it.name},{it.email}") }
     toString()
 }
 ```
@@ -392,7 +392,7 @@ val expensiveData: List<User> by lazy {
 
 // Observable property
 var name: String by Delegates.observable("initial") { _, old, new ->
-    logger.info("Name changed from '$old' to '$new'")
+    logger.info("Name changed from 'old' to 'new'")
 }
 
 // Map-backed properties
@@ -617,7 +617,7 @@ val displayName = createUser(request)
 // Good: Preconditions with clear messages
 fun withdraw(account: Account, amount: Money): Account {
     require(amount.value > 0) { "Amount must be positive: $amount" }
-    check(account.balance >= amount) { "Insufficient balance: ${account.balance} < $amount" }
+    check(account.balance >= amount) { "Insufficient balance: {account.balance} < amount" }
 
     return account.copy(balance = account.balance - amount)
 }

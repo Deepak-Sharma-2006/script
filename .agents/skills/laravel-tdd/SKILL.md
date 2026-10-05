@@ -85,14 +85,14 @@ abstract class TestCase extends BaseTestCase
     protected function actingAsUser(): mixed
     {
         $user = \App\Models\User::factory()->create();
-        $this->actingAs($user);
+        this->actingAs(user);
         return $user;
     }
 
     protected function actingAsAdmin(): mixed
     {
         $admin = \App\Models\User::factory()->admin()->create();
-        $this->actingAs($admin);
+        this->actingAs(admin);
         return $admin;
     }
 }
@@ -120,12 +120,12 @@ class UserFactory extends Factory
 
     public function admin(): static
     {
-        return $this->state(fn (array $attributes) => ['role' => 'admin']);
+        return this->state(fn (array attributes) => ['role' => 'admin']);
     }
 
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => ['email_verified_at' => null]);
+        return this->state(fn (array attributes) => ['email_verified_at' => null]);
     }
 }
 
@@ -136,7 +136,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => fake()->unique()->words(3, true),
-            'slug' => fn (array $attrs) => Str::slug($attrs['name']),
+            'slug' => fn (array attrs) => Str::slug(attrs['name']),
             'description' => fake()->paragraph(),
             'price' => fake()->numberBetween(100, 100000),
             'stock' => fake()->numberBetween(0, 100),
@@ -147,7 +147,7 @@ class ProductFactory extends Factory
 
     public function outOfStock(): static
     {
-        return $this->state(fn (array $attributes) => ['stock' => 0]);
+        return this->state(fn (array attributes) => ['stock' => 0]);
     }
 }
 ```
@@ -157,7 +157,7 @@ class ProductFactory extends Factory
 ```php
 $user = User::factory()->create();
 $admin = User::factory()->admin()->create();
-$product = Product::factory()->create(['user_id' => $user->id]);
+product = Product::factory()->create(['user_id' => user->id]);
 $products = Product::factory()->count(10)->create();
 $draft = Product::factory()->make(); // Not persisted
 
@@ -187,7 +187,7 @@ class UserTest extends TestCase
     public function test_it_hides_sensitive_attributes(): void
     {
         $user = User::factory()->create();
-        $this->assertArrayNotHasKey('password', $user->toArray());
+        this->assertArrayNotHasKey('password', user->toArray());
     }
 
     public function test_admin_scope_returns_only_admins(): void
@@ -214,9 +214,9 @@ class ProductTest extends TestCase
     public function test_it_belongs_to_a_user(): void
     {
         $user = User::factory()->create();
-        $product = Product::factory()->create(['user_id' => $user->id]);
+        product = Product::factory()->create(['user_id' => user->id]);
 
-        $this->assertTrue($product->user->is($user));
+        this->assertTrue(product->user->is($user));
     }
 }
 ```
@@ -243,9 +243,9 @@ class ProductControllerTest extends TestCase
     public function test_it_stores_a_new_product(): void
     {
         $user = User::factory()->create();
-        $this->actingAs($user);
+        this->actingAs(user);
 
-        $response = $this->post(route('products.store'), [
+        response = this->post(route('products.store'), [
             'name' => 'New Product',
             'description' => 'Description',
             'price' => 2999,
@@ -270,9 +270,9 @@ class ProductControllerTest extends TestCase
     {
         $owner = User::factory()->create();
         $attacker = User::factory()->create();
-        $product = Product::factory()->create(['user_id' => $owner->id]);
+        product = Product::factory()->create(['user_id' => owner->id]);
 
-        $this->actingAs($attacker)
+        this->actingAs(attacker)
             ->delete(route('products.destroy', $product))
             ->assertForbidden();
     }
@@ -303,7 +303,7 @@ class ProductApiTest extends TestCase
         $user = User::factory()->create();
         Product::factory()->count(5)->create(['user_id' => $user->id]);
 
-        $response = $this->actingAs($user)->getJson('/api/products');
+        response = this->actingAs($user)->getJson('/api/products');
 
         $response->assertOk();
         $response->assertJsonCount(5, 'data');
@@ -317,7 +317,7 @@ class ProductApiTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->postJson('/api/products', [
+        response = this->actingAs($user)->postJson('/api/products', [
             'name' => 'API Product',
             'price' => 4999,
         ]);
@@ -330,9 +330,9 @@ class ProductApiTest extends TestCase
     {
         $owner = User::factory()->create();
         $attacker = User::factory()->create();
-        $product = Product::factory()->create(['user_id' => $owner->id]);
+        product = Product::factory()->create(['user_id' => owner->id]);
 
-        $this->actingAs($attacker)
+        this->actingAs(attacker)
             ->deleteJson("/api/products/{$product->id}")
             ->assertForbidden();
     }
@@ -355,7 +355,7 @@ class AuthControllerTest extends TestCase
 
     public function test_users_can_register(): void
     {
-        $response = $this->postJson('/api/register', [
+        response = this->postJson('/api/register', [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'Password123!',
@@ -373,7 +373,7 @@ class AuthControllerTest extends TestCase
             'password' => Hash::make('Password123!'),
         ]);
 
-        $response = $this->postJson('/api/login', [
+        response = this->postJson('/api/login', [
             'email' => 'test@example.com',
             'password' => 'Password123!',
         ]);
@@ -395,9 +395,9 @@ class AuthControllerTest extends TestCase
     public function test_token_bearer_authenticates_requests(): void
     {
         $user = User::factory()->create();
-        $token = $user->createToken('test')->plainTextToken;
+        token = user->createToken('test')->plainTextToken;
 
-        $this->withToken($token)
+        this->withToken(token)
             ->getJson('/api/user')
             ->assertOk()
             ->assertJsonPath('data.email', $user->email);
@@ -419,7 +419,7 @@ public function test_it_handles_successful_payment(): void
     ]);
 
     $result = (new PaymentService())->charge(2999);
-    $this->assertTrue($result->success);
+    this->assertTrue(result->success);
 }
 
 public function test_it_handles_gateway_failure(): void
@@ -451,8 +451,8 @@ Mail::fake();
 
 $order->sendConfirmation();
 
-Mail::assertSent(OrderConfirmation::class, function ($mail) use ($order) {
-    return $mail->hasTo($order->user->email);
+Mail::assertSent(OrderConfirmation::class, function (mail) use (order) {
+    return mail->hasTo(order->user->email);
 });
 ```
 
@@ -473,8 +473,8 @@ Queue::fake();
 
 ProcessImage::dispatch($product);
 
-Queue::assertPushed(ProcessImage::class, function ($job) use ($product) {
-    return $job->product->id === $product->id;
+Queue::assertPushed(ProcessImage::class, function (job) use (product) {
+    return job->product->id === product->id;
 });
 ```
 
@@ -485,7 +485,7 @@ Storage::fake('public');
 
 $file = UploadedFile::fake()->image('photo.jpg', 200, 200);
 
-$response = $this->actingAs($user)->post('/avatar', [
+response = this->actingAs($user)->post('/avatar', [
     'avatar' => $file,
 ]);
 
@@ -500,8 +500,8 @@ Event::fake();
 
 $order->markAsShipped();
 
-Event::assertDispatched(OrderShipped::class, function ($event) use ($order) {
-    return $event->order->id === $order->id;
+Event::assertDispatched(OrderShipped::class, function (event) use (order) {
+    return event->order->id === order->id;
 });
 ```
 
@@ -534,9 +534,9 @@ public function test_it_handles_no_subscribers(): void
 public function test_users_can_update_own_posts(): void
 {
     $user = User::factory()->create();
-    $post = Post::factory()->create(['user_id' => $user->id]);
+    post = Post::factory()->create(['user_id' => user->id]);
 
-    $this->actingAs($user)
+    this->actingAs(user)
         ->put(route('posts.update', $post), ['title' => 'Updated'])
         ->assertRedirect();
 }
@@ -554,11 +554,11 @@ public function test_gate_before_grants_super_admin_full_access(): void
     $super = User::factory()->create(['role' => 'super-admin']);
     $post = Post::factory()->create();
 
-    $this->actingAs($super)
+    this->actingAs(super)
         ->delete(route('posts.destroy', $post))
         ->assertRedirect();
 
-    $this->assertSoftDeleted($post);
+    this->assertSoftDeleted(post);
 }
 ```
 
@@ -574,7 +574,7 @@ uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 beforeEach(function () {
     $this->user = User::factory()->create();
-    $this->actingAs($this->user);
+    this->actingAs(this->user);
 });
 
 it('lists products', function () {
@@ -600,9 +600,9 @@ it('fails validation without required fields', function () {
 
 it('authorizes updates', function () {
     $other = User::factory()->create();
-    $product = Product::factory()->create(['user_id' => $other->id]);
+    product = Product::factory()->create(['user_id' => other->id]);
 
-    $this->put(route('products.update', $product), ['name' => 'Hacked'])
+    this->put(route('products.update', product), ['name' => 'Hacked'])
         ->assertForbidden();
 });
 ```
@@ -652,8 +652,8 @@ vendor/bin/pest --coverage --min=80
 | Pattern | Usage |
 |---------|-------|
 | `RefreshDatabase` | Reset database between tests |
-| `$this->actingAs($user)` | Authenticate as user |
-| `$this->withToken($token)` | Bearer token auth for APIs |
+| `this->actingAs(user)` | Authenticate as user |
+| `this->withToken(token)` | Bearer token auth for APIs |
 | `Model::factory()->create()` | Create model with factory |
 | `Model::factory()->count(5)->create()` | Create multiple records |
 | `Http::fake([...])` | Mock HTTP calls |
