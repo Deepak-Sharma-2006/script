@@ -246,16 +246,19 @@ class SpecSync:
                             dest = cls.persist_plan(slug, content, title, custom_timestamp=mtime)
                             synced_files.append(dest)
 
-            # 2. Walkthrough
-            walkthrough_path = os.path.join(bdir, "walkthrough.md")
-            if os.path.exists(walkthrough_path):
-                with open(walkthrough_path, "r", encoding="utf-8") as f:
-                    content = f.read()
-                if content.strip():
-                    mtime = os.path.getmtime(walkthrough_path)
-                    title, slug = cls._extract_title_and_slug(content, feat)
-                    dest = cls.persist_walkthrough(slug, content, title, custom_timestamp=mtime)
-                    synced_files.append(dest)
+            # 2. Walkthrough and any *_walkthrough.md
+            for fname in os.listdir(bdir):
+                if fname.endswith(("_walkthrough.md", "-walkthrough.md")) or fname == "walkthrough.md":
+                    wpath = os.path.join(bdir, fname)
+                    if os.path.isfile(wpath):
+                        with open(wpath, "r", encoding="utf-8") as f:
+                            content = f.read()
+                        if content.strip():
+                            mtime = os.path.getmtime(wpath)
+                            walk_name = fname.replace(".md", "").replace("_walkthrough", "")
+                            title, slug = cls._extract_title_and_slug(content, walk_name or feat)
+                            dest = cls.persist_walkthrough(slug, content, title, custom_timestamp=mtime)
+                            synced_files.append(dest)
 
             # 3. Audits and any *_audit.md
             for fname in os.listdir(bdir):

@@ -49,6 +49,21 @@ class FormatGuard:
         r"\bzero\s+risk\b",
     ]
 
+    LATEX_MACRO_PATTERNS = [
+        r"\\mathcal\{[^}]+\}",
+        r"\\text\{[^}]+\}",
+        r"\\frac\{[^}]+\}\{[^}]+\}",
+        r"\\sum_[^{\s]+",
+        r"\\prod_[^{\s]+",
+        r"\\mathbb\{[^}]+\}",
+        r"\\mathbf\{[^}]+\}",
+        r"\\begin\{equation\}",
+        r"\\end\{equation\}",
+        r"\\(?:alpha|beta|gamma|delta|epsilon|theta|lambda|mu|pi|sigma|tau|phi|omega|Delta)\b",
+        r"\\(?:times|approx|leq|geq|neq|pm|mp|cdot|partial|nabla|int|infty)\b",
+        r"\\(?:sin|cos|tan|log|ln|exp)\\left",
+    ]
+
     @classmethod
     def validate_personas(cls, text: str) -> Dict[str, Any]:
         """Asserts all 6 Enterprise Personas are present."""
@@ -90,8 +105,13 @@ class FormatGuard:
         try:
             parsed = yaml.safe_load(yaml_content)
             attestation = parsed.get("squad_execution_attestation", {})
-            required_keys = ["timestamp", "provenance_hash", "active_personas", "executed_commands"]
+            required_keys = ["timestamp", "provenance_hash", "active_personas"]
             missing_keys = [k for k in required_keys if k not in attestation]
+            commands = attestation.get("executed_commands")
+            if commands is None:
+                commands = attestation.get("verified_commands")
+            if commands is None:
+                missing_keys.append("executed_commands")
             if missing_keys:
                 return {
                     "valid": False,
@@ -105,7 +125,7 @@ class FormatGuard:
             return {
                 "valid": True,
                 "provenance_hash": attestation.get("provenance_hash"),
-                "commands_count": len(attestation.get("executed_commands", [])),
+                "commands_count": len(commands) if isinstance(commands, list) else 0,
                 "skills_count": skills_count,
                 "activated_skills": skills,
                 "data": attestation,
@@ -144,6 +164,54 @@ class FormatGuard:
         }
 
     @classmethod
+    def scan_latex(cls, text: str) -> Dict[str, Any]:
+        """
+        Scans for prohibited raw LaTeX math syntax ($...$, $$...$$, or \\macros)
+        outside of fenced code blocks. Mandates clean Unicode typography or code blocks.
+        """
+        # Strip fenced code blocks to allow markdown code examples
+        clean_text = re.sub(r"```[\s\S]*?```", "", text)
+        # Strip inline code
+        clean_text = re.sub(r"`[^`\n]+`", "", clean_text)
+
+        violations = []
+
+        # 1. Block LaTeX $$...$$
+        block_matches = re.findall(r"\$\$[\s\S]*?\$\$", clean_text)
+        if block_matches:
+            for m in block_matches:
+                violations.append({"type": "RAW_LATEX_BLOCK", "snippet": m.strip()[:100]})
+        elif "$$" in clean_text:
+            violations.append({"type": "RAW_LATEX_BLOCK", "snippet": "$$ delimiter present"})
+
+        # 2. Inline LaTeX $...$ (excluding currency like $50, $100, $0.75, $30/hr)
+        inline_pattern = r"(?<!\$)\$(?!\s)(?!\d+(?:\.\d+)?(?:[ ,.]|$))([^\$\n]+?)(?<!\s)\$(?!\$)"
+        inline_matches = re.findall(inline_pattern, clean_text)
+        if inline_matches:
+            for m in inline_matches:
+                violations.append({"type": "RAW_LATEX_INLINE", "snippet": f"${m}$"[:100]})
+
+        # 3. Raw LaTeX math macros outside code blocks
+        for pat in cls.LATEX_MACRO_PATTERNS:
+            matches = re.findall(pat, clean_text, re.IGNORECASE)
+            if matches:
+                for m in matches:
+                    violations.append({"type": "RAW_LATEX_COMMAND", "snippet": m[:100]})
+
+        is_violation = len(violations) > 0
+        return {
+            "violation": is_violation,
+            "violations": violations,
+            "count": len(violations),
+            "reason": (
+                "Raw LaTeX math notation ($ or $$ or LaTeX macro) detected outside code blocks. "
+                "Enforce clean Unicode typography (≥, ≤, ×, ≠, →, ≈, ±, α, β, Δt, L_total) or fenced code blocks."
+                if is_violation
+                else "Clean (zero raw LaTeX detected)."
+            ),
+        }
+
+    @classmethod
     def synthesize_tier2_micro_verdicts(
         cls, prompt: str, domain: str = "general"
     ) -> Dict[str, str]:
@@ -172,11 +240,13 @@ class FormatGuard:
         attestation_check = cls.validate_attestation(text)
         cmd_count = attestation_check.get("commands_count", 0) if attestation_check.get("valid") else 0
         sycophancy_check = cls.scan_sycophancy(text, executed_commands_count=cmd_count)
+        latex_check = cls.scan_latex(text)
 
         passed = (
             persona_check["all_present"]
             and attestation_check["valid"]
             and not sycophancy_check["violation"]
+            and not latex_check["violation"]
         )
 
         return {
@@ -184,6 +254,7 @@ class FormatGuard:
             "persona_audit": persona_check,
             "attestation_audit": attestation_check,
             "sycophancy_audit": sycophancy_check,
+            "latex_audit": latex_check,
             "is_tactical": is_tactical,
         }
 

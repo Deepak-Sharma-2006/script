@@ -101,13 +101,15 @@ Dynamically hydrates personas, skills, behavioral checks, and compiler toolchain
 - **Data Engineering**: High-throughput ETL, stream processing, OLAP analytics, ClickHouse / PostgreSQL.
 - **Vertical Applied IT**: Domain-specific compliance, statutory reporting, and enterprise integrations.
 
-### 3. Active Interception Harness (`active_kernel.py`)
-Intercepts execution to ensure system safety and prevent runaway failures:
-- **Memory Guardrails**: Monitors memory budgets to prevent unhandled kernel out-of-memory aborts.
-- **Deadline Lockdown**: Automatically enforces code freeze leading up to delivery deadlines, restricting modifications to packaging and validation.
-- **Scale Profiler**: Runs micro-batch benchmarks before executing large-scale data processing (>10,000 items) to catch O(N²) regressions early.
-- **GateGuard**: Enforces empirical verification, requiring tool-backed evidence for every claimed result.
-- **Prompt Hygiene**: Prunes cross-domain rule bloat into a lean active kernel to prevent attention drift.
+### 3. 7-Layer Enterprise Agentic Harness (`active_kernel.py`)
+Intercepts execution to ensure system safety, active governance, and continual self-evolution:
+- **Layer 1: Safety & Governance**: Microsoft Agent Governance join points (`PERMIT`, `BLOCK`, `MODIFY`, `ESCALATE`). Destructive shell commands (`rm -rf`, `DROP TABLE`, `terraform destroy`, cluster wipes) mandate explicit operator approval (`ESCALATE`).
+- **Layer 2: Telemetry & Observability**: AWS Dogwood continuous runtime verification with non-blocking event streaming to audit trails and JSONL telemetry.
+- **Layer 3: Context Steering & Reshaping**: Stripe positive error prompt injection and Deep Agents context truncation (35-line maximum output ceiling).
+- **Layer 4: In-Flight Verification Loop**: DeepCode real-time AST syntax parsing, zero ghost packages, and zero-raw-LaTeX verification.
+- **Layer 5: Continual Self-Evolution**: Trajectory failure signature tracking with empirical recurrence threshold (count ≥ 2 or critical invariant breach) and staging barrier (`.agents/state/evolution_patches/`) with automated operator verification requests.
+- **Layer 6: Cognitive Memory Vault**: Hermes Agent SQLite injection retrieving past architectural decisions before execution.
+- **Layer 7: Multi-Agent Personas & Domain Contracts**: Omnigent 6+1 agile squad execution with domain lease locking.
 
 ### 4. 2-Tier Progressive Skill Disclosure (298 Skills)
 - **Tier 1 (Curated Subdomain Skills)**: 172 high-priority slots (104 unique specialist skills) automatically resolved JIT by `SkillResolver` based on active subdomains and prompt intent.

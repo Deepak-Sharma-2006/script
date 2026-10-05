@@ -2,10 +2,20 @@
 
 > **Status**: ACTIVE | Automated Living Index | Reconciled via Team Mesh Engine
 
-Total Registered Documents: **61**
+Total Registered Documents: **71**
 
 | Timestamp | Document Title | File Name | Link |
 | :--- | :--- | :--- | :--- |
+| `2026-10-03 22-41-06` | **GeoWeed-Former (v2 Patched): Undisputed SOTA Architecture & Implementation Plan** | `2026-10-03_22-41-06_geoweed_former_v2_patched_plan.md` | [View Document](file:///docs/plans/2026-10-03_22-41-06_geoweed_former_v2_patched_plan.md) |
+| `2026-10-03 22-35-07` | **GeoWeed-Former: Undisputed SOTA Architecture & Implementation Plan** | `2026-10-03_22-35-07_geoweed_former_undisputed_sota_plan.md` | [View Document](file:///docs/plans/2026-10-03_22-35-07_geoweed_former_undisputed_sota_plan.md) |
+| `2026-10-03 21-38-41` | **Executive Solution Dossier: BHEDAK: Sovereign Autonomous Threat Triangulation Platform** | `2026-10-03_21-38-41_test_plan.md` | [View Document](file:///docs/plans/2026-10-03_21-38-41_test_plan.md) |
+| `2026-10-03 21-38-40` | **Executive Solution Dossier: MEDGUARD: Real-Time Edge AI Waveform Sepsis Predictor** | `2026-10-03_21-38-40_test_solution_plan.md` | [View Document](file:///docs/plans/2026-10-03_21-38-40_test_solution_plan.md) |
+| `2026-10-03 21-38-40` | **Executive Solution Dossier: BHEDAK: Sovereign Autonomous Threat Triangulation Platform** | `2026-10-03_21-38-40_test_plan.md` | [View Document](file:///docs/plans/2026-10-03_21-38-40_test_plan.md) |
+| `2026-10-01 01-15-06` | **Executive Solution Dossier: TRUSTCORE: Sovereign Decentralized Smart Contract Protocol** | `2026-10-01_01-15-06_sih_2026_satellite_fire_early_warning_plan.md` | [View Document](file:///docs/plans/2026-10-01_01-15-06_sih_2026_satellite_fire_early_warning_plan.md) |
+| `2026-10-01 01-15-06` | **Plan for Audit Trail** | `2026-10-01_01-15-06_audit_trail_plan.md` | [View Document](file:///docs/plans/2026-10-01_01-15-06_audit_trail_plan.md) |
+| `2026-10-01 01-14-22` | **Executive Solution Dossier: BHEDAK: Sovereign Autonomous Threat Triangulation Platform** | `2026-10-01_01-14-22_test_plan.md` | [View Document](file:///docs/plans/2026-10-01_01-14-22_test_plan.md) |
+| `2026-10-01 01-14-21` | **Executive Solution Dossier: MEDGUARD: Real-Time Edge AI Waveform Sepsis Predictor** | `2026-10-01_01-14-21_test_solution_plan.md` | [View Document](file:///docs/plans/2026-10-01_01-14-21_test_solution_plan.md) |
+| `2026-10-01 01-14-21` | **Executive Solution Dossier: BHEDAK: Sovereign Autonomous Threat Triangulation Platform** | `2026-10-01_01-14-21_test_plan.md` | [View Document](file:///docs/plans/2026-10-01_01-14-21_test_plan.md) |
 | `2026-10-01 00-32-23` | **Executive Solution Dossier: TRUSTCORE: Sovereign Decentralized Smart Contract Protocol** | `2026-10-01_00-32-23_sih_2026_satellite_fire_early_warning_plan.md` | [View Document](file:///docs/plans/2026-10-01_00-32-23_sih_2026_satellite_fire_early_warning_plan.md) |
 | `2026-10-01 00-29-19` | **Executive Solution Dossier: TRUSTCORE: Sovereign Decentralized Smart Contract Protocol** | `2026-10-01_00-29-19_sih_2026_satellite_fire_early_warning_plan.md` | [View Document](file:///docs/plans/2026-10-01_00-29-19_sih_2026_satellite_fire_early_warning_plan.md) |
 | `2026-10-01 00-13-37` | **Comprehensive Harness Audit & Active Interception Engine Blueprint** | `2026-10-01_00-13-37_comprehensive_harness_audit_active_plan.md` | [View Document](file:///docs/plans/2026-10-01_00-13-37_comprehensive_harness_audit_active_plan.md) |

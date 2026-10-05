@@ -108,7 +108,11 @@
     "gate:pipeline": "python -m scripts.orchestrator.pipeline_gate",
     "audit:calibration": "python -m scripts.orchestrator.calibration_auditor",
     "skill:resolve": "python -m scripts.orchestrator.skill_resolver",
-    "harness:active": "python .agents/harness/active_kernel.py"
+    "harness:active": "python .agents/harness/active_kernel.py",
+    "evolution:list": "python -m scripts.orchestrator.continual_evolution --list",
+    "evolution:approve": "python -m scripts.orchestrator.continual_evolution --approve",
+    "evolution:reject": "python -m scripts.orchestrator.continual_evolution --reject",
+    "evolution:distill": "python -m scripts.orchestrator.continual_evolution --distill"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

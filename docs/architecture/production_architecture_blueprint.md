@@ -343,7 +343,7 @@ export class StateManager<TState> {
   public saveCheckpoint(checkpoint: WorkflowCheckpoint<TState>): void {
     const filePath = join(this.checkpointDir, `${checkpoint.workflowId}.json`);
     writeFileSync(filePath, JSON.stringify(checkpoint, null, 2), "utf-8");
-    console.log(`💾 Checkpoint saved: [${checkpoint.workflowId}] at step: ${checkpoint.currentStep}`);
+    console.log(`💾 Checkpoint saved: [{checkpoint.workflowId}] at step:{checkpoint.currentStep}`);
   }
 
   public loadCheckpoint(workflowId: string): WorkflowCheckpoint<TState> | null {
@@ -506,7 +506,7 @@ Persona E:\n${executor}
   console.log("⚖️  Advisors deliberated. Executing Blind Peer Review...");
   const peerReview = await runAdvisor(
     "06-peer-review.md",
-    `User Query: ${query}\n\n${scrambledPack}`,
+    `User Query: {query}nn{scrambledPack}`,
     "Peer Reviewer"
   );
 
@@ -514,7 +514,7 @@ Persona E:\n${executor}
   console.log("🔨 Chairman delivering final consensus verdict...\n");
   const chairmanVerdict = await runAdvisor(
     "07-chairman.md",
-    `Proposal: ${query}\n\nAdvisor Briefings:\n${scrambledPack}\n\nPeer Review Analysis:\n${peerReview}`,
+    `Proposal: {query}nnAdvisor Briefings:n{scrambledPack}\n\nPeer Review Analysis:\n${peerReview}`,
     "Chairman"
   );
 
@@ -552,7 +552,7 @@ export async function runAgenticLoop(config: LoopConfig) {
 
   while (iteration < config.maxIterations && !exitAchieved) {
     iteration++;
-    console.log(`\n--- Loop Iteration ${iteration} of ${config.maxIterations} ---`);
+    console.log(`\n--- Loop Iteration {iteration} of{config.maxIterations} ---`);
 
     // 1. Built-in Critic: Deterministic Multi-Layer Verification
     let criticPassed = true;
@@ -665,14 +665,12 @@ CREATE POLICY "Users access own orders"
 
 -- Rule 8: Block field tampering (Prevent updating privileged columns)
 CREATE OR REPLACE FUNCTION block_privilege_escalation()
-RETURNS TRIGGER AS $$
-BEGIN
+RETURNS TRIGGER AS > BEGIN
   IF NEW.is_admin IS DISTINCT FROM OLD.is_admin OR NEW.role IS DISTINCT FROM OLD.role THEN
     RAISE EXCEPTION 'Field tampering detected: Changing administrative privileges is prohibited.';
   END IF;
   RETURN NEW;
-END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+END; LANGUAGE plpgsql SECURITY DEFINER;
 
 CREATE TRIGGER check_privilege_escalation
   BEFORE UPDATE ON profiles
@@ -689,7 +687,7 @@ export function middleware(request: NextRequest) {
 
   // Rule 19: Force HTTPS in production
   if (process.env.NODE_ENV === "production" && request.headers.get("x-forwarded-proto") !== "https") {
-    return NextResponse.redirect(`https://${request.headers.get("host")}${request.nextUrl.pathname}`, 301);
+    return NextResponse.redirect(`https://{request.headers.get("host")}{request.nextUrl.pathname}`, 301);
   }
 
   // Rule 18: Security Headers
@@ -730,7 +728,7 @@ export function traceAgentExecution<T>(
   return Sentry.startSpan(
     {
       op: "agent.execution",
-      name: `${agentRole}: ${workflowId}`,
+      name: `{agentRole}:{workflowId}`,
       attributes: { workflowId, agentRole },
     },
     async (span) => {
@@ -2222,7 +2220,7 @@ export async function runAutonomousPenTest(targetUrl = "http://localhost:3000"):
   if (report.criticalExploits > 0 || report.highExploits > 0) {
     console.error("\n🚨 MERGE REJECTED: Autonomous Pen-Tester verified exploitable vulnerabilities!");
     for (const poe of report.proofOfExploits) {
-      console.error(`\n[CRITICAL VULNERABILITY] ${poe.vulnerability} at ${poe.endpoint}`);
+      console.error(`\n[CRITICAL VULNERABILITY] {poe.vulnerability} at{poe.endpoint}`);
       console.error(`Proof of Exploit Payload: ${poe.proofPayload}`);
       console.error(`Suggested Remediation:\n${poe.remediationDiff}`);
     }
@@ -2456,7 +2454,7 @@ To prevent runaway LLM costs during autonomous loop execution, both machines enf
 4. **Hard Execution Ceilings**:
    - **Max Correction Loops**: 5 iterations per task before forced human escalation.
    - **Task Execution Timeout**: 300 seconds maximum runtime.
-   - **Phase Token Ceiling**: 250,000 tokens (approx. $0.75–$1.50) tracked in real-time via `scripts/token-budget-guard.ts`. If breached, autonomous tools halt immediately.
+   - **Phase Token Ceiling**: 250,000 tokens (approx. 0.75–1.50) tracked in real-time via `scripts/token-budget-guard.ts`. If breached, autonomous tools halt immediately.
 
 ---
 

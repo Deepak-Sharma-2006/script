@@ -2,10 +2,17 @@
 
 > **Status**: ACTIVE | Automated Living Index | Reconciled via Team Mesh Engine
 
-Total Registered Documents: **40**
+Total Registered Documents: **47**
 
 | Timestamp | Document Title | File Name | Link |
 | :--- | :--- | :--- | :--- |
+| `2026-10-03 21-38-41` | **ADR: Architecture Decision Record for BHEDAK: Sovereign Autonomous Threat Triangulation Platform** | `2026-10-03_21-38-41_test_decision.md` | [View Document](file:///docs/decisions/2026-10-03_21-38-41_test_decision.md) |
+| `2026-10-03 21-38-40` | **ADR: Architecture Decision Record for MEDGUARD: Real-Time Edge AI Waveform Sepsis Predictor** | `2026-10-03_21-38-40_test_solution_decision.md` | [View Document](file:///docs/decisions/2026-10-03_21-38-40_test_solution_decision.md) |
+| `2026-10-03 21-38-40` | **ADR: Architecture Decision Record for BHEDAK: Sovereign Autonomous Threat Triangulation Platform** | `2026-10-03_21-38-40_test_decision.md` | [View Document](file:///docs/decisions/2026-10-03_21-38-40_test_decision.md) |
+| `2026-10-01 01-15-06` | **ADR: Architecture Decision Record for TRUSTCORE: Sovereign Decentralized Smart Contract Protocol** | `2026-10-01_01-15-06_sih_2026_satellite_fire_early_warning_decision.md` | [View Document](file:///docs/decisions/2026-10-01_01-15-06_sih_2026_satellite_fire_early_warning_decision.md) |
+| `2026-10-01 01-14-22` | **ADR: Architecture Decision Record for BHEDAK: Sovereign Autonomous Threat Triangulation Platform** | `2026-10-01_01-14-22_test_decision.md` | [View Document](file:///docs/decisions/2026-10-01_01-14-22_test_decision.md) |
+| `2026-10-01 01-14-21` | **ADR: Architecture Decision Record for MEDGUARD: Real-Time Edge AI Waveform Sepsis Predictor** | `2026-10-01_01-14-21_test_solution_decision.md` | [View Document](file:///docs/decisions/2026-10-01_01-14-21_test_solution_decision.md) |
+| `2026-10-01 01-14-21` | **ADR: Architecture Decision Record for BHEDAK: Sovereign Autonomous Threat Triangulation Platform** | `2026-10-01_01-14-21_test_decision.md` | [View Document](file:///docs/decisions/2026-10-01_01-14-21_test_decision.md) |
 | `2026-10-01 00-32-23` | **ADR: Architecture Decision Record for TRUSTCORE: Sovereign Decentralized Smart Contract Protocol** | `2026-10-01_00-32-23_sih_2026_satellite_fire_early_warning_decision.md` | [View Document](file:///docs/decisions/2026-10-01_00-32-23_sih_2026_satellite_fire_early_warning_decision.md) |
 | `2026-10-01 00-29-19` | **ADR: Architecture Decision Record for TRUSTCORE: Sovereign Decentralized Smart Contract Protocol** | `2026-10-01_00-29-19_sih_2026_satellite_fire_early_warning_decision.md` | [View Document](file:///docs/decisions/2026-10-01_00-29-19_sih_2026_satellite_fire_early_warning_decision.md) |
 | `2026-09-30 22-50-49` | **ADR: Architecture Decision Record for TRUSTCORE: Sovereign Decentralized Smart Contract Protocol** | `2026-09-30_22-50-49_sih_2026_satellite_fire_early_warning_decision.md` | [View Document](file:///docs/decisions/2026-09-30_22-50-49_sih_2026_satellite_fire_early_warning_decision.md) |

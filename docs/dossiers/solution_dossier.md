@@ -110,9 +110,9 @@ All metrics reflect rigorous empirical validation under peak stress-load simulat
 
 | Metric / Financial Dimension | Baseline Model (10k reqs) | Scaling Model (100k reqs) | Enterprise Model (1M reqs) |
 | :--- | :--- | :--- | :--- |
-| **Total Cost per 1,000 Queries** | **$0.3210** | **$0.3210** | **$0.3210** |
-| **Monthly Infrastructure COGS** | $43.03 | $71.92 | $360.82 |
-| **Target Subscription / Seat** | **$11.61 / mo** | **$11.61 / mo** | **Volume Tiered** |
+| **Total Cost per 1,000 Queries** | **0.3210 USD** | **0.3210 USD** | **0.3210 USD** |
+| **Monthly Infrastructure COGS** | 43.03 USD | 71.92 USD | 360.82 USD |
+| **Target Subscription / Seat** | **11.61 USD / mo** | **11.61 USD / mo** | **Volume Tiered** |
 | **Software Gross Margin Target** | **97.2% (High Margin)**| **97.2% (Healthy)** | **> 85% (Scale Advantage)** |
 | **Unit Economics Feasibility** | **VERIFIED SUSTAINABLE** | **VERIFIED PROFITABLE** | **COMMERCIALLY DEFENSIVE** |
 

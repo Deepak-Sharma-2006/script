@@ -69,6 +69,41 @@ def test_format_guard_sycophancy_scanner():
     assert len(res_bad["flagged_phrases"]) > 0
 
 
+def test_format_guard_latex_scanner():
+    # 1. Prohibited block LaTeX
+    bad_block = "The joint loss is $$L_{total} = L_{focal} + 0.5 L_{dice}$$ across batches."
+    res_block = FormatGuard.scan_latex(bad_block)
+    assert res_block["violation"] is True
+    assert any(v["type"] == "RAW_LATEX_BLOCK" for v in res_block["violations"])
+
+    # 2. Prohibited inline LaTeX
+    bad_inline = "Weights are calculated with $\\beta = 0.9999$ for effective samples."
+    res_inline = FormatGuard.scan_latex(bad_inline)
+    assert res_inline["violation"] is True
+    assert any(v["type"] == "RAW_LATEX_INLINE" for v in res_inline["violations"])
+
+    # 3. Prohibited LaTeX commands
+    bad_cmd = "Using \\mathcal{L} and \\frac{1}{2} in prose."
+    res_cmd = FormatGuard.scan_latex(bad_cmd)
+    assert res_cmd["violation"] is True
+
+    # 4. Valid clean Unicode math
+    clean_unicode = "The joint loss is L_total = L_CB-Focal + 0.5 × L_SoftDice, where β = 0.9999 and WCAER ≤ 15.0%."
+    res_clean = FormatGuard.scan_latex(clean_unicode)
+    assert res_clean["violation"] is False
+    assert len(res_clean["violations"]) == 0
+
+    # 5. Currency must NOT be flagged
+    currency_text = "Instance costs $0.736 per hour, total cost is $50 to $100."
+    res_curr = FormatGuard.scan_latex(currency_text)
+    assert res_curr["violation"] is False
+
+    # 6. Fenced code blocks containing LaTeX/math must NOT be flagged
+    code_block = "Here is an example:\n```latex\n\\mathcal{L} = \\frac{1}{2}\n```\n"
+    res_code = FormatGuard.scan_latex(code_block)
+    assert res_code["violation"] is False
+
+
 def test_squad_attestation_lifecycle(tmp_path):
     receipt = SquadAttestor.record_attestation(
         prompt="Test prompt for tiered architecture verification",
@@ -359,7 +394,7 @@ def test_active_kernel_pre_and_post_gates():
 
     # 2. Test domain invariant code violation
     violation_code = 'msg.sender.call{value: 100}(""); balances[msg.sender] = 0;'
-    res_domain = ActiveKernel.pre_execute_gate("execute_swap", file_content=violation_code)
+    res_domain = ActiveKernel.pre_execute_gate("execute_swap", file_content=violation_code, domain="blockchain")
     # Active domain is blockchain
     assert res_domain["permitted"] is False
     assert "DomainGate" in res_domain["gate"]
@@ -369,4 +404,122 @@ def test_active_kernel_pre_and_post_gates():
     res_ok = ActiveKernel.pre_execute_gate("echo test")
     # If not in lockdown or if action is allowed
     assert "activated_skills" in res_ok
+
+
+def test_active_kernel_destructive_command_escalation():
+    """Asserts that destructive shell commands mandate operator approval (ESCALATE)."""
+    # 1. rm -rf
+    res_rm = ActiveKernel.pre_execute_gate("rm -rf /var/data/models")
+    assert res_rm["permitted"] is False
+    assert res_rm["action"] == "ESCALATE"
+    assert res_rm["status"] == "REJECTED_REQUIRES_OPERATOR_APPROVAL"
+    assert "destructive_action" in res_rm
+    assert "escalation_prompt" in res_rm
+
+    # 2. DROP TABLE
+    res_drop = ActiveKernel.pre_execute_gate("psql -c 'DROP TABLE production_users;'")
+    assert res_drop["permitted"] is False
+    assert res_drop["action"] == "ESCALATE"
+    assert res_drop["status"] == "REJECTED_REQUIRES_OPERATOR_APPROVAL"
+
+    # 3. terraform destroy
+    res_tf = ActiveKernel.pre_execute_gate("terraform destroy --auto-approve")
+    assert res_tf["permitted"] is False
+    assert res_tf["action"] == "ESCALATE"
+
+    # 4. Explicit operator approval bypasses escalation
+    res_approved = ActiveKernel.pre_execute_gate("rm -rf /var/data/models --operator-approved")
+    assert res_approved["permitted"] is True
+    assert res_approved["action"] == "PERMIT"
+    assert res_approved["status"] == "APPROVED"
+
+
+def test_active_kernel_output_transformation_and_diagnostic_guidance():
+    """Asserts Layer 3 Context Steering truncates verbose logs and injects positive hints."""
+    # 1. Output truncation on > 35 lines
+    long_output = "\n".join([f"Processing log chunk #{i}..." for i in range(60)])
+    transformed = ActiveKernel.transform_output(long_output, exit_code=0, max_lines=35)
+    assert "[... TRUNCATED" in transformed
+    assert "LINES OF VERBOSE HARNESS LOGS ...]" in transformed
+    assert "Processing log chunk #0..." in transformed
+    assert "Processing log chunk #59..." in transformed
+
+    # 2. Positive prompt injection on non-zero exit code
+    failing_output = "ModuleNotFoundError: No module named 'scipy'"
+    with_hints = ActiveKernel.transform_output(failing_output, exit_code=1)
+    assert "[HARNESS POSITIVE DIAGNOSTIC GUIDANCE]" in with_hints
+    assert "FAILED (Exit Code 1)" in with_hints
+    assert "zero-ghost package invariant" in with_hints
+
+
+def test_active_kernel_in_flight_verification():
+    """Asserts Layer 4 DeepCode In-Flight Verification."""
+    # 1. Python syntax error detection
+    bad_py = "def broken_func(\n    return 42"
+    res_py = ActiveKernel.verify_in_flight("test_script.py", bad_py)
+    assert res_py["passed"] is False
+    assert res_py["violations_count"] > 0
+    assert res_py["violations"][0]["type"] == "PYTHON_SYNTAX_ERROR"
+
+    # 2. Clean Python syntax passes
+    clean_py = "def clean_func():\n    return 42\n"
+    res_clean = ActiveKernel.verify_in_flight("clean_script.py", clean_py)
+    assert res_clean["passed"] is True
+
+    # 3. Raw LaTeX delimiter detection in markdown
+    bad_md = r"The loss function is $$\mathcal{L}_{total}$$."
+    res_md = ActiveKernel.verify_in_flight("design_doc.md", bad_md)
+    assert res_md["passed"] is False
+    assert any(v["type"] == "RawLaTeXDelimiter" for v in res_md["violations"])
+
+
+def test_continual_evolution_staging_and_operator_notification():
+    """Asserts Layer 5 Continual Evolution recurrence gating and staged patch creation."""
+    from scripts.orchestrator.continual_evolution import EvolutionEngine
+
+    test_sig = f"test_sig_{int(time.time())}"
+    
+    # First occurrence of non-critical signal: should NOT stage immediately
+    res1 = EvolutionEngine.record_failure_signal(
+        signature=test_sig,
+        category="NonCriticalFlake",
+        description="Minor transient latency spike",
+        remediation="Optimize query",
+        domain="ai_ml",
+    )
+    assert res1["occurrences"] == 1
+    assert res1["staged"] is False
+
+    # Second occurrence: meets recurrence threshold (count >= 2) -> STAGES patch
+    res2 = EvolutionEngine.record_failure_signal(
+        signature=test_sig,
+        category="NonCriticalFlake",
+        description="Minor transient latency spike",
+        remediation="Optimize query",
+        domain="ai_ml",
+    )
+    assert res2["occurrences"] == 2
+    assert res2["staged"] is True
+    assert "patch_id" in res2
+    assert "operator_notification" in res2
+    assert "AUTOMATED STAGED EVOLUTION VERIFICATION REQUEST" in res2["operator_notification"]
+
+    # Reject/Dismiss patch
+    dismiss_res = EvolutionEngine.reject_patch(res2["patch_id"], reason="Test assertion cleanup")
+    assert dismiss_res["success"] is True
+    assert dismiss_res["status"] == "DISMISSED"
+
+
+def test_active_kernel_research_intent_check():
+    """Asserts Pre-Flight Research Interceptor triggers on specialized literature/benchmarks."""
+    # 1. Triggers detected
+    res_trigger = ActiveKernel.check_research_intent("Review SOTA papers on CVPR and Nature for AqUavplant benchmark")
+    assert res_trigger["requires_research"] is True
+    assert res_trigger["persona_to_activate"] == "Deep Research Specialist"
+    assert "cvpr" in res_trigger["triggers_detected"]
+    assert "aquavplant" in res_trigger["triggers_detected"]
+
+    # 2. Ordinary execution prompt does not trigger
+    res_normal = ActiveKernel.check_research_intent("format this string and print to stdout")
+    assert res_normal["requires_research"] is False
 

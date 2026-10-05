@@ -32,6 +32,7 @@ htmlcov/
 # Operator working notes & scratchpads
 scripts_transcripts*
 How to Read Code*
+scratch/
 
 # Specs generated presentation decks, rendered slide images, and scratch test artifacts
 specs/presentations/deck_*
@@ -68,8 +69,15 @@ docs/sih_solutions/
 .agents/state/*.json
 !.agents/state/.gitkeep
 .agents/state/locks/
+.agents/state/evolution_patches/
+.agents/state/telemetry_stream.jsonl
 .agents/audit_trail.log
 .agents/security/pentest-report.json
+
+# Local experiment pipelines & notebooks (kept locally, excluded from clean template)
+notebook_instance_types.json
+scripts/hmt_breakthrough_pipeline.py
+tests/test_hmt_breakthrough_pipeline.py
 
 # Local problem session artifacts, research, walkthroughs, and specs (template clean)
 docs/plans/2026*

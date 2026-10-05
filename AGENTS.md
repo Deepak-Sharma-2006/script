@@ -124,8 +124,8 @@
 3. **Executive Visual Design Hierarchy**:
    - Documentation must be styled as C-level Enterprise Engineering Deliverables: sleek typography, executive summary cards, comparative capability matrix tables, verified empirical benchmarks, and clear operational commands.
 4. **Mandatory Zero-Raw-LaTeX Invariant**:
-   - All human-facing and living markdown documents across the entire workspace (including `implementation_plan.md`, `walkthrough.md`, phase dossiers, and all files under `docs/`) are strictly prohibited from using raw LaTeX math delimiters (single-dollar or double-dollar math syntax).
-   - All mathematical expressions, bounds, percentages, and formulas must use clean, universally rendering Unicode typography (`≥`, `≤`, `×`, `≠`, `→`, `≈`, `±`, `²`, `³`, `α`, `β`, `Δt`) or fenced code blocks. Verified fail-closed by `npm run lint:markdown`.
+   - All human-facing and living markdown documents across the entire workspace (including `implementation_plan.md`, `walkthrough.md`, phase dossiers, and all files under `docs/`), **AS WELL AS ALL INTERACTIVE CHAT RESPONSES IN THE IDE/CLI**, are strictly prohibited from using raw LaTeX math delimiters (single-dollar or double-dollar math syntax) or raw LaTeX commands (`\mathcal`, `\frac`, `\text`, `\sin`, `\times`, etc.).
+   - All mathematical expressions, bounds, percentages, and formulas must use clean, universally rendering Unicode typography (`≥`, `≤`, `×`, `≠`, `→`, `≈`, `±`, `²`, `³`, `α`, `β`, `Δt`, `∑`, `∏`) or fenced code blocks. Verified fail-closed by `npm run lint:markdown` and `FormatGuard.audit_response`.
 
 ---
 

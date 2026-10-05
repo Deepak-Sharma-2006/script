@@ -2,10 +2,13 @@
 
 > **Status**: ACTIVE | Automated Living Index | Reconciled via Team Mesh Engine
 
-Total Registered Documents: **26**
+Total Registered Documents: **29**
 
 | Timestamp | Document Title | File Name | Link |
 | :--- | :--- | :--- | :--- |
+| `2026-10-01 01-15-09` | **RFC: TELEMETRY_TEST Contract Specification** | `2026-10-01_01-15-09_telemetry_test_specification.md` | [View Document](file:///docs/specifications/2026-10-01_01-15-09_telemetry_test_specification.md) |
+| `2026-10-01 01-15-08` | **RFC: BIOMETRIC_AUDIT Contract Specification** | `2026-10-01_01-15-08_biometric_audit_specification.md` | [View Document](file:///docs/specifications/2026-10-01_01-15-08_biometric_audit_specification.md) |
+| `2026-10-01 01-14-22` | **RFC: TEST_VAULT Contract Specification** | `2026-10-01_01-14-22_test_vault_specification.md` | [View Document](file:///docs/specifications/2026-10-01_01-14-22_test_vault_specification.md) |
 | `2026-09-30 22-50-52` | **RFC: TELEMETRY_TEST Contract Specification** | `2026-09-30_22-50-52_telemetry_test_specification.md` | [View Document](file:///docs/specifications/2026-09-30_22-50-52_telemetry_test_specification.md) |
 | `2026-09-30 22-50-51` | **RFC: BIOMETRIC_AUDIT Contract Specification** | `2026-09-30_22-50-51_biometric_audit_specification.md` | [View Document](file:///docs/specifications/2026-09-30_22-50-51_biometric_audit_specification.md) |
 | `2026-09-30 22-50-46` | **RFC: TEST_VAULT Contract Specification** | `2026-09-30_22-50-46_test_vault_specification.md` | [View Document](file:///docs/specifications/2026-09-30_22-50-46_test_vault_specification.md) |

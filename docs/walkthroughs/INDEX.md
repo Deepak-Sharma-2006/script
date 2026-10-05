@@ -2,10 +2,16 @@
 
 > **Status**: ACTIVE | Automated Living Index | Reconciled via Team Mesh Engine
 
-Total Registered Documents: **12**
+Total Registered Documents: **18**
 
 | Timestamp | Document Title | File Name | Link |
 | :--- | :--- | :--- | :--- |
+| `2026-10-03 21-58-36` | **Enterprise 7-Layer Agentic Harness Upgrade Walkthrough** | `2026-10-03_21-58-36_enterprise_7_layer_agentic_walkthrough.md` | [View Document](file:///docs/walkthroughs/2026-10-03_21-58-36_enterprise_7_layer_agentic_walkthrough.md) |
+| `2026-10-01 23-45-01` | **Kaggle Execution Runbook: Breakthrough HMT-Net Architecture (Optimized)** | `2026-10-01_23-45-01_kaggle_execution_runbook_vram_purge_batch8_walkthrough.md` | [View Document](file:///docs/walkthroughs/2026-10-01_23-45-01_kaggle_execution_runbook_vram_purge_batch8_walkthrough.md) |
+| `2026-10-01 23-40-58` | **Kaggle Execution Runbook: Breakthrough HMT-Net Architecture (Optimized)** | `2026-10-01_23-40-58_kaggle_execution_runbook_zeroalloc_accum_walkthrough.md` | [View Document](file:///docs/walkthroughs/2026-10-01_23-40-58_kaggle_execution_runbook_zeroalloc_accum_walkthrough.md) |
+| `2026-10-01 23-23-35` | **Kaggle Execution Runbook: Breakthrough HMT-Net Architecture (Optimized)** | `2026-10-01_23-23-35_kaggle_execution_runbook_iteration2_reset_walkthrough.md` | [View Document](file:///docs/walkthroughs/2026-10-01_23-23-35_kaggle_execution_runbook_iteration2_reset_walkthrough.md) |
+| `2026-10-01 23-12-44` | **Kaggle Execution Runbook: Breakthrough HMT-Net Architecture (Optimized)** | `2026-10-01_23-12-44_kaggle_execution_runbook_optimized_walkthrough.md` | [View Document](file:///docs/walkthroughs/2026-10-01_23-12-44_kaggle_execution_runbook_optimized_walkthrough.md) |
+| `2026-10-01 01-15-06` | **Walkthrough for Audit Trail** | `2026-10-01_01-15-06_audit_trail_walkthrough.md` | [View Document](file:///docs/walkthroughs/2026-10-01_01-15-06_audit_trail_walkthrough.md) |
 | `2026-09-30 22-50-49` | **Walkthrough for Audit Trail** | `2026-09-30_22-50-49_audit_trail_walkthrough.md` | [View Document](file:///docs/walkthroughs/2026-09-30_22-50-49_audit_trail_walkthrough.md) |
 | `2026-09-30 22-04-23` | **Walkthrough: Universal Domain & Multi-Subdomain Enterprise Specialization Upgrade** | `2026-09-30_22-04-23_universal_domain_multi_subdomain_walkthrough.md` | [View Document](file:///docs/walkthroughs/2026-09-30_22-04-23_universal_domain_multi_subdomain_walkthrough.md) |
 | `2026-09-30 22-04-23` | **Walkthrough for Audit Trail** | `2026-09-30_22-04-23_audit_trail_walkthrough.md` | [View Document](file:///docs/walkthroughs/2026-09-30_22-04-23_audit_trail_walkthrough.md) |

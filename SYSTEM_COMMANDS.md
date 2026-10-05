@@ -248,4 +248,30 @@ npm run harness:active -- --status --hardware
 npm run harness:active -- --intercept "python match.py --dataset 3.8M_full_dataset"
 ```
 
+---
+
+## 11. Continual Self-Evolution & 7-Layer Agentic Harness
+
+```bash
+# 1. Inspect Active Harness 7 Pillars & Domain Health
+npm run harness:active -- --status
+npm run harness:active -- --status --hardware
+
+# 2. Intercept Shell Commands (Safety Governance: ESCALATE on destructive commands)
+npm run harness:active -- --intercept "rm -rf /var/data"
+npm run harness:active -- --intercept "rm -rf /var/data --operator-approved"
+
+# 3. Continual Evolution Engine: List Staged Patches Awaiting Operator Verification
+npm run evolution:list
+
+# 4. Continual Evolution Engine: Review & Approve Staged Patch
+npm run evolution:approve -- <patch_id>
+
+# 5. Continual Evolution Engine: Dismiss & Reject Staged Patch
+npm run evolution:reject -- <patch_id>
+
+# 6. Continual Evolution Engine: Run Trajectory Distillation
+npm run evolution:distill
+```
+
 

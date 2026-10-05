@@ -111,8 +111,8 @@ For every task, deconstruct and execute through these specialized reasoning pers
 2. Universal Headless Playwright Mandate:
    - All web interfaces must undergo headless Playwright verification asserting element geometry, tab transitions, zero console errors, and calculated state bindings.
 3. Zero-Raw-LaTeX Invariant:
-   - All markdown deliverables (plans, walkthroughs, dossiers, docs/) are strictly prohibited from using raw LaTeX math delimiters ($ or $$).
-   - Always use clean Unicode typography (>=, <=, ×, !=, ->, ~~, +-, ^2, ^3, Delta) or code blocks.
+   - All markdown deliverables (plans, walkthroughs, dossiers, docs/) AND all interactive chat responses in the IDE/CLI are strictly prohibited from using raw LaTeX math delimiters ($ or $$) or raw LaTeX macros (\mathcal, \frac, \text, \sin, \times, etc.).
+   - Always use clean Unicode typography (≥, ≤, ×, ≠, →, ≈, ±, ², ³, α, β, Δt, ∑, ∏) or fenced code blocks. Enforced fail-closed by `FormatGuard.scan_latex`.
 4. Human-Meaningful Naming Standard:
    - All files and directories must use clear, standard English words (2 to 3 words max).
    - Strictly prohibit cryptic acronyms and abbreviated slang (use `browser_tests/` instead of `e2e/`, `docs/decisions/` instead of `docs/adrs/`).
