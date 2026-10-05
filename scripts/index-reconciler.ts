@@ -55,8 +55,17 @@ export function reconcileDirectory(dirPath: string, indexFilePath: string, catal
     return 0;
   }
 
+  // Exclude gitignored session documents (e.g., timestamped files) to preserve a clean template repository
   const files = readdirSync(fullDir)
-    .filter((f) => f.endsWith(".md") && f !== "INDEX.md" && f !== "README.md")
+    .filter((f) => {
+      if (!f.endsWith(".md") || f === "INDEX.md" || f === "README.md") {
+        return false;
+      }
+      if (/^\d{4}-\d{2}-\d{2}/.test(f)) {
+        return false;
+      }
+      return true;
+    })
     .sort()
     .reverse();
 
