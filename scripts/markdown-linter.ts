@@ -87,7 +87,7 @@ export class MarkdownLinter {
       }
 
       // 3. Check for fragile local image embeds
-      const imageMatch = line.match(/!\[.*?\]\((?!(?:https?:\/\/|\/assets\/))(.*?)\)/);
+      const imageMatch = line.match(/!\[[^\]]*\]\((?!(?:https?:\/\/|\/assets\/))(.*?)\)/);
       if (imageMatch) {
         violations.push({
           file: filePath,

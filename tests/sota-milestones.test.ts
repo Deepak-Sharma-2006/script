@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { compileCatalog, getRegistryStats, searchRegistry, getSkill, installSkill } from "../scripts/catalog-compiler.ts";
 import { handleToolCall, TOOLS } from "../scripts/mcp-server.ts";
@@ -204,6 +204,9 @@ describe("Milestones 1 - 6: SOTA Agentic Upgrades Test Suite", () => {
 
   it("Milestone 6.2: synthesizeRegressionFixture generates executable test and updates INDEX.json", () => {
     const fixtureName = "concurrency_race_condition";
+    const indexPath = join(process.cwd(), "tests/regression/INDEX.json");
+    const prevIndexContent = existsSync(indexPath) ? readFileSync(indexPath, "utf-8") : "[]";
+
     const res = synthesizeRegressionFixture(
       fixtureName,
       { locked: false, owner: "none" },
@@ -217,6 +220,12 @@ describe("Milestones 1 - 6: SOTA Agentic Upgrades Test Suite", () => {
     const content = readFileSync(res.fixturePath, "utf-8");
     assert.ok(content.includes("Auto-Generated Regression Fixture"), "Fixture should have header");
     assert.ok(content.includes("assert.deepStrictEqual"), "Fixture must assert equality");
+
+    // Clean up test fixture and restore index to maintain clean git status
+    if (existsSync(res.fixturePath)) {
+      unlinkSync(res.fixturePath);
+    }
+    writeFileSync(indexPath, prevIndexContent, "utf-8");
   });
 
   it("Milestone 6.3: getJitNegativeConstraints retrieves negative constraints from Memory Vault", () => {

@@ -1,8 +1,9 @@
-# Antigravity Enterprise — Master Command Cheat Sheet
+# Antigravity Enterprise — Master Command Cheat Sheet & Developer Runbook
 
-> **Executive Reference**: Consolidated 6-Super-Feature Command Hierarchy.  
-> **Status**: 100% Operational & Production Hardened | 99/99 Python suites | 34/34 Node unit suites | 6/6 Behavioral Evals | Zero Stale Commands  
+> **Executive Reference**: Consolidated 6-Super-Feature Command Hierarchy & Developer Runbook.  
+> **Status**: 100% Operational & Production Hardened | 99/99 Python suites | 40/40 Node unit suites | 6/6 Behavioral Evals | Zero Stale Commands  
 > **Compliance**: Zero-Raw-LaTeX Invariant (Pure Unicode Math), Zero-Secret Shield, Rule 14 3-Tier Architecture  
+> **Architectural Overview**: For the complete system architecture, 18-repo SOTA benchmarks, and design pillars, refer to [README.md](file:///d:/BE_Research/README.md).  
 
 ---
 
