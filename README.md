@@ -73,33 +73,6 @@ To eliminate command sprawl and cognitive overload, the entire platform is organ
 
 ---
 
-## 🏛️ 18/18 Upstream SOTA Ingestion Architecture
-
-Every capability analyzed across the 18 industry-leading agentic repositories is **100% delivered, physically present, and operational** in this workspace:
-
-| # | Upstream Repository | Delivered In-Tree Mechanism | Target Implementation Path | Operational Status |
-|---|---|---|---|:---:|
-| 1 | `All-Hands-AI/OpenHands` (81.1k) | Ephemeral Container & Process Jail Sandbox | [scripts/sandbox-runner.ts](file:///d:/BE_Research/scripts/sandbox-runner.ts) | 🟢 **100% Operational** |
-| 2 | `geekan/MetaGPT` (70.7k) | SOP Schemas (PRD, Architecture, Sequence) | [templates/sops/sop-validator.ts](file:///d:/BE_Research/templates/sops/sop-validator.ts) | 🟢 **100% Operational** |
-| 3 | `cline/cline` (69.9k) | AST Diff Streaming & Permission Checkpoints | [scripts/diff-streamer.ts](file:///d:/BE_Research/scripts/diff-streamer.ts) | 🟢 **100% Operational** |
-| 4 | `microsoft/autogen - AG2` (61.3k) | Asynchronous GroupChat & Dynamic Speaker Routing | [scripts/orchestrator/groupchat.py](file:///d:/BE_Research/scripts/orchestrator/groupchat.py) | 🟢 **100% Operational** |
-| 5 | `crewAIInc/crewAI` (59.4k) | Deterministic Task DAG with Output Validation | [scripts/orchestrator/task_dag_runner.py](file:///d:/BE_Research/scripts/orchestrator/task_dag_runner.py) | 🟢 **100% Operational** |
-| 6 | `RooVetGit/Roo-Code` (50.0k) | Role-Based Mode Tool Whitelist Sandboxing | [.agents/modes/](file:///d:/BE_Research/.agents/modes/) (`architect.json`, `sdet.json`) | 🟢 **100% Operational** |
-| 7 | `Aider-AI/aider` (49.4k) | Tree-Sitter AST Repo Map (<1,500 token ceiling) | [scripts/repo-map-generator.ts](file:///d:/BE_Research/scripts/repo-map-generator.ts) | 🟢 **100% Operational** |
-| 8 | `sickn33/AAS Core` (47.1k) | 2,922 Skill SQLite FTS5 Registry & Stdio MCP | [scripts/mcp-server.ts](file:///d:/BE_Research/scripts/mcp-server.ts) & [workbench-server.ts](file:///d:/BE_Research/scripts/workbench-server.ts) | 🟢 **100% Operational** |
-| 9 | `langchain-ai/langgraph` (42.7k) | Cyclic State Graph with SQLite Rollback | [scripts/orchestrator/state_graph.py](file:///d:/BE_Research/scripts/orchestrator/state_graph.py) | 🟢 **100% Operational** |
-| 10 | `agno-agi/agno` (42.6k) | SQLite FTS5 Memory Vault with Domain Boosting | [scripts/memory-vault.ts](file:///d:/BE_Research/scripts/memory-vault.ts) | 🟢 **100% Operational** |
-| 11 | `VoltAgent/awesome-skills` (35.2k) | Universal Cross-Harness Instruction Matrix | [UNIVERSAL_AGENT_INSTRUCTIONS.md](file:///d:/BE_Research/UNIVERSAL_AGENT_INSTRUCTIONS.md) | 🟢 **100% Operational** |
-| 12 | `assafelovic/gpt-researcher` (30k) | 4-Angle Multi-Hop Research Triangulator | [scripts/orchestrator/research_triangulator.py](file:///d:/BE_Research/scripts/orchestrator/research_triangulator.py) | 🟢 **100% Operational** |
-| 13 | `promptfoo/promptfoo` (25.7k) | Adversarial Suite Runner & Pentesting Gates | [scripts/adversarial-suite-runner.ts](file:///d:/BE_Research/scripts/adversarial-suite-runner.ts) | 🟢 **100% Operational** |
-| 14 | `SWE-agent/SWE-agent` (20.5k) | ACI Pre-Commit Syntax & Bracket Validation | [scripts/aci-guard.ts](file:///d:/BE_Research/scripts/aci-guard.ts) | 🟢 **100% Operational** |
-| 15 | `confident-ai/deepeval` (18.6k) | Deterministic Behavioral Assertions & SLA Cards | [.agents/harness/eval-runner.ts](file:///d:/BE_Research/.agents/harness/eval-runner.ts) | 🟢 **100% Operational** |
-| 16 | `camel-ai/camel` (17.7k) | 6+1 Agile Persona Inception Prompting | [scripts/orchestrator/squad_orchestrator.py](file:///d:/BE_Research/scripts/orchestrator/squad_orchestrator.py) | 🟢 **100% Operational** |
-| 17 | `e2b-dev/E2B` (14.2k) | Fast-Boot MicroVM Runner (<200ms local mock) | [scripts/sandbox-e2b.ts](file:///d:/BE_Research/scripts/sandbox-e2b.ts) | 🟢 **100% Operational** |
-| 18 | `agent-skills-standard` (0.6k) | Skill Spec Schema & SHA-256 Drift Shield | [scripts/skill-validator.ts](file:///d:/BE_Research/scripts/skill-validator.ts) | 🟢 **100% Operational** |
-
----
-
 ## 🔄 Universal Cross-Harness Interoperability
 
 All agent instruction surfaces are generated from a single, authoritative root contract: [UNIVERSAL_AGENT_INSTRUCTIONS.md](file:///d:/BE_Research/UNIVERSAL_AGENT_INSTRUCTIONS.md). This guarantees that every AI assistant adheres to the exact same enterprise standards, zero-secret gates, and architectural constraints:
@@ -386,3 +359,29 @@ npm run workbench
 * **Deterministic TDD**: All code changes are red-first verified before production implementation.
 * **Mutation Survivability**: Code changes must survive AST fault injection with an empirical kill rate ≥ 80.0%.
 * **Zero-Raw-LaTeX Invariant**: All documentation strictly enforces clean Unicode typography (`≥`, `≤`, `×`, `≠`, `→`, `≈`) without broken markdown formulas.
+
+---
+
+## 📚 References & Prior-Art Architecture
+
+This platform synthesizes, adapts, and hardens architectural mechanisms and design patterns pioneered across the open-source autonomous agent ecosystem:
+
+1. **All-Hands-AI/OpenHands** — Ephemeral container and process-jail sandbox isolation ([scripts/sandbox-runner.ts](file:///d:/BE_Research/scripts/sandbox-runner.ts)).
+2. **geekan/MetaGPT** — Standard Operating Procedure (SOP) formal artifact schemas for PRD, architecture, and task graphs ([templates/sops/sop-validator.ts](file:///d:/BE_Research/templates/sops/sop-validator.ts)).
+3. **cline/cline** — AST diff streaming and interactive destructive operation permission checkpoints ([scripts/diff-streamer.ts](file:///d:/BE_Research/scripts/diff-streamer.ts)).
+4. **microsoft/autogen (AG2)** — Asynchronous multi-agent GroupChat manager with dynamic speaker routing ([scripts/orchestrator/groupchat.py](file:///d:/BE_Research/scripts/orchestrator/groupchat.py)).
+5. **crewAIInc/crewAI** — Deterministic task DAG orchestration with output schema validation gates ([scripts/orchestrator/task_dag_runner.py](file:///d:/BE_Research/scripts/orchestrator/task_dag_runner.py)).
+6. **RooVetGit/Roo-Code** — Role-based mode tool-whitelist sandboxing ([.agents/modes/](file:///d:/BE_Research/.agents/modes/)).
+7. **Aider-AI/aider** — Tree-sitter AST monorepo topology mapping under a strict 1,500 token ceiling ([scripts/repo-map-generator.ts](file:///d:/BE_Research/scripts/repo-map-generator.ts)).
+8. **sickn33/AAS Core** — SQLite FTS5 skill index registry and stdio JSON-RPC 2.0 MCP server architecture ([scripts/mcp-server.ts](file:///d:/BE_Research/scripts/mcp-server.ts)).
+9. **langchain-ai/langgraph** — Cyclic state graphs with persistent SQLite rollback checkpoints ([scripts/orchestrator/state_graph.py](file:///d:/BE_Research/scripts/orchestrator/state_graph.py)).
+10. **agno-agi/agno** — SQLite FTS5 Memory Vault with domain-weighted contextual recall ([scripts/memory-vault.ts](file:///d:/BE_Research/scripts/memory-vault.ts)).
+11. **VoltAgent/awesome-skills** — Universal cross-harness instruction synthesis matrix ([UNIVERSAL_AGENT_INSTRUCTIONS.md](file:///d:/BE_Research/UNIVERSAL_AGENT_INSTRUCTIONS.md)).
+12. **assafelovic/gpt-researcher** — 4-angle statutory and competitive research triangulation ([scripts/orchestrator/research_triangulator.py](file:///d:/BE_Research/scripts/orchestrator/research_triangulator.py)).
+13. **promptfoo/promptfoo** — Automated adversarial black-box test suites and LLM vulnerability probes ([scripts/adversarial-suite-runner.ts](file:///d:/BE_Research/scripts/adversarial-suite-runner.ts)).
+14. **SWE-agent/SWE-agent** — Agent-Computer Interface (ACI) pre-commit syntax validation and guard rails ([scripts/aci-guard.ts](file:///d:/BE_Research/scripts/aci-guard.ts)).
+15. **confident-ai/deepeval** — Deterministic behavioral contract assertion scorecards ([.agents/harness/eval-runner.ts](file:///d:/BE_Research/.agents/harness/eval-runner.ts)).
+16. **camel-ai/camel** — Communicative agent persona inception prompting ([scripts/orchestrator/squad_orchestrator.py](file:///d:/BE_Research/scripts/orchestrator/squad_orchestrator.py)).
+17. **e2b-dev/E2B** — Fast-boot microVM execution sandboxing with local mock fallbacks ([scripts/sandbox-e2b.ts](file:///d:/BE_Research/scripts/sandbox-e2b.ts)).
+18. **agent-skills-standard** — Standardized skill specification schema and SHA-256 drift baselines ([scripts/skill-validator.ts](file:///d:/BE_Research/scripts/skill-validator.ts)).
+
