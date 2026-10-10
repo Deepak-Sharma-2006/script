@@ -131,8 +131,8 @@ For every task, execute through these specialized operational capabilities:
 ```
 repository_root/
 ├── browser_tests/             # Headless Playwright browser test suites
-├── demo/                      # 8-Hackathon Portfolio repositories (Mode 2)
-│   ├── meta_vr/, fintech_engine/, health_ai/, cybersec_mesh/, etc.
+├── demo/                      # Multi-Project Portfolio repositories (Mode 2)
+│   ├── project_alpha/, project_beta/, etc.
 ├── docs/                      # Living in-repo documentation (6 active catalogs)
 │   ├── architecture/          # Master architecture reference blueprints
 │   ├── audits/                # Diagnostic dossiers and AppSec security audits

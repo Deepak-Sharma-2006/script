@@ -10,10 +10,10 @@
 The entire workspace command surface is consolidated into **6 Unified Master Commands**, eliminating command sprawl:
 
 ```bash
-# 1. WORKSPACE GOVERNANCE KERNEL (Mode, Active Domain, Leases, Universal Sync)
+# 1. WORKSPACE GOVERNANCE KERNEL (Mode, Active Domain, Leases, Runtime Interception)
 npm run governance
 
-# 2. TIERED SKILL & MCP ENGINE (Search 2,922 skills via SQLite FTS5, Materialize & Validate)
+# 2. CURATED SKILL & MCP ENGINE (Search 300 curated skills via SQLite FTS5, Materialize & Validate)
 npm run skill <query>
 
 # 3. TRUE PIPELINE TASK DISPATCH (Autonomous SDLC: Solution Formulation -> TDD Loop -> Presentation Pitch)
@@ -47,7 +47,7 @@ You can trigger the entire agentic pipeline directly from chat with zero manual 
 #
 # Ambient Autonomous Execution Workflow:
 #   1. PromptHygiene extracts domain intent and injects the 4 KB Core Kernel.
-#   2. SkillResolver programmatically cites relevant skills from the 2,922 registry.
+#   2. SkillResolver programmatically cites relevant skills from the 300 curated registry.
 #   3. Direct High-Signal Engineering: Modular task execution via TaskDispatcher (Rule 15, zero in-chat monologues).
 #   4. claude-council 5-perspective hardening is automatically applied to architectural designs.
 #   5. SpecSync automatically mirrors brain artifacts to docs/plans/ and docs/walkthroughs/.
@@ -58,7 +58,7 @@ You can trigger the entire agentic pipeline directly from chat with zero manual 
 
 ## 1. Super-Feature 1: Workspace Governance Kernel (`npm run governance`)
 
-Manages operating modes, domain specializations, distributed lease locks, and cross-harness instruction synchronization.
+Manages operating modes, domain specializations, and distributed lease locks.
 
 ```bash
 # MASTER COMMAND: Inspect Active Mode, Leases, Operator Profile, and Locks
@@ -70,7 +70,7 @@ npm run governance
 # Mode 1: Deep Surge (All 4 Google accounts focused on 1 single project)
 npm run mode:surge
 
-# Mode 2: 8-Hackathon Portfolio Multiplexing (4 runner slots multiplexed across 8 repos)
+# Mode 2: Multi-Project / Portfolio Multiplexing (4 runner slots multiplexed across repos)
 npm run mode:portfolio
 
 # Mode 3: Collaborative Team Mode (LAN Port 4040, 6-technique dossiers, living catalog sync)
@@ -118,23 +118,20 @@ npm run domain:set -- --domain data_engineering --subdomains stream_processing,l
 npm run domain:set -- --domain vertical_applied --subdomains healthtech_informatics,fintech_banking
 
 # ------------------------------------------------------------------------------
-# SUBCOMMANDS: UNIVERSAL HARNESS & RUNTIME INTERCEPTION
+# SUBCOMMANDS: RUNTIME INTERCEPTION KERNEL
 # ------------------------------------------------------------------------------
-# Compile Universal Instructions across Cursor, Claude Code, Windsurf, Copilot, Antigravity
-npm run harness:sync
-
 # Execute Active Interception Kernel (Memory ceilings, O(N²) scale, destructive command guards)
 npm run harness:active
 ```
 
 ---
 
-## 2. Super-Feature 2: Tiered Skill & MCP Engine (`npm run skill`)
+## 2. Super-Feature 2: Curated Skill & MCP Engine (`npm run skill`)
 
-Enables on-demand search and installation across 2,922 skills via SQLite FTS5, stdio MCP serving, and schema drift prevention.
+Enables on-demand search and installation across 300 curated skills via SQLite FTS5, stdio MCP serving, and schema drift prevention.
 
 ```bash
-# MASTER COMMAND: Search Skills across Tier 1 and Tier 2 via SQLite FTS5 (<5ms)
+# MASTER COMMAND: Search Skills via SQLite FTS5 (<5ms)
 npm run skill <query>
 npm run skill docker
 npm run skill "reentrancy guard"
@@ -142,7 +139,7 @@ npm run skill "reentrancy guard"
 # ------------------------------------------------------------------------------
 # SUBCOMMANDS: SKILL REGISTRY & MCP SERVER
 # ------------------------------------------------------------------------------
-# Install / Materialize a Tier 2 Skill into Local .agents/skills/ Workspace
+# Install / Materialize a Skill into Local .agents/skills/ Workspace
 npm run skill:install <skill-name>
 npm run skill:install kubernetes-operator
 
@@ -432,7 +429,7 @@ npm run hypervisor:daemon
 # Mode 1: Deep Surge (Configure 4 Git Worktrees for 4 Accounts on 1 Project)
 npm run mode:surge
 
-# Mode 2: Hackathon Portfolio Dispatcher (Batch dispatch across 8 Hackathons)
+# Mode 2: Portfolio Dispatcher (Batch dispatch across project repositories)
 npm run portfolio:dispatch
 
 # Mode 2 Dry Run: Inspect project queue, tiers, and profile assignments without execution

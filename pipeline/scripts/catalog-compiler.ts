@@ -44,7 +44,11 @@ const REGISTRY_DB_PATH = join(WORKSPACE_ROOT, ".agents/skills/registry.sqlite");
 const CACHE_DIR = join(WORKSPACE_ROOT, ".agents/cache");
 const CACHE_JSON_PATH = join(CACHE_DIR, "skills_catalog.json");
 
+let _cachedDb: DatabaseSync | null = null;
+
 export function getRegistryDatabase(): DatabaseSync {
+  if (_cachedDb) return _cachedDb;
+
   const dir = join(WORKSPACE_ROOT, ".agents/skills");
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
 
@@ -69,7 +73,8 @@ export function getRegistryDatabase(): DatabaseSync {
       id, name, description, tags, category
     );
   `);
-  return db;
+  _cachedDb = db;
+  return _cachedDb;
 }
 
 function parseFrontmatter(content: string): { name?: string; description?: string; tags?: string[]; category?: string; risk?: string } {

@@ -1,6 +1,6 @@
 # ==============================================================================
-# MODE 2: HACKATHON PORTFOLIO BATCH DISPATCHER
-# Multiplexes 4 Google AI Pro accounts across 8 hackathons (17-25 day runway)
+# MODE 2: MULTI-PROJECT / PORTFOLIO BATCH DISPATCHER
+# Multiplexes 4 headless runner slots across multi-project repository portfolios
 # ==============================================================================
 
 param(
@@ -10,12 +10,25 @@ param(
 )
 
 Write-Host "======================================================================" -ForegroundColor Cyan
-Write-Host "  MODE 2: HACKATHON PORTFOLIO DISPATCHER (Task: $Task | Tier: $(if ($Tier -eq 0) { 'ALL' } else { $Tier }))" -ForegroundColor Cyan
+Write-Host "  MODE 2: MULTI-PROJECT / PORTFOLIO DISPATCHER (Task: $Task | Tier: $(if ($Tier -eq 0) { 'ALL' } else { $Tier }))" -ForegroundColor Cyan
 Write-Host "======================================================================" -ForegroundColor Cyan
 
-$ManifestPath = if (Test-Path "pipeline/specs/hackathon_portfolio.json") { "pipeline/specs/hackathon_portfolio.json" } else { "specs/hackathon_portfolio.json" }
-if (-not (Test-Path $ManifestPath)) {
-    Write-Error "Portfolio manifest not found at: $ManifestPath"
+$Candidates = @(
+    "pipeline/specs/portfolio.json",
+    "specs/portfolio.json",
+    "pipeline/specs/hackathon_portfolio.json",
+    "specs/hackathon_portfolio.json"
+)
+$ManifestPath = $null
+foreach ($c in $Candidates) {
+    if (Test-Path $c) {
+        $ManifestPath = $c
+        break
+    }
+}
+
+if (-not $ManifestPath) {
+    Write-Error "Portfolio manifest not found (checked: $($Candidates -join ', '))"
     exit 1
 }
 

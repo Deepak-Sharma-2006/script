@@ -1,12 +1,12 @@
 # Universal Autonomous Agentic Engineering Platform
 
-> **An enterprise-grade, agent-agnostic multi-agent SDLC orchestration platform. Engineered under the True Pipeline Triple-Mode Architecture (Deep Surge, 8-Hackathon Portfolio Multiplexing, Collaborative Team Mode) with closed-loop TDD self-healing, AST mutation testing, and deterministic task dispatching.**
+> **An enterprise-grade, agent-agnostic multi-agent SDLC orchestration platform. Engineered under the True Pipeline Triple-Mode Architecture (Deep Surge, Multi-Project / Portfolio Multiplexing, Collaborative Team Mode) with closed-loop TDD self-healing, AST mutation testing, and deterministic task dispatching.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-v20%2B%20%7C%20v24%2B-339933.svg?logo=node.js)](https://nodejs.org)
 [![Python](https://img.shields.io/badge/Python-3.11%2B%20%7C%203.12%2B-3776AB.svg?logo=python)](https://python.org)
-[![Universal Harness](https://img.shields.io/badge/Universal-Claude%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Copilot%20%7C%20Antigravity-blueviolet.svg)](UNIVERSAL_AGENT_INSTRUCTIONS.md)
-[![Operational Verification](https://img.shields.io/badge/Behavioral%20Contracts-100%25%20Verified%20(6%2F6)-success.svg)](pipeline/specs/benchmark_metrics.json)
+[![Universal Instructions](https://img.shields.io/badge/Instructions-Claude%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Copilot%20%7C%20Antigravity-blueviolet.svg)](UNIVERSAL_AGENT_INSTRUCTIONS.md)
+[![Operational Verification](https://img.shields.io/badge/Behavioral%20Contracts-100%25%20Verified%20(6%2F6)-success.svg)](specs/benchmark_metrics.json)
 [![Self-Healing Score](https://img.shields.io/badge/Closed--Loop%20Self--Healing-95.9%25-brightgreen.svg)](pipeline/scripts/self-healing-engine.ts)
 
 ---
@@ -29,19 +29,19 @@ To eliminate command sprawl and cognitive overload, the entire platform is organ
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 
  ┌──────────────────────────────────────────────┐  ┌──────────────────────────────────────────────┐
- │ 1. WORKSPACE GOVERNANCE KERNEL               │  │ 2. TIERED SKILL & MCP ENGINE                 │
+ │ 1. WORKSPACE GOVERNANCE KERNEL               │  │ 2. CURATED SKILL & MCP ENGINE                │
  │ Master: npm run governance                   │  │ Master: npm run skill <query>                │
- │ • Operating Modes: Surge, Portfolio, Team     │  │ • 300 In-Tree + 2,622 SQLite FTS5 Registry   │
+ │ • Operating Modes: Surge, Portfolio, Team     │  │ • 300 Curated Production Skills              │
  │ • Domain Controller: 8 Domains / 46 Subdoms  │  │ • Local JSON-RPC 2.0 Stdio MCP Server       │
  │ • Distributed Lease Locks & Role Handoff     │  │ • JIT Skill Resolution & Drift Shield        │
- │ • Universal Sync: Cursor/Claude/Agy/Copilot  │  │ • Lazy On-Demand Materialization             │
+ │ • Active Interception Runtime Guards         │  │ • Sub-5ms SQLite FTS5 Full-Text Search       │
  └──────────────────────┬───────────────────────┘  └──────────────────────┬───────────────────────┘
                         │                                                 │
                         ▼                                                 ▼
  ┌──────────────────────────────────────────────┐  ┌──────────────────────────────────────────────┐
  │ 3. TRUE PIPELINE TASK DISPATCH               │  │ 4. CLOSED-LOOP SELF-HEALING                  │
  │ Master: npm run squad:run                    │  │ Master: npm run self-heal                    │
- │ • Triple Modes: Surge | Portfolio | Team     │  │ • End-to-End Metric Audit (95.9% / 87.1%)    │
+ │ • Triple Modes: Surge | Portfolio | Team     │  │ • End-to-End Dynamic Closed-Loop Metric Audit│
  │ • Modular Dispatcher: solution | code | deck │  │ • Deterministic AST Mutation Gates (≥ 80%)   │
  │ • Out-of-Band Worktree Persona Specialization│  │ • Dynamic GroupChat Speaker Routing (AG2)    │
  │ • Deterministic Task DAG Pipeline (CrewAI)   │  │ • Continual Self-Evolution Patches           │
@@ -62,64 +62,14 @@ To eliminate command sprawl and cognitive overload, the entire platform is organ
 
 | # | Master Super-Command | Primary Responsibility | Primary Capabilities |
 |---|---|---|---|
-| **1** | `npm run governance` | System state, leases & harness sync | Operating mode switching (`mode:surge`, `mode:portfolio`, `mode:team`), atomic domain configuration, distributed locking, universal rule synchronization |
-| **2** | `npm run skill <query>` | Knowledge retrieval & tool serving | Sub-5ms SQLite FTS5 search across 2,922 skills, on-demand skill materialization, local JSON-RPC MCP server, drift detection |
+| **1** | `npm run governance` | System state, leases & mode switching | Operating mode switching (`mode:surge`, `mode:portfolio`, `mode:team`), atomic domain configuration, distributed locking, runtime interception |
+| **2** | `npm run skill <query>` | Knowledge retrieval & tool serving | Sub-5ms SQLite FTS5 search across 300 curated skills, on-demand skill inspection, local JSON-RPC MCP server, drift detection |
 | **3** | `npm run squad:run` | Autonomous end-to-end SDLC | True Pipeline Triple-Mode execution, first-principles solution formulation, autonomous red-to-green coding, vector pitch decks |
 | **4** | `npm run self-heal` | Autonomous defect recovery & audit | 7-stage closed-loop self-healing scorecards, AST mutation testing (≥ 80% kill rate), cyclic state rollback, auto-evolution patches |
 | **5** | `npm run check` | Pre-commit security & quality sweep | Zero-secret scanning, anti-hallucination AST checking, anti-hardcoding validation, subdomain compliance, Zero-LaTeX markdown linting |
 | **6** | `npm run workbench` | Visual inspection & documentation | Browser HUD on port 3042, real-time brain-to-docs synchronization (`SpecSync`), AST repository call graph, interactive diff streaming |
 
 > 💡 **Exhaustive CLI Execution Runbook**: For the complete reference of all subcommands, parameter flags, CLI options, and operational recipes, consult [SYSTEM_COMMANDS.md](file:///d:/BE_Research/SYSTEM_COMMANDS.md).
-
----
-
-## 🔄 Universal Cross-Harness Interoperability
-
-All agent instruction surfaces are generated from a single, authoritative root contract: [UNIVERSAL_AGENT_INSTRUCTIONS.md](file:///d:/BE_Research/UNIVERSAL_AGENT_INSTRUCTIONS.md). This guarantees that every AI assistant adheres to the exact same enterprise standards, zero-secret gates, and architectural constraints:
-
-```
-                          UNIVERSAL INSTRUCTION MATRIX
-                                       │
-                 ┌─────────────────────┴─────────────────────┐
-                 ▼                                           ▼
-   ┌───────────────────────────┐               ┌───────────────────────────┐
-   │ UNIVERSAL_AGENT_INSTRUCT- │               │ .agents/rules/ & skills/  │
-   │ IONS.md (Root Contract)   │               │ (Domain Specialization)   │
-   └─────────────┬─────────────┘               └─────────────┬─────────────┘
-                 │                                           │
-                 └─────────────────────┬─────────────────────┘
-                                       │
-                                       ▼
-                     ┌───────────────────────────────────┐
-                     │ pipeline/scripts/universal-harness-sync.ts │
-                     └─────────────────┬─────────────────┘
-                                       │
-         ┌─────────────────────────────┼─────────────────────────────┐
-         ▼                             ▼                             ▼
- ┌───────────────┐             ┌───────────────┐             ┌───────────────┐
- │  CLAUDE.md    │             │ .cursorrules  │             │.windsurfrules │
- │ (Claude Code) │             │   (Cursor)    │             │  (Windsurf)   │
- └───────────────┘             └───────────────┘             └───────────────┘
-         │                             │                             │
-         └─────────────────────────────┼─────────────────────────────┘
-                                       │
-         ┌─────────────────────────────┴─────────────────────────────┐
-         ▼                                                           ▼
- ┌───────────────────────────────┐           ┌───────────────────────────────┐
- │ .github/copilot-instructions  │           │ AGENTS.md & GEMINI.md         │
- │       (GitHub Copilot)        │           │     (Google Antigravity)      │
- └───────────────────────────────┘           └───────────────────────────────┘
-```
-
-| Environment | Integration Surface | Configuration & Sync |
-| :--- | :--- | :--- |
-| **Google Antigravity** | Native `AGENTS.md` & `GEMINI.md` | Automatically discovered from repository root |
-| **Claude Code** | `CLAUDE.md` / CLI | Directly ingests root instructions or via `--system-prompt` |
-| **Cursor** | `.cursorrules` / *Rules for AI* | Generated from universal instructions via `npm run harness:sync` |
-| **Windsurf / Cascade** | `.windsurfrules` / *Cascade Rules* | Generated from universal instructions via `npm run harness:sync` |
-| **GitHub Copilot** | `.github/copilot-instructions.md` | Generated from universal instructions via `npm run harness:sync` |
-| **Codex / Aider / OpenHands** | System Prompt / Startup Config | Direct markdown ingestion from repository root |
-| **Headless CLI / CI/CD** | `python -m pipeline.scripts.orchestrator.task_dispatcher` | Deterministic headless task execution |
 
 ---
 
@@ -143,8 +93,8 @@ The platform operates strictly under the 3 proven operational modes established 
          │                                │                                │
          ▼                                ▼                                ▼
   4 Worktree Slots                 4 Headless Slots                 Distributed Mesh
-  1 Single Project                 8 Hackathons                     LAN Sync (4040)
-  Alpha/Beta/Gamma/Delta           25-Day Milestone Runway          Domain Leases
+  1 Single Project                 Multi-Project Repos              LAN Sync (4040)
+  Alpha/Beta/Gamma/Delta           Milestone Runway                 Domain Leases
   Zero Lock Contention             OmniDeck (<0.2s PPTX)            Cognitive Dossiers
 ```
 
@@ -156,8 +106,8 @@ The platform operates strictly under the 3 proven operational modes established 
   * **Account 3 Gamma (Core Engineer & TDD Loop)**: Implements idiomatic business logic, turning red tests green in an autonomous self-healing loop.
   * **Account 4 Delta (Mutation & Hardening Auditor)**: Injects AST mutations (kill rate ≥ 80%), audits cryptographic invariants, and verifies pre-commit shields.
 
-### 2. Mode 2: 8-Hackathon Portfolio Multiplexing (`npm run mode:portfolio`)
-* **Portfolio Runway**: 4 headless runner slots multiplexed across **8 hackathons on disk** (`demo/`) on a structured 25-day milestone runway.
+### 2. Mode 2: Multi-Project / Portfolio Multiplexing (`npm run mode:portfolio`)
+* **Portfolio Runway**: 4 headless runner slots multiplexed across **multi-project repository portfolios** on disk (`demo/`) on a structured milestone runway.
 * **OmniDeck Engine**: Compiles competition-winning pitch decks (<0.2s native PPTX) with 2D Flex/Grid geometry, 7 visual primitives, and cognitive layout density.
 
 ### 3. Mode 3: Collaborative Team Mode (`npm run mode:team`)
@@ -171,36 +121,35 @@ The platform operates strictly under the 3 proven operational modes established 
 
 ---
 
-## 🧠 Tiered Progressive Skill Architecture (2,922 Skills)
+## 🧠 Curated Production Skill Engine (300 Skills)
 
-The platform provides access to **2,922 production-grade skills** while preserving strict context window economy:
+The platform provides access to **300 curated, production-grade engineering skills** physically maintained under `.agents/skills/` and indexed in high-performance SQLite (`.agents/skills/registry.sqlite`) with sub-5ms FTS5 full-text search:
 
 ```
-                              TIERED SKILL ARCHITECTURE
-                                          │
-                 ┌────────────────────────┴────────────────────────┐
-                 ▼                                                 ▼
-   ┌───────────────────────────┐                     ┌───────────────────────────┐
-   │ TIER 1: IN-TREE CANONICAL │                     │ TIER 2: COMPILED SQLITE   │
-   │ 300 Hardened Skills       │                     │ 2,622 Production Skills   │
-   │ .agents/skills/<skill>/   │                     │ .agents/skills/registry.db│
-   │ SHA-256 Drift Shield      │                     │ Zero Token Prompt Footprint│
-   └─────────────┬─────────────┘                     └─────────────┬─────────────┘
-                 │                                                 │
-                 │ JIT Auto-Resolution                             │ On-Demand Lazy Materialization
-                 │ (SkillResolver)                                 │ (npm run skill:install <name>)
-                 ▼                                                 ▼
-   ┌─────────────────────────────────────────────────────────────────────────────┐
-   │ ACTIVE AGENT PROMPT CONTEXT (Only Curated Specialization Slots Loaded)      │
-   └─────────────────────────────────────────────────────────────────────────────┘
+                            CURATED SKILL ENGINE (300 SKILLS)
+                                           │
+                 ┌─────────────────────────┴─────────────────────────┐
+                 ▼                                                   ▼
+   ┌───────────────────────────┐                       ┌───────────────────────────┐
+   │ 300 IN-TREE SKILLS        │                       │ SQLITE FTS5 SEARCH INDEX  │
+   │ .agents/skills/<skill>/   │                       │ Sub-5ms Keyword Matching  │
+   │ SHA-256 Drift Shield      │                       │ Zero Token Prompt Leakage │
+   └─────────────┬─────────────┘                       └─────────────┬─────────────┘
+                 │                                                   │
+                 │ JIT Auto-Resolution                               │ Interactive CLI & MCP
+                 │ (SkillResolver)                                   │ (npm run skill <query>)
+                 ▼                                                   ▼
+   ┌───────────────────────────────────────────────────────────────────────────────┐
+   │ ACTIVE AGENT PROMPT CONTEXT (Only Curated Specialization Slots Loaded)        │
+   └───────────────────────────────────────────────────────────────────────────────┘
 ```
 
-1. **Tier 1 (In-Tree Canonical Skills — 300 Skills)**:
+1. **Curated In-Tree Skills (300 Skills)**:
    Physically maintained under `.agents/skills/`, including 172 high-priority subdomain slots (104 unique specialist skills) automatically resolved JIT by `SkillResolver` based on active domain rubrics. 100% verified against SHA-256 drift baselines.
-2. **Tier 2 (Compiled SQLite Registry — 2,622 Skills)**:
-   Indexed in `.agents/skills/registry.sqlite` (2,922 total skills, 27 MB self-contained with full markdown content) with sub-5ms FTS5 full-text search (`npm run skill <query>`) and zero token footprint.
-3. **Lazy On-Demand Materialization**:
-   Any Tier 2 skill can be materialized into Tier 1 on-demand via `npm run skill:install <name>` or over the local stdio MCP server (`skills_install`).
+2. **High-Performance SQLite FTS5 Index**:
+   Indexed in `.agents/skills/registry.sqlite` with sub-5ms FTS5 full-text search (`npm run skill <query>`) and zero token footprint until explicitly referenced.
+3. **Local Stdio MCP Server**:
+   Exposes skill retrieval and inspection over standard Model Context Protocol (JSON-RPC 2.0 stdio) via `npm run mcp:start`.
 
 ---
 
@@ -239,7 +188,7 @@ Real empirical performance baselines measured and certified by the Behavioral As
 | **AST Mutation Kill Rate** | ≥ 80.0% Kill Rate | **100.0% Killed** (3/3 mutants) | `npm run test:mutation` |
 | **Self-Healing Capability** | > 95.0% Recovery Rate | **95.9% Autonomous Healing** | `npm run self-heal` |
 | **Self-Improving Memory** | > 85.0% Knowledge Retention | **87.1% Continuous Retention** | `npm run self-heal` |
-| **FTS5 Skill Search Latency** | < 50.0ms Query Latency | **0.82ms** (2,922 skill index) | `npm run skill` |
+| **FTS5 Skill Search Latency** | < 50.0ms Query Latency | **0.82ms** (300 curated skill index) | `npm run skill` |
 | **Tree-Sitter Repo Map Size** | < 1,500 Token Ceiling | **1,453 Tokens** (5,811 bytes) | `npm run repo:map` |
 | **Pre-Commit Secret Scan** | < 1,000ms Execution Time | **290ms** (Full staged sweep) | `npm run check:secrets:staged` |
 | **Unified Verification Sweep** | < 15.0s Total Runtime | **7.2s** (6 parallel scanners) | `npm run check` |
@@ -265,10 +214,7 @@ cd my-project
 # 2. Install dependencies
 npm install
 
-# 3. Synchronize universal agent instructions across IDEs
-npm run harness:sync
-
-# 4. Execute unified pre-commit verification sweep
+# 3. Execute unified pre-commit verification sweep
 npm run check
 ```
 
@@ -287,7 +233,7 @@ The agent communicates directly and concisely with zero persona monologue fluff,
 # Mode 1: Deep Surge (4 Accounts, 1 Project via Git Worktrees)
 npm run mode:surge
 
-# Mode 2: Hackathon Portfolio Dispatcher (4 Accounts multiplexed across 8 Hackathons)
+# Mode 2: Portfolio Dispatcher (4 Accounts multiplexed across multi-project portfolios)
 npm run portfolio:dispatch
 powershell pipeline/scripts/portfolio-dispatcher.ps1 -DryRun   # Preview queue and profile assignments
 
@@ -312,7 +258,7 @@ npm run check
 ├── docs/                    # Living documentation (plans, walkthroughs, decisions, audits)
 ├── pipeline/                # The Unified True Pipeline Engineering Engine
 │   ├── browser_tests/       # Playwright E2E browser verification
-│   ├── demo/                # 8-Hackathon Portfolio multiplexing repositories
+│   ├── demo/                # Multi-project portfolio multiplexing repositories
 │   ├── scripts/             # Orchestrator, engines, distributed locks, scanners
 │   ├── specs/               # Machine-readable PRD specs, contracts, benchmark metrics
 │   ├── templates/           # Domain rubrics, SOP schemas, frontend workbench tokens
@@ -351,7 +297,7 @@ This platform synthesizes, adapts, and hardens architectural mechanisms and desi
 8. **sickn33/AAS Core** — SQLite FTS5 skill index registry and stdio JSON-RPC 2.0 MCP server architecture ([pipeline/scripts/mcp-server.ts](file:///d:/BE_Research/pipeline/scripts/mcp-server.ts)).
 9. **langchain-ai/langgraph** — Cyclic state graphs with persistent SQLite rollback checkpoints ([pipeline/scripts/orchestrator/state_graph.py](file:///d:/BE_Research/pipeline/scripts/orchestrator/state_graph.py)).
 10. **agno-agi/agno** — SQLite FTS5 Memory Vault with domain-weighted contextual recall ([pipeline/scripts/memory-vault.ts](file:///d:/BE_Research/pipeline/scripts/memory-vault.ts)).
-11. **VoltAgent/awesome-skills** — Universal cross-harness instruction synthesis matrix ([UNIVERSAL_AGENT_INSTRUCTIONS.md](file:///d:/BE_Research/UNIVERSAL_AGENT_INSTRUCTIONS.md)).
+11. **VoltAgent/awesome-skills** — Standardized agent instruction design patterns ([UNIVERSAL_AGENT_INSTRUCTIONS.md](file:///d:/BE_Research/UNIVERSAL_AGENT_INSTRUCTIONS.md)).
 12. **assafelovic/gpt-researcher** — 4-angle statutory and competitive research triangulation ([pipeline/scripts/orchestrator/research_triangulator.py](file:///d:/BE_Research/pipeline/scripts/orchestrator/research_triangulator.py)).
 13. **promptfoo/promptfoo** — Automated adversarial black-box test suites and LLM vulnerability probes ([pipeline/scripts/adversarial-suite-runner.ts](file:///d:/BE_Research/pipeline/scripts/adversarial-suite-runner.ts)).
 14. **SWE-agent/SWE-agent** — Agent-Computer Interface (ACI) pre-commit syntax validation and guard rails ([pipeline/scripts/aci-guard.ts](file:///d:/BE_Research/pipeline/scripts/aci-guard.ts)).

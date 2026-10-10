@@ -323,9 +323,9 @@
       <span class="brand-badge">SOTA Workbench</span>
     </div>
     <div class="header-telemetry" id="headerTelemetry">
-      <div class="badge active" id="modeBadge">● Solo Mode</div>
-      <div class="badge" id="domainBadge">Domain: ai_ml</div>
-      <div class="badge" id="contextBadge">Context: 8.5% Saturation</div>
+      <div class="badge active" id="modeBadge">● Operating Mode</div>
+      <div class="badge" id="domainBadge">Domain: Dynamic</div>
+      <div class="badge" id="contextBadge">Context: Real-Time</div>
     </div>
   </header>
 
@@ -333,7 +333,7 @@
   <main class="app-viewport">
     <nav class="nav-tabs">
       <button class="tab-btn active" onclick="switchTab('tab-overview')">Platform Overview</button>
-      <button class="tab-btn" onclick="switchTab('tab-skills')">Tiered Skill Registry (2,922)</button>
+      <button class="tab-btn" id="tabSkillsBtn" onclick="switchTab('tab-skills')">Curated Skill Registry (300)</button>
       <button class="tab-btn" onclick="switchTab('tab-repomap')">AST Repo-Map (&lt;1,500 Tokens)</button>
       <button class="tab-btn" onclick="switchTab('tab-healing')">Self-Healing &amp; Auto-Regression</button>
       <button class="tab-btn" onclick="switchTab('tab-gates')">Statutory Invariant Gates</button>
@@ -343,15 +343,15 @@
     <section class="tab-pane active" id="tab-overview">
       <div class="grid-3" style="margin-bottom: 1.5rem;">
         <div class="card">
-          <div class="metric-value" id="statTotalSkills">2,922</div>
-          <div class="metric-label">Indexed Skills (FTS5 Registry)</div>
+          <div class="metric-value" id="statTotalSkills">300</div>
+          <div class="metric-label">Curated Skills (FTS5 Registry)</div>
         </div>
         <div class="card">
           <div class="metric-value" id="statInTreeSkills">300</div>
           <div class="metric-label">Tier 1 Canonical In-Tree Skills</div>
         </div>
         <div class="card">
-          <div class="metric-value" id="statSelfHealScore">95.2%</div>
+          <div class="metric-value" id="statSelfHealScore">95.9%</div>
           <div class="metric-label">Closed-Loop Self-Healing Score</div>
         </div>
       </div>
@@ -365,7 +365,7 @@
           <p class="card-desc">Frontier agentic execution architecture supporting 3 operational modes grounded in peer-reviewed empirical research (Anthropic, DeepMind, Sakana AI).</p>
           <div style="font-size: 0.85rem; color: var(--text-secondary);">
             <div style="margin-bottom: 0.4rem;">• <strong>Mode 1 (Deep Surge):</strong> All 4 Google accounts focused on 1 single project (Council, SDET, Core, Hardening).</div>
-            <div style="margin-bottom: 0.4rem;">• <strong>Mode 2 (Portfolio Multiplexing):</strong> 4 headless runner slots multiplexed across 8 hackathon repos (17–25 day runway).</div>
+            <div style="margin-bottom: 0.4rem;">• <strong>Mode 2 (Portfolio Multiplexing):</strong> 4 headless runner slots multiplexed across multi-project repository portfolios.</div>
             <div>• <strong>Mode 3 (Collaborative Team):</strong> Part 7 cognitive dossiers, LAN server (port 4040), living catalog sync, distributed locks.</div>
           </div>
         </div>
@@ -390,7 +390,7 @@
 
     <!-- Tab 2: Tiered Skill Registry -->
     <section class="tab-pane" id="tab-skills">
-      <input type="text" class="search-box" id="skillSearchInput" placeholder="Search 2,922 skills via SQLite FTS5 (e.g. 'docker', 'pentest', 'react', 'kafka')..." oninput="debounceSearch()">
+      <input type="text" class="search-box" id="skillSearchInput" placeholder="Search 300 curated skills via SQLite FTS5 (e.g. 'docker', 'pentest', 'react', 'kafka')..." oninput="debounceSearch()">
       <div class="skills-list" id="skillsContainer">
         <!-- Rendered dynamically -->
         <div style="text-align: center; color: var(--text-muted); padding: 2rem;">Loading Skill Registry...</div>
@@ -477,7 +477,7 @@
           <div class="skill-item">
             <div class="skill-info">
               <h4>Anti-Hardcoding &amp; Distractor Parity Guard (INV-09)</h4>
-              <p>Scans templates and pipelines to permanently reject Kaggle paths and hackathon constants.</p>
+              <p>Scans templates and pipelines to permanently reject mock paths and prototype constants.</p>
             </div>
             <span class="badge active">100% Enforced</span>
           </div>
@@ -578,7 +578,33 @@
       }
     }
 
+    async function fetchStatus() {
+      try {
+        const res = await fetch('/api/status');
+        const data = await res.json();
+        if (data.active_domain) {
+          const domBadge = document.getElementById('domainBadge');
+          if (domBadge) domBadge.textContent = `Domain: ${data.active_domain}`;
+        }
+        if (data.operating_mode) {
+          const mBadge = document.getElementById('modeBadge');
+          if (mBadge) mBadge.textContent = `● Mode: ${data.operating_mode}`;
+        }
+        if (data.registry && typeof data.registry.totalSkills === 'number') {
+          const el = document.getElementById('statTotalSkills');
+          if (el) el.textContent = data.registry.totalSkills;
+          const elInTree = document.getElementById('statInTreeSkills');
+          if (elInTree) elInTree.textContent = data.registry.tier1Count || data.registry.totalSkills;
+          const tabBtn = document.getElementById('tabSkillsBtn');
+          if (tabBtn) tabBtn.textContent = `Curated Skill Registry (${data.registry.totalSkills})`;
+        }
+      } catch (err) {
+        console.error('Failed to load status:', err);
+      }
+    }
+
     // Initial load
+    fetchStatus();
     fetchSkills();
   </script>
 </body>

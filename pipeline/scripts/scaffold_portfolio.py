@@ -1,5 +1,5 @@
 """
-Scaffolding script to create all 8 real hackathon project directories with
+Scaffolding script to create sample multi-project portfolio directories with
 working source files, unit tests, and minimal manifests.
 """
 
@@ -187,6 +187,6 @@ for proj_name, files in demos.items():
             f.write(code)
     created.append(proj_name)
 
-print(f"✅ Successfully initialized {len(created)} physical hackathon projects under {base_dir}:")
+print(f"✅ Successfully initialized {len(created)} physical portfolio projects under {base_dir}:")
 for c in created:
     print(f"   • {c}")

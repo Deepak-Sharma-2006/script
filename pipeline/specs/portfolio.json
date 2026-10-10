@@ -1,0 +1,51 @@
+{
+  "portfolio_name": "True Pipeline Multi-Project Concurrent Flight Deck",
+  "total_projects": 4,
+  "allocation_strategy": {
+    "tier_1_compute_pct": 50,
+    "tier_2_compute_pct": 35,
+    "tier_3_compute_pct": 15
+  },
+  "projects": [
+    {
+      "id": "project_alpha",
+      "name": "Project Alpha: Core Platform Engine",
+      "tier": 1,
+      "deadline_days": 14,
+      "status": "IN_PROGRESS",
+      "path": "demo/project_alpha",
+      "deliverables": ["functional_mvp", "playwright_e2e", "omnideck_pptx", "part7_dossier"],
+      "primary_profile": "account-1"
+    },
+    {
+      "id": "project_beta",
+      "name": "Project Beta: High-Throughput Analytics & Ledger",
+      "tier": 1,
+      "deadline_days": 18,
+      "status": "QUEUED",
+      "path": "demo/project_beta",
+      "deliverables": ["core_ledger", "mutation_tested_suite", "omnideck_pptx", "part7_dossier"],
+      "primary_profile": "account-2"
+    },
+    {
+      "id": "project_gamma",
+      "name": "Project Gamma: Distributed Security Mesh",
+      "tier": 2,
+      "deadline_days": 21,
+      "status": "QUEUED",
+      "path": "demo/project_gamma",
+      "deliverables": ["threat_model", "dast_pentest", "omnideck_pptx"],
+      "primary_profile": "account-3"
+    },
+    {
+      "id": "project_delta",
+      "name": "Project Delta: Observability & Developer Cockpit",
+      "tier": 3,
+      "deadline_days": 25,
+      "status": "QUEUED",
+      "path": "demo/project_delta",
+      "deliverables": ["cli_tool", "omnideck_pptx"],
+      "primary_profile": "account-4"
+    }
+  ]
+}

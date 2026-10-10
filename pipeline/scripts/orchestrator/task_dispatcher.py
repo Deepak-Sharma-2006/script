@@ -693,10 +693,21 @@ class {class_name}:
 
     @classmethod
     def _handle_batch_portfolio(cls, **kwargs) -> Dict[str, Any]:
-        """Mode 2: 8-Hackathon Portfolio Multiplexing Dispatcher."""
-        manifest_path = "pipeline/specs/hackathon_portfolio.json" if os.path.exists("pipeline/specs/hackathon_portfolio.json") else "specs/hackathon_portfolio.json"
-        if not os.path.exists(manifest_path):
-            return {"status": "ERROR", "message": f"Portfolio manifest not found at {manifest_path}"}
+        """Mode 2: Multi-Project / Portfolio Multiplexing Dispatcher."""
+        candidates = [
+            "pipeline/specs/portfolio.json",
+            "specs/portfolio.json",
+            "pipeline/specs/hackathon_portfolio.json",
+            "specs/hackathon_portfolio.json",
+        ]
+        manifest_path = None
+        for c in candidates:
+            if os.path.exists(c):
+                manifest_path = c
+                break
+
+        if not manifest_path:
+            return {"status": "ERROR", "message": f"Portfolio manifest not found (checked: {candidates})"}
         
         with open(manifest_path, "r", encoding="utf-8") as f:
             manifest = json.load(f)
@@ -721,7 +732,7 @@ class {class_name}:
         accounts_arg = kwargs.get("accounts")
         accounts = [a.strip() for a in accounts_arg.split(",") if a.strip()] if accounts_arg else ["1", "2", "3", "4"]
 
-        print(f"\n[TaskDispatcher] Mode 2: Hackathon Portfolio Multiplexing ({len(projects)} active projects, accounts: {accounts})...")
+        print(f"\n[TaskDispatcher] Mode 2: Multi-Project / Portfolio Multiplexing ({len(projects)} active projects, accounts: {accounts})...")
         dispatched = []
         for idx, proj in enumerate(projects):
             assigned_acc = accounts[idx % len(accounts)]
@@ -765,8 +776,8 @@ def main():
     
     # True Pipeline additions
     parser.add_argument("--account-profile", "--profile", dest="account_profile", default=None, help="Google Account Profile (1, 2, 3, 4)")
-    parser.add_argument("--batch-portfolio", action="store_true", help="Batch dispatch across hackathon portfolio projects")
-    parser.add_argument("--repos", default=None, help="Comma-separated repository IDs or numbers (e.g., 'H1,H2,H3,H4')")
+    parser.add_argument("--batch-portfolio", action="store_true", help="Batch dispatch across multi-project portfolio targets")
+    parser.add_argument("--repos", default=None, help="Comma-separated repository IDs or numbers (e.g., 'P1,P2,P3,P4')")
     parser.add_argument("--accounts", default=None, help="Comma-separated account numbers (e.g., '1,2,3,4')")
     parser.add_argument("--tier", type=int, default=0, help="Filter portfolio projects by tier (1, 2, 3)")
 

@@ -5,9 +5,8 @@ import { existsSync, unlinkSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { acquireLock, releaseLock, listLocks, getOperatingMode } from "../scripts/lock-manager.ts";
 import { setOperatingMode, getActiveProfile } from "../scripts/role-switch.ts";
-import { syncAllHarnesses } from "../scripts/universal-harness-sync.ts";
 
-test("N-Person Team Mesh & Universal Multi-Harness Test Suite", async (t: TestContext) => {
+test("N-Person Team Mesh Test Suite", async (t: TestContext) => {
   const LOCKS_DIR = join(process.cwd(), ".agents/state/locks");
 
   await t.test("Operating mode switching should support True Pipeline modes (surge, portfolio, team)", () => {
@@ -17,7 +16,7 @@ test("N-Person Team Mesh & Universal Multi-Harness Test Suite", async (t: TestCo
     const teamProf = getActiveProfile();
     assert.strictEqual(teamProf.mode, "team");
 
-    // 2. Portfolio mode (Mode 2: 8-Hackathon Portfolio Multiplexing)
+    // 2. Portfolio mode (Mode 2: Multi-Project / Portfolio Multiplexing)
     setOperatingMode("portfolio");
     assert.strictEqual(getOperatingMode(), "portfolio");
     const portProf = getActiveProfile();
@@ -63,27 +62,5 @@ test("N-Person Team Mesh & Universal Multi-Harness Test Suite", async (t: TestCo
 
     // Revert to Deep Surge mode
     setOperatingMode("surge");
-  });
-
-  await t.test("Universal Multi-Harness Sync validates single universal instruction file and compact root", () => {
-    const synced = syncAllHarnesses();
-    assert.strictEqual(synced, true);
-
-    const universalPath = join(process.cwd(), "UNIVERSAL_AGENT_INSTRUCTIONS.md");
-    assert.ok(existsSync(universalPath), "UNIVERSAL_AGENT_INSTRUCTIONS.md must exist at root");
-
-    const content = readFileSync(universalPath, "utf-8");
-    assert.ok(content.includes("Universal Agent System Prompt"), "Must contain universal system prompt");
-    assert.ok(content.includes("Cursor"), "Must document Cursor setup");
-    assert.ok(content.includes("Claude Code"), "Must document Claude Code setup");
-    assert.ok(content.includes("Windsurf"), "Must document Windsurf setup");
-    assert.ok(content.includes("GitHub Copilot"), "Must document GitHub Copilot setup");
-
-    // Assert tool-specific harness subdirectories are eliminated to prevent bloat
-    assert.strictEqual(existsSync(join(process.cwd(), ".claude")), false, ".claude/ must not exist");
-    assert.strictEqual(existsSync(join(process.cwd(), ".cursor")), false, ".cursor/ must not exist");
-    assert.strictEqual(existsSync(join(process.cwd(), ".windsurf")), false, ".windsurf/ must not exist");
-    assert.strictEqual(existsSync(join(process.cwd(), ".github")), false, ".github/ must not exist");
-    assert.strictEqual(existsSync(join(process.cwd(), ".codex")), false, ".codex/ must not exist");
   });
 });

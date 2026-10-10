@@ -92,7 +92,7 @@ export function resolveOperator(explicitOperator?: string): string {
 }
 
 /**
- * LocalGitDriver: Offline / Hackathon driver storing lock leases
+ * LocalGitDriver: Offline / Local file driver storing lock leases
  * in .agents/state/locks/<domain>.lock.json.
  */
 export class LocalGitDriver implements LockDriver {

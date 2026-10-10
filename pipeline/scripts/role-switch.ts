@@ -96,12 +96,12 @@ export function printRoleMatrix(): void {
 └──────────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│ MODE 2: 8-HACKATHON PORTFOLIO MULTIPLEXING (Batch Runway, 17-25 Days)        │
+│ MODE 2: MULTI-PROJECT / PORTFOLIO MULTIPLEXING (Batch Runway)                │
 ├──────────────────────────────────────────────────────────────────────────────┤
-│ • 4 Headless Runner Slots       : Multiplexed across 8 hackathon repos on disk│
-│ • 25-Day Milestone Runway       : Phased formulation, TDD, hardening, decks  │
-│ • Portfolio Dispatcher          : scripts/portfolio-dispatcher.ps1           │
-│ • OmniDeck Compiler             : Native PPTX/HTML deck generation in < 0.2s  │
+│ • 4 Headless Runner Slots       : Multiplexed across project repos on disk   │
+│ • Milestone Runway              : Phased formulation, TDD, hardening, decks  │
+│ • Portfolio Dispatcher          : pipeline/scripts/portfolio-dispatcher.ps1  │
+│ • OmniDeck Compiler             : Native PPTX/HTML deck generation in < 0.2s │
 └──────────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -142,12 +142,12 @@ export function setOperatingMode(mode: "surge" | "portfolio" | "team" | "solo" |
   } else if (normalizedMode === "portfolio") {
     profile.operator = resolveOperator();
     profile.role = "PortfolioLead";
-    profile.roleTitle = "Portfolio Lead (8-Hackathon Multiplexing Engine)";
+    profile.roleTitle = "Portfolio Lead (Multi-Project Multiplexing Engine)";
     saveProfile(profile);
-    console.log(`\n🚀 [OPERATING MODE 2: 8-HACKATHON PORTFOLIO MULTIPLEXING ACTIVATED]`);
-    console.log(`   Scope                 : 4 Headless Runner Slots multiplexed across 8 Hackathon Repositories`);
-    console.log(`   Runway                : 25-Day Phased Submission Timeline (Days 17-25 Deadlines)`);
-    console.log(`   Worker Scheduling     : Round-Robin Batch Dispatcher (scripts/portfolio-dispatcher.ps1)`);
+    console.log(`\n🚀 [OPERATING MODE 2: MULTI-PROJECT / PORTFOLIO MULTIPLEXING ACTIVATED]`);
+    console.log(`   Scope                 : 4 Headless Runner Slots multiplexed across Project Repositories`);
+    console.log(`   Runway                : Multi-Project Phased Milestone Runway`);
+    console.log(`   Worker Scheduling     : Round-Robin Batch Dispatcher (pipeline/scripts/portfolio-dispatcher.ps1)`);
     console.log(`   Asset Synthesis       : Autonomous OmniDeck Pitch Deck Compiler (<0.2s PPTX)\n`);
   } else if (normalizedMode === "team") {
     profile.operator = resolveOperator();
@@ -197,7 +197,7 @@ export function printRoleStatus(): void {
   const modeDescription = mode === "surge" || mode === "solo"
     ? "Mode 1: Deep Surge (All 4 Accounts on 1 Project)"
     : mode === "portfolio"
-    ? "Mode 2: 8-Hackathon Portfolio Multiplexing (17-25 Day Runway)"
+    ? "Mode 2: Multi-Project / Portfolio Multiplexing (Phased Runway)"
     : "Mode 3: Collaborative Team Mode (LAN Port 4040 & Context Sync)";
 
   console.log(`

@@ -19,8 +19,10 @@ const HTML_PATH = existsSync(join(WORKSPACE_ROOT, "pipeline/templates/workbench/
   ? join(WORKSPACE_ROOT, "pipeline/templates/workbench/index.html")
   : join(WORKSPACE_ROOT, "templates/workbench/index.html");
 const REPO_MAP_TXT = join(WORKSPACE_ROOT, ".agents/cache/repo_map.txt");
+const DOMAIN_STATE_PATH = join(WORKSPACE_ROOT, ".agents/state/active-domain.json");
+const DEFAULT_PORT = 3042;
 
-export function createWorkbenchServer(port: number = 4500) {
+export function createWorkbenchServer(port: number = DEFAULT_PORT) {
   const server = createServer(async (req: IncomingMessage, res: ServerResponse) => {
     const parsedUrl = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
     const pathname = parsedUrl.pathname;
@@ -52,10 +54,27 @@ export function createWorkbenchServer(port: number = 4500) {
     // 2. API: System Status
     if (pathname === "/api/status") {
       const stats = getRegistryStats();
+      let activeDomain = "general";
+      let domainName = "General Software Engineering";
+      let subdomains: string[] = [];
+      let activeStack: any = null;
+
+      if (existsSync(DOMAIN_STATE_PATH)) {
+        try {
+          const raw = JSON.parse(readFileSync(DOMAIN_STATE_PATH, "utf-8"));
+          activeDomain = raw.domain_id || raw.active_domain || activeDomain;
+          domainName = raw.domain_name || domainName;
+          subdomains = Array.isArray(raw.subdomains) ? raw.subdomains : [];
+          activeStack = raw.active_stack || null;
+        } catch {}
+      }
+
       const payload = {
         operating_mode: getOperatingMode(),
-        active_domain: "ai_ml",
-        subdomains: ["computer_vision", "deep_learning"],
+        active_domain: activeDomain,
+        domain_name: domainName,
+        subdomains,
+        active_stack: activeStack,
         statutory_gates: [
           "Zero-Raw-LaTeX Invariant",
           "Zero-Secret Pre-Commit Shield",
@@ -144,7 +163,7 @@ export function createWorkbenchServer(port: number = 4500) {
 // CLI Execution Handler
 async function runCli() {
   const args = process.argv.slice(2);
-  let port = 4500;
+  let port = parseInt(process.env.WORKBENCH_PORT || "3042", 10);
   const portIdx = args.indexOf("--port");
   if (portIdx !== -1 && args[portIdx + 1]) {
     port = parseInt(args[portIdx + 1], 10);

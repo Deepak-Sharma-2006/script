@@ -1,6 +1,6 @@
 /**
  * Antigravity LAN Synchronization Server
- * Lightweight zero-dependency HTTP server for hackathons and local multi-device sync.
+ * Lightweight zero-dependency HTTP server for collaborative teams and local multi-device sync.
  * Runs on one team member's laptop, providing instant sub-10ms lock heartbeats and shared state.
  */
 
@@ -83,9 +83,13 @@ export function startLanServer(port = PORT): void {
           activeLocksCount: existsSync(LOCKS_DIR) ? readdirSync(LOCKS_DIR).filter((f: string) => f.endsWith(".lock.json")).length : 0,
         });
       } else if (url.pathname === "/status" && method === "GET") {
-        const portfolioPath = existsSync(join(process.cwd(), "pipeline/specs/hackathon_portfolio.json"))
-          ? join(process.cwd(), "pipeline/specs/hackathon_portfolio.json")
-          : join(process.cwd(), "specs/hackathon_portfolio.json");
+        const candidates = [
+          join(process.cwd(), "pipeline/specs/portfolio.json"),
+          join(process.cwd(), "specs/portfolio.json"),
+          join(process.cwd(), "pipeline/specs/hackathon_portfolio.json"),
+          join(process.cwd(), "specs/hackathon_portfolio.json"),
+        ];
+        const portfolioPath = candidates.find((p) => existsSync(p)) || candidates[0];
         let portfolioData: any = null;
         if (existsSync(portfolioPath)) {
           try {
@@ -98,7 +102,7 @@ export function startLanServer(port = PORT): void {
           uptimeSeconds: Math.floor(process.uptime()),
           operatingModes: {
             mode1_surge: "4 Isolated Git Worktrees Configured in D:/BE_Research_lanes",
-            mode2_portfolio: "8 Concurrent Hackathons Active (17-25 Days Runway)",
+            mode2_portfolio: "Multi-Project Portfolio Multiplexing Active Across Runner Slots",
             mode3_team: "Active LAN Sync Server on Port " + PORT
           },
           portfolio: portfolioData

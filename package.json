@@ -1,7 +1,7 @@
 {
   "name": "antigravity-enterprise-workflow",
   "version": "1.0.0",
-  "description": "Frontier Autonomous Agentic Engineering Platform (Deep Surge, 8-Hackathon Portfolio Multiplexing, and Collaborative Team Mode)",
+  "description": "Frontier Autonomous Agentic Engineering Platform (Deep Surge, Multi-Project / Portfolio Multiplexing, and Collaborative Team Mode)",
   "type": "module",
   "scripts": {
     "governance": "node --experimental-strip-types pipeline/scripts/role-switch.ts mode status",
@@ -51,7 +51,6 @@
     "domain:list": "node --experimental-strip-types pipeline/scripts/domain-selector.ts list",
     "domain:select": "node --experimental-strip-types pipeline/scripts/domain-selector.ts select",
     "domain:set": "node --experimental-strip-types pipeline/scripts/domain-selector.ts set",
-    "harness:sync": "node --experimental-strip-types pipeline/scripts/universal-harness-sync.ts",
     "mcp:start": "node --experimental-strip-types pipeline/scripts/mcp-server.ts",
     "audit:project": "python -m pipeline.scripts.orchestrator.task_dispatcher --task audit",
     "continue:project": "python -m pipeline.scripts.orchestrator.task_dispatcher --task continue",

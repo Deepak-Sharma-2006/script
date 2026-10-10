@@ -3003,17 +3003,12 @@ Because domain locks (`.agents/state/locks/<domain>.lock.json`) are disjoint, al
 
 ---
 
-### 11.18 Universal Multi-Harness Instruction Sync & Standard MCP Server
+### 11.18 Universal Agent Instruction Contract & Standard MCP Server
 
-To eliminate configuration drift across disparate agent interfaces (Claude Code, Cursor, Windsurf, Copilot, Codex), the platform adheres to a strict single-source-of-truth model:
+To eliminate configuration drift across disparate agent interfaces (Claude Code, Cursor, Windsurf, Copilot, Codex, Antigravity), the platform adheres to a strict single-source-of-truth model:
 
-#### 1. Universal Harness Compiler (`scripts/universal-harness-sync.ts`)
-The root `AGENTS.md` file serves as the definitive specification. Running `npm run harness:sync` compiles it into all target harness formats:
-- `CLAUDE.md`: Anthropic Claude Code CLI with project commands and True Pipeline directives.
-- `.cursorrules` & `.cursor/rules/agentic-workflow.mdc`: Cursor IDE rules.
-- `.windsurfrules`: Codeium Windsurf rules.
-- `.github/copilot-instructions.md`: GitHub Copilot Workspace.
-- `CODEX.md`: OpenAI Codex and Aider.
+#### 1. Universal Instruction Specification (`UNIVERSAL_AGENT_INSTRUCTIONS.md`)
+The root `UNIVERSAL_AGENT_INSTRUCTIONS.md` along with `AGENTS.md` and `GEMINI.md` serve as the definitive specification across all agent interfaces, guaranteeing uniform adherence to zero-secret gates, deterministic TDD, AST mutation thresholds, and Unicode math invariants with zero vendor lock-in.
 
 #### 2. Model Context Protocol (MCP) Server (`scripts/mcp-server.ts`)
 Exposes the core orchestration capabilities over standard JSON-RPC stdio to any MCP-compliant client:
@@ -3069,10 +3064,10 @@ The repository catalogs 8 Master Domains and 46 Subdomains in `templates/domains
 7. **Data Engineering & Analytics** (`data_engineering`): `stream_processing`, `lakehouse_warehousing`, `data_mesh_governance`, `reverse_etl_cdp`, `graph_analytics`.
 8. **Vertical Applied IT** (`vertical_applied`): `healthtech_informatics`, `fintech_banking`, `ecommerce_supply_chain`, `edtech_learning`, `legaltech_govtech`.
 
-#### 2. The Tiered Progressive Skill Architecture (2,900+ Skills)
-To prevent prompt context saturation and attention degradation (Rule 4), the platform's multi-domain skill universe is organized into a tiered progressive disclosure architecture:
-- **Tier 1 (In-Tree Canonical Skills)**: 300 hardened physical skills maintained in `.agents/skills/`, including 172 curated subdomain slots (104 unique specialist skills) mapped directly into the 46 subdomains (`templates/domains/*/rubric.json`). Injected by `DomainPersonaEngine` as concise (<150 tokens) clickable markdown links into active persona prompt headers. Pinned by cryptographic SHA-256 drift baselines.
-- **Tier 2 (Compiled SQLite Skill Registry)**: 2,622+ catalog skills compiled into `.agents/skills/registry.sqlite` (2,922 total indexed skills across 12 categories) with sub-millisecond FTS5 search (`npm run skill:registry <query>`) and zero prompt token footprint. Materializable on-demand via `npm run skill:install <name>` or MCP server.
+#### 2. The Curated In-Tree Skill Architecture (300 Skills)
+To prevent prompt context saturation and attention degradation (Rule 4), the platform's multi-domain skill universe is organized into 300 physical in-tree skills maintained under `.agents/skills/`:
+- **Curated In-Tree Skills (300 Skills)**: 300 hardened physical skills maintained in `.agents/skills/`, including 172 curated subdomain slots (104 unique specialist skills) mapped directly into the 46 subdomains (`templates/domains/*/rubric.json`). Injected by `DomainPersonaEngine` as concise (<150 tokens) clickable markdown links into active persona prompt headers. Pinned by cryptographic SHA-256 drift baselines.
+- **SQLite FTS5 Search Engine**: Indexed in `.agents/skills/registry.sqlite` with sub-millisecond FTS5 search (`npm run skill <query>`) and zero prompt token footprint. Accessible via local stdio MCP server.
 
 #### 3. Domain-Adaptive Behavioral Evaluation Harness
 Rather than executing only generic evaluations, `.agents/harness/eval-runner.ts` dynamically inspects `.agents/state/active-domain.json` and executes active domain behavioral contracts defined in `.agents/harness/domain-evals.json`:
@@ -3129,7 +3124,7 @@ Replaces passive static console logging (`eval-runner.ts`) with inline runtime i
 
 #### 2. Programmatic Automatic Skill Resolution (`scripts/orchestrator/skill_resolver.py`)
 Solves the operator visibility blindspot where agents previously skipped skill lookup during interactive chat:
-1. **Automatic JIT Resolution**: At the start of every task or prompt turn, `SkillResolver` automatically parses active domain and subdomains from `.agents/state/active-domain.json`, loads curated skills from `templates/domains/*/rubric.json`, and scans prompt keywords against the 300 in-tree skills in `.agents/skills/` and 2,900+ SQLite registry skills.
+1. **Automatic JIT Resolution**: At the start of every task or prompt turn, `SkillResolver` automatically parses active domain and subdomains from `.agents/state/active-domain.json`, loads curated skills from `templates/domains/*/rubric.json`, and scans prompt keywords against the 300 curated skills in `.agents/skills/` and SQLite registry index.
 2. **Zero Ghost Skills**: Every resolved skill is verified against physical disk files (`.agents/skills/<name>/SKILL.md`).
 3. **Mandatory Receipt Attestation**: Every `squad_execution_attestation` YAML receipt is programmatically required to include an `activated_skills` block detailing the skill name, path, and match reason.
 4. **Linter Enforcement**: `FormatGuard` rejects turns with exit code 1 if `activated_skills` is omitted, guaranteeing 100% operator visibility into applied engineering skills.
@@ -3139,28 +3134,28 @@ When any pre-execution or post-execution gate rejects an operation, the kernel f
 
 ---
 
-### 11.22 The Tiered 2,900+ Skill Engine & Local Model Context Protocol (MCP) Server
+### 11.22 The Curated 300 Skill Engine & Local Model Context Protocol (MCP) Server
 
-To resolve the tension between having access to expansive multi-domain engineering knowledge (2,600+ skills from Agentic Awesome Skills and community catalogs) and maintaining a compact repository without token bloat, the platform implements the **Tiered Progressive Skill Ingestion Engine**:
+To resolve the tension between having access to expansive multi-domain engineering knowledge and maintaining a compact repository without token bloat, the platform implements the **Curated Skill Ingestion Engine**:
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                     TIERED PROGRESSIVE SKILL INGESTION ARCHITECTURE                              │
+│                     CURATED SKILL INGESTION ARCHITECTURE                                         │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                                  │
-│   TIER 1: In-Tree Canonical Skills (300 Hardened Skills)                                         │
+│   CURATED SKILLS: In-Tree Canonical Skills (300 Hardened Skills)                                 │
 │   Location: .agents/skills/<skill-name>/SKILL.md                                                 │
 │   • Hardened, 100% compliant with Zero-Raw-LaTeX, typed frontmatter, and empirical assertions.   │
-│   • Core domains: Fullstack, Backend, Security, Testing, AI/ML, Cloud DevOps, Hackathon Engines. │
+│   • Core domains: Fullstack, Backend, Security, Testing, AI/ML, Cloud DevOps, Engineering Engines.│
 │   • Instantly accessible in local repository with zero latency.                                  │
 │                                                                                                  │
 │                                           ▲                                                      │
-│                                           │ Lazy Materialization via                             │
-│                                           │ npm run skill:install <name>                         │
+│                                           │ Indexed & Pinned via                                 │
+│                                           │ npm run catalog:compile                              │
 │                                           │                                                      │
-│   TIER 2: Compiled SQLite Skill Registry (2,622+ Catalog Skills)                                 │
+│   SQLITE FTS5 SEARCH REGISTRY                                                                    │
 │   Location: .agents/skills/registry.sqlite & .agents/cache/skills_catalog.json                   │
-│   • Complete indexing of all 2,622+ AAS skills across 12 high-level categories.                  │
+│   • Complete indexing of all 300 curated skills across high-level engineering domains.           │
 │   • Schema: id, name, description, category, tags, source, path, created_at.                     │
 │   • Sub-millisecond full-text search (<1ms) via SQLite FTS5 index.                               │
 │   • Zero context footprint: Occupies 0 prompt tokens until dynamically queried.                  │
@@ -3179,7 +3174,7 @@ To resolve the tension between having access to expansive multi-domain engineeri
 ```
 
 1. **Sub-Millisecond SQLite FTS5 Search**: `catalog-compiler.ts` builds a virtual SQLite FTS5 table indexing skills across names, descriptions, categories, and tags, enabling instantaneous keyword matching.
-2. **On-Demand Materialization**: If an agent requires an out-of-tree skill from Tier 2, invoking `npm run skill:install <name>` or calling `skills_install` automatically formats frontmatter, sanitizes any raw LaTeX, writes `.agents/skills/<name>/SKILL.md`, and marks the skill as `tier1` in the database.
+2. **On-Demand Inspection & Materialization**: Skills are inspected and materialized via `npm run skill <name>` or over the MCP server with strict Zero-Raw-LaTeX validation and frontmatter enforcement.
 3. **Local MCP Server**: Operating over stdio JSON-RPC 2.0, `scripts/mcp-server.ts` allows any MCP-compatible client to query skills, inspect active domains, check distributed leases, and retrieve memory without external cloud dependencies.
 
 ---

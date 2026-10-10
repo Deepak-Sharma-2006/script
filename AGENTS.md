@@ -30,7 +30,7 @@
 1. **True Pipeline Three Operational Modes**:
    - The workspace operates strictly under the 3 proven modes defined in the empirical frontier research:
      - **Mode 1: Deep Surge (`npm run mode:surge`)**: All 4 Google accounts focused on 1 single project. Account 1 (Strategic Council & Solution Formulation), Account 2 (Adversarial SDET & Red-Team Testing), Account 3 (Core Engineer & TDD Loop), Account 4 (Mutation & Hardening Auditor).
-     - **Mode 2: 8-Hackathon Portfolio Multiplexing (`npm run mode:portfolio`)**: 4 headless runner slots multiplexed across 8 hackathons on disk (`demo/`) with a 25-day milestone runway and OmniDeck slide compiler (<0.2s PPTX).
+     - **Mode 2: Multi-Project / Portfolio Multiplexing (`npm run mode:portfolio`)**: 4 headless runner slots multiplexed across multi-project repository portfolios on disk (`demo/`) with a milestone runway and OmniDeck slide compiler (<0.2s PPTX).
      - **Mode 3: Collaborative Team Mode (`npm run mode:team`)**: Zero-friction human context synchronization: Part 7 6-technique cognitive dossiers (`docs/dossiers/`), LAN Sync Server on port 4040 (`npm run lan:start`), living catalog auto-reconciliation, and distributed Git domain locks.
 2. **Independent Adversarial Test Authoring Mandate**:
    - Core engineers are strictly prohibited from writing or tampering with `tests/adversarial/`. Only the Adversarial SDET authors adversarial suites.
@@ -154,7 +154,7 @@
 
 1. **Flexible Operating Modes**:
    - **Mode 1: Deep Surge (`npm run mode:surge`)**: All 4 Google accounts focused on 1 single project. Rapid, frictionless execution without multi-host lock contention.
-   - **Mode 2: 8-Hackathon Portfolio Multiplexing (`npm run mode:portfolio`)**: 4 headless runner slots multiplexed across 8 hackathons on disk (`demo/`) with a 25-day milestone runway and OmniDeck pitch compiler.
+   - **Mode 2: Multi-Project / Portfolio Multiplexing (`npm run mode:portfolio`)**: 4 headless runner slots multiplexed across multi-project repository portfolios on disk (`demo/`) with a milestone runway and OmniDeck pitch compiler.
    - **Mode 3: Collaborative Team Mode (`npm run mode:team`)**: Zero-friction human context synchronization: Part 7 6-technique cognitive dossiers, LAN server on port 4040, living catalog auto-reconciliation, and distributed Git domain locks.
 2. **Mode Status & Verification**:
    - Query active mode at any time via `npm run mode:status`.
@@ -229,7 +229,7 @@
 2. **Out-of-Band Persona Specialization**:
    - Persona specialization is decoupled from chat and executed where it physically matters: in dedicated, out-of-band headless CLI worker lanes (Lead 1 Alpha Core Domain, Lead 2 Beta Adversarial SDET, AppSec Mutation Auditor, OmniDeck Presentation Lead) operating in isolated Git Worktrees.
 3. **Universal Headless Playwright Mandate for Frontend**:
-   - For all frontend projects in the workspace (the 8 hackathon portfolio projects under `demo/`, workbench templates, and any new web application), automated testing MUST execute via headless Playwright (`@playwright/test`) by default.
+   - For all frontend projects in the workspace (multi-project portfolio workspaces under `demo/`, workbench templates, and any new web application), automated testing MUST execute via headless Playwright (`@playwright/test`) by default.
    - Do NOT use slow multimodal browser subagents for regression verification.
    - Tests must assert every button, badge, tab transition, calculation, modal, and console error with maximum accuracy. A thorough 30–60 second verification window is preferred over hasty shallow checks.
 4. **Deterministic Tooling Delegation vs. Sub-Agent Model**:

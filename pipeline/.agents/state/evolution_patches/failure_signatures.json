@@ -6,9 +6,9 @@
     "description": "Code violates domain invariant pattern: msg\\.sender\\.call\\{value:\\s*[^}]+\\}\\(\\\"\\\"\\);\\s*balances\\[msg\\.sender\\]\\s*=",
     "remediation": "Enforce Checks-Effects-Interactions (CEI) and TWAP oracle price feeds.",
     "domain": "blockchain",
-    "occurrences": 5,
+    "occurrences": 7,
     "first_seen": "2026-10-10T20:11:41.005700+00:00",
-    "last_seen": "2026-10-10T20:38:15.479043+00:00",
+    "last_seen": "2026-10-10T22:07:26.864903+00:00",
     "staged": true,
     "staged_patch_id": "patch-b69419925d95-1791663203"
   },
@@ -19,9 +19,9 @@
     "description": "In-flight verification failed on test_script.py",
     "remediation": "Ensure syntax correctness and zero invariant violations before committing.",
     "domain": "blockchain",
-    "occurrences": 5,
+    "occurrences": 7,
     "first_seen": "2026-10-10T20:11:41.057965+00:00",
-    "last_seen": "2026-10-10T20:38:15.513602+00:00",
+    "last_seen": "2026-10-10T22:07:26.910538+00:00",
     "staged": true,
     "staged_patch_id": "patch-a0cc551a3313-1791663203"
   },
@@ -32,9 +32,9 @@
     "description": "In-flight verification failed on design_doc.md",
     "remediation": "Ensure syntax correctness and zero invariant violations before committing.",
     "domain": "blockchain",
-    "occurrences": 5,
+    "occurrences": 7,
     "first_seen": "2026-10-10T20:11:41.076968+00:00",
-    "last_seen": "2026-10-10T20:38:15.538281+00:00",
+    "last_seen": "2026-10-10T22:07:26.921562+00:00",
     "staged": true,
     "staged_patch_id": "patch-60cd5f9114bc-1791663101"
   },
@@ -102,5 +102,31 @@
     "last_seen": "2026-10-10T20:38:15.567958+00:00",
     "staged": true,
     "staged_patch_id": "patch-cbb6227ef083-1791664695"
+  },
+  "987c835b460a": {
+    "id": "987c835b460a",
+    "category": "NonCriticalFlake",
+    "signature": "test_sig_1791668740",
+    "description": "Minor transient latency spike",
+    "remediation": "Optimize query",
+    "domain": "ai_ml",
+    "occurrences": 2,
+    "first_seen": "2026-10-10T21:45:40.685857+00:00",
+    "last_seen": "2026-10-10T21:45:40.703930+00:00",
+    "staged": true,
+    "staged_patch_id": "patch-987c835b460a-1791668740"
+  },
+  "7dc3e36c567f": {
+    "id": "7dc3e36c567f",
+    "category": "NonCriticalFlake",
+    "signature": "test_sig_1791670046",
+    "description": "Minor transient latency spike",
+    "remediation": "Optimize query",
+    "domain": "ai_ml",
+    "occurrences": 2,
+    "first_seen": "2026-10-10T22:07:26.937697+00:00",
+    "last_seen": "2026-10-10T22:07:26.952720+00:00",
+    "staged": true,
+    "staged_patch_id": "patch-7dc3e36c567f-1791670046"
   }
 }

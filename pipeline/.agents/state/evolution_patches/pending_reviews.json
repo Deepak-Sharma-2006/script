@@ -120,5 +120,37 @@
     "trigger_reason": "RECURRING_FAILURE_PATTERN (count=2)",
     "dismissal_reason": "Test assertion cleanup",
     "rejected_at": "2026-10-10T20:38:15.575463+00:00"
+  },
+  {
+    "patch_id": "patch-987c835b460a-1791668740",
+    "sig_hash": "987c835b460a",
+    "category": "NonCriticalFlake",
+    "domain": "ai_ml",
+    "description": "Minor transient latency spike",
+    "remediation": "Optimize query",
+    "target_file": "AGENTS.md",
+    "patch_snippet": "- Enforce fail-closed guard for test_sig_1791668740: Optimize query",
+    "staged_at": "2026-10-10T21:45:40.703930+00:00",
+    "status": "REJECTED_BY_OPERATOR",
+    "occurrences": 2,
+    "trigger_reason": "RECURRING_FAILURE_PATTERN (count=2)",
+    "dismissal_reason": "Test assertion cleanup",
+    "rejected_at": "2026-10-10T21:45:40.723079+00:00"
+  },
+  {
+    "patch_id": "patch-7dc3e36c567f-1791670046",
+    "sig_hash": "7dc3e36c567f",
+    "category": "NonCriticalFlake",
+    "domain": "ai_ml",
+    "description": "Minor transient latency spike",
+    "remediation": "Optimize query",
+    "target_file": "AGENTS.md",
+    "patch_snippet": "- Enforce fail-closed guard for test_sig_1791670046: Optimize query",
+    "staged_at": "2026-10-10T22:07:26.952720+00:00",
+    "status": "REJECTED_BY_OPERATOR",
+    "occurrences": 2,
+    "trigger_reason": "RECURRING_FAILURE_PATTERN (count=2)",
+    "dismissal_reason": "Test assertion cleanup",
+    "rejected_at": "2026-10-10T22:07:26.968320+00:00"
   }
 ]

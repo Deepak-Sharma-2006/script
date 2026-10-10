@@ -253,10 +253,10 @@ function handleDomainStatus(): string {
 }
 
 function handleProjectStack(): string {
-  const stats = getRegistryStats ? getRegistryStats() : { totalSkills: 2922, tier1Count: 300, tier2Count: 2622 };
+  const stats = getRegistryStats ? getRegistryStats() : { totalSkills: 300, tier1Count: 300, tier2Count: 0 };
   return JSON.stringify({
     project_name: "Antigravity Enterprise Platform",
-    architecture_model: "True Pipeline: Deep Surge, 8-Hackathon Portfolio Multiplexing, and Collaborative Team Mode",
+    architecture_model: "True Pipeline: Deep Surge, Multi-Project / Portfolio Multiplexing, and Collaborative Team Mode",
     personas: ["Product Manager", "System Architect", "Adversarial SDET", "Core Engineer", "Mutation & Security Auditor", "Technical Writer"],
     testing_harness: "Assertion-Backed Deterministic Verification (eval-runner.ts, 0 test theater)",
     skill_registry: {
@@ -268,7 +268,7 @@ function handleProjectStack(): string {
     invariants: [
       "Zero-Raw-LaTeX Invariant (Unicode math only)",
       "Zero-Secret Shield (Pre-commit hook gated)",
-      "Anti-Hardcoding Guard (Kaggle/hackathon path rejector)",
+      "Anti-Hardcoding Guard (Mock path & constant rejector)",
       "75% Hardware Memory Ceiling (Kernel SIGKILL protection)",
       "Upstream Cascade Recall Gate (R_upstream >= target + 0.05)",
       "AST Mutation Survivability Gate (>= 80% kill rate)",

@@ -144,4 +144,5 @@ pipeline/specs/*.json
 pipeline/specs/*.html
 pipeline/specs/contracts/*.json
 !pipeline/specs/benchmark_metrics.json
+!pipeline/specs/portfolio.json
 

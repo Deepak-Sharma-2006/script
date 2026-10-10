@@ -1,7 +1,7 @@
 # Antigravity Gemini Pair Programming Guidelines
 
 > **Target Environment**: Google Antigravity IDE & Antigravity CLI (`agy`)
-> **Operational Framework**: True Pipeline Triple-Mode Architecture (Deep Surge, 8-Hackathon Portfolio Multiplexing, Collaborative Team Mode)
+> **Operational Framework**: True Pipeline Triple-Mode Architecture (Deep Surge, Multi-Project / Portfolio Multiplexing, Collaborative Team Mode)
 
 ---
 
@@ -9,14 +9,14 @@
 1. **Never Assume — Verify**: Cross-check existing project files, types, and schemas before writing or suggesting modifications.
 2. **True Pipeline Persona Division & Domain Specialization**:
    - In **Mode 1 (Deep Surge)**: Account 1 (Strategic Council & Solution Formulation), Account 2 (Adversarial SDET & Red-Team Testing), Account 3 (Core Engineer & TDD Loop), Account 4 (Mutation & Hardening Auditor).
-   - In **Mode 2 (Portfolio Multiplexing)**: 4 runner slots multiplex across the 8 hackathons under `demo/` on a 25-day runway with OmniDeck pitch deck generation (<0.2s PPTX).
+   - In **Mode 2 (Portfolio Multiplexing)**: 4 runner slots multiplexed across project repositories with OmniDeck pitch deck generation (<0.2s PPTX).
    - In **Mode 3 (Collaborative Team)**: Part 7 6-technique cognitive dossiers, LAN server on port 4040 (`npm run lan:start`), living catalog auto-reconciliation, and distributed Git domain locks.
 3. **Strict Path Formatting**: Always format file paths with `file://` scheme and forward slashes (e.g., `[src/auth/service.ts](file:///src/auth/service.ts)`).
 4. **Preserve Integrity**: Retain all established architectural comments, types, and documentation.
 5. **Universal Task Dispatcher Grounding**: Always route problem formulation, coding TDD loops, and presentation synthesis through [TaskDispatcher](file:///scripts/orchestrator/task_dispatcher.py) (`python -m scripts.orchestrator.task_dispatcher`) to ensure full multi-agent backing, self-healing, and SQLite Memory Vault persistence.
 6. **Native Visual Documentation Standard & Zero-LaTeX Invariant**: Present system architecture, workflows, and benchmarks using clean, native Markdown diagrams (box-drawing, pipeline flows, tables) that render universally across all markdown viewers without broken image dependencies. All markdown files (plans, walkthroughs, dossiers, docs/) **AND all interactive chat responses in the IDE/CLI** are strictly prohibited from containing raw LaTeX math delimiters ($ or $$) or raw LaTeX commands (\mathcal, \frac, \text, \sin, \times, etc.); use clean Unicode typography (≥, ≤, ×, ≠, →, ≈, ±, Δt, α, β, ∑, ∏, subscripts/superscripts) or fenced code blocks instead. Enforced fail-closed by `FormatGuard.scan_latex`.
 7. **Mandatory Council Hardening (claude-council)**: Every implementation plan, architectural decision, and solution blueprint must be hardened through the 5-Advisor Claude Council (`claude-council`) with explicit verdicts, 4-moat defensibility (Data, Algorithmic, Sovereign, Economic), and cryptographic anti-tamper invariants (Merkle chain attestation, constant-time checks, fail-closed state machines).
-8. **True Pipeline Triple-Mode Flexibility (Surge, Portfolio, Team)**: In Mode 1 Deep Surge (`npm run mode:surge`), all 4 accounts focus on 1 single project without multi-host lock contention. In Mode 2 Portfolio (`npm run mode:portfolio`), 4 runner slots multiplex across 8 hackathons. In Mode 3 Team (`npm run mode:team`), teammates sync via LAN port 4040, cognitive dossiers, and Git domain leases. Query mode status via `npm run mode:status`.
+8. **True Pipeline Triple-Mode Flexibility (Surge, Portfolio, Team)**: In Mode 1 Deep Surge (`npm run mode:surge`), all 4 accounts focus on 1 single project without multi-host lock contention. In Mode 2 Portfolio (`npm run mode:portfolio`), 4 runner slots multiplex across project repositories. In Mode 3 Team (`npm run mode:team`), teammates sync via LAN port 4040, cognitive dossiers, and Git domain leases. Query mode status via `npm run mode:status`.
 9. **Anti-Green Signal Trap & Red-First Invariant**: SDET tests must be written FIRST and verified RED before implementation begins. New code must pass the Mutation Testing Engine (`npm run test:mutation`) with ≥ 80% kill rate. Default to headless Playwright browser tests whenever frontend files exist.
 10. **Centralized Reactive State Store Mandate**: Multi-tab/multi-view applications must store all pipeline outputs in a single persistent reactive store. Navigating tabs must never reset state, and statutory certificates must remain fail-closed until prerequisite engines report COMPLETED.
 11. **Frontend Component Shell & Design Token Invariant**: Web applications must import `templates/frontend/design-tokens.css`, anchor workflow actions to a uniform `<footer class="app-action-dock">` at bottom-right, sanitize DOM re-renders against duplication, and clamp graph viewports before node injection.
