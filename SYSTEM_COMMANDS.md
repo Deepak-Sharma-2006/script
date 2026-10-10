@@ -16,7 +16,7 @@ npm run governance
 # 2. TIERED SKILL & MCP ENGINE (Search 2,922 skills via SQLite FTS5, Materialize & Validate)
 npm run skill <query>
 
-# 3. 6+1 AGILE SQUAD & DISPATCH (Full Autonomous SDLC: PM -> Arch -> SDET -> Code -> Audit -> Writer)
+# 3. TRUE PIPELINE TASK DISPATCH (Autonomous SDLC: Solution Formulation -> TDD Loop -> Presentation Pitch)
 npm run squad:run
 
 # 4. CLOSED-LOOP SELF-HEALING (Score Healing Metrics, Run Mutation Tests, Review Patches)
@@ -48,7 +48,7 @@ You can trigger the entire agentic pipeline directly from chat with zero manual 
 # Ambient Autonomous Execution Workflow:
 #   1. PromptHygiene extracts domain intent and injects the 4 KB Core Kernel.
 #   2. SkillResolver programmatically cites relevant skills from the 2,922 registry.
-#   3. The 6-Persona Squad executes sequentially: [PM] -> [Architect] -> [SDET] -> [Coder] -> [Auditor] -> [Writer].
+#   3. Direct High-Signal Engineering: Modular task execution via TaskDispatcher (Rule 15, zero in-chat monologues).
 #   4. claude-council 5-perspective hardening is automatically applied to architectural designs.
 #   5. SpecSync automatically mirrors brain artifacts to docs/plans/ and docs/walkthroughs/.
 #   6. SquadAttestor concludes each turn with a verified cryptographic attestation receipt.
@@ -167,13 +167,13 @@ npm run skill:resolve
 
 ---
 
-## 3. Super-Feature 3: 6+1 Agile Squad & Task Dispatch (`npm run squad:run`)
+## 3. Super-Feature 3: True Pipeline Multi-Mode Execution & Task Dispatch (`npm run squad:run`)
 
-Executes structured multi-persona SDLC workflows and headless task dispatching backed by Claude Council consensus.
+Executes True Pipeline Triple-Mode SDLC workflows and headless task dispatching backed by Claude Council consensus.
 
 ```bash
-# MASTER COMMAND: Run Full 6+1 Persona Agile Product Squad Lifecycle
-# (PM -> Architect -> SDET -> Coder -> Mutation Auditor -> Tech Writer)
+# MASTER COMMAND: Run True Pipeline Autonomous SDLC Lifecycle
+# (Solution Formulation -> TDD Self-Healing -> Presentation Pitch -> Attestation)
 npm run squad:run
 
 # ------------------------------------------------------------------------------

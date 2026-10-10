@@ -1,6 +1,6 @@
 # Universal Autonomous Agentic Engineering Platform
 
-> **An enterprise-grade, agent-agnostic multi-agent SDLC orchestration platform. Built to transform any AI coding agent or human engineering team into an autonomous, self-healing 6+1 Agile Product Squad across any development environment.**
+> **An enterprise-grade, agent-agnostic multi-agent SDLC orchestration platform. Engineered under the True Pipeline Triple-Mode Architecture (Deep Surge, 8-Hackathon Portfolio Multiplexing, Collaborative Team Mode) with closed-loop TDD self-healing, AST mutation testing, and deterministic task dispatching.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-v20%2B%20%7C%20v24%2B-339933.svg?logo=node.js)](https://nodejs.org)
@@ -39,11 +39,11 @@ To eliminate command sprawl and cognitive overload, the entire platform is organ
                         │                                                 │
                         ▼                                                 ▼
  ┌──────────────────────────────────────────────┐  ┌──────────────────────────────────────────────┐
- │ 3. 6+1 AGILE SQUAD & DISPATCH                │  │ 4. CLOSED-LOOP SELF-HEALING                  │
+ │ 3. TRUE PIPELINE TASK DISPATCH               │  │ 4. CLOSED-LOOP SELF-HEALING                  │
  │ Master: npm run squad:run                    │  │ Master: npm run self-heal                    │
- │ • Multi-Persona SDLC: PM → Arch → SDET...    │  │ • End-to-End Metric Audit (95.9% / 87.1%)    │
+ │ • Triple Modes: Surge | Portfolio | Team     │  │ • End-to-End Metric Audit (95.9% / 87.1%)    │
  │ • Modular Dispatcher: solution | code | deck │  │ • Deterministic AST Mutation Gates (≥ 80%)   │
- │ • Dynamic GroupChat Speaker Routing (AG2)    │  │ • LangGraph Cyclic State Graph & Rollback    │
+ │ • Out-of-Band Worktree Persona Specialization│  │ • Dynamic GroupChat Speaker Routing (AG2)    │
  │ • Deterministic Task DAG Pipeline (CrewAI)   │  │ • Continual Self-Evolution Patches           │
  └──────────────────────┬───────────────────────┘  └──────────────────────┬───────────────────────┘
                         │                                                 │
@@ -64,7 +64,7 @@ To eliminate command sprawl and cognitive overload, the entire platform is organ
 |---|---|---|---|
 | **1** | `npm run governance` | System state, leases & harness sync | Operating mode switching (`mode:surge`, `mode:portfolio`, `mode:team`), atomic domain configuration, distributed locking, universal rule synchronization |
 | **2** | `npm run skill <query>` | Knowledge retrieval & tool serving | Sub-5ms SQLite FTS5 search across 2,922 skills, on-demand skill materialization, local JSON-RPC MCP server, drift detection |
-| **3** | `npm run squad:run` | Autonomous end-to-end SDLC | Full 6+1 Agile Squad lifecycle, first-principles solution formulation, autonomous red-to-green coding, vector pitch decks |
+| **3** | `npm run squad:run` | Autonomous end-to-end SDLC | True Pipeline Triple-Mode execution, first-principles solution formulation, autonomous red-to-green coding, vector pitch decks |
 | **4** | `npm run self-heal` | Autonomous defect recovery & audit | 7-stage closed-loop self-healing scorecards, AST mutation testing (≥ 80% kill rate), cyclic state rollback, auto-evolution patches |
 | **5** | `npm run check` | Pre-commit security & quality sweep | Zero-secret scanning, anti-hallucination AST checking, anti-hardcoding validation, subdomain compliance, Zero-LaTeX markdown linting |
 | **6** | `npm run workbench` | Visual inspection & documentation | Browser HUD on port 3042, real-time brain-to-docs synchronization (`SpecSync`), AST repository call graph, interactive diff streaming |
@@ -123,55 +123,51 @@ All agent instruction surfaces are generated from a single, authoritative root c
 
 ---
 
-## 👥 The 6+1 Agile Product Squad
+## 🔄 The True Pipeline Triple-Mode Operational Architecture
 
-Rather than relying on unstructured generalist prompting, every software change executes through structured enterprise personas with differentiated temperature, reasoning effort, and validation boundaries:
+The platform operates strictly under the 3 proven operational modes established in the empirical frontier research (Sections 8 and 11 of `AGENTS.md` and `GEMINI.md`), eliminating conversational monologues and simulated waterfall delays:
 
 ```
-                           THE 6+1 PERSONA EXECUTION LIFECYCLE
-                                            │
-                                            ▼
- ┌───────────────────────────────────────────────────────────────────────────────────────┐
- │ PHASE 0: DEEP RESEARCH SPECIALIST (temp: 0.3, effort: high)                          │
- │ Multi-hop statutory research, IEEE literature, CVE audits & commercial prior-art     │
- └──────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
- ┌───────────────────────────────────────────────────────────────────────────────────────┐
- │ PHASE 1: PRODUCT MANAGER (temp: 0.7, effort: medium)                                 │
- │ Deconstructs problem statement into Functional PRD, user journeys & forbidden states │
- └──────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
- ┌───────────────────────────────────────────────────────────────────────────────────────┐
- │ PHASE 2: SYSTEM ARCHITECT (temp: 0.2, effort: high)                                  │
- │ Emits typed interface contracts, FSM state machines & Claude Council Hardening (ADRs)│
- └──────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
- ┌───────────────────────────────────────────────────────────────────────────────────────┐
- │ PHASE 3: ADVERSARIAL SDET (temp: 0.8, effort: high)                                  │
- │ Authors black-box tests FIRST; verifies RED phase before implementation starts        │
- └──────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
- ┌───────────────────────────────────────────────────────────────────────────────────────┐
- │ PHASE 4: CORE ENGINEER (temp: 0.1, effort: medium)                                   │
- │ Implements idiomatic business logic; turns RED tests GREEN in closed feedback loop    │
- └──────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
- ┌───────────────────────────────────────────────────────────────────────────────────────┐
- │ PHASE 5: MUTATION & SECURITY AUDITOR (temp: 0.0, effort: low)                        │
- │ Injects AST mutations (≥ 80% kill requirement); verifies Zero-Secret Shield          │
- └──────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
- ┌───────────────────────────────────────────────────────────────────────────────────────┐
- │ PHASE 6: TECHNICAL WRITER (temp: 0.4, effort: low)                                   │
- │ Synthesizes Part 7 6-Technique Comprehension Dossier; mirrors brain artifacts         │
- └───────────────────────────────────────────────────────────────────────────────────────┘
+                      THE TRUE PIPELINE TRIPLE-MODE ARCHITECTURE
+                                          │
+         ┌────────────────────────────────┼────────────────────────────────┐
+         ▼                                ▼                                ▼
+  ┌─────────────┐                  ┌─────────────┐                  ┌─────────────┐
+  │   MODE 1    │                  │   MODE 2    │                  │   MODE 3    │
+  │ DEEP SURGE  │                  │  PORTFOLIO  │                  │    TEAM     │
+  │npm run      │                  │  MULTIPLEX  │                  │COLLABORATION│
+  │mode:surge   │                  │npm run      │                  │npm run      │
+  │             │                  │mode:port-   │                  │mode:team    │
+  │             │                  │folio        │                  │             │
+  └──────┬──────┘                  └──────┬──────┘                  └──────┬──────┘
+         │                                │                                │
+         ▼                                ▼                                ▼
+  4 Worktree Slots                 4 Headless Slots                 Distributed Mesh
+  1 Single Project                 8 Hackathons                     LAN Sync (4040)
+  Alpha/Beta/Gamma/Delta           25-Day Milestone Runway          Domain Leases
+  Zero Lock Contention             OmniDeck (<0.2s PPTX)            Cognitive Dossiers
 ```
+
+### 1. Mode 1: Deep Surge (`npm run mode:surge`)
+* **Focus**: All 4 Google accounts / developer slots focused exclusively on **1 single flagship project**.
+* **Worktree Division**:
+  * **Lead 1 Alpha (Strategic Council & Solution Formulation)**: Deconstructs requirements, live research triangulation, architecture contracts, and SQLite Memory Vault indexing.
+  * **Lead 2 Beta (Adversarial SDET & Red-Team Testing)**: Authors black-box test suites first (asserted red), fuzzes edge cases, and verifies headless Playwright browser tests.
+  * **Account 3 Gamma (Core Engineer & TDD Loop)**: Implements idiomatic business logic, turning red tests green in an autonomous self-healing loop.
+  * **Account 4 Delta (Mutation & Hardening Auditor)**: Injects AST mutations (kill rate ≥ 80%), audits cryptographic invariants, and verifies pre-commit shields.
+
+### 2. Mode 2: 8-Hackathon Portfolio Multiplexing (`npm run mode:portfolio`)
+* **Portfolio Runway**: 4 headless runner slots multiplexed across **8 hackathons on disk** (`demo/`) on a structured 25-day milestone runway.
+* **OmniDeck Engine**: Compiles competition-winning pitch decks (<0.2s native PPTX) with 2D Flex/Grid geometry, 7 visual primitives, and cognitive layout density.
+
+### 3. Mode 3: Collaborative Team Mode (`npm run mode:team`)
+* **Frictionless Sync**: Seamless multi-developer collaboration via distributed Git domain leases (`.agents/state/locks/`).
+* **LAN Synchronization**: Local zero-dependency LAN Sync Server on port 4040 (`npm run lan:start`) providing sub-10ms heartbeat visibility across venue networks.
+* **Cognitive Dossiers**: Part 7 6-technique human comprehension dossiers (`docs/dossiers/`) generated at phase handoffs.
+
+### 4. Direct High-Signal Engineering Standard (Rule 15 / Rule 12)
+* **Zero Theatrical Monologues**: Interactive chat communicates directly, concisely, and technically. Emitting simulated persona monologue headings in chat is strictly prohibited, saving 1,500 to 2,500 tokens per turn.
+* **Physical Worktree Specialization**: Persona specialization is decoupled from chat and executed where it physically matters: in dedicated, out-of-band headless CLI worker lanes operating across isolated Git Worktrees and modular tasks via [TaskDispatcher](file:///d:/BE_Research/pipeline/scripts/orchestrator/task_dispatcher.py).
 
 ---
 

@@ -2872,42 +2872,38 @@ The platform resolves this by implementing **Dual-Persistence Synchronization**:
 
 ---
 
-### 11.13 Mandatory Chat Prompt 6+1 Persona Execution Lifecycle & 9-Phase SDLC Architecture
+### 11.13 True Pipeline Operational Architecture & Direct High-Signal Engineering Standard
 
 In interactive IDE chat sessions, agents naturally default to unstructured conversational generalists unless constrained by rigorous system rules. The platform introduces **Rule 15 of AGENTS.md** and **Rule 12 of GEMINI.md**:
 
-#### 1. Complete 9-Phase Enterprise SDLC Mapping
+#### 1. The True Pipeline Direct High-Signal Engineering Invariant
 
-The squad operates across 9 deterministic phases to ensure complete software lifecycle coverage from conception through post-ship telemetry:
+In interactive IDE chat conversations, the agent communicates directly, concisely, and technically as a senior principal software engineer. Emitting simulated persona monologue headings in interactive chat is strictly prohibited:
+- **Token Efficiency**: Prevents wasting 1,500 to 2,500 tokens per turn on simulated conversational headings, avoiding premature context saturation.
+- **Out-of-Band Physical Execution**: Persona specialization is decoupled from chat and executed where it physically matters: in dedicated, out-of-band headless CLI worker lanes (Lead 1 Alpha Core Domain, Lead 2 Beta Adversarial SDET, AppSec Mutation Auditor, OmniDeck Presentation Lead) operating across isolated Git Worktrees under the 3 operational modes.
+- **Verifiable Proof**: Every turn concludes with empirical execution proof and the cryptographically hashed `SquadAttestor` receipt.
+
+#### 2. Complete 9-Phase Enterprise SDLC Mapping
+
+The engine executes across 9 deterministic phases to ensure complete software lifecycle coverage from conception through post-ship telemetry:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
 │                        THE 9-PHASE ENTERPRISE SDLC LIFECYCLE                           │
 ├─────────┬───────────────────────────────┬────────────────────────────┬─────────────────┤
-│ Phase   │ Name                          │ Lead Persona               │ Primary Output  │
+│ Phase   │ Name                          │ Execution Authority        │ Primary Output  │
 ├─────────┼───────────────────────────────┼────────────────────────────┼─────────────────┤
-│ Phase 0 │ Discovery & Deep Research     │ Deep Research Specialist   │ docs/research/  │
-│ Phase 1 │ Requirements Formulation      │ Product Manager            │ docs/plans/     │
-│ Phase 2 │ Architectural Modeling        │ System Architect           │ docs/rfcs/, adrs│
-│ Phase 3 │ Adversarial TDD (Red-Phase)   │ Adversarial SDET           │ tests/          │
-│ Phase 4 │ Idiomatic Implementation      │ Core Engineer              │ src/            │
-│ Phase 5 │ Mutation & AppSec Hardening   │ Mutation Auditor           │ specs/metrics   │
-│ Phase 6 │ Cognitive Dossier & Doc Sync  │ Technical Writer           │ docs/dossiers/  │
-│ Phase 7 │ Packaging & Release Gating    │ Adversarial SDET           │ release artifacts│
-│ Phase 8 │ Post-Ship Impact & Telemetry  │ Deep Research Specialist   │ docs/research/  │
+│ Phase 0 │ Discovery & Deep Research     │ Research Triangulator      │ docs/research/  │
+│ Phase 1 │ Requirements Formulation      │ Solution Deconstructor     │ docs/plans/     │
+│ Phase 2 │ Architectural Modeling        │ Contract / Council Guard   │ docs/specifications│
+│ Phase 3 │ Adversarial TDD (Red-Phase)   │ Adversarial SDET (Beta)    │ tests/          │
+│ Phase 4 │ Idiomatic Implementation      │ Core Engineer (Gamma)      │ src/            │
+│ Phase 5 │ Mutation & AppSec Hardening   │ Mutation Auditor (Delta)   │ specs/metrics   │
+│ Phase 6 │ Cognitive Dossier & Doc Sync  │ SpecSync / Dossier Writer  │ docs/dossiers/  │
+│ Phase 7 │ Packaging & Release Gating    │ System Readiness Probe     │ release artifacts│
+│ Phase 8 │ Post-Ship Impact & Telemetry  │ Context & Telemetry Stream │ docs/research/  │
 └─────────┴───────────────────────────────┴────────────────────────────┴─────────────────┘
 ```
-
-#### 2. The 6+1 Agile Squad Personas & Zero-Generalist Chat Mandate
-
-Every chat prompt processed in Antigravity IDE must visibly execute through the designated Enterprise Personas:
-- 📋 **`[Product Manager]`**: Scope deconstruction, user journeys, forbidden states, acceptance criteria. **Mandatory Auto-Trigger**: Automatically triggers Phase 0 Deep Research whenever a new project, problem statement, or theme is provided, even if research was not explicitly requested.
-- 🔍 **`[Deep Research Specialist]`**: Autonomous 4-mode multi-hop web intelligence using 2025/2026 keyless free connectors (Jina Reader `r.jina.ai`, DuckDuckGo, Semantic Scholar, arXiv, NIST NVD). Deliberates for a minimum of 120 seconds, computing a saturation index before synthesizing evidence into `docs/research/`.
-- 📐 **`[System Architect]`**: Typed schema contracts, FSM state machines, API endpoints in `docs/rfcs/`. **ADR Gating**: Generates `docs/adrs/` Architecture Decision Records strictly when significant architectural trade-offs or irreversible structural decisions are made.
-- 🛑 **`[Adversarial SDET]`**: Red-first black-box test suites, boundary fuzzing, race-condition simulation, and mandatory headless Playwright browser verification whenever frontend files exist.
-- 💻 **`[Core Engineer]`**: Production logic implementation, autonomous red-to-green TDD self-healing loop.
-- 🔬 **`[Mutation & Security Auditor]`**: AST mutation kill rate (≥ 80%), pre-commit secret scans, constant-time cryptography (`crypto.timingSafeEqual`), and fail-closed gates.
-- 📑 **`[Technical Writer]`**: Part 7 6-technique cognitive dossiers, triple-documentation sync across `SYSTEM_COMMANDS.md`, `README.md`, and `implementation_setup_guide.md`.
 
 #### 3. Deep Research Specialist Architecture & 4 Operating Modes
 
@@ -2979,8 +2975,8 @@ When auditing an existing completed codebase:
 #### Scenario B: Developing Project Onboarding & Delta Resumption
 When inheriting a half-built project:
 1. **Baseline Stabilization**: `ProjectAuditor.remediate_project()` identifies broken stubs (`NotImplementedError`, `TODO`, failing unit tests) and runs self-healing passes until existing baseline tests are 100% green.
-2. **Delta Work Breakdown Structure (WBS)**: Product Manager maps finished modules against target requirements, emitting a formal Delta WBS Implementation Plan to `docs/plans/`.
-3. **6+1 Squad Resumption**: System Architect aligns existing schemas with new contract interfaces (`docs/rfcs/`), and the squad executes standard Phase 3–8 TDD cycles on missing modules.
+2. **Delta Work Breakdown Structure (WBS)**: Solution architecture maps finished modules against target requirements, emitting a formal Delta WBS Implementation Plan to `docs/plans/`.
+3. **True Pipeline Resumption**: Architecture aligns existing schemas with new contract interfaces (`docs/specifications/`), and the pipeline executes standard Phase 3–8 TDD cycles on missing modules.
 
 ---
 
@@ -3013,7 +3009,7 @@ To eliminate configuration drift across disparate agent interfaces (Claude Code,
 
 #### 1. Universal Harness Compiler (`scripts/universal-harness-sync.ts`)
 The root `AGENTS.md` file serves as the definitive specification. Running `npm run harness:sync` compiles it into all target harness formats:
-- `CLAUDE.md`: Anthropic Claude Code CLI with project commands and 6+1 Persona directives.
+- `CLAUDE.md`: Anthropic Claude Code CLI with project commands and True Pipeline directives.
 - `.cursorrules` & `.cursor/rules/agentic-workflow.mdc`: Cursor IDE rules.
 - `.windsurfrules`: Codeium Windsurf rules.
 - `.github/copilot-instructions.md`: GitHub Copilot Workspace.
@@ -3022,7 +3018,7 @@ The root `AGENTS.md` file serves as the definitive specification. Running `npm r
 #### 2. Model Context Protocol (MCP) Server (`scripts/mcp-server.ts`)
 Exposes the core orchestration capabilities over standard JSON-RPC stdio to any MCP-compliant client:
 - `orchestrator_solution`: Formulates first-principles solutions with live research.
-- `orchestrator_squad`: Drives 6+1 agile squad feature implementation.
+- `orchestrator_squad`: Drives True Pipeline feature implementation.
 - `orchestrator_research`: Executes deep research across 4 modes with 120s deliberation.
 - `orchestrator_audit`: Audits completed projects or onboards developing codebases.
 - `orchestrator_team_status`: Inspects active team members and domain leases.
@@ -3049,8 +3045,8 @@ System prompts alone cannot guarantee 100% compliance across diverse LLMs due to
 │ Layer 3 │ Cryptographic Attestation     │ Mandates immutable SHA-256 execution ledger  │
 │         │ (SquadAttestor & SQLite)      │ records; rejects ungrounded verbal claims.   │
 ├─────────┼───────────────────────────────┼──────────────────────────────────────────────┤
-│ Layer 4 │ Turn-Boundary Prompt Injection│ Injects 6+1 Persona structure reminders to   │
-│         │ (Hookify & Agent Harnesses)   │ eliminate long-context attention dilution.   │
+│ Layer 4 │ Turn-Boundary Prompt Injection│ Injects True Pipeline operational reminders  │
+│         │ (Hookify & Agent Harnesses)   │ to eliminate long-context attention dilution.│
 └─────────┴───────────────────────────────┴──────────────────────────────────────────────┘
 ```
 
@@ -3060,7 +3056,7 @@ Regardless of which model (Claude, GPT, Gemini, DeepSeek, or Qwen) or human engi
 
 ### 11.20 Universal Master Domain Specialization & Subdomain Skills Architecture
 
-To eliminate domain bias and transform the autonomous 6-Persona SDLC squad into an expert engineering organization for any technical field, the platform introduces the **Universal Master Domain Specialization Engine**:
+To eliminate domain bias and transform the autonomous True Pipeline SDLC into an expert engineering organization for any technical field, the platform introduces the **Universal Master Domain Specialization Engine**:
 
 #### 1. Universal 8-Domain & 46-Subdomain Taxonomy
 The repository catalogs 8 Master Domains and 46 Subdomains in `templates/domains/catalog.json`:

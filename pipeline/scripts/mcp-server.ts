@@ -108,7 +108,7 @@ export const TOOLS: McpTool[] = [
   },
   {
     name: "orchestrator_squad",
-    description: "Executes the 6+1 Enterprise Agile Product Squad lifecycle on a feature with TDD self-healing, AST mutation testing, and living documentation.",
+    description: "Executes the True Pipeline SDLC lifecycle on a feature with TDD self-healing, AST mutation testing, and living documentation.",
     inputSchema: {
       type: "object",
       properties: {

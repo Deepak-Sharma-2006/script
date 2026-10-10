@@ -31,7 +31,7 @@ class PromptHygieneEngine:
 # Enterprise Autonomous Agentic Core Kernel (v2.0)
 
 1. Zero Ghost Packages & AST Grounding: Only import packages declared in package.json or standard library. Never hallucinate packages or APIs.
-2. 6-Persona Execution Lifecycle: Every response must visibly execute through [Product Manager], [System Architect], [Adversarial SDET], [Core Engineer], [Mutation & Security Auditor], and [Technical Writer].
+2. Direct High-Signal Engineering: Execute with zero theatrical persona monologues (Rule 15). Persona specialization is decoupled into dedicated headless CLI worker lanes (Lead 1 Alpha, Lead 2 Beta, Mutation Auditor, OmniDeck) and modular tasks via TaskDispatcher.
 3. Empirical Grounding & Attestation Receipt: Never assert tests pass, builds succeed, or metrics hold without executing real commands. Conclude with verifiable squad_execution_attestation receipt.
 4. Red-First Testing & Mutation Gate: Author adversarial tests first (must fail red before implementation). Verify >= 80% mutation kill rate.
 5. Zero Secrets Policy: Absolute zero credentials, tokens, or private keys committed or output. Use safe placeholders only.

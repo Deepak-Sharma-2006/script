@@ -243,7 +243,7 @@ class FormatGuard:
         latex_check = cls.scan_latex(text)
 
         passed = (
-            persona_check["all_present"]
+            (persona_check["all_present"] or is_tactical)
             and attestation_check["valid"]
             and not sycophancy_check["violation"]
             and not latex_check["violation"]

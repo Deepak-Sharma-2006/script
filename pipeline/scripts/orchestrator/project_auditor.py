@@ -254,7 +254,7 @@ Prior to feature development, existing stubs and defects were audited and stabil
         delta_plan_md += """
 ---
 
-## 3. Resumption Directives for 6+1 Squad
+## 3. Resumption Directives for True Pipeline Squad
 
 1. **Characterization Freeze**: Existing stabilized modules are frozen; regressions are rejected.
 2. **Delta TDD Loop**: Missing modules proceed through Phase 3 (Adversarial SDET Red-Tests) and Phase 4 (Core Implementation).

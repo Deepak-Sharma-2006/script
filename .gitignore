@@ -12,6 +12,7 @@ dist/
 build/
 .npm-cache/
 .agents/cache/
+pipeline/.agents/cache/
 prisma/*.db
 prisma/*.db-wal
 prisma/*.db-shm
@@ -84,6 +85,9 @@ docs/sih_solutions/
 !.agents/state/skills_drift_baseline.json
 .agents/state/locks/
 .agents/state/evolution_patches/
+pipeline/.agents/state/evolution_patches/
+pipeline/.agents/state/*.json
+!pipeline/.agents/state/.gitkeep
 .agents/state/telemetry_stream.jsonl
 .agents/audit_trail.log
 .agents/security/pentest-report.json
