@@ -271,6 +271,19 @@
 5. **Living Catalog Deduplication**:
    - `INDEX.md` living catalogs in all 6 directories (`docs/plans/`, `docs/walkthroughs/`, `docs/audits/`, `docs/decisions/`, `docs/research/`, `docs/specifications/`) must record the exact second of execution (`YYYY-MM-DD HH:MM:SS`) and prevent duplicate line appends.
 
+---
+
+## 18. Cursor Cloud Agent Environment
+
+1. **Bootstrap**: After checkout, run `bash .cursor/cloud-agent-install.sh` (or rely on the saved environment `install` hook). This pins **Node.js 22.23.3** to `/usr/local/bin` so `node:sqlite` includes **FTS5** for the skill registry (the default `/exec-daemon/node` 22.14 build lacks FTS5).
+2. **Runtime services**: On agent boot, `bash .cursor/start.sh` starts the Web Workbench HUD on **port 3042** (`GET /api/status`, `GET /api/skills?q=…`).
+3. **Canonical verification commands** (use `/usr/local/bin` on `PATH`):
+   - `npm run governance` — workspace mode and lease profile
+   - `npm run skill -- <query>` — FTS5 skill search (requires committed `.agents/skills/registry.sqlite`; do **not** run `npm run catalog:compile` on Node builds without FTS5)
+   - `npm run build` — TypeScript compile
+   - `npm run test:e2e` — Playwright smoke suite
+   - `npm run workbench` — manual workbench (same server as `start`)
+
 
 
 
