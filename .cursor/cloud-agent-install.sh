@@ -19,6 +19,8 @@ sudo ln -sf "$(dirname "$NODE_BIN")/npm" /usr/local/bin/npm
 sudo ln -sf "$(dirname "$NODE_BIN")/npx" /usr/local/bin/npx
 
 export PATH="/usr/local/bin:${PATH}"
+printf '%s\n' 'export PATH="/usr/local/bin:${PATH}"' | sudo tee /etc/profile.d/antigravity-node-path.sh >/dev/null
+sudo chmod 644 /etc/profile.d/antigravity-node-path.sh
 
 ROOT="${CURSOR_WORKSPACE:-/workspace}"
 cd "$ROOT"
