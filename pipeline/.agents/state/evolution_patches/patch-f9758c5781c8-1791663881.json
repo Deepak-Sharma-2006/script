@@ -1,0 +1,14 @@
+{
+  "patch_id": "patch-f9758c5781c8-1791663881",
+  "sig_hash": "f9758c5781c8",
+  "category": "NonCriticalFlake",
+  "domain": "ai_ml",
+  "description": "Minor transient latency spike",
+  "remediation": "Optimize query",
+  "target_file": "AGENTS.md",
+  "patch_snippet": "- Enforce fail-closed guard for test_sig_1791663881: Optimize query",
+  "staged_at": "2026-10-10T20:24:41.426737+00:00",
+  "status": "PENDING_OPERATOR_VERIFICATION",
+  "occurrences": 2,
+  "trigger_reason": "RECURRING_FAILURE_PATTERN (count=2)"
+}

@@ -1,0 +1,38 @@
+{
+  "subdomain_id": "zero_knowledge",
+  "domain_id": "blockchain",
+  "name": "Zero-Knowledge Proofs & Scalability (ZK)",
+  "description": "zk-SNARKs, zk-STARKs, Circom/Noir circuits, and private verifiable state transitions.",
+  "physical_compute_boundaries": {
+    "target_platform": "EVM / Substrate / WASM",
+    "gas_ceiling_units": 30000000,
+    "reentrancy_guard": "fail_closed"
+  },
+  "key_technologies": [
+    "Circom",
+    "Noir",
+    "RISC Zero",
+    "SP1",
+    "SnarkJS"
+  ],
+  "statutory_standards": [
+    "Under-constrained Circuit Audits",
+    "Zero Trusted Setup Leakage",
+    "Deterministic Public Inputs"
+  ],
+  "forbidden_antipatterns": [
+    "tx.origin authentication",
+    "Reentrancy without mutex lock",
+    "Unchecked return values on low-level calls"
+  ],
+  "curated_skills": [
+    "rust-patterns",
+    "cpp-coding-standards",
+    "security-review"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

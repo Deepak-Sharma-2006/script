@@ -1,0 +1,39 @@
+{
+  "subdomain_id": "rl_alignment",
+  "domain_id": "ai_ml",
+  "name": "Reinforcement Learning & Alignment (RLHF / DPO)",
+  "description": "Reward modeling, preference optimization, DPO, PPO, and GRPO reasoning alignment.",
+  "physical_compute_boundaries": {
+    "target_platform": "NVIDIA Tesla T4 / Jetson Orin Nano",
+    "memory_ceiling_mb": 8192,
+    "max_patch_size": 14,
+    "optimal_tile_resolution": 672
+  },
+  "key_technologies": [
+    "TRL",
+    "DeepSpeed",
+    "Ray",
+    "vLLM",
+    "PyTorch"
+  ],
+  "statutory_standards": [
+    "Reward hacking resistance",
+    "KL-divergence penalty gating",
+    "Safety policy adherence"
+  ],
+  "forbidden_antipatterns": [
+    "Training foundation models from scratch without pre-trained weights",
+    "Memory broadcast across PCIe in DataParallel",
+    "Silent NaN loss propagation"
+  ],
+  "curated_skills": [
+    "benchmark-optimization-loop",
+    "autonomous-loops",
+    "eval-harness"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

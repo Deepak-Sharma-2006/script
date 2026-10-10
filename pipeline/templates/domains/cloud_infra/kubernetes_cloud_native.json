@@ -1,0 +1,39 @@
+{
+  "subdomain_id": "kubernetes_cloud_native",
+  "domain_id": "cloud_infra",
+  "name": "Kubernetes & Cloud-Native Platforms",
+  "description": "Container orchestration, Helm charts, service meshes (Istio/Cilium), and K8s operators.",
+  "physical_compute_boundaries": {
+    "target_platform": "Kubernetes v1.31 / containerd",
+    "cpu_limit_cores": 4,
+    "memory_ceiling_mb": 4096
+  },
+  "key_technologies": [
+    "Kubernetes",
+    "Docker",
+    "Helm",
+    "Cilium",
+    "Istio",
+    "ArgoCD"
+  ],
+  "statutory_standards": [
+    "CIS Kubernetes Benchmark",
+    "Pod Security Standards (Restricted)",
+    "Zero Root Containers"
+  ],
+  "forbidden_antipatterns": [
+    "Running containers as root",
+    "Privileged container capabilities",
+    "Hardcoded IP addresses instead of DNS services"
+  ],
+  "curated_skills": [
+    "kubernetes-patterns",
+    "docker-patterns",
+    "deployment-patterns"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

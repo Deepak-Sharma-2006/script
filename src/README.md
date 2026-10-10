@@ -1,6 +1,6 @@
 # Product Source Code Directory (`src/`)
 
-This directory contains the primary product application source code owned and maintained by the Core Engineer persona (`[Core Engineer]`).
+This directory contains the primary product application source code for the active project.
 
 ## Structure & Architecture
 - `index.ts`: Production HTTP baseline microservice featuring health check probes (`/health`, `/api/health`, `/api/info`) and a built-in security shield against path traversal attacks.

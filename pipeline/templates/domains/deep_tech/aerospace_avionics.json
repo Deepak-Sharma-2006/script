@@ -1,0 +1,38 @@
+{
+  "subdomain_id": "aerospace_avionics",
+  "domain_id": "deep_tech",
+  "name": "Aerospace, Avionics & Autonomous Spaceflight",
+  "description": "Safety-critical flight software, Guidance Navigation & Control (GNC), and NASA Core Flight System.",
+  "physical_compute_boundaries": {
+    "target_platform": "Qiskit Aer / OpenMM / C++20 Sim",
+    "memory_ceiling_mb": 16384,
+    "precision": "fp64"
+  },
+  "key_technologies": [
+    "C",
+    "Ada",
+    "NASA cFS",
+    "F Prime",
+    "Simulink"
+  ],
+  "statutory_standards": [
+    "DO-178C Level A/B",
+    "DO-254",
+    "Zero dynamic memory allocation in flight loop"
+  ],
+  "forbidden_antipatterns": [
+    "Single-precision accumulation in thermodynamic simulations",
+    "Non-deterministic seed generation",
+    "Unbounded matrix inversion"
+  ],
+  "curated_skills": [
+    "safety-guard",
+    "verification-loop",
+    "delivery-gate"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

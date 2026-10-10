@@ -1,0 +1,44 @@
+{
+  "subdomain_id": "web_frontend",
+  "domain_id": "software",
+  "name": "Web Application & Modern Frontend Systems",
+  "description": "SPA, SSR, Micro-frontends, WebAssembly, and high-fidelity responsive UI.",
+  "physical_compute_boundaries": {
+    "target_platform": "Node.js 24 LTS / Linux x86_64",
+    "memory_ceiling_mb": 2048,
+    "max_latency_p99_ms": 50
+  },
+  "key_technologies": [
+    "React",
+    "Next.js",
+    "Vue",
+    "TypeScript",
+    "TailwindCSS",
+    "WebAssembly"
+  ],
+  "statutory_standards": [
+    "WCAG 2.2 AA",
+    "Core Web Vitals",
+    "W3C Semantic HTML"
+  ],
+  "forbidden_antipatterns": [
+    "Using any in TypeScript",
+    "Hardcoding secrets or API keys",
+    "Unhandled Promise rejections"
+  ],
+  "curated_skills": [
+    "frontend-patterns",
+    "motion-ui",
+    "frontend-a11y",
+    "design-system",
+    "make-interfaces-feel-better",
+    "vite-patterns",
+    "liquid-glass-design",
+    "browser-qa"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

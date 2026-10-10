@@ -10,10 +10,10 @@ import { existsSync, readFileSync } from "fs";
 import { join } from "path";
 import { fileURLToPath } from "node:url";
 
-import { scanDirectory, getDeclaredDependencies } from "../../scripts/anti-hallucination-checker.ts";
-import { getActiveProfile } from "../../scripts/role-switch.ts";
-import { runMutationTest } from "../../scripts/mutation-tester.ts";
-import { runSecretScan } from "../../scripts/secret-scanner.ts";
+import { scanDirectory, getDeclaredDependencies } from "../../pipeline/scripts/anti-hallucination-checker.ts";
+import { getActiveProfile } from "../../pipeline/scripts/role-switch.ts";
+import { runMutationTest } from "../../pipeline/scripts/mutation-tester.ts";
+import { runSecretScan } from "../../pipeline/scripts/secret-scanner.ts";
 
 export interface DynamicEvalResult {
   id: string;

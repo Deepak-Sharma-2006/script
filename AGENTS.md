@@ -1,3 +1,7 @@
+```
+
+```
+
 # Antigravity Workspace Invariants & Operational Directives
 
 > **Scope**: Applied automatically to all agent invocations (both Antigravity IDE and Antigravity CLI `agy`) across this entire workspace.
@@ -21,21 +25,22 @@
 
 ---
 
-## 2. Enterprise 2-Person Dual-Lead Architecture & Domain Leases (50/50 Balance)
+## 2. True Pipeline Triple-Mode Operational Architecture (Section 8 Standard)
 
-1. **50/50 Co-Equal Enterprise Leadership**:
-   - The workspace operates as a balanced two-person engineering team, translating an entire enterprise engineering organization into two co-equal leads:
-     - **Lead 1 (Alpha / Feature Architect & Core Domain Lead - 50% Workload)**: Owns domain modeling, business logic, public API contracts, white-box unit TDD (`tests/unit/`), and system architecture dossiers.
-     - **Lead 2 (Beta / Adversarial Systems, SDET & Product Lead - 50% Workload)**: Owns independent black-box adversarial suites (`tests/adversarial/*.test.ts`), concurrency & race fuzzing, malicious payload injection, AppSec DAST pentesting, product/UX ergonomics certification, and production release sign-off.
+1. **True Pipeline Three Operational Modes**:
+   - The workspace operates strictly under the 3 proven modes defined in the empirical frontier research:
+     - **Mode 1: Deep Surge (`npm run mode:surge`)**: All 4 Google accounts focused on 1 single project. Account 1 (Strategic Council & Solution Formulation), Account 2 (Adversarial SDET & Red-Team Testing), Account 3 (Core Engineer & TDD Loop), Account 4 (Mutation & Hardening Auditor).
+     - **Mode 2: 8-Hackathon Portfolio Multiplexing (`npm run mode:portfolio`)**: 4 headless runner slots multiplexed across 8 hackathons on disk (`demo/`) with a 25-day milestone runway and OmniDeck slide compiler (<0.2s PPTX).
+     - **Mode 3: Collaborative Team Mode (`npm run mode:team`)**: Zero-friction human context synchronization: Part 7 6-technique cognitive dossiers (`docs/dossiers/`), LAN Sync Server on port 4040 (`npm run lan:start`), living catalog auto-reconciliation, and distributed Git domain locks.
 2. **Independent Adversarial Test Authoring Mandate**:
-   - Lead 1 (Alpha) is strictly prohibited from writing or tampering with `tests/adversarial/`. Only Lead 2 authors adversarial tests.
-   - Lead 2 must probe edge cases, race conditions, memory bounds, and fault injections that Lead 1's unit tests never contemplated.
-3. **Lead 2 Hardening Authority**:
-   - Lead 2 is NOT a passive spectator. Upon receiving a phase handoff, Lead 2 holds the **Hardening & Verification Lease** and is fully authorized to directly author hardening patches, input sanitizers, race-condition mutexes, and performance optimizations directly in `src/`.
+   - Core engineers are strictly prohibited from writing or tampering with `tests/adversarial/`. Only the Adversarial SDET authors adversarial suites.
+   - The SDET must probe boundary limits, race conditions, memory bounds, and fault injections that unit tests never contemplated.
+3. **Hardening Authority**:
+   - The Hardening Auditor holds the **Hardening & Verification Lease** and is fully authorized to directly author hardening patches, input sanitizers, race-condition mutexes, and performance optimizations directly in `src/`.
 4. **Distributed Lease Locking & Multi-Domain Concurrency**:
    - Developers acquire exclusive domain leases via `npm run lock:acquire --domain <name>`.
    - Independent domains (e.g. `core` and `adversarial`) can be developed concurrently without collisions.
-   - Phase handoffs (`npm run role:handoff`) atomically transfer domain leases, enforce zero-secret scans, and invert roles on phase advancement (N → N+1).
+   - In Collaborative Team Mode, leases synchronize across machines via `.agents/locks/` and LAN port 4040.
 
 ---
 
@@ -145,11 +150,12 @@
 
 ---
 
-## 11. Dual-Mode Operation (Solo Operator vs. 50/50 Dual-Lead Mode)
+## 11. True Pipeline Triple-Mode Operational Execution (Surge, Portfolio, Team)
 
 1. **Flexible Operating Modes**:
-   - **Solo Operator Mode (`npm run mode:solo`)**: Designed for single developers building end-to-end applications. Bypasses distributed lease-lock collisions across workstations by assigning full domain ownership to the solo operator while preserving subagent persona separation.
-   - **Dual-Lead Enterprise Mode (`npm run mode:dual`)**: Enforces co-equal 50/50 division across two distinct workstations (Computer 1: Lead 1 Alpha; Computer 2: Lead 2 Beta). Mandates atomic lease handoffs (`npm run role:handoff`) and distributed lock synchronization before cross-domain edits.
+   - **Mode 1: Deep Surge (`npm run mode:surge`)**: All 4 Google accounts focused on 1 single project. Rapid, frictionless execution without multi-host lock contention.
+   - **Mode 2: 8-Hackathon Portfolio Multiplexing (`npm run mode:portfolio`)**: 4 headless runner slots multiplexed across 8 hackathons on disk (`demo/`) with a 25-day milestone runway and OmniDeck pitch compiler.
+   - **Mode 3: Collaborative Team Mode (`npm run mode:team`)**: Zero-friction human context synchronization: Part 7 6-technique cognitive dossiers, LAN server on port 4040, living catalog auto-reconciliation, and distributed Git domain locks.
 2. **Mode Status & Verification**:
    - Query active mode at any time via `npm run mode:status`.
    - The active mode is persisted in `.agents/state/active-role.json` and governs lease acquisition in `scripts/lock-manager.ts`.
@@ -214,30 +220,27 @@
 
 ---
 
-## 15. Mandatory Chat Prompt 6-Persona Execution Lifecycle Invariant & Universal Playwright Frontend Mandate
+## 15. High-Signal Direct Engineering Standard & Headless Specialized Execution
 
-1. **Zero Unstructured Generalist Responses in Chat**:
-   - In interactive IDE chat conversations, the agent is strictly prohibited from answering as an unstructured generic assistant.
-   - Every single prompt (regardless of perceived size, whether building a full system or tweaking a button) MUST visibly execute through the 6 Enterprise Personas:
-     - 📋 **`[Product Manager]`**: Deconstruct intent into functional scope, target personas, acceptance criteria, and forbidden states.
-     - 📐 **`[System Architect]`**: Define/verify typed data contracts, schemas, and FSM transition constraints.
-     - 🛑 **`[Adversarial SDET]`**: Formulate red-phase acceptance criteria. Whenever frontend code exists, ALWAYS execute headless Playwright tests (`npm run test:e2e` or `npx playwright test`) with exhaustive elemental assertions.
-     - 💻 **`[Core Engineer]`**: Write/refactor clean, production-grade business logic and UI components to turn tests green.
-     - 🔬 **`[Mutation & Security Auditor]`**: Verify mutation survivability (≥ 80%), check zero secrets, constant-time checks, and fail-closed gates.
-     - 📑 **`[Technical Writer]`**: Generate/update living documentation, Part 7 dossiers, and sync plans/walkthroughs.
-2. **Universal Headless Playwright Mandate for Frontend**:
-   - For all frontend projects in the workspace (`demo/chakra_mvp`, `demo/bhedak_mvp`, and any new web application), automated testing MUST execute via headless Playwright (`@playwright/test`) by default.
+1. **Zero Theatrical Persona Monologue in Chat**:
+   - In interactive IDE chat conversations, the agent communicates directly, concisely, and technically as a senior principal software engineer.
+   - Emitting simulated 6-persona monologue headings (`[Product Manager]`, `[System Architect]`, etc.) in interactive chat is strictly prohibited. It wastes 1,500 to 2,500 tokens per turn, accelerates context saturation, and simulates multi-agent collaboration rather than executing it.
+   - Interactive responses must provide direct architectural decisions, concrete code diffs, command executions, and empirical test results with zero theatrical fluff.
+2. **Out-of-Band Persona Specialization**:
+   - Persona specialization is decoupled from chat and executed where it physically matters: in dedicated, out-of-band headless CLI worker lanes (Lead 1 Alpha Core Domain, Lead 2 Beta Adversarial SDET, AppSec Mutation Auditor, OmniDeck Presentation Lead) operating in isolated Git Worktrees.
+3. **Universal Headless Playwright Mandate for Frontend**:
+   - For all frontend projects in the workspace (the 8 hackathon portfolio projects under `demo/`, workbench templates, and any new web application), automated testing MUST execute via headless Playwright (`@playwright/test`) by default.
    - Do NOT use slow multimodal browser subagents for regression verification.
    - Tests must assert every button, badge, tab transition, calculation, modal, and console error with maximum accuracy. A thorough 30–60 second verification window is preferred over hasty shallow checks.
-3. **Deterministic Tooling Delegation vs. Sub-Agent Model**:
+4. **Deterministic Tooling Delegation vs. Sub-Agent Model**:
    - Personas must NOT spawn uncontrolled recursive conversational LLM subagents (which causes exponential context degradation, token exhaustion, and 5-minute vision delays).
    - Instead, personas directly control high-speed, deterministic execution engines: Playwright for E2E DOM tests, AST mutation engines for fault injection, and native test runners for unit logic.
-4. **Operator Empirical Proof Protocol (Anti-Hallucination & Verifiable Attestation Receipt)**:
+5. **Operator Empirical Proof Protocol (Anti-Hallucination & Verifiable Attestation Receipt)**:
    - In chat responses, the agent is strictly forbidden from claiming any test passed, build succeeded, or security gate cleared without executing the real command and printing the exact command line and return code.
    - Every prompt response must conclude with the **Verifiable Squad Attestation Receipt** emitted by `SquadAttestor` ([scripts/orchestrator/squad_attestation.py](file:///scripts/orchestrator/squad_attestation.py)), containing timestamp, provenance SHA-256 hash, active personas, verified executed commands, and empirical context telemetry.
    - Context telemetry metrics (`active_chat_context`, `remaining_before_compaction`, `saturation`, `compactions_occurred`, `cumulative_session_tokens`) MUST be directly acquired by executing `npm run context:yaml` or `npm run attest:telemetry`. Guessing, estimating, or hallucinating context window saturation numbers is strictly prohibited.
    - Attestations are permanently logged to `.agents/audit_trail.log` and SQLite memory vault, verifiable by the operator via `npm run attest:verify`.
-5. **Automatic Twin-Documentation Sync Invariant**:
+6. **Automatic Twin-Documentation Sync Invariant**:
    - Whenever any component, CLI command, testing harness, persona lifecycle, or architectural directive of the agentic workflow is modified, the agent MUST automatically assess the impact and synchronize the two primary system documentation files without waiting for explicit operator instructions:
      1. `README.md`: High-level system overview, architectural pillars, onboarding prerequisites, and quickstarts.
      2. `SYSTEM_COMMANDS.md`: Master executable CLI command cheat sheet.
@@ -270,7 +273,3 @@
    - The repository provides `RealtimeDocsWatcher` (`npm run docs:watch` or `python -m scripts.orchestrator.realtime_docs_watcher`), which continuously monitors the active brain folder using SHA-256 change detection to auto-sync any modified artifacts within 1.5 seconds.
 5. **Living Catalog Deduplication**:
    - `INDEX.md` living catalogs in all 6 directories (`docs/plans/`, `docs/walkthroughs/`, `docs/audits/`, `docs/decisions/`, `docs/research/`, `docs/specifications/`) must record the exact second of execution (`YYYY-MM-DD HH:MM:SS`) and prevent duplicate line appends.
-
-
-
-

@@ -1,0 +1,41 @@
+{
+  "subdomain_id": "healthtech_informatics",
+  "domain_id": "vertical_applied",
+  "name": "HealthTech, MedTech & Digital Health",
+  "description": "HL7 FHIR clinical interoperability, DICOM medical imaging, EHR integration, and SaMD software.",
+  "physical_compute_boundaries": {
+    "target_platform": "High-Availability Cluster / Statutory Audit",
+    "audit_retention_years": 7,
+    "tamper_evidence": "SHA-256 Merkle"
+  },
+  "key_technologies": [
+    "HL7 FHIR",
+    "DICOM",
+    "PostgreSQL (RLS)",
+    "Python",
+    "React"
+  ],
+  "statutory_standards": [
+    "HIPAA Security Rule",
+    "HITECH",
+    "FDA 21 CFR Part 11",
+    "EU MDR (SaMD)"
+  ],
+  "forbidden_antipatterns": [
+    "Logging unmasked PHI or PII",
+    "Statutory report generation without Merkle timestamp",
+    "Hardcoded tax or regulatory percentages"
+  ],
+  "curated_skills": [
+    "hipaa-compliance",
+    "healthcare-cdss-patterns",
+    "healthcare-phi-compliance",
+    "healthcare-eval-harness",
+    "healthcare-emr-patterns"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "patch_id": "patch-60cd5f9114bc-1791663101",
+  "sig_hash": "60cd5f9114bc",
+  "category": "RawLaTeXDelimiter",
+  "domain": "blockchain",
+  "description": "In-flight verification failed on design_doc.md",
+  "remediation": "Ensure syntax correctness and zero invariant violations before committing.",
+  "target_file": "design_doc.md",
+  "patch_snippet": "- Enforce fail-closed guard for in_flight:design_doc.md:RawLaTeXDelimiter: Ensure syntax correctness and zero invariant violations before committing.",
+  "staged_at": "2026-10-10T20:11:41.076968+00:00",
+  "status": "PENDING_OPERATOR_VERIFICATION",
+  "occurrences": 1,
+  "trigger_reason": "CRITICAL_INVARIANT_BREACH"
+}

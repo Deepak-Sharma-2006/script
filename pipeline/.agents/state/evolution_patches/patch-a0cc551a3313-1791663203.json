@@ -1,0 +1,14 @@
+{
+  "patch_id": "patch-a0cc551a3313-1791663203",
+  "sig_hash": "a0cc551a3313",
+  "category": "PYTHON_SYNTAX_ERROR",
+  "domain": "blockchain",
+  "description": "In-flight verification failed on test_script.py",
+  "remediation": "Ensure syntax correctness and zero invariant violations before committing.",
+  "target_file": "test_script.py",
+  "patch_snippet": "- Enforce fail-closed guard for in_flight:test_script.py:PYTHON_SYNTAX_ERROR: Ensure syntax correctness and zero invariant violations before committing.",
+  "staged_at": "2026-10-10T20:13:23.088171+00:00",
+  "status": "PENDING_OPERATOR_VERIFICATION",
+  "occurrences": 2,
+  "trigger_reason": "RECURRING_FAILURE_PATTERN (count=2)"
+}

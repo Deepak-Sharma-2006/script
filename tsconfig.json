@@ -13,8 +13,8 @@
   },
   "include": [
     "src/**/*",
-    "tests/**/*",
-    "scripts/**/*",
+    "pipeline/tests/**/*",
+    "pipeline/scripts/**/*",
     ".agents/harness/**/*"
   ],
   "exclude": [

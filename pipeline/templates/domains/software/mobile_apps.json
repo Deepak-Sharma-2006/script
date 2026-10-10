@@ -1,0 +1,41 @@
+{
+  "subdomain_id": "mobile_apps",
+  "domain_id": "software",
+  "name": "Mobile Application Development",
+  "description": "Native iOS, Android, and cross-platform mobile frameworks.",
+  "physical_compute_boundaries": {
+    "target_platform": "Node.js 24 LTS / Linux x86_64",
+    "memory_ceiling_mb": 2048,
+    "max_latency_p99_ms": 50
+  },
+  "key_technologies": [
+    "Swift",
+    "SwiftUI",
+    "Kotlin",
+    "Jetpack Compose",
+    "Flutter",
+    "React Native"
+  ],
+  "statutory_standards": [
+    "Apple App Store Review Guidelines",
+    "Google Play Policy",
+    "Offline Sync"
+  ],
+  "forbidden_antipatterns": [
+    "Using any in TypeScript",
+    "Hardcoding secrets or API keys",
+    "Unhandled Promise rejections"
+  ],
+  "curated_skills": [
+    "react-native-patterns",
+    "dart-flutter-patterns",
+    "swiftui-patterns",
+    "android-clean-architecture",
+    "ios-icon-gen"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

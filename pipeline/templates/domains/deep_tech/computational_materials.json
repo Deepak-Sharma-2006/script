@@ -1,0 +1,38 @@
+{
+  "subdomain_id": "computational_materials",
+  "domain_id": "deep_tech",
+  "name": "Computational Chemistry, Physics & Materials",
+  "description": "Density Functional Theory (DFT), molecular dynamics (GROMACS), and crystal structure discovery.",
+  "physical_compute_boundaries": {
+    "target_platform": "Qiskit Aer / OpenMM / C++20 Sim",
+    "memory_ceiling_mb": 16384,
+    "precision": "fp64"
+  },
+  "key_technologies": [
+    "ASE",
+    "PyMatGen",
+    "GROMACS",
+    "LAMMPS",
+    "OpenFOAM"
+  ],
+  "statutory_standards": [
+    "Energy conservation verification",
+    "Convergence threshold bounds",
+    "SI unit dimensional checking"
+  ],
+  "forbidden_antipatterns": [
+    "Single-precision accumulation in thermodynamic simulations",
+    "Non-deterministic seed generation",
+    "Unbounded matrix inversion"
+  ],
+  "curated_skills": [
+    "scientific-db-uspto-database",
+    "research-ops",
+    "benchmark"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

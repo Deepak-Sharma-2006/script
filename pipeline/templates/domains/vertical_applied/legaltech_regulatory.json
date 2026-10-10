@@ -1,0 +1,37 @@
+{
+  "subdomain_id": "legaltech_regulatory",
+  "domain_id": "vertical_applied",
+  "name": "LegalTech & Regulatory Compliance",
+  "description": "Automated contract parsing, court docket ingestion, and statutory compliance tracking.",
+  "physical_compute_boundaries": {
+    "target_platform": "High-Availability Cluster / Statutory Audit",
+    "audit_retention_years": 7,
+    "tamper_evidence": "SHA-256 Merkle"
+  },
+  "key_technologies": [
+    "NLP Extraction",
+    "PostgreSQL",
+    "Elasticsearch",
+    "Python"
+  ],
+  "statutory_standards": [
+    "Attorney-Client Privilege Protection",
+    "Audit Trail Immutability"
+  ],
+  "forbidden_antipatterns": [
+    "Logging unmasked PHI or PII",
+    "Statutory report generation without Merkle timestamp",
+    "Hardcoded tax or regulatory percentages"
+  ],
+  "curated_skills": [
+    "customs-trade-compliance",
+    "living-docs-governance",
+    "pdf-document-intelligence",
+    "contract-first"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

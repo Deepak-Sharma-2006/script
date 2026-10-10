@@ -1,0 +1,38 @@
+{
+  "subdomain_id": "data_orchestration",
+  "domain_id": "data_engineering",
+  "name": "Data Transformation, DAGs & Quality",
+  "description": "dbt modeling, Airflow/Dagster orchestration, data lineage tracking, and automated data quality tests.",
+  "physical_compute_boundaries": {
+    "target_platform": "Apache Kafka / ClickHouse / DuckDB",
+    "batch_flush_interval_ms": 500,
+    "max_buffer_mb": 512
+  },
+  "key_technologies": [
+    "dbt",
+    "Apache Airflow",
+    "Dagster",
+    "Great Expectations",
+    "OpenLineage"
+  ],
+  "statutory_standards": [
+    "Zero Stale Models",
+    "Automated Null & Uniqueness Constraints",
+    "Upstream Lineage Tracking"
+  ],
+  "forbidden_antipatterns": [
+    "Unbounded in-memory aggregation without spill-to-disk",
+    "Schema drift without migration gating",
+    "Non-idempotent event replays"
+  ],
+  "curated_skills": [
+    "django-celery",
+    "contract-first",
+    "team-agent-orchestration"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

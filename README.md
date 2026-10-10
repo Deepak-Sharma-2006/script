@@ -6,8 +6,8 @@
 [![Node.js](https://img.shields.io/badge/Node.js-v20%2B%20%7C%20v24%2B-339933.svg?logo=node.js)](https://nodejs.org)
 [![Python](https://img.shields.io/badge/Python-3.11%2B%20%7C%203.12%2B-3776AB.svg?logo=python)](https://python.org)
 [![Universal Harness](https://img.shields.io/badge/Universal-Claude%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Copilot%20%7C%20Antigravity-blueviolet.svg)](UNIVERSAL_AGENT_INSTRUCTIONS.md)
-[![Operational Verification](https://img.shields.io/badge/Behavioral%20Contracts-100%25%20Verified%20(6%2F6)-success.svg)](specs/benchmark_metrics.json)
-[![Self-Healing Score](https://img.shields.io/badge/Closed--Loop%20Self--Healing-95.9%25-brightgreen.svg)](scripts/self-healing-engine.ts)
+[![Operational Verification](https://img.shields.io/badge/Behavioral%20Contracts-100%25%20Verified%20(6%2F6)-success.svg)](pipeline/specs/benchmark_metrics.json)
+[![Self-Healing Score](https://img.shields.io/badge/Closed--Loop%20Self--Healing-95.9%25-brightgreen.svg)](pipeline/scripts/self-healing-engine.ts)
 
 ---
 
@@ -31,7 +31,7 @@ To eliminate command sprawl and cognitive overload, the entire platform is organ
  ┌──────────────────────────────────────────────┐  ┌──────────────────────────────────────────────┐
  │ 1. WORKSPACE GOVERNANCE KERNEL               │  │ 2. TIERED SKILL & MCP ENGINE                 │
  │ Master: npm run governance                   │  │ Master: npm run skill <query>                │
- │ • Operating Modes: Solo, Dual, Team Mesh     │  │ • 300 In-Tree + 2,622 SQLite FTS5 Registry   │
+ │ • Operating Modes: Surge, Portfolio, Team     │  │ • 300 In-Tree + 2,622 SQLite FTS5 Registry   │
  │ • Domain Controller: 8 Domains / 46 Subdoms  │  │ • Local JSON-RPC 2.0 Stdio MCP Server       │
  │ • Distributed Lease Locks & Role Handoff     │  │ • JIT Skill Resolution & Drift Shield        │
  │ • Universal Sync: Cursor/Claude/Agy/Copilot  │  │ • Lazy On-Demand Materialization             │
@@ -62,7 +62,7 @@ To eliminate command sprawl and cognitive overload, the entire platform is organ
 
 | # | Master Super-Command | Primary Responsibility | Primary Capabilities |
 |---|---|---|---|
-| **1** | `npm run governance` | System state, leases & harness sync | Operating mode switching (`solo`, `dual`, `team`), atomic domain configuration, distributed locking, universal rule synchronization |
+| **1** | `npm run governance` | System state, leases & harness sync | Operating mode switching (`mode:surge`, `mode:portfolio`, `mode:team`), atomic domain configuration, distributed locking, universal rule synchronization |
 | **2** | `npm run skill <query>` | Knowledge retrieval & tool serving | Sub-5ms SQLite FTS5 search across 2,922 skills, on-demand skill materialization, local JSON-RPC MCP server, drift detection |
 | **3** | `npm run squad:run` | Autonomous end-to-end SDLC | Full 6+1 Agile Squad lifecycle, first-principles solution formulation, autonomous red-to-green coding, vector pitch decks |
 | **4** | `npm run self-heal` | Autonomous defect recovery & audit | 7-stage closed-loop self-healing scorecards, AST mutation testing (≥ 80% kill rate), cyclic state rollback, auto-evolution patches |
@@ -91,7 +91,7 @@ All agent instruction surfaces are generated from a single, authoritative root c
                                        │
                                        ▼
                      ┌───────────────────────────────────┐
-                     │ scripts/universal-harness-sync.ts │
+                     │ pipeline/scripts/universal-harness-sync.ts │
                      └─────────────────┬─────────────────┘
                                        │
          ┌─────────────────────────────┼─────────────────────────────┐
@@ -119,7 +119,7 @@ All agent instruction surfaces are generated from a single, authoritative root c
 | **Windsurf / Cascade** | `.windsurfrules` / *Cascade Rules* | Generated from universal instructions via `npm run harness:sync` |
 | **GitHub Copilot** | `.github/copilot-instructions.md` | Generated from universal instructions via `npm run harness:sync` |
 | **Codex / Aider / OpenHands** | System Prompt / Startup Config | Direct markdown ingestion from repository root |
-| **Headless CLI / CI/CD** | `python -m scripts.orchestrator.task_dispatcher` | Deterministic headless task execution |
+| **Headless CLI / CI/CD** | `python -m pipeline.scripts.orchestrator.task_dispatcher` | Deterministic headless task execution |
 
 ---
 
@@ -248,7 +248,7 @@ Real empirical performance baselines measured and certified by the Behavioral As
 | **Pre-Commit Secret Scan** | < 1,000ms Execution Time | **290ms** (Full staged sweep) | `npm run check:secrets:staged` |
 | **Unified Verification Sweep** | < 15.0s Total Runtime | **7.2s** (6 parallel scanners) | `npm run check` |
 | **Node.js Unit Test Suites** | 100% Green Pass Rate | **40 / 40 Passed** (0 failures) | `npm test` |
-| **Python Orchestrator Suites** | 100% Green Pass Rate | **99 / 99 Passed** (0 failures) | `pytest tests/ -q` |
+| **Python Orchestrator Suites** | 100% Green Pass Rate | **131 / 131 Passed** (0 failures) | `pytest pipeline/tests/ -q` |
 | **Behavioral Contract Assertions** | 100% Zero Test Theater | **6 / 6 Passed** (0.01ms - 0.43ms) | `npm run harness:eval` |
 
 ---
@@ -278,33 +278,32 @@ npm run check
 
 ### 2. Daily Developer Workflows
 
-#### Option A: Ambient IDE Chat Kickoff (Recommended)
+#### Option A: High-Signal Direct Engineering Chat (Recommended)
 Simply type your project requirement or feature prompt directly into the IDE chat:
 * `"START: Build a high-throughput, low-latency Redis caching cluster"`
 * `"BUILD: Sovereign decentralized smart contract with reentrancy protection"`
 * `"INNOVATE: Computer vision drone weed segmentation pipeline"`
 
-The agent autonomously resolves skills, runs the 6-persona lifecycle, hardens architecture via Claude Council, executes red-to-green TDD, and emits an empirical attestation receipt with zero human micromanagement.
+The agent communicates directly and concisely with zero persona monologue fluff, executing red-to-green TDD with inline AST mutation testing (kill rate ≥ 80%), automatic SpecSync persistence, and empirical receipts.
 
-#### Option B: Headless Master CLI Execution
+#### Option B: The True Pipeline Multi-Mode Execution
 ```bash
-# 1. Inspect workspace governance, active domain, and mode
-npm run governance
+# Mode 1: Deep Surge (4 Accounts, 1 Project via Git Worktrees)
+npm run mode:surge
 
-# 2. Search skills across the 2,922 SQLite registry
-npm run skill docker
+# Mode 2: Hackathon Portfolio Dispatcher (4 Accounts multiplexed across 8 Hackathons)
+npm run portfolio:dispatch
+powershell pipeline/scripts/portfolio-dispatcher.ps1 -DryRun   # Preview queue and profile assignments
 
-# 3. Dispatch end-to-end agile squad lifecycle
-npm run squad:run
+# Mode 3: Collaborative Team Mode (Launch local LAN sync server on port 4040)
+npm run lan:start
 
-# 4. Run closed-loop self-healing audit and mutation gates
-npm run self-heal
+# Ambient 16 GB RAM Hypervisor & SWE-Agent Output Slicer
+npm run hypervisor:status
+npm run hypervisor:daemon
 
-# 5. Run unified verification battery
+# Pre-Commit System Verification Battery
 npm run check
-
-# 6. Launch pre-commit Web Workbench HUD on port 3042
-npm run workbench
 ```
 
 ---
@@ -313,39 +312,19 @@ npm run workbench
 
 ```
 .
-├── .agents/
-│   ├── harness/             # Behavioral assertion runner (eval-runner.ts, active_kernel.py)
-│   ├── memory/              # SQLite FTS5 Memory Vault (vault.sqlite)
-│   ├── modes/               # Role-based tool whitelists (architect, sdet, core, docs)
-│   ├── rules/               # Immutable operational rules (anti-hallucination, security)
-│   ├── skills/              # Tier 1 in-tree skills (300) & SQLite registry (2,922 skills)
-│   └── state/               # Active domain, active role, and skill drift baselines
-├── docs/
-│   ├── architecture/        # Production architecture blueprints & reference specs
-│   ├── audits/              # Pre-commit audits & adversarial penetration reports
-│   ├── decisions/           # Architecture Decision Records (ADRs)
-│   ├── plans/               # Feature implementation plans
-│   ├── specifications/      # Typed interface contracts & PRD schemas
-│   └── walkthroughs/        # Verified execution walkthroughs
-├── scripts/
-│   ├── orchestrator/        # TaskDispatcher, GroupChat, StateGraph, DAG runner, SpecSync
-│   ├── catalog-compiler.ts  # SQLite FTS5 skill registry compiler & installer
-│   ├── repo-map-generator.ts# Tree-sitter AST monorepo topology mapper
-│   ├── role-switch.ts       # Tri-mode operating switcher (solo, dual, team)
-│   ├── secret-scanner.ts    # Pre-commit zero-secret scanner
-│   ├── self-healing-engine.ts# Closed-loop healing auditor & fixture synthesizer
-│   ├── skill-validator.ts   # Schema validator & SHA-256 drift shield
-│   └── workbench-server.ts  # Pre-commit Web Workbench server (Port 3042)
-├── templates/
-│   ├── sops/                # Standard Operating Procedure JSON schemas (PRD, Architecture)
-│   └── workbench/           # Web Workbench 3-tier inspection HUD
-├── tests/
-│   ├── adversarial/         # Black-box penetration, fuzzing & race suites (Lead 2 SDET)
-│   ├── regression/          # Synthesized regression fixtures from historical incidents
-│   ├── sota-18-ingestion.test.ts # Operational test suite for 18 upstream SOTA components
-│   └── sota-milestones.test.ts   # Multi-tier verification suite
+├── .agents/                 # IDE rules, skills (300 in-tree), and SQLite Memory Vault
+├── docs/                    # Living documentation (plans, walkthroughs, decisions, audits)
+├── pipeline/                # The Unified True Pipeline Engineering Engine
+│   ├── browser_tests/       # Playwright E2E browser verification
+│   ├── demo/                # 8-Hackathon Portfolio multiplexing repositories
+│   ├── scripts/             # Orchestrator, engines, distributed locks, scanners
+│   ├── specs/               # Machine-readable PRD specs, contracts, benchmark metrics
+│   ├── templates/           # Domain rubrics, SOP schemas, frontend workbench tokens
+│   └── tests/               # Adversarial SDET, unit contracts, regression suites
+├── projects/                # User engineering projects & domain workspaces (git-ignored)
+├── src/                     # Production business logic & active services
 ├── package.json             # Consolidated 6-master-command script manifest
-├── README.md                # Flagship enterprise product architecture treatise
+├── README.md                # Enterprise product architecture treatise
 ├── SYSTEM_COMMANDS.md       # Master executable CLI cheat sheet & runbook
 └── UNIVERSAL_AGENT_INSTRUCTIONS.md # Single source of truth for all IDE harnesses
 ```
@@ -366,22 +345,22 @@ npm run workbench
 
 This platform synthesizes, adapts, and hardens architectural mechanisms and design patterns pioneered across the open-source autonomous agent ecosystem:
 
-1. **All-Hands-AI/OpenHands** — Ephemeral container and process-jail sandbox isolation ([scripts/sandbox-runner.ts](file:///d:/BE_Research/scripts/sandbox-runner.ts)).
-2. **geekan/MetaGPT** — Standard Operating Procedure (SOP) formal artifact schemas for PRD, architecture, and task graphs ([templates/sops/sop-validator.ts](file:///d:/BE_Research/templates/sops/sop-validator.ts)).
-3. **cline/cline** — AST diff streaming and interactive destructive operation permission checkpoints ([scripts/diff-streamer.ts](file:///d:/BE_Research/scripts/diff-streamer.ts)).
-4. **microsoft/autogen (AG2)** — Asynchronous multi-agent GroupChat manager with dynamic speaker routing ([scripts/orchestrator/groupchat.py](file:///d:/BE_Research/scripts/orchestrator/groupchat.py)).
-5. **crewAIInc/crewAI** — Deterministic task DAG orchestration with output schema validation gates ([scripts/orchestrator/task_dag_runner.py](file:///d:/BE_Research/scripts/orchestrator/task_dag_runner.py)).
+1. **All-Hands-AI/OpenHands** — Ephemeral container and process-jail sandbox isolation ([pipeline/scripts/sandbox-runner.ts](file:///d:/BE_Research/pipeline/scripts/sandbox-runner.ts)).
+2. **geekan/MetaGPT** — Standard Operating Procedure (SOP) formal artifact schemas for PRD, architecture, and task graphs ([pipeline/templates/sops/sop-validator.ts](file:///d:/BE_Research/pipeline/templates/sops/sop-validator.ts)).
+3. **cline/cline** — AST diff streaming and interactive destructive operation permission checkpoints ([pipeline/scripts/diff-streamer.ts](file:///d:/BE_Research/pipeline/scripts/diff-streamer.ts)).
+4. **microsoft/autogen (AG2)** — Asynchronous multi-agent GroupChat manager with dynamic speaker routing ([pipeline/scripts/orchestrator/groupchat.py](file:///d:/BE_Research/pipeline/scripts/orchestrator/groupchat.py)).
+5. **crewAIInc/crewAI** — Deterministic task DAG orchestration with output schema validation gates ([pipeline/scripts/orchestrator/task_dag_runner.py](file:///d:/BE_Research/pipeline/scripts/orchestrator/task_dag_runner.py)).
 6. **RooVetGit/Roo-Code** — Role-based mode tool-whitelist sandboxing ([.agents/modes/](file:///d:/BE_Research/.agents/modes/)).
-7. **Aider-AI/aider** — Tree-sitter AST monorepo topology mapping under a strict 1,500 token ceiling ([scripts/repo-map-generator.ts](file:///d:/BE_Research/scripts/repo-map-generator.ts)).
-8. **sickn33/AAS Core** — SQLite FTS5 skill index registry and stdio JSON-RPC 2.0 MCP server architecture ([scripts/mcp-server.ts](file:///d:/BE_Research/scripts/mcp-server.ts)).
-9. **langchain-ai/langgraph** — Cyclic state graphs with persistent SQLite rollback checkpoints ([scripts/orchestrator/state_graph.py](file:///d:/BE_Research/scripts/orchestrator/state_graph.py)).
-10. **agno-agi/agno** — SQLite FTS5 Memory Vault with domain-weighted contextual recall ([scripts/memory-vault.ts](file:///d:/BE_Research/scripts/memory-vault.ts)).
+7. **Aider-AI/aider** — Tree-sitter AST monorepo topology mapping under a strict 1,500 token ceiling ([pipeline/scripts/repo-map-generator.ts](file:///d:/BE_Research/pipeline/scripts/repo-map-generator.ts)).
+8. **sickn33/AAS Core** — SQLite FTS5 skill index registry and stdio JSON-RPC 2.0 MCP server architecture ([pipeline/scripts/mcp-server.ts](file:///d:/BE_Research/pipeline/scripts/mcp-server.ts)).
+9. **langchain-ai/langgraph** — Cyclic state graphs with persistent SQLite rollback checkpoints ([pipeline/scripts/orchestrator/state_graph.py](file:///d:/BE_Research/pipeline/scripts/orchestrator/state_graph.py)).
+10. **agno-agi/agno** — SQLite FTS5 Memory Vault with domain-weighted contextual recall ([pipeline/scripts/memory-vault.ts](file:///d:/BE_Research/pipeline/scripts/memory-vault.ts)).
 11. **VoltAgent/awesome-skills** — Universal cross-harness instruction synthesis matrix ([UNIVERSAL_AGENT_INSTRUCTIONS.md](file:///d:/BE_Research/UNIVERSAL_AGENT_INSTRUCTIONS.md)).
-12. **assafelovic/gpt-researcher** — 4-angle statutory and competitive research triangulation ([scripts/orchestrator/research_triangulator.py](file:///d:/BE_Research/scripts/orchestrator/research_triangulator.py)).
-13. **promptfoo/promptfoo** — Automated adversarial black-box test suites and LLM vulnerability probes ([scripts/adversarial-suite-runner.ts](file:///d:/BE_Research/scripts/adversarial-suite-runner.ts)).
-14. **SWE-agent/SWE-agent** — Agent-Computer Interface (ACI) pre-commit syntax validation and guard rails ([scripts/aci-guard.ts](file:///d:/BE_Research/scripts/aci-guard.ts)).
+12. **assafelovic/gpt-researcher** — 4-angle statutory and competitive research triangulation ([pipeline/scripts/orchestrator/research_triangulator.py](file:///d:/BE_Research/pipeline/scripts/orchestrator/research_triangulator.py)).
+13. **promptfoo/promptfoo** — Automated adversarial black-box test suites and LLM vulnerability probes ([pipeline/scripts/adversarial-suite-runner.ts](file:///d:/BE_Research/pipeline/scripts/adversarial-suite-runner.ts)).
+14. **SWE-agent/SWE-agent** — Agent-Computer Interface (ACI) pre-commit syntax validation and guard rails ([pipeline/scripts/aci-guard.ts](file:///d:/BE_Research/pipeline/scripts/aci-guard.ts)).
 15. **confident-ai/deepeval** — Deterministic behavioral contract assertion scorecards ([.agents/harness/eval-runner.ts](file:///d:/BE_Research/.agents/harness/eval-runner.ts)).
-16. **camel-ai/camel** — Communicative agent persona inception prompting ([scripts/orchestrator/squad_orchestrator.py](file:///d:/BE_Research/scripts/orchestrator/squad_orchestrator.py)).
-17. **e2b-dev/E2B** — Fast-boot microVM execution sandboxing with local mock fallbacks ([scripts/sandbox-e2b.ts](file:///d:/BE_Research/scripts/sandbox-e2b.ts)).
-18. **agent-skills-standard** — Standardized skill specification schema and SHA-256 drift baselines ([scripts/skill-validator.ts](file:///d:/BE_Research/scripts/skill-validator.ts)).
+16. **camel-ai/camel** — Communicative agent persona inception prompting ([pipeline/scripts/orchestrator/squad_orchestrator.py](file:///d:/BE_Research/pipeline/scripts/orchestrator/squad_orchestrator.py)).
+17. **e2b-dev/E2B** — Fast-boot microVM execution sandboxing with local mock fallbacks ([pipeline/scripts/sandbox-e2b.ts](file:///d:/BE_Research/pipeline/scripts/sandbox-e2b.ts)).
+18. **agent-skills-standard** — Standardized skill specification schema and SHA-256 drift baselines ([pipeline/scripts/skill-validator.ts](file:///d:/BE_Research/pipeline/scripts/skill-validator.ts)).
 

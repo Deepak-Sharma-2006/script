@@ -1,9 +1,7 @@
 # Antigravity Enterprise — Master Command Cheat Sheet & Developer Runbook
 
 > **Executive Reference**: Consolidated 6-Super-Feature Command Hierarchy & Developer Runbook.  
-> **Status**: 100% Operational & Production Hardened | 99/99 Python suites | 40/40 Node unit suites | 6/6 Behavioral Evals | Zero Stale Commands  
-> **Compliance**: Zero-Raw-LaTeX Invariant (Pure Unicode Math), Zero-Secret Shield, Rule 14 3-Tier Architecture  
-> **Architectural Overview**: For the complete system architecture, operational benchmarks, and design pillars, refer to [README.md](file:///d:/BE_Research/README.md).  
+> **Architectural Overview**: For the complete system architecture, operational benchmarks, and design pillars, refer to [README.md](file:///d:/BE_Research/README.md).
 
 ---
 
@@ -69,14 +67,17 @@ npm run governance
 # ------------------------------------------------------------------------------
 # SUBCOMMANDS: OPERATING MODES & LEASE LOCKS
 # ------------------------------------------------------------------------------
-# Switch to Solo Operator Mode (Bypasses multi-host locks; single unified developer)
-npm run mode:solo
+# Mode 1: Deep Surge (All 4 Google accounts focused on 1 single project)
+npm run mode:surge
 
-# Switch to Dual-Lead Mode (Symmetrical 50/50 Alpha/Beta enterprise rotation)
-npm run mode:dual
+# Mode 2: 8-Hackathon Portfolio Multiplexing (4 runner slots multiplexed across 8 repos)
+npm run mode:portfolio
 
-# Switch to Team Mesh Mode (N-person distributed parallel domain leases)
+# Mode 3: Collaborative Team Mode (LAN Port 4040, 6-technique dossiers, living catalog sync)
 npm run mode:team
+
+# Start Local LAN Synchronization Server (Port 4040)
+npm run lan:start
 
 # Inspect Operating Mode Status
 npm run mode:status
@@ -179,37 +180,37 @@ npm run squad:run
 # SUBCOMMANDS: TASK DISPATCHER (MODULAR EXECUTION)
 # ------------------------------------------------------------------------------
 # Task 1: Autonomous Solution Formulation & 4-Moat Council Hardening
-python -m scripts.orchestrator.task_dispatcher --task solution --prompt "Build autonomous edge drone vision"
-python -m scripts.orchestrator.task_dispatcher --task solution --title "PRAVAH Flood AI" --prompt "SAR flash flood forecasting" --domain "Hydrology"
+python -m pipeline.scripts.orchestrator.task_dispatcher --task solution --prompt "Build autonomous edge drone vision"
+python -m pipeline.scripts.orchestrator.task_dispatcher --task solution --title "PRAVAH Flood AI" --prompt "SAR flash flood forecasting" --domain "Hydrology"
 
 # Task 2: Autonomous Red-to-Green TDD Implementation Loop (Up to 5 Auto-Fix Passes)
-python -m scripts.orchestrator.task_dispatcher --task code --prompt "Implement rate-limiting token bucket middleware with constant-time security"
+python -m pipeline.scripts.orchestrator.task_dispatcher --task code --prompt "Implement rate-limiting token bucket middleware with constant-time security"
 
 # Task 3: OmniDeck 2D Flex/Grid Pitch Deck Synthesis (<0.2s Native PPTX)
-python -m scripts.orchestrator.task_dispatcher --task presentation --prompt "Universal Domain Specialization"
-python -m scripts.orchestrator.task_dispatcher --task presentation --prompt "Web3 Security" --export-pdf  # Stage 2 PDF export
+python -m pipeline.scripts.orchestrator.task_dispatcher --task presentation --prompt "Universal Domain Specialization"
+python -m pipeline.scripts.orchestrator.task_dispatcher --task presentation --prompt "Web3 Security" --export-pdf  # Stage 2 PDF export
 
 # Task 4: Brownfield Codebase Ingestion & 5-Pillar Health Audit
-python -m scripts.orchestrator.task_dispatcher --task audit --prompt "Audit legacy backend repository and emit improvement PRD"
+python -m pipeline.scripts.orchestrator.task_dispatcher --task audit --prompt "Audit legacy backend repository and emit improvement PRD"
 
 # Task 5: Search & Recall Indexed Decisions from SQLite Memory Vault
-python -m scripts.orchestrator.task_dispatcher --task memory --search "architectural tradeoff"
+python -m pipeline.scripts.orchestrator.task_dispatcher --task memory --search "architectural tradeoff"
 
 # ------------------------------------------------------------------------------
 # SUBCOMMANDS: MULTI-AGENT ADVERSARIAL ENGINES
 # ------------------------------------------------------------------------------
 # Run AutoGen Dynamic GroupChat Manager with Keyword Speaker Routing
-python -m scripts.orchestrator.groupchat
+python -m pipeline.scripts.orchestrator.groupchat
 
 # Execute CrewAI Deterministic Task DAG Pipeline with Output Schema Validation
-python -m scripts.orchestrator.dag_runner
-python -m scripts.orchestrator.task_dag_runner
+python -m pipeline.scripts.orchestrator.dag_runner
+python -m pipeline.scripts.orchestrator.task_dag_runner
 
 # Execute OpenHands Ephemeral Sandbox Runner (Process jail with secret strip)
-node --experimental-strip-types scripts/sandbox-runner.ts python -c "print('sandbox_active')"
+node --experimental-strip-types pipeline/scripts/sandbox-runner.ts python -c "print('sandbox_active')"
 
 # Execute E2B MicroVM Execution Runner (Sub-100ms boot with local mock fallback)
-node --experimental-strip-types scripts/sandbox-e2b.ts
+node --experimental-strip-types pipeline/scripts/sandbox-e2b.ts
 
 # Prompt Hygiene Engine (Compresses 25 KB prompts to 4 KB Core Kernel; saves 21k tokens)
 npm run prompt:hygiene
@@ -233,7 +234,7 @@ npm run test:mutation              # Full AST mutation battery
 npm run test:mutation -- --diff    # Scoped mutation suite for Git-modified files only
 
 # LangGraph Cyclic State Graph with Persistent SQLite Checkpoints & Time-Travel Rollback
-python -m scripts.orchestrator.state_graph
+python -m pipeline.scripts.orchestrator.state_graph
 
 # ------------------------------------------------------------------------------
 # SUBCOMMANDS: CONTINUAL EVOLUTION & REGRESSION FIXTURES
@@ -333,13 +334,114 @@ npm run repo:map
 npm run repo:map:check
 
 # Cline Interactive AST Diff Streamer with Permission Checkpoints
-node --experimental-strip-types scripts/diff-streamer.ts
-
-# Inspect Active Chat Context Window Saturation & Compaction Headroom
-npm run context:check
-npm run context:yaml
+node --experimental-strip-types pipeline/scripts/diff-streamer.ts
 
 # Probe Cryptographic Squad Attestation Provenance & Live Context Telemetry
 npm run attest:telemetry
 npm run attest:verify
 ```
+
+---
+
+## 7. Super-Feature 7: Enterprise Production Upgrade Commands (Active Harness, Git Mesh & Grounding)
+
+Provides real runtime command interception, cross-workstation Git lease locking, AST mutation testing, and empirical hardware grounding:
+
+```bash
+# ==============================================================================
+# 1. ACTIVE RUNTIME INTERCEPTION HARNESS & GROUNDING
+# ==============================================================================
+# Execute shell command safely via ActiveInterceptor (truncates >35 lines, logs audit SHA256)
+npm run harness:run -- "echo Hello World"
+
+# Verify empirical grounding against physical hardware bounds and audit logs
+npm run check:grounding
+
+# Run all 5 pre-commit barrier gates manually
+node --experimental-strip-types pipeline/scripts/install-hooks.ts
+
+# ==============================================================================
+# 2. MODE 3: GIT-BACKED COLLABORATIVE TEAM MESH (Multi-Workstation Team Sync)
+# ==============================================================================
+# Query lease status across all domains
+npm run lock:status
+
+# Acquire exclusive domain lease lock for this physical workstation
+npm run lock:acquire -- --domain ml_engine --role alpha
+
+# Release domain lease lock
+npm run lock:release -- --domain ml_engine
+
+# List all active domain leases across machines
+npm run lock:list
+
+# Execute cross-workstation phase handoff (e.g. Workstation Alpha -> Workstation Beta)
+npm run role:handoff -- --phase 3 --domain ml_engine --summary "Phase 3 complete, handing off to Beta"
+
+# Inspect latest cross-workstation handoff brief (Collaborator Node)
+npm run role:handoff -- --check
+
+# Synchronize Git, peer handoff briefs, domain locks, and Memory Vault across devices
+npm run sync:context
+
+# Broadcast mesh node heartbeat (Local Collaborator Node)
+npm run mesh:heartbeat
+
+# Inspect live status of all peer workstations in the mesh
+npm run mesh:status
+
+# Prune stale node heartbeats older than 24h
+npm run mesh:prune
+
+# ==============================================================================
+# 3. DUAL-STACK AST MUTATION TESTING GATES (>=80% Kill Rate)
+# ==============================================================================
+# Run TypeScript AST mutation testing against src/
+npm run test:mutation
+
+# Run native Python AST mutation testing against target module
+npm run test:mutation:py src/math_ops.py "python -m unittest tests/test_math_ops.py"
+
+# ==============================================================================
+# 4. CROSS-MACHINE MEMORY VAULT & ADVERSARIAL COUNCIL EVALUATION
+# ==============================================================================
+# Re-index Git Markdown ADRs and handoffs into SQLite FTS5 virtual table
+python -m pipeline.scripts.orchestrator.memory_vault_sync
+
+# Full-text search indexed memories and architectural decisions
+python -m pipeline.scripts.orchestrator.memory_vault_sync --search "harness"
+
+# Run dynamic 5-Advisor Claude Council adversarial evaluation against an implementation plan
+python -m pipeline.scripts.orchestrator.solution_council --evaluate docs/plans/sample_plan.md
+
+# ==============================================================================
+# 5. PHYSICAL COMPUTE BENCHMARKING & GPU MICRO-PROFILER
+# ==============================================================================
+# Profile exact GPU step latency and project realistic training time without hallucination
+python pipeline/scripts/ml/profile_gpu_step.py
+
+# ==============================================================================
+# 6. TRUE PIPELINE MULTI-MODE EXECUTION & 16 GB HARDWARE HYPERVISOR
+# ==============================================================================
+# Inspect ambient 16 GB RAM utilization and process safety status
+npm run hypervisor:status
+
+# Start background 16 GB RAM safety hypervisor daemon (75% limit + 35-line slicing)
+npm run hypervisor:daemon
+
+# Mode 1: Deep Surge (Configure 4 Git Worktrees for 4 Accounts on 1 Project)
+npm run mode:surge
+
+# Mode 2: Hackathon Portfolio Dispatcher (Batch dispatch across 8 Hackathons)
+npm run portfolio:dispatch
+
+# Mode 2 Dry Run: Inspect project queue, tiers, and profile assignments without execution
+powershell pipeline/scripts/portfolio-dispatcher.ps1 -DryRun
+
+# Mode 3: Collaborative Team Mode (Launch LAN sync server on port 4040)
+node --experimental-strip-types pipeline/scripts/lan-sync-server.ts --port 4040
+
+# Stage-Gated Physical Filesystem Guard (Anti-cheating write interceptor)
+python pipeline/scripts/harness/filesystem_guard.py --path "src/service.ts" --stage "GREEN"
+```
+

@@ -1,0 +1,36 @@
+{
+  "subdomain_id": "green_computing",
+  "domain_id": "cloud_infra",
+  "name": "Green Computing & Carbon-Aware Infrastructure",
+  "description": "Carbon-aware workload shifting, PUE optimization, and ARM cloud architectures.",
+  "physical_compute_boundaries": {
+    "target_platform": "Kubernetes v1.31 / containerd",
+    "cpu_limit_cores": 4,
+    "memory_ceiling_mb": 4096
+  },
+  "key_technologies": [
+    "AWS Graviton",
+    "Ampere Altra",
+    "Kepler (K8s Energy)",
+    "Carbon Aware SDK"
+  ],
+  "statutory_standards": [
+    "GHG Protocol Scope 2/3",
+    "Power Usage Effectiveness (PUE) Optimization"
+  ],
+  "forbidden_antipatterns": [
+    "Running containers as root",
+    "Privileged container capabilities",
+    "Hardcoded IP addresses instead of DNS services"
+  ],
+  "curated_skills": [
+    "cost-tracking",
+    "ecc-tools-cost-audit",
+    "connections-optimizer"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

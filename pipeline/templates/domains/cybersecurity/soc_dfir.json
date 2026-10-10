@@ -1,0 +1,37 @@
+{
+  "subdomain_id": "soc_dfir",
+  "domain_id": "cybersecurity",
+  "name": "Security Operations & Digital Forensics (DFIR)",
+  "description": "SIEM ingestion, Sigma rule detection engineering, malware memory forensics, and incident response.",
+  "physical_compute_boundaries": {
+    "target_platform": "Linux eBPF / Clang ASan",
+    "hash_algorithm": "Argon2id",
+    "side_channel_protection": "constant_time"
+  },
+  "key_technologies": [
+    "Elastic Security",
+    "Splunk",
+    "Sigma",
+    "YARA",
+    "Volatility 3"
+  ],
+  "statutory_standards": [
+    "ISO/IEC 27037 (Digital Evidence)",
+    "NIST SP 800-61 (Incident Handling)"
+  ],
+  "forbidden_antipatterns": [
+    "Variable-time string comparisons for secret tokens",
+    "Plaintext credentials in logs or environment",
+    "MD5 or SHA-1 usage"
+  ],
+  "curated_skills": [
+    "logistics-exception-management",
+    "unified-notifications-ops",
+    "messages-ops"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

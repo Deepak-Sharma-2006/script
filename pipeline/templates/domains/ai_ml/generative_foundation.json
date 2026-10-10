@@ -1,0 +1,40 @@
+{
+  "subdomain_id": "generative_foundation",
+  "domain_id": "ai_ml",
+  "name": "Generative AI, Foundation Models & Quantization",
+  "description": "LLM fine-tuning, LoRA/QLoRA, distillation, and weight quantization (GGUF, AWQ).",
+  "physical_compute_boundaries": {
+    "target_platform": "NVIDIA Tesla T4 / Jetson Orin Nano",
+    "memory_ceiling_mb": 8192,
+    "max_patch_size": 14,
+    "optimal_tile_resolution": 672
+  },
+  "key_technologies": [
+    "vLLM",
+    "Unsloth",
+    "LoRA",
+    "GGUF",
+    "llama.cpp",
+    "Transformers"
+  ],
+  "statutory_standards": [
+    "Perplexity evaluation",
+    "KV-cache memory bounds",
+    "Hallucination benchmark gating"
+  ],
+  "forbidden_antipatterns": [
+    "Training foundation models from scratch without pre-trained weights",
+    "Memory broadcast across PCIe in DataParallel",
+    "Silent NaN loss propagation"
+  ],
+  "curated_skills": [
+    "prompt-optimizer",
+    "fal-ai-media",
+    "foundation-models-on-device"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

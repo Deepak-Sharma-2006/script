@@ -1,0 +1,14 @@
+{
+  "patch_id": "patch-b69419925d95-1791663203",
+  "sig_hash": "b69419925d95",
+  "category": "DomainInvariantBreach",
+  "domain": "blockchain",
+  "description": "Code violates domain invariant pattern: msg\\.sender\\.call\\{value:\\s*[^}]+\\}\\(\\\"\\\"\\);\\s*balances\\[msg\\.sender\\]\\s*=",
+  "remediation": "Enforce Checks-Effects-Interactions (CEI) and TWAP oracle price feeds.",
+  "target_file": "AGENTS.md",
+  "patch_snippet": "- Enforce fail-closed guard for blockchain:msg\\.sender\\.call\\{value:\\s*[^}]+\\}\\(\\\"\\\"\\);\\s*balances\\[msg\\.sender\\]\\s*=: Enforce Checks-Effects-Interactions (CEI) and TWAP oracle price feeds.",
+  "staged_at": "2026-10-10T20:13:23.046339+00:00",
+  "status": "PENDING_OPERATOR_VERIFICATION",
+  "occurrences": 2,
+  "trigger_reason": "RECURRING_FAILURE_PATTERN (count=2)"
+}

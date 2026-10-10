@@ -1,0 +1,39 @@
+{
+  "subdomain_id": "computational_biology",
+  "domain_id": "deep_tech",
+  "name": "Computational Biology, Bioinformatics & MedTech",
+  "description": "Genomic sequence alignment, AlphaFold protein folding, and molecular docking simulation.",
+  "physical_compute_boundaries": {
+    "target_platform": "Qiskit Aer / OpenMM / C++20 Sim",
+    "memory_ceiling_mb": 16384,
+    "precision": "fp64"
+  },
+  "key_technologies": [
+    "Biopython",
+    "AlphaFold",
+    "GATK",
+    "OpenMM",
+    "RDKit"
+  ],
+  "statutory_standards": [
+    "FASTA/FASTQ verification",
+    "Reproducible random seeds",
+    "Peer-reviewed benchmark baselines"
+  ],
+  "forbidden_antipatterns": [
+    "Single-precision accumulation in thermodynamic simulations",
+    "Non-deterministic seed generation",
+    "Unbounded matrix inversion"
+  ],
+  "curated_skills": [
+    "deep-research",
+    "research-ops",
+    "scientific-pkg-gget",
+    "scientific-db-pubmed-database"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

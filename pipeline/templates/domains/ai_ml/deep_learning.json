@@ -1,0 +1,39 @@
+{
+  "subdomain_id": "deep_learning",
+  "domain_id": "ai_ml",
+  "name": "Deep Learning & Neural Architectures",
+  "description": "Transformers, diffusion models, GNNs, and custom PyTorch neural modules.",
+  "physical_compute_boundaries": {
+    "target_platform": "NVIDIA Tesla T4 / Jetson Orin Nano",
+    "memory_ceiling_mb": 8192,
+    "max_patch_size": 14,
+    "optimal_tile_resolution": 672
+  },
+  "key_technologies": [
+    "PyTorch",
+    "Hugging Face",
+    "CUDA",
+    "Triton",
+    "FlashAttention"
+  ],
+  "statutory_standards": [
+    "Deterministic random seeds",
+    "FP16/BF16 mixed precision stability",
+    "Gradient norm clipping"
+  ],
+  "forbidden_antipatterns": [
+    "Training foundation models from scratch without pre-trained weights",
+    "Memory broadcast across PCIe in DataParallel",
+    "Silent NaN loss propagation"
+  ],
+  "curated_skills": [
+    "pytorch-patterns",
+    "mle-workflow",
+    "benchmark-optimization-loop"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

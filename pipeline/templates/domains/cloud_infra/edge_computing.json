@@ -1,0 +1,37 @@
+{
+  "subdomain_id": "edge_computing",
+  "domain_id": "cloud_infra",
+  "name": "Edge Computing & Low-Latency Networks",
+  "description": "V8 isolate edge workers, global CDN logic, and 5G mobile edge computing.",
+  "physical_compute_boundaries": {
+    "target_platform": "Kubernetes v1.31 / containerd",
+    "cpu_limit_cores": 4,
+    "memory_ceiling_mb": 4096
+  },
+  "key_technologies": [
+    "Cloudflare Workers",
+    "Fastly Compute",
+    "AWS Wavelength",
+    "WireGuard"
+  ],
+  "statutory_standards": [
+    "Edge response latency < 20ms",
+    "Graceful offline degradation",
+    "Local data caching safety"
+  ],
+  "forbidden_antipatterns": [
+    "Running containers as root",
+    "Privileged container capabilities",
+    "Hardcoded IP addresses instead of DNS services"
+  ],
+  "curated_skills": [
+    "latency-critical-systems",
+    "fastapi-patterns",
+    "nextjs-turbopack"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

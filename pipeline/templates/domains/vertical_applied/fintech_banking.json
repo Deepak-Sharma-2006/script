@@ -1,0 +1,40 @@
+{
+  "subdomain_id": "fintech_banking",
+  "domain_id": "vertical_applied",
+  "name": "FinTech, Core Banking & Quantitative Finance",
+  "description": "ISO 20022 messaging, low-latency trading, KYC/AML fraud detection, and regulatory capital adequacy.",
+  "physical_compute_boundaries": {
+    "target_platform": "High-Availability Cluster / Statutory Audit",
+    "audit_retention_years": 7,
+    "tamper_evidence": "SHA-256 Merkle"
+  },
+  "key_technologies": [
+    "FIX Protocol",
+    "ISO 20022",
+    "Kafka",
+    "PostgreSQL",
+    "Python/C++"
+  ],
+  "statutory_standards": [
+    "PCI-DSS 4.0",
+    "Basel III",
+    "SOC 1 / SOC 2",
+    "Idempotent Payment Rails"
+  ],
+  "forbidden_antipatterns": [
+    "Logging unmasked PHI or PII",
+    "Statutory report generation without Merkle timestamp",
+    "Hardcoded tax or regulatory percentages"
+  ],
+  "curated_skills": [
+    "finance-billing-ops",
+    "customer-billing-ops",
+    "contract-first",
+    "agent-payment-x402"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

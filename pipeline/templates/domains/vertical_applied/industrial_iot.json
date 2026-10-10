@@ -1,0 +1,37 @@
+{
+  "subdomain_id": "industrial_iot",
+  "domain_id": "vertical_applied",
+  "name": "Industrial IoT, Smart Manufacturing & Supply Chain",
+  "description": "SCADA systems, OPC Unified Architecture, predictive maintenance, and digital twins.",
+  "physical_compute_boundaries": {
+    "target_platform": "High-Availability Cluster / Statutory Audit",
+    "audit_retention_years": 7,
+    "tamper_evidence": "SHA-256 Merkle"
+  },
+  "key_technologies": [
+    "OPC UA",
+    "MQTT",
+    "Time-Series DB",
+    "Python/C++",
+    "Docker"
+  ],
+  "statutory_standards": [
+    "IEC 62443 (Industrial Cybersecurity)",
+    "Sub-100ms Sensor Ingestion"
+  ],
+  "forbidden_antipatterns": [
+    "Logging unmasked PHI or PII",
+    "Statutory report generation without Merkle timestamp",
+    "Hardcoded tax or regulatory percentages"
+  ],
+  "curated_skills": [
+    "cisco-ios-patterns",
+    "netmiko-ssh-automation",
+    "cpp-coding-standards"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

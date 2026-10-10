@@ -1,0 +1,40 @@
+{
+  "subdomain_id": "game_engineering",
+  "domain_id": "software",
+  "name": "Game Engineering & Real-Time Graphics",
+  "description": "Real-time rendering, deterministic netcode, ECS architecture, and physics engines.",
+  "physical_compute_boundaries": {
+    "target_platform": "Node.js 24 LTS / Linux x86_64",
+    "memory_ceiling_mb": 2048,
+    "max_latency_p99_ms": 50
+  },
+  "key_technologies": [
+    "Unreal Engine 5",
+    "Unity",
+    "Godot",
+    "C++",
+    "C#",
+    "Vulkan",
+    "DirectX 12"
+  ],
+  "statutory_standards": [
+    "60 FPS Frame Budget (<16.6ms)",
+    "Deterministic Replay",
+    "Spatial Audio"
+  ],
+  "forbidden_antipatterns": [
+    "Using any in TypeScript",
+    "Hardcoding secrets or API keys",
+    "Unhandled Promise rejections"
+  ],
+  "curated_skills": [
+    "blender-motion-state-inspection",
+    "cpp-testing",
+    "latency-critical-systems"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "subdomain_id": "govtech_sovereign",
+  "domain_id": "vertical_applied",
+  "name": "GovTech, CivicTech & Digital Public Infrastructure",
+  "description": "National-scale digital identity, open payment networks, and cryptographically verifiable evidence vaults.",
+  "physical_compute_boundaries": {
+    "target_platform": "High-Availability Cluster / Statutory Audit",
+    "audit_retention_years": 7,
+    "tamper_evidence": "SHA-256 Merkle"
+  },
+  "key_technologies": [
+    "SHA-256 Merkle Chains",
+    "PKI Infrastructure",
+    "PostgreSQL",
+    "Python"
+  ],
+  "statutory_standards": [
+    "Digital Evidence Admissibility",
+    "Tamper-Evident Chain of Custody",
+    "Citizen Data Sovereignty"
+  ],
+  "forbidden_antipatterns": [
+    "Logging unmasked PHI or PII",
+    "Statutory report generation without Merkle timestamp",
+    "Hardcoded tax or regulatory percentages"
+  ],
+  "curated_skills": [
+    "accessibility",
+    "frontend-a11y",
+    "safety-guard",
+    "delivery-gate"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

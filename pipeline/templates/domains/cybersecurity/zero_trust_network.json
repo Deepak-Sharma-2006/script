@@ -1,0 +1,38 @@
+{
+  "subdomain_id": "zero_trust_network",
+  "domain_id": "cybersecurity",
+  "name": "Zero Trust Architecture & Cloud Security",
+  "description": "Micro-segmentation, identity-aware proxies, CSPM, and eBPF runtime observability.",
+  "physical_compute_boundaries": {
+    "target_platform": "Linux eBPF / Clang ASan",
+    "hash_algorithm": "Argon2id",
+    "side_channel_protection": "constant_time"
+  },
+  "key_technologies": [
+    "Cilium eBPF",
+    "Falco",
+    "WireGuard",
+    "Pomerium",
+    "AWS Security Hub"
+  ],
+  "statutory_standards": [
+    "NIST SP 800-207 (Zero Trust)",
+    "CIS Cloud Benchmarks",
+    "mTLS Enforcement"
+  ],
+  "forbidden_antipatterns": [
+    "Variable-time string comparisons for secret tokens",
+    "Plaintext credentials in logs or environment",
+    "MD5 or SHA-1 usage"
+  ],
+  "curated_skills": [
+    "homelab-network-readiness",
+    "homelab-wireguard-vpn",
+    "security-review"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

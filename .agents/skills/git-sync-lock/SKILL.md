@@ -1,14 +1,14 @@
 ---
 name: git-sync-lock
 description: >-
-  Coordinates distributed lease locking and role handoffs between Computer 1 and Computer 2.
+  Coordinates distributed lease locking and role handoffs across collaborating team workstations in Mode 3 (Collaborative Team Mode).
   Use this skill to inspect active locks, acquire exclusive domain leases, or transfer phase ownership
   to prevent concurrent write collisions.
 ---
 
 # Distributed Lease Locking & Role Coordination
 
-This skill provides conflict-free distributed collaboration between two workstations operating on a shared Git repository.
+This skill provides conflict-free distributed collaboration across collaborating team workstations in Mode 3 (Collaborative Team Mode).
 
 ## Commands
 

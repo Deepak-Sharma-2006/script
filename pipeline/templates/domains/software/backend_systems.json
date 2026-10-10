@@ -1,0 +1,45 @@
+{
+  "subdomain_id": "backend_systems",
+  "domain_id": "software",
+  "name": "Backend Engineering & Distributed Services",
+  "description": "REST, GraphQL, gRPC, event-driven architectures, microservices, and modular monoliths.",
+  "physical_compute_boundaries": {
+    "target_platform": "Node.js 24 LTS / Linux x86_64",
+    "memory_ceiling_mb": 2048,
+    "max_latency_p99_ms": 50
+  },
+  "key_technologies": [
+    "Node.js",
+    "Go",
+    "Python",
+    "Rust",
+    "PostgreSQL",
+    "Redis",
+    "Kafka"
+  ],
+  "statutory_standards": [
+    "OpenAPI 3.1",
+    "12-Factor App",
+    "RFC 7807 Problem Details"
+  ],
+  "forbidden_antipatterns": [
+    "Using any in TypeScript",
+    "Hardcoding secrets or API keys",
+    "Unhandled Promise rejections"
+  ],
+  "curated_skills": [
+    "backend-patterns",
+    "postgres-patterns",
+    "mysql-patterns",
+    "clickhouse-io",
+    "redis-patterns",
+    "fastapi-patterns",
+    "django-patterns",
+    "nestjs-patterns"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

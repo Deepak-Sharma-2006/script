@@ -47,6 +47,18 @@ specs/*.html
 !specs/presentations/BHEDAK_SIH2026.pptx
 !specs/presentations/CHAKRA_SIH2026.pptx
 
+pipeline/specs/presentations/deck_*
+pipeline/specs/presentations/test_*
+pipeline/specs/presentations/rendered/
+pipeline/specs/presentations/extracted/
+pipeline/specs/scratch_tests/
+pipeline/specs/test_assets/
+pipeline/specs/*.pptx
+pipeline/specs/*.pdf
+pipeline/specs/*.html
+!pipeline/specs/presentations/BHEDAK_SIH2026.pptx
+!pipeline/specs/presentations/CHAKRA_SIH2026.pptx
+
 # Playwright artifacts
 test-results/
 playwright-report/
@@ -81,24 +93,51 @@ notebook_instance_types.json
 scripts/hmt_breakthrough_pipeline.py
 tests/test_hmt_breakthrough_pipeline.py
 
-# Local problem session artifacts, research, walkthroughs, and specs (template clean)
-docs/plans/2026*
-docs/walkthroughs/2026*
-docs/research/2026*
-docs/specifications/2026*
-docs/audits/2026*
-docs/decisions/2026*
-docs/dossiers/phase-*.md
-docs/audits/*_test_*.md
-docs/audits/*_tamper_*.md
-docs/audits/*_casec_*.md
-docs/audits/*_remed_*.md
-docs/audits/*_sec_*.md
-docs/audits/*_ts_*.md
-docs/audits/*_audit_audit.md
-docs/plans/*_test_*.md
-docs/plans/*_casec_test_*.md
+# User engineering projects & domain research (excluded from template)
+projects/
+
+# Mesh network ephemeral state
+.agents/mesh/
+.agents/memory/decisions/
+.agents/state/*.md
+
+# Session documents, research, walkthroughs, and specs (clean template enforcement)
+docs/plans/*.md
+!docs/plans/README.md
+!docs/plans/INDEX.md
+
+docs/walkthroughs/*.md
+!docs/walkthroughs/README.md
+!docs/walkthroughs/INDEX.md
+
+docs/audits/*.md
+!docs/audits/README.md
+!docs/audits/INDEX.md
+
+docs/decisions/*.md
+!docs/decisions/README.md
+!docs/decisions/INDEX.md
+
+docs/research/*.md
+!docs/research/README.md
+!docs/research/INDEX.md
+
+docs/specifications/*.md
+!docs/specifications/README.md
+!docs/specifications/INDEX.md
+
+docs/dossiers/*.md
+!docs/dossiers/README.md
+!docs/dossiers/dossier_template.md
+
+docs/dossiers/assets/*
+!docs/dossiers/assets/README.md
+
 specs/*.json
 specs/*.html
 specs/contracts/*.json
+pipeline/specs/*.json
+pipeline/specs/*.html
+pipeline/specs/contracts/*.json
+!pipeline/specs/benchmark_metrics.json
 

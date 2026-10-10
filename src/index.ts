@@ -19,6 +19,13 @@ export function createServer(config: ServerConfig = defaultConfig): Server {
   return createHttpServer((req: IncomingMessage, res: ServerResponse) => {
     const url = req.url || "/";
 
+    // Security Shield: Reject path traversal / injection attacks
+    if (url.includes("..") || url.includes("<") || url.toLowerCase().includes("%3c") || url.includes("%00") || /passwd|win\.ini|system32/i.test(url)) {
+      res.writeHead(400, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Bad Request: Invalid path syntax" }));
+      return;
+    }
+
     if (url === "/health" || url === "/api/health") {
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(
@@ -43,13 +50,6 @@ export function createServer(config: ServerConfig = defaultConfig): Server {
           engine: `Node.js ${process.version}`,
         })
       );
-      return;
-    }
-
-    // Security Shield: Reject path traversal / injection attacks
-    if (url.includes("..") || url.includes("<") || url.toLowerCase().includes("%3c") || url.includes("%00") || /passwd|win\.ini|system32/i.test(url)) {
-      res.writeHead(400, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "Bad Request: Invalid path syntax" }));
       return;
     }
 

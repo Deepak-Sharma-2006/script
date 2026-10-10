@@ -1,0 +1,41 @@
+{
+  "subdomain_id": "mlops_inference",
+  "domain_id": "ai_ml",
+  "name": "Production MLOps, LLMOps & Serving",
+  "description": "Model registries, continuous drift monitoring, TensorRT-LLM, and vLLM clusters.",
+  "physical_compute_boundaries": {
+    "target_platform": "NVIDIA Tesla T4 / Jetson Orin Nano",
+    "memory_ceiling_mb": 8192,
+    "max_patch_size": 14,
+    "optimal_tile_resolution": 672
+  },
+  "key_technologies": [
+    "vLLM",
+    "Triton Inference Server",
+    "MLflow",
+    "Kubeflow",
+    "Docker"
+  ],
+  "statutory_standards": [
+    "Time-to-First-Token (TTFT) < 200ms",
+    "Zero GPU memory leak",
+    "Automated model canary deploy"
+  ],
+  "forbidden_antipatterns": [
+    "Training foundation models from scratch without pre-trained weights",
+    "Memory broadcast across PCIe in DataParallel",
+    "Silent NaN loss propagation"
+  ],
+  "curated_skills": [
+    "mle-workflow",
+    "latency-critical-systems",
+    "data-throughput-accelerator",
+    "ito-inference",
+    "ito-compute"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

@@ -1,6 +1,6 @@
 # Shared Team Memory Directory
 
-This directory stores cross-project, cross-developer memory records synchronized across all workstation operators in Dual-Lead or Team Mesh mode.
+This directory stores cross-project, cross-developer memory records synchronized across all collaborating workstations in Mode 3 (Collaborative Team Mode).
 
 ## Subdirectories
 - `decisions/`: Cross-cutting team architectural decisions.

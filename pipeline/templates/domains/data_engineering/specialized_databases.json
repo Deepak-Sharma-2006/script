@@ -1,0 +1,39 @@
+{
+  "subdomain_id": "specialized_databases",
+  "domain_id": "data_engineering",
+  "name": "Specialized Databases (Vector, Graph & Time-Series)",
+  "description": "Vector indexing for AI (Milvus, Qdrant), graph relationships (Neo4j), and time-series metrics.",
+  "physical_compute_boundaries": {
+    "target_platform": "Apache Kafka / ClickHouse / DuckDB",
+    "batch_flush_interval_ms": 500,
+    "max_buffer_mb": 512
+  },
+  "key_technologies": [
+    "Milvus",
+    "Qdrant",
+    "Neo4j",
+    "TimescaleDB",
+    "CockroachDB"
+  ],
+  "statutory_standards": [
+    "Vector Recall > 95%",
+    "Graph Traversal Depth Limits",
+    "Time-Bucket Retention Policies"
+  ],
+  "forbidden_antipatterns": [
+    "Unbounded in-memory aggregation without spill-to-disk",
+    "Schema drift without migration gating",
+    "Non-idempotent event replays"
+  ],
+  "curated_skills": [
+    "clickhouse-io",
+    "postgres-patterns",
+    "mysql-patterns",
+    "redis-patterns"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

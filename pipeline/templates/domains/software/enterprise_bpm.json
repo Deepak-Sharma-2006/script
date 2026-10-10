@@ -1,0 +1,38 @@
+{
+  "subdomain_id": "enterprise_bpm",
+  "domain_id": "software",
+  "name": "Enterprise Systems & Low-Code / BPM Platforms",
+  "description": "Durable workflows, ERP integration, and automated business processes.",
+  "physical_compute_boundaries": {
+    "target_platform": "Node.js 24 LTS / Linux x86_64",
+    "memory_ceiling_mb": 2048,
+    "max_latency_p99_ms": 50
+  },
+  "key_technologies": [
+    "Temporal.io",
+    "Camunda",
+    "SAP S/4HANA",
+    "Salesforce Apex",
+    "PostgreSQL"
+  ],
+  "statutory_standards": [
+    "BPMN 2.0",
+    "Idempotent Execution",
+    "ACID Transaction Guarantees"
+  ],
+  "forbidden_antipatterns": [
+    "Using any in TypeScript",
+    "Hardcoding secrets or API keys",
+    "Unhandled Promise rejections"
+  ],
+  "curated_skills": [
+    "tinystruct-patterns",
+    "contract-first",
+    "jira-integration"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

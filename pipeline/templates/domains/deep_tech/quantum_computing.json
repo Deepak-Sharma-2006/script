@@ -1,0 +1,38 @@
+{
+  "subdomain_id": "quantum_computing",
+  "domain_id": "deep_tech",
+  "name": "Quantum Computing & Information Science",
+  "description": "Qubit gate synthesis, quantum algorithms (VQE, QAOA), quantum error correction, and Qiskit pipelines.",
+  "physical_compute_boundaries": {
+    "target_platform": "Qiskit Aer / OpenMM / C++20 Sim",
+    "memory_ceiling_mb": 16384,
+    "precision": "fp64"
+  },
+  "key_technologies": [
+    "Qiskit",
+    "Cirq",
+    "PennyLane",
+    "OpenQASM",
+    "QuTiP"
+  ],
+  "statutory_standards": [
+    "Gate fidelity metrics",
+    "Coherence time budget (T1/T2)",
+    "Circuit depth optimization"
+  ],
+  "forbidden_antipatterns": [
+    "Single-precision accumulation in thermodynamic simulations",
+    "Non-deterministic seed generation",
+    "Unbounded matrix inversion"
+  ],
+  "curated_skills": [
+    "latency-critical-systems",
+    "benchmark",
+    "cpp-coding-standards"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "subdomain_id": "hpc_supercomputing",
+  "domain_id": "deep_tech",
+  "name": "High-Performance Computing (HPC) & Parallel Clusters",
+  "description": "MPI distributed clusters, OpenMP multi-threading, Slurm job schedulers, and GPU acceleration.",
+  "physical_compute_boundaries": {
+    "target_platform": "Qiskit Aer / OpenMM / C++20 Sim",
+    "memory_ceiling_mb": 16384,
+    "precision": "fp64"
+  },
+  "key_technologies": [
+    "MPI (OpenMPI/MPICH)",
+    "OpenMP",
+    "CUDA",
+    "Slurm",
+    "Lustre"
+  ],
+  "statutory_standards": [
+    "Amdahl's law scaling efficiency",
+    "Zero thread deadlocks",
+    "Non-blocking collective communication"
+  ],
+  "forbidden_antipatterns": [
+    "Single-precision accumulation in thermodynamic simulations",
+    "Non-deterministic seed generation",
+    "Unbounded matrix inversion"
+  ],
+  "curated_skills": [
+    "latency-critical-systems",
+    "benchmark",
+    "data-throughput-accelerator",
+    "cpp-testing"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

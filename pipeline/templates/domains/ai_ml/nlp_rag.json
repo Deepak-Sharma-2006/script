@@ -1,0 +1,41 @@
+{
+  "subdomain_id": "nlp_rag",
+  "domain_id": "ai_ml",
+  "name": "NLP, Semantic Search & Advanced RAG",
+  "description": "Dense/sparse hybrid search, GraphRAG, cross-encoder rerankers, and chunking strategies.",
+  "physical_compute_boundaries": {
+    "target_platform": "NVIDIA Tesla T4 / Jetson Orin Nano",
+    "memory_ceiling_mb": 8192,
+    "max_patch_size": 14,
+    "optimal_tile_resolution": 672
+  },
+  "key_technologies": [
+    "Chroma",
+    "Qdrant",
+    "BM25",
+    "ColBERT",
+    "NetworkX",
+    "BGE-Reranker"
+  ],
+  "statutory_standards": [
+    "Context recall/precision metrics",
+    "Faithfulness score >= 0.85",
+    "Citation grounding"
+  ],
+  "forbidden_antipatterns": [
+    "Training foundation models from scratch without pre-trained weights",
+    "Memory broadcast across PCIe in DataParallel",
+    "Silent NaN loss propagation"
+  ],
+  "curated_skills": [
+    "iterative-retrieval",
+    "regex-vs-llm-structured-text",
+    "deep-research",
+    "exa-search"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

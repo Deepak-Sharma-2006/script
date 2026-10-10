@@ -1,0 +1,38 @@
+{
+  "subdomain_id": "platform_iac",
+  "domain_id": "cloud_infra",
+  "name": "Platform Engineering & Infrastructure-as-Code (IaC)",
+  "description": "Terraform, OpenTofu, Pulumi, Crossplane, and internal developer platforms (Backstage).",
+  "physical_compute_boundaries": {
+    "target_platform": "Kubernetes v1.31 / containerd",
+    "cpu_limit_cores": 4,
+    "memory_ceiling_mb": 4096
+  },
+  "key_technologies": [
+    "Terraform",
+    "OpenTofu",
+    "Pulumi",
+    "Crossplane",
+    "Backstage"
+  ],
+  "statutory_standards": [
+    "Immutable Infrastructure",
+    "Drift Detection Automation",
+    "State File Encryption"
+  ],
+  "forbidden_antipatterns": [
+    "Running containers as root",
+    "Privileged container capabilities",
+    "Hardcoded IP addresses instead of DNS services"
+  ],
+  "curated_skills": [
+    "docker-patterns",
+    "flox-environments",
+    "uncloud"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "subdomain_id": "data_mesh_governance",
+  "domain_id": "data_engineering",
+  "name": "Data Mesh, Semantics & Governance",
+  "description": "Domain-oriented decentralized data products, semantic layers, and enterprise data cataloging.",
+  "physical_compute_boundaries": {
+    "target_platform": "Apache Kafka / ClickHouse / DuckDB",
+    "batch_flush_interval_ms": 500,
+    "max_buffer_mb": 512
+  },
+  "key_technologies": [
+    "Cube.js",
+    "dbt Semantic Layer",
+    "Atlan",
+    "Amundsen"
+  ],
+  "statutory_standards": [
+    "Data Product SLA Contracts",
+    "GDPR Right to Be Forgotten",
+    "Column-level Data Masking"
+  ],
+  "forbidden_antipatterns": [
+    "Unbounded in-memory aggregation without spill-to-disk",
+    "Schema drift without migration gating",
+    "Non-idempotent event replays"
+  ],
+  "curated_skills": [
+    "contract-first",
+    "living-docs-governance",
+    "database-migrations"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

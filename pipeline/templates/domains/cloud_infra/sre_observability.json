@@ -1,0 +1,39 @@
+{
+  "subdomain_id": "sre_observability",
+  "domain_id": "cloud_infra",
+  "name": "Site Reliability Engineering (SRE) & Observability",
+  "description": "OpenTelemetry metrics/logs/traces, Prometheus alerting, chaos engineering, and SLO/error budgets.",
+  "physical_compute_boundaries": {
+    "target_platform": "Kubernetes v1.31 / containerd",
+    "cpu_limit_cores": 4,
+    "memory_ceiling_mb": 4096
+  },
+  "key_technologies": [
+    "OpenTelemetry",
+    "Prometheus",
+    "Grafana",
+    "Chaos Mesh",
+    "Datadog"
+  ],
+  "statutory_standards": [
+    "99.99% Availability SLO",
+    "MTTR < 15 minutes",
+    "Distributed Trace Context Propagation"
+  ],
+  "forbidden_antipatterns": [
+    "Running containers as root",
+    "Privileged container capabilities",
+    "Hardcoded IP addresses instead of DNS services"
+  ],
+  "curated_skills": [
+    "dashboard-builder",
+    "verification-loop",
+    "canary-watch",
+    "production-audit"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

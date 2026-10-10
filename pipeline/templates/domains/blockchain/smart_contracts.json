@@ -1,0 +1,40 @@
+{
+  "subdomain_id": "smart_contracts",
+  "domain_id": "blockchain",
+  "name": "Smart Contracts & Protocol Engineering",
+  "description": "EVM, Solidity, Vyper, and Rust/Solana secure on-chain contract logic.",
+  "physical_compute_boundaries": {
+    "target_platform": "EVM / Substrate / WASM",
+    "gas_ceiling_units": 30000000,
+    "reentrancy_guard": "fail_closed"
+  },
+  "key_technologies": [
+    "Solidity",
+    "Foundry",
+    "Hardhat",
+    "Rust",
+    "Anchor",
+    "Slither"
+  ],
+  "statutory_standards": [
+    "ERC-20 / ERC-721 / ERC-1155",
+    "Checks-Effects-Interactions Pattern",
+    "ReentrancyGuard"
+  ],
+  "forbidden_antipatterns": [
+    "tx.origin authentication",
+    "Reentrancy without mutex lock",
+    "Unchecked return values on low-level calls"
+  ],
+  "curated_skills": [
+    "defi-amm-security",
+    "evm-token-decimals",
+    "contract-first",
+    "nodejs-keccak256"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

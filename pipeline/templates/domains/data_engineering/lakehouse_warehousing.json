@@ -1,0 +1,38 @@
+{
+  "subdomain_id": "lakehouse_warehousing",
+  "domain_id": "data_engineering",
+  "name": "Data Warehousing & Lakehouse Platforms",
+  "description": "Modern cloud warehouses (Snowflake, BigQuery, ClickHouse) and open table formats (Iceberg, Delta).",
+  "physical_compute_boundaries": {
+    "target_platform": "Apache Kafka / ClickHouse / DuckDB",
+    "batch_flush_interval_ms": 500,
+    "max_buffer_mb": 512
+  },
+  "key_technologies": [
+    "Snowflake",
+    "ClickHouse",
+    "Google BigQuery",
+    "Apache Iceberg",
+    "DuckDB"
+  ],
+  "statutory_standards": [
+    "ACID Lakehouse Transactions",
+    "Partition Pruning Efficiency",
+    "Columnar Compression Optimization"
+  ],
+  "forbidden_antipatterns": [
+    "Unbounded in-memory aggregation without spill-to-disk",
+    "Schema drift without migration gating",
+    "Non-idempotent event replays"
+  ],
+  "curated_skills": [
+    "postgres-patterns",
+    "clickhouse-io",
+    "contract-first"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

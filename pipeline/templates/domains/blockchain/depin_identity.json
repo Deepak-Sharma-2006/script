@@ -1,0 +1,38 @@
+{
+  "subdomain_id": "depin_identity",
+  "domain_id": "blockchain",
+  "name": "DePIN, Decentralized Identity & Account Abstraction",
+  "description": "ERC-4337 smart accounts, passkey signers, verifiable credentials, and decentralized physical infrastructure.",
+  "physical_compute_boundaries": {
+    "target_platform": "EVM / Substrate / WASM",
+    "gas_ceiling_units": 30000000,
+    "reentrancy_guard": "fail_closed"
+  },
+  "key_technologies": [
+    "ERC-4337",
+    "W3C DID",
+    "Helium",
+    "Filecoin",
+    "Passkeys (WebAuthn)"
+  ],
+  "statutory_standards": [
+    "Bundler Censorship Resistance",
+    "Gas Abstraction Security",
+    "Sovereign Key Recovery"
+  ],
+  "forbidden_antipatterns": [
+    "tx.origin authentication",
+    "Reentrancy without mutex lock",
+    "Unchecked return values on low-level calls"
+  ],
+  "curated_skills": [
+    "contract-first",
+    "agent-payment-x402",
+    "security-review"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

@@ -1,9 +1,11 @@
 {
-  "mode": "solo",
-  "active_role": "Lead 1 (Alpha - Solo)",
-  "operator": "SoloOperator",
-  "updated_at": "2026-09-30T00:00:00.000Z",
+  "active_role": "alpha",
+  "updated_at": "2026-10-08T22:46:50.506Z",
+  "workstation_id": "Deepak-Sharma",
   "roleTitle": "Feature Architect & Core Domain Lead",
+  "mode": "surge",
+  "operator": "SoloOperator",
   "role": "Alpha",
-  "updatedAt": "2026-10-05T19:24:41.126Z"
+  "updatedAt": "2026-10-10T20:42:33.984Z",
+  "account_profile": "1"
 }

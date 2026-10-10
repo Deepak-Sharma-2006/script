@@ -1,0 +1,39 @@
+{
+  "subdomain_id": "defi_protocols",
+  "domain_id": "blockchain",
+  "name": "Decentralized Finance (DeFi) & Tokenomics",
+  "description": "Automated Market Makers, algorithmic lending, flash-loan resilience, and token economic models.",
+  "physical_compute_boundaries": {
+    "target_platform": "EVM / Substrate / WASM",
+    "gas_ceiling_units": 30000000,
+    "reentrancy_guard": "fail_closed"
+  },
+  "key_technologies": [
+    "Uniswap v4 Hooks",
+    "Aave v3",
+    "Chainlink Oracles",
+    "Foundry Fuzzing"
+  ],
+  "statutory_standards": [
+    "TWAP Oracle Safety",
+    "Slippage Protection",
+    "Liquidation Threshold Invariants"
+  ],
+  "forbidden_antipatterns": [
+    "tx.origin authentication",
+    "Reentrancy without mutex lock",
+    "Unchecked return values on low-level calls"
+  ],
+  "curated_skills": [
+    "defi-amm-security",
+    "evm-token-decimals",
+    "contract-first",
+    "finance-billing-ops",
+    "agent-payment-x402"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

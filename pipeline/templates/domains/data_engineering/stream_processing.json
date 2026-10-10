@@ -1,0 +1,38 @@
+{
+  "subdomain_id": "stream_processing",
+  "domain_id": "data_engineering",
+  "name": "Data Ingestion & Real-Time Event Streaming",
+  "description": "High-throughput messaging (Kafka, Redpanda), stream processing (Flink, Spark), and exactly-once semantics.",
+  "physical_compute_boundaries": {
+    "target_platform": "Apache Kafka / ClickHouse / DuckDB",
+    "batch_flush_interval_ms": 500,
+    "max_buffer_mb": 512
+  },
+  "key_technologies": [
+    "Apache Kafka",
+    "Apache Flink",
+    "Redpanda",
+    "Apache Spark Streaming",
+    "RabbitMQ"
+  ],
+  "statutory_standards": [
+    "Exactly-Once Processing Semantics",
+    "Consumer Lag SLAs",
+    "Schema Registry Enforcement (Avro/Protobuf)"
+  ],
+  "forbidden_antipatterns": [
+    "Unbounded in-memory aggregation without spill-to-disk",
+    "Schema drift without migration gating",
+    "Non-idempotent event replays"
+  ],
+  "curated_skills": [
+    "data-throughput-accelerator",
+    "latency-critical-systems",
+    "clickhouse-io"
+  ],
+  "specialized_rubrics": {
+    "unit_tdd_target": ">= 90% branch coverage",
+    "mutation_kill_rate": ">= 80%",
+    "adversarial_fuzzing": "Pass 100% boundary probe tests"
+  }
+}

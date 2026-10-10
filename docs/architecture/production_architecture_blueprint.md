@@ -2274,13 +2274,13 @@ Before authorizing autonomous agents to build or merge production features, audi
 
 ### 10.1 Multi-Workstation Topography & Hardware Profiles
 
-To establish a true enterprise-grade, real-world production automated agentic workflow, the architecture is deployed across **two physical workstations** ("Computer 1" and "Computer 2") operating on a single, synchronized Git repository and shared agentic context engine.
+To establish a true enterprise-grade, real-world production automated agentic workflow, the architecture supports **collaborating workstations** ("Workstation Alpha" and "Workstation Beta" / Multi-node Team Mesh) operating on a single, synchronized Git repository and shared agentic context engine in Mode 3 (Collaborative Team Mode).
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                     THE 2-PERSON / 2-COMPUTER ENTERPRISE TOPOLOGY                                │
+│                     MODE 3: COLLABORATIVE TEAM MESH TOPOLOGY                                     │
 ├──────────────────────────────────────┬───────────────────────────────────────────────────────────┤
-│ WORKSTATION 1 (COMPUTER 1)           │ WORKSTATION 2 (COMPUTER 2)                                │
+│ WORKSTATION ALPHA (PRIMARY BUILDER)  │ WORKSTATION BETA (ADVERSARIAL SDET & AUDITOR)             │
 ├──────────────────────────────────────┼───────────────────────────────────────────────────────────┤
 │ • OS: macOS / Linux / Windows 11     │ • OS: macOS / Linux / Windows 11                          │
 │ • Tooling: Antigravity IDE + CLI     │ • Tooling: Antigravity CLI (`agy`) + Antigravity IDE      │
@@ -2346,9 +2346,9 @@ To ensure **100% equal contribution** across the development team and eliminate 
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                            PHASE ROLE INVERSION MATRIX (50/50 EQUALITY)                          │
+│                     PHASE ROLE INVERSION MATRIX (COLLABORATIVE TEAM ROTATION)                    │
 ├───────────────┬──────────────────────────────────────────┬───────────────────────────────────────┤
-│ PHASE         │ COMPUTER 1                               │ COMPUTER 2                            │
+│ PHASE         │ WORKSTATION ALPHA                        │ WORKSTATION BETA                      │
 ├───────────────┼──────────────────────────────────────────┼───────────────────────────────────────┤
 │ Phase 1: Auth │ [ALPHA: BUILDER & AUTHOR]                │ [BETA: ADVERSARIAL AUDITOR]           │
 │ Phase 2: DB   │ [BETA: ADVERSARIAL AUDITOR]              │ [ALPHA: BUILDER & AUTHOR]             │
@@ -2361,16 +2361,16 @@ To ensure **100% equal contribution** across the development team and eliminate 
 #### Detailed Responsibilities per Role
 
 ##### 1. The ALPHA Role (Primary Builder)
-- **Step 1: Domain Lease Acquisition**: Alpha runs `npx ts-node scripts/lock-manager.ts acquire --domain <name> --operator <MyNode> --role Alpha --ttl 3600`.
+- **Step 1: Domain Lease Acquisition**: Alpha runs `npm run lock:acquire -- --domain <name> --role alpha --ttl 3600`.
 - **Step 2: Architecture & ADR**: Alpha drafts the Architecture Decision Record and creates deterministic TDD unit tests (`*.test.ts`).
 - **Step 3: Autonomous Coding Loop**: Alpha invokes Antigravity IDE (Planning Mode → Agent Mode) to implement the feature logic in accordance with strict TypeScript rules.
 - **Step 4: Phase 7 Comprehension Dossier**: Alpha generates `docs/dossiers/phase-<X>-<domain>.md` incorporating all 6 cognitive techniques.
 - **Step 5: Hand-Off Event**: Alpha commits to `feat/phase-X`, pushes to origin, and transfers the domain lease to Beta.
 
 ##### 2. The BETA Role (Adversarial Critic & Auditor)
-- **Step 1: Receive Lease**: Beta receives the domain lease via `scripts/lock-manager.ts transfer`.
-- **Step 2: The Claude Council Swarm**: Beta runs `scripts/council.ts` on the PR diff to uncover sycophancy, edge cases, and architectural flaws.
-- **Step 3: Styx Autonomous AI Red-Team DAST**: Beta spins up the live container sandbox and executes `npx ts-node scripts/pen-test-runner.ts`. If any critical or high exploit is verified with Proof-of-Exploit (PoE), the PR is automatically rejected.
+- **Step 1: Receive Lease**: Beta receives the domain lease via `npm run role:handoff -- --check`.
+- **Step 2: The Claude Council Swarm**: Beta runs Solution Council on the PR diff to uncover sycophancy, edge cases, and architectural flaws.
+- **Step 3: Styx Autonomous AI Red-Team DAST**: Beta executes AppSec penetration and AST mutation testing. If any critical exploit or mutant survival rate > 20% is detected, the PR is automatically rejected.
 - **Step 4: Cognitive Comprehension Audit**: Beta reads the Phase Dossier, verifies that failure paths have constant-time verification (Δt < 1 ms), checks against account enumeration, and executes the 1-Sentence Feynman Compression Test.
 - **Step 5: Merge Sign-Off & Role Flip**: Once all gates pass, Beta merges `feat/phase-X` into `main`, and the roles invert for the next phase.
 
@@ -2378,7 +2378,7 @@ To ensure **100% equal contribution** across the development team and eliminate 
 
 ### 10.4 Distributed Concurrency & Task Lease Locking Engine
 
-To prevent merge conflicts, file overwrites, and race conditions between Computer 1 and Computer 2, all file mutations are governed by the distributed lease manager:
+To prevent merge conflicts, file overwrites, and race conditions between collaborating workstations, all file mutations are governed by the distributed lease manager:
 
 ```
                     ┌──────────────────────────────────────────────┐
@@ -2392,7 +2392,7 @@ To prevent merge conflicts, file overwrites, and race conditions between Compute
                    ┌───────────────────────┴───────────────────────┐
                    ▼                                               ▼
      ┌───────────────────────────┐                   ┌───────────────────────────┐
-     │ COMPUTER 1 (Node Alpha)   │                   │ COMPUTER 2 (Node Beta)    │
+     │ WORKSTATION ALPHA (Alpha) │                   │ WORKSTATION BETA (Beta)   │
      │ Holds Active Lease        │                   │ Read-Only / Review Mode   │
      │ Allowed: Mutate & Commit  │                   │ Blocked: Mutations Halted │
      └───────────────────────────┘                   └───────────────────────────┘
@@ -2460,7 +2460,7 @@ To prevent runaway LLM costs during autonomous loop execution, both machines enf
 
 ### 10.7 Day-1 Setup & Operational Runbook
 
-#### Workstation 1 (Computer 1) - Initial Setup
+#### Workstation Alpha (Lead 1 Builder) - Initial Setup
 ```bash
 # 1. Clone repository
 git clone https://github.com/Deepak-Sharma-2006/agent1.git
@@ -2472,15 +2472,15 @@ npm install
 # 3. Verify Antigravity customization layer
 ls -la .agents/rules .agents/skills .agents/hooks.json
 
-# 4. Verify lock manager & anti-hallucination shield
-node --experimental-strip-types scripts/lock-manager.ts status
-node --experimental-strip-types scripts/anti-hallucination-checker.ts scripts
+# 4. Verify lock manager & system status
+npm run lock:status
+npm run check
 
 # 5. Acquire Phase 1 Lease (Alpha Builder)
-node --experimental-strip-types scripts/lock-manager.ts acquire --domain auth --operator "Computer1" --role Alpha --ttl 7200
+npm run lock:acquire -- --domain auth --role alpha --ttl 7200
 ```
 
-#### Workstation 2 (Computer 2) - Initial Setup
+#### Workstation Beta (Lead 2 Auditor) - Initial Setup
 ```bash
 # 1. Clone repository
 git clone https://github.com/Deepak-Sharma-2006/agent1.git
@@ -2492,47 +2492,47 @@ npm install
 # 3. Configure Antigravity CLI settings
 # Ensure ~/.gemini/antigravity-cli/settings.json points to .agents
 
-# 4. Check active locks (Verify Computer 1 holds Phase 1 lease)
-node --experimental-strip-types scripts/lock-manager.ts status
+# 4. Check active locks (Verify Workstation Alpha holds Phase 1 lease)
+npm run lock:status
 
-# 5. Spin up container sandbox for Styx DAST red-teaming
-docker compose up -d test-sandbox
+# 5. Verify local LAN status or container sandbox
+npm run mesh:status
 ```
 
 #### Daily Phase Collaboration Cycle (Phase 1 to Phase 2)
 ```bash
-# === STEP 1: Computer 1 (Alpha) implements Phase 1 ===
+# === STEP 1: Workstation Alpha implements Phase 1 ===
 # - Writes code in Antigravity IDE
-# - Runs Vitest tests: pnpm vitest run
+# - Runs test suite: npm test
 # - Generates Phase 1 Dossier: docs/dossiers/phase-1-auth.md
 git add .
 git commit -m "feat(auth): complete Phase 1 auth service with dossier"
 git push origin feat/phase-1-auth
 
-# === STEP 2: Computer 1 transfers lease to Computer 2 ===
-npx ts-node scripts/lock-manager.ts transfer --domain auth --operator "Computer1" --to "Computer2" --role Beta
-git commit -am "chore(locks): transfer auth lease to Computer2" && git push
+# === STEP 2: Workstation Alpha hands off to Workstation Beta ===
+npm run role:handoff -- --phase 1 --domain auth --summary "Phase 1 complete, handing off to Beta"
+git push origin feat/phase-1-auth
 
-# === STEP 3: Computer 2 (Beta) conducts Adversarial Audit ===
+# === STEP 3: Workstation Beta conducts Adversarial Audit ===
 git pull origin feat/phase-1-auth
-# - Convenes Claude Council:
-npx ts-node scripts/council.ts "Audit Phase 1 Auth Service"
-# - Deploys Styx AI Red-Team DAST:
-npx ts-node scripts/pen-test-runner.ts
+# - Inspects handoff manifest:
+npm run role:handoff -- --check
+# - Convenes Solution Council & AST Mutation Testing:
+npm run test:mutation
 # - Conducts Feynman Compression & failure path check on docs/dossiers/phase-1-auth.md
 
-# === STEP 4: Computer 2 merges and releases lock ===
+# === STEP 4: Workstation Beta merges and releases lock ===
 git checkout main && git merge feat/phase-1-auth && git push origin main
-npx ts-node scripts/lock-manager.ts release --domain auth --operator "Computer2"
+npm run lock:release -- --domain auth
 
-# === STEP 5: ROLE INVERSION for Phase 2 (Database Layer) ===
-# Computer 2 now acquires Phase 2 lease as ALPHA BUILDER:
-npx ts-node scripts/lock-manager.ts acquire --domain database --operator "Computer2" --role Alpha --ttl 7200
-# Computer 1 now acts as BETA AUDITOR for Phase 2!
+# === STEP 5: ROLE INVERSION for Phase 2 ===
+# Workstation Beta now acquires Phase 2 lease as ALPHA BUILDER:
+npm run lock:acquire -- --domain database --role alpha --ttl 7200
+# Workstation Alpha now acts as BETA AUDITOR for Phase 2!
 ```
 
 ---
-*Enterprise 2-Person / 2-Computer Shared Context Architecture established. Symmetrical 50/50 development weight, strict anti-hallucination shields, token budgeting, Phase 7 cognitive dossiers, and dynamic Styx red-teaming verified.*
+*True Pipeline Collaborative Team Architecture established. Balanced multi-developer specialization, strict anti-hallucination shields, token budgeting, Phase 7 cognitive dossiers, and dynamic Styx red-teaming verified.*
 
 ---
 
